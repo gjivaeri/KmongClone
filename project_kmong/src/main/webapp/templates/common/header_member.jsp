@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <div class="header">
         <div class="header1">
             <a href="main2_.jsp"><div class="logo-div"></div></a>
