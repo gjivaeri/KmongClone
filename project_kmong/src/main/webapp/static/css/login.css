@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+.css-p1iya4 {
+    margin: 0px 16px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 256px;
+    transition: max-width 0.2s ease-in-out 0s;
+    position: relative;
+}
+
+* {
+    font-family: 'Metro Sans',sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+}
+
+.css-1g90pep {
+    width: 100%;
+    border: 1px solid rgb(228, 229, 237);
+    transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s;
+    display: inline-flex;
+    flex-direction: row;
+    overflow: hidden;
+    cursor: text;
+    background-color: rgb(255, 255, 255);
+    color: rgb(48, 52, 65);
+    height: 42px;
+    padding: 0px 12px;
+    min-width: 64px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+* {
+    font-family: 'Metro Sans',sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+}
+
+.css-1g90pep .suffix-wrapper {
+    padding-left: 7px;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    flex-basis: 35px;
+}
+
+.css-kknodv {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.css-dka9py {
+    outline: none;
+    flex: 1 1 0%;
+    width: 100%;
+    background-image: none;
+    box-sizing: border-box;
+    font-size: inherit;
+    border: none;
+    font-weight: inherit;
+    background-color: transparent;
+    text-align: left;
+    color: inherit;
+}
+
+
+
+html {
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+}
+
+.css-aah4od {
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

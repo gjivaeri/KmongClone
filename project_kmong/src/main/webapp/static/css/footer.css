@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+/*     나중에 공용 css에 합쳐주세요 
+Metro Sans는 나중에 한꺼번에 다른 폰트로 replace합니다
+*/
+
+/* footer CSS */
+  p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+	}
+	hr {
+	  box-sizing: content-box;
+	  height: 0;
+	  overflow: visible;
+	}
+	
+/* 	footer최상단 */
+	.footer-sub{
+	  width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    position: relative;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+	}
+    .sub-body{
+    padding-top: 32px;
+    padding-bottom: 16px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    } 
+    .footer-title{
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.57;
+    color: #212224;
+    }
+    
+/*     google, app store button */
+    .store-wrap{
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 0px;
+    }
+    #seller-info{
+    height: 24px;
+    font-size: 12px;
+    padding: 0 8px;
+    min-width: 48px;
+    margin-left: 8px;
+    }
+    
+    .store-icon{
+    margin-left: -5px;
+   	margin-right: 6px;
+    }
+    
+    .store-btn{
+    height: 42px;
+    font-size: 15px;
+    padding: 0 22px;
+    min-width: 64px;
+    }
+    
+/*    크몽 사업자정보 */
+    .footer-top{
+    max-width: 1200px;
+    text-align: center;
+    margin: 16px auto 0 auto;
+    }
+    .footer-top-body{
+    font-family: "Metro Sans","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.15;
+    margin: 0;
+    color: #303441;
+    font-size: 13px;
+    }
+    .footer-separator:after{content:"|";}
+    .footer-bottom{
+    padding: 16px;
+    cursor: pointer;
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+    }
+    
+/*     크몽 저작권 */
+    .footer-warning{
+	  font-family: "Metro Sans","Helvetica","Arial",sans-serif;
+	  font-weight: 400;
+	  font-size: 0.75rem;
+	  line-height: 1.66;
+	  letter-spacing: 0.4;
+	  margin: 0;
+	  color: #212224;
+	  text-align: inherit;
+	  color: #9a9ba7;
+    }
+    .copyright{
+    margin: 16px 0 8px 0;
+    }
+    .copyright > p{
+    font-family: "Metro Sans","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    margin: 0;
+    text-align: inherit;
+    color: #c8cad2;
+    }
+    
+/*     버튼공통 */
+	.footer-btn{
+	outline: none;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    border-radius: 4px;
+    line-height: 1;
+    font-weight: 800; 
+    transition: background-color 0.3s,border-color 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+    max-width: 100%;
+    height: 36px;
+    font-size: 14px;
+    padding: 0 16px;
+    min-width: 64px;
+    background-color: #ffffff;
+    border-color: #e4e5ed;
+    color: #303441;
+    margin-top: 16px;
+    border: 1px solid #555969;
+    }
+    
+/*  footer css end */
