@@ -8,7 +8,9 @@
 
 <script type="text/javascript">
 $(function(){
-	
+	$("#btn").click(function(){
+		$("#frm").submit();
+	})
 });//ready
 </script>
 </head>
@@ -25,11 +27,14 @@ $(function(){
                 <h4>회원님의 아이디는 _____<!-- 아이디 받아오기 -->입니다.<h4>
                 
                 <div>
-                    <input type="button" value="로그인" class="id-box-btns" onclick="location.href='index.jsp'"/>
+                    <form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp">
+               		<input type="hidden" name="hid" value="login"/>
+                    <input type="button" value="로그인" class="id-box-btns" id="btn"/>
                     <input type="button" value="비밀번호 찾기" 
-                        onclick="location.href='findingInfo.jsp'"
+                        onclick="location.href='http://localhost/project_kmong/templates/account/finding_info.jsp'"
                         class="id-box-btns" 
                         style="margin-left: 18px;"/>
+             	</form>
                 </div>
             </div>
         </div>

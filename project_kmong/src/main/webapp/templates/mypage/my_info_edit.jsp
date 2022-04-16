@@ -41,7 +41,7 @@
 	<div id="wrap">
 		<div class="header"><!-- header div -->
 			<div class="header1">
-            <a href="index.jsp"><div class="logo-div"></div></a>
+            <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
             
                 <div style="flex-grow: 1;"></div>
                 
