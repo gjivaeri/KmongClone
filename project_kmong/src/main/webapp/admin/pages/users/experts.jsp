@@ -10,8 +10,8 @@
     <title>Kmong Admin</title>
     <!-- plugins:css -->
     <!-- 아이콘관련 -->
-    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/vendors/css/vendor.bundle.base.css">
 
     <!-- endinject -->
     <!-- Plugin css for this page -->
@@ -19,21 +19,21 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <link rel="shortcut icon" href="http://localhost/project_kmong/admin/assets/images/favicon.png" />
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:../../partials/_sidebar.jsp -->
+      <!-- partial:http://localhost/project_kmong/admin/partials/_sidebar.jsp -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-          <a class="sidebar-brand brand-logo kmong-title" href="../../index.jsp" style="color:white; font-weight: bold;">
+          <a class="sidebar-brand brand-logo kmong-title" href="http://localhost/project_kmong/admin/index.jsp" style="color:white; font-weight: bold;">
 
             <i class="mdi mdi-baby-face text-warning"></i>
             <span >Kmong Admin</span>
           </a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.jsp"><i class="mdi mdi-baby-face"></i></a>
+          <a class="sidebar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face"></i></a>
         </div>
 
         <!-- 목록창 -->
@@ -45,7 +45,7 @@
 
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="../../assets/images/faces/squidGame.jpg" alt="">
+                  <img class="img-xs rounded-circle " src="http://localhost/project_kmong/admin/assets/images/faces/squidGame.jpg" alt="">
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
@@ -64,7 +64,7 @@
 
           <!-- 대시보드 -->
           <li class="nav-item menu-items">
-            <a class="nav-link" href="../../index.jsp">
+            <a class="nav-link" href="http://localhost/project_kmong/admin/index.jsp">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -84,7 +84,7 @@
             </a>
             <div class="collapse" id="ui-post">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/posts/posts.jsp">Post List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/posts/posts.jsp">Post List</a></li>
               </ul>
             </div>
           </li>
@@ -100,8 +100,8 @@
             </a>
             <div class="collapse show" id="ui-user">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/users/users.jsp">Users</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/users/experts.jsp">Experts</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/users/users.jsp">Users</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/users/experts.jsp">Experts</a></li>
               </ul>
             </div>
           </li>
@@ -117,7 +117,7 @@
             </a>
             <div class="collapse" id="ui-order">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/orders/orders.jsp">Order Status</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/orders/orders.jsp">Order Status</a></li>
               </ul>
             </div>
           </li>
@@ -133,7 +133,7 @@
             </a>
             <div class="collapse" id="ui-category">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/categories/categories.jsp">Category List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/categories/categories.jsp">Category List</a></li>
               </ul>
             </div>
           </li>
@@ -143,10 +143,10 @@
 
       <!-- 본문 -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:../../partials/_navbar.jsp -->
+        <!-- partial:http://localhost/project_kmong/admin/partials/_navbar.jsp -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.jsp"><i class="mdi mdi-baby-face text-warning"></i></a>
+            <a class="navbar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face text-warning"></i></a>
           </div>
 
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -170,7 +170,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../../assets/images/faces/squidGame.jpg" alt="">
+                    <img class="img-xs rounded-circle" src="http://localhost/project_kmong/admin/assets/images/faces/squidGame.jpg" alt="">
                     <p class="mb-0 d-none d-sm-block navbar-profile-name">Admin</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
@@ -179,7 +179,7 @@
                   <h6 class="p-3 mb-0">Profile</h6>
                   <div class="dropdown-divider"></div>
 
-                  <a class="dropdown-item preview-item" href="../../pages/account/admin-setting.jsp">
+                  <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin-setting.jsp">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-settings text-success"></i>
@@ -204,7 +204,7 @@
                   <div class="dropdown-divider"></div>
 
 
-                  <a class="dropdown-item preview-item" href="../../pages/account/admin-login.jsp">
+                  <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin-login.jsp">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -338,7 +338,7 @@
 
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.jsp -->
+          <!-- partial:http://localhost/project_kmong/admin/partials/_footer.jsp -->
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
@@ -352,16 +352,16 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
-    <script src="../../assets/js/settings.js"></script>
-    <script src="../../assets/js/todolist.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/hoverable-collapse.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/misc.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/settings.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
