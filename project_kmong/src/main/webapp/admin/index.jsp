@@ -1,32 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Kmong Admin</title>
-    <!-- plugins:css -->
-    <!-- 아이콘관련 -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <!-- End Plugin css for this page -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
+  
     <div class="container-scroller">
-      <!-- partial:partials/_sidebar.jsp -->zs
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.html"/>
-
-      <!-- 본문 -->
+      <!-- sidebar.jsp (left)-->
+      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+		<script>
+		const navActive = document.getElementById("nav-dashboard");
+		navActive.classList.add('active');
+		</script>
+      <!-- body -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.html"/>
+        <!-- navbar.jsp -->
+        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -212,50 +207,34 @@
                               </div>
                             </div>
                           </div>
+                          
                         </div>
+					<!--preview-list ends -->
                       </div>
                     </div>
                   </div>
+                  <!-- card-body ends -->
                 </div>
               </div>
+              <!-- stretch-card ends -->
             </div>
 
 
 
           </div>
-
-
-
-
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.jsp -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-            </div>
-          </footer>
-          <!-- partial -->
+		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <!-- <script src="assets/js/hoverable-collapse.js"></script> -->
-    <!-- <script src="assets/js/misc.js"></script> -->
-    <!-- <script src="assets/js/settings.js"></script> -->
-    <!-- <script src="assets/js/todolist.js"></script> -->
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="assets/js/chart.js"></script>
-    <!-- End custom js for this page -->
+    <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
+    <script src="http://localhost/project_kmong/admin/assets/js/chart.js"></script>
   </body>
 </html>

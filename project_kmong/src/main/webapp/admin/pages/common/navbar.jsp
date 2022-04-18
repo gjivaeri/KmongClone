@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
     <a class="navbar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face text-warning"></i></a>
@@ -33,7 +36,7 @@
           <h6 class="p-3 mb-0">Profile</h6>
           <div class="dropdown-divider"></div>
 
-          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin-setting.jsp">
+          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin_setting.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-settings text-success"></i>
@@ -58,7 +61,7 @@
           <div class="dropdown-divider"></div>
 
 
-          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin-login.jsp">
+          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin_login.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-logout text-danger"></i>
