@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <div class="header">
         <div class="header1">
-            <a href="main2_.jsp"><div class="logo-div"></div></a>
+            <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
             
                 <div style="flex-grow: 1;"></div>
                 
@@ -62,11 +62,11 @@
                     <div id="menuUnderline" style="width: 180px; height: 5px; background-color: #f0c04f; display: none;"></div>
                     <span style="font-size: 8px; padding-left: 10px; padding-top: 10px;">비즈니스</span>
                    <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                    <a href="#void">IT/Programming</a>
-                    <a href="#void">영상/사진</a>
-                    <a href="#void">마케팅</a>
-                    <a href="#void">디자인</a>
-                    <a href="#void">번역 통역</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">IT/Programming</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">영상/사진</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">마케팅</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">디자인</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">번역 통역</a>
                     </div>
 
                 </div>

@@ -68,7 +68,7 @@ $(function(){
                 
                 <label>내 전문성을 판매하고 싶다면</label>
                 <div>
-                    <button class="serviceBtn2" onclick="location.href='register-step2.jsp'">
+                    <button class="serviceBtn2" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp'">
                         <div class="btn-subDiv"><div id="check_2"  style="color:#EAEAEA;font-size:18px; font-weight: bold;">✓</div></div>
                         <span>전문가로 가입 </span>
                     </button>

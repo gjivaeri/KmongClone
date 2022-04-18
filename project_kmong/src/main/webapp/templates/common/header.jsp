@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<style type="text/css">
+
+</style>
     <div class="header">
         <div class="header1">
             <a href="http://localhost/project_kmong/templates/home/index.jsp"><div class="logo-div"></div></a>
@@ -53,7 +56,7 @@
 								                </a>
 								                <div>
 								                    <input class="regis-button" type="button" value="회원가입" style="font-size: 16px;"
-								                    onclick="location.href='register-step1.jsp'" />
+								                    onclick="location.href='http://localhost/project_kmong/templates/account/register_select.jsp'" />
 								                </div>
 								            </div>
 								            </div>
@@ -86,11 +89,13 @@
                     <div id="menuUnderline" style="width: 180px; height: 5px; background-color: #f0c04f; display: none;"></div>
                     <span style="font-size: 8px; padding-left: 10px; padding-top: 10px;">비즈니스</span>
                    <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                    <a href="#void">IT/Programming</a>
-                    <a href="#void">영상/사진</a>
-                    <a href="#void">마케팅</a>
-                    <a href="#void">디자인</a>
-                    <a href="#void">번역 통역</a>
+                   
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">IT/Programming</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">영상/사진</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">마케팅</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">디자인</a>
+                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">번역 통역</a>
+                   
                     </div>
 
                 </div>

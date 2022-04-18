@@ -2,14 +2,13 @@
 
 function longer(){
     $(".searchForm").css("width","330px");
-
     $(".search-bar-div").css("width","330px");
-    //$(".search-input").css("width","280px");
+    $(".search-bar-div").css("border-color","#333");
 }
 function shorter(){
     $(".searchForm").css("width","270px");
     $(".search-bar-div").css("width","270px");
-   // $(".search-input").css("width","256px");
+     $(".search-bar-div").css("border-color","rgb(210, 209, 209)");
 }
 
 $(function(){
