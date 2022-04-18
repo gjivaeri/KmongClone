@@ -1,24 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kmong Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="http://localhost/project_kmong/admin/assets/images/favicon.png" />
+    <title>Admin Setting</title>
+  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
     <div class="container-scroller">
@@ -55,17 +44,5 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/hoverable-collapse.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/misc.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/settings.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/todolist.js"></script>
-    <!-- endinject -->
   </body>
 </html>
