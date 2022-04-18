@@ -123,7 +123,15 @@
    padding-bottom:13px;
 }
 
-
+.select-box button{
+   background-color: #FFFFFF !important;
+   color: #333 !important;
+   border-color: #c7c6c6;
+   padding-left: 20px;
+   padding-top:13px;
+   padding-bottom:13px;
+   margin-bottom: 20px;
+}
 
 </style>
     
@@ -205,10 +213,10 @@ $(document).ready(function(){
                     </div>
                     
                     <div class="regi-div">
-                        <div class="requirement">비즈니스 분야<label>&nbsp;*</label></div>
+                        <div class="requirement" style="font-size: 16px;font-weight: bold;color: rgb(113, 113, 113);margin-bottom:10px;">비즈니스 분야<label>&nbsp;*</label></div>
                       
-                      	<div class="multi_select_box">
-                        <select class="selectpicker" multiple title="비즈니스 분야를 한 개만 선택해주세요." data-width="100%">
+                      	<div class="select-box">
+                        <select class="selectpicker" data-width="100%" title="비즈니스 분야를 한 개만 선택해주세요." >
                             <option>테스트1</option>
                             <option>테스트2</option>
                             <option>테스트3</option>
