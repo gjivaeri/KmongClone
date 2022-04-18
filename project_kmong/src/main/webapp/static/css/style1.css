@@ -68,14 +68,16 @@ input
     padding-top: 1px; 
     padding-bottom: 1px;
     background-color: transparent; 
-    font-size: 12px; 
+    font-size: 13px; 
     outline: none; 
-    font-weight: bold; 
+    /* font-weight: bold;  */
     }
 
     input::-ms-input-placeholder { color: #bbbbbb;}
     input::-webkit-input-placeholder { color: #bbbbbb;}
     input::-moz-placeholder { color: #bbbbbb;}
+
+
     
 .search-button{
     /* width: 30px; */
@@ -254,7 +256,7 @@ input
 .white-search-btn{
 	width: 30px; 
 	height: 30px; 
-	background: url('images/search_white.png') no-repeat ; 
+	background: url('http://localhost/project_kmong/static/images/search_white.png') no-repeat ; 
 	background-size: cover; 
 	margin-right: 20px;
 	cursor: pointer;
@@ -421,7 +423,7 @@ input
 }
 
 
-.main-span{
+.main-span1{
     height: 30px; 
     margin-top: 8px; 
     /* padding-left:30px; */

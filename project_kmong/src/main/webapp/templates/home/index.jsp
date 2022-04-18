@@ -153,7 +153,7 @@ $("#bg").click(function(){
                         <div class="article-squre">
                         <a href="#void" >
                             <img src="http://localhost/project_kmong/static/images/test.JPG" />
-                            <div class="main-span"><%= category[i]%></div>
+                            <div class="main-span1"><%= category[i]%></div>
                         </a>
                         </div>
                 <%
