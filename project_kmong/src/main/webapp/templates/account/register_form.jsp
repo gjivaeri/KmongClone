@@ -8,6 +8,9 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
 	<%@include file="../common/cdn.jsp"%>
     <style>
       /* modal창 관련 CSS */
@@ -98,26 +101,28 @@
      padding-right: 15px; 
      color: #ffffff;
      }
- 
-select {
-  -webkit-appearance: none;
-  appearance: none;
+
+
+.multi_select_box{
+	width:100%;
+	margin-top: 8px;
+	margin-bottom: 30px;
+	height:50px
 }
 
-.select-wrapper {
-  position: relative;
+.multi_select_box select{
+    width:100%;
 }
 
-.select-wrapper::after {
-
-  margin-top:17px;
-  content: "▼";
-  font-size: 1rem;
-  top: 6px;
-  right: 10px;
-  position: absolute;
-  pointer-events:inherit;
+.multi_select_box button{
+   background-color: #FFFFFF !important;
+   color: #333 !important;
+   border-color: #c7c6c6;
+   padding-left: 20px;
+   padding-top:13px;
+   padding-bottom:13px;
 }
+
 
 
 </style>
@@ -132,7 +137,9 @@ function selectAll(selectAll) {
 	  })
 }//selectAll
 
-
+$(document).ready(function(){
+    $('.multi_select').selectpicker();
+})
 
 
 </script>
@@ -188,6 +195,7 @@ function selectAll(selectAll) {
                         <input type="text" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"/>
                         <input type="text" placeholder="비밀번호를 한번 더 입력해주세요." />
                     </div>
+                    
                     <div class="regi-div">
                         <div class="requirement">닉네임<label>&nbsp;*</label></div>
                         <input type="text" placeholder="닉네임을 입력해주세요." style="margin-bottom: 8px;"/>
@@ -195,35 +203,39 @@ function selectAll(selectAll) {
                             <input type="button" value="닉네임 중복확인" class="confirm-exists show" id="btnStyle2"/>
                         </div><br/><br/>
                     </div>
+                    
                     <div class="regi-div">
                         <div class="requirement">비즈니스 분야<label>&nbsp;*</label></div>
                       
-                      	<div class="select-wrapper">
-                        <select>
-                            <option>비즈니스를 선택해주세요</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
+                      	<div class="multi_select_box">
+                        <select class="selectpicker" multiple title="비즈니스 분야를 한 개만 선택해주세요." data-width="100%">
+                            <option>테스트1</option>
+                            <option>테스트2</option>
+                            <option>테스트3</option>
+                            <option>테스트4</option>
                         </select>
                   		</div>
                     </div>
                     
                     
-                    <div class="regi-div">
-                        <div class="requirement">관심사 선택(중복선택 가능)<label>&nbsp;*</label></div>
-                        <div class="select-wrapper">
-                        <select name="interest">
-                            <option>관심사를 선택해주세요</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
-                            <option>테스트</option>
-                        </select>
-                        </div>
-                    </div>
+                        <div class="multi_select_box">
+                        <div class="requirement" 
+                        	style="font-size: 16px;font-weight: bold;color: rgb(113, 113, 113);margin-bottom:10px;">
+                        관심사<label>&nbsp;*</label></div>
+        				<select class="multi_select w-100" 
+					        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
+					        multiple title="관심사 3가지를 선택하세요.">
+					            <option>test1</option>
+					            <option>test2</option>
+					            <option>test3</option>
+					            <option>test4</option>
+					            <option>test5</option>
+					            <option>test6</option>
+					        </select>
+					    </div>
                     
                     
+                    <!-- //////////////////////////////////////////////////////////////// -->
                     <div class="agreement-box">
                         <div class="agree-all">
                             <input type="checkbox" name="clause" value="selectAll" onclick="selectAll(this)" />
@@ -279,5 +291,12 @@ function selectAll(selectAll) {
 
 
     </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/
+	twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"> 
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/
+	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
+</script>
+    
 </body>
 </html>
