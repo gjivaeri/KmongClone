@@ -37,7 +37,7 @@
     </li>
 
     <!-- 대시보드 -->
-    <li class="nav-item menu-items ${navParm eq ''? 'active':''}">
+    <li class="nav-item menu-items" id="nav-dashboard">
       <a class="nav-link" href="http://localhost/project_kmong/admin/index.jsp">
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
@@ -45,9 +45,9 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-
+    
     <!-- 게시판관리 -->
-    <li class="nav-item menu-items active">
+    <li class="nav-item menu-items" id="nav-posts">
       <!-- <a class="nav-link" data-toggle="collapse" href="#ui-post" aria-expanded="false" aria-controls="ui-basic"> -->
       <a class="nav-link" data-toggle="collapse" data-target="#ui-post" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
@@ -56,7 +56,7 @@
         <span class="menu-title">Posts</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse show" id="ui-post">
+      <div class="collapse" id="ui-post">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="http://localhost/project_kmong/admin/pages/posts/posts.jsp">Post List</a></li>
         </ul>
@@ -64,7 +64,7 @@
     </li>
 
     <!-- 회원관리 -->
-    <li class="nav-item menu-items">
+    <li class="nav-item menu-items" id="nav-users">
       <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-contacts"></i>
@@ -81,7 +81,7 @@
     </li>
 
     <!-- 결제관리 -->
-    <li class="nav-item menu-items">
+    <li class="nav-item menu-items" id="nav-orders">
       <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-basket"></i>
@@ -97,7 +97,7 @@
     </li>
 
     <!-- 서비스관리 -->
-    <li class="nav-item menu-items">
+    <li class="nav-item menu-items" id="nav-category">
       <a class="nav-link" data-toggle="collapse" href="#ui-category" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-wrench"></i>
