@@ -8,7 +8,7 @@
 <title>kmong</title>
 
 <style type="text/css">
-  img{
+img{
     image-rendering: auto;
     image-rendering: crisp-edges;
     image-rendering: pi;

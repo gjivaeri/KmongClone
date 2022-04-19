@@ -53,6 +53,7 @@
         transform: translate(-50%, -40%);
         text-align: center;
         padding-top:30px;
+        
       }
 
 
@@ -66,6 +67,8 @@
         height: 35%;
         z-index: -1;
         background-color:rgba(248,214,72);
+        display: flex;
+        justify-content: center;
         /* background-color:#45436C; */
       }
 

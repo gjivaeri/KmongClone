@@ -37,7 +37,7 @@ $("#bg").click(function(){
 </head>
 
 <body>
-<div id="wrap" >
+<div id="wrap">
 <%@include file="../common/header.jsp"%>
 
 
