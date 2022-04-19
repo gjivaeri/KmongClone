@@ -58,7 +58,7 @@ $(function() {
             <a href="index.jsp"><div class="logo-div"></div></a>
             
                 <div style="flex-grow: 1;"></div>
-                
+               
                     <!-- ////////////////////// -->
                <div style="width: 250px;" class="buttons"> 
                     <input type="button" value="로그아웃"class="login-btn" >
@@ -83,6 +83,14 @@ $(function() {
                     </div>
                 </div>
                </div>
+         <div style="float: right; width: 550px" class="header1">
+               <button role="button" type="button" class="submitBtn" style=" width: 90px; height: 50px; font-size: 18px; background-color: #00CC99; color: #FFFFFF; border: #00946F; margin-right: 5px">
+               <span><strong>수정하기</strong></span>
+               </button>
+               <button role="button" type="submit" class="submitBtn" style="width: 90px; height: 50px; font-size: 18px; background-color: #e4e5ed; color: #727585; border: #e4e5ed">
+               <span>제출하기</span>
+               </button>
+         </div>
         </div>
 			<hr>
 				<div id="aside-div" style="flex-direction: row">

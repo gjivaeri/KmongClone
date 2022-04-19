@@ -31,39 +31,7 @@ $(function() {
 </script>
 </head>
 <body>
-<!-- 전체 페이지 묶기 -->
-	<div id="wrap">
-		<div class="header"><!-- header div -->
-			<div class="header1">
-            <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
-            
-                <div style="flex-grow: 1;"></div>
-                
-                    <!-- ////////////////////// -->
-               <div style="width: 250px;" class="buttons"> 
-                    <input type="button" value="로그아웃"class="login-btn" >
-                    <div style="width: 270px; margin-right: 20px;">
-                        <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" >
-                    </div>
-                        
-                    <div class="dropdown" style="width: 40px; border-radius: 50px;" >
-                        <div style="height: 40px; width:40px; margin-left:0px;border-radius: 50px;">
-                        
-                        <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
-                        </div>
-                        
-                        <div class="dropdown-content" style="width: 150px;  line-height: 22px;">
-                        
-                        <span style="font-size: 11px; padding-left: 10px; ">계정 설정</span>
-                       <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                        <a href="my_info_edit.jsp">나의 정보</a>
-                        <a href="pw_edit.jsp" style="font-size: 13px;">비밀번호 변경</a>
-                        <a href="withdrawing.jsp" style="font-size: 13px;">회원 탈퇴</a>
-                        </div>
-                    </div>
-                </div>
-               </div>
-        </div>
+ <%@include file="../common/header_member.jsp"%>
 		<hr>
 
 		<!-- main div -->
