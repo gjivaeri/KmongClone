@@ -32,7 +32,7 @@ $(function(){
 </head>
 <body>
 <body>
-<%@include file="../common/header.jsp"%>
+<%@include file="../common/header_member.jsp"%>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <hr/>
 <!-- 메인 시작 -->
