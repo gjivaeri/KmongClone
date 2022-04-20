@@ -13,6 +13,10 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
 	<%@include file="../common/cdn.jsp"%>
     <style>
+    	body{
+		padding-top:0px; 
+		}
+    
       /* modal창 관련 CSS */
       .background{
         /* 스크롤이 발생하더라도 고정 */
