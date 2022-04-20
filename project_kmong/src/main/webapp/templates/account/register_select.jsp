@@ -20,6 +20,10 @@ margin-top:10px;
 margin-left: 15px;
 }
 
+body{
+padding-top:0px; 
+}
+
 
 </style>
 
@@ -60,7 +64,7 @@ $(function(){
                 </p>
                 <label>서비스를 의뢰하고 싶다면</label>
                 <div>
-                    <button class="serviceBtn" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp'">
+                    <button class="serviceBtn" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp?flag=client'">
                         <div class="btn-subDiv"><div id="check_1" style="color:#EAEAEA; font-size:18px; font-weight: bold;">✓</div></div>
                         <span>외뢰인으로 가입 </span>
                     </button>
@@ -68,7 +72,7 @@ $(function(){
                 
                 <label>내 전문성을 판매하고 싶다면</label>
                 <div>
-                    <button class="serviceBtn2" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp'">
+                    <button class="serviceBtn2" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp?flag=expert'">
                         <div class="btn-subDiv"><div id="check_2"  style="color:#EAEAEA;font-size:18px; font-weight: bold;">✓</div></div>
                         <span>전문가로 가입 </span>
                     </button>
