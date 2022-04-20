@@ -5,7 +5,11 @@
 <head>
 <%@include file="../common/cdn.jsp"%>
 <title>kmong</title>
-
+<style type="text/css">
+body{
+	padding-top:0px; 
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	$("#btn").click(function(){

@@ -7,7 +7,11 @@
 
 <title>kmong</title>
 <!--공통 CSS-->
-
+<style type="text/css">
+body{
+	padding-top:0px; 
+}
+</style>
 </head>
 <body>
     <div class="register-step1">
