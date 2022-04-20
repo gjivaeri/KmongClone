@@ -4,6 +4,48 @@
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
+$(function(){
+	
+	$(".login-button").click(function(){
+		handleSubmit();
+	});//click
+	
+});//ready
+
+
+
+function handlePassEnter(evt){
+	
+	var code = evt.which;
+
+    if(code == 13){
+    	handleSubmit();
+    }//end if 
+}//handelPassEnter
+
+
+
+function handleSubmit(){
+	if($("#id").val()==""){
+		alert("이메일을 입력해주세요.");
+		$("#id").focus();
+	}else if($("#pass").val()==""){
+		alert("비밀번호를 입력해주세요.");
+		$("#pass").focus();
+	}else{
+		/////백 !!!!!!!!      로그인 select 들어올 부분 //////
+		
+		
+		$("#loginFrm").submit();
+	}
+}//handleSubmit
+
+
+</script>
+
+
+
     <div class="header">
         <div class="header1">
             <a href="http://localhost/project_kmong/templates/home/index.jsp"><div class="logo-div"></div></a>
@@ -43,9 +85,12 @@
 								            
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
-								                <form action="" method="get" >
-								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="id" />
-								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" />
+								                <form action="http://localhost/project_kmong/templates/home/index_member.jsp" method="get" id="loginFrm">
+								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="id" id="id"/>
+								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass"
+								                    onkeyup="handlePassEnter(event);"/>
+								                    
+								                    
 								                    <input class="login-button" type="button" value="로그인"  
 								                    onmouseover="$('.login-button').css('background-color','rgb(240, 192, 79)')" 
 								                    onmouseout="$('.login-button').css('background-color','#f3d75b')" />
