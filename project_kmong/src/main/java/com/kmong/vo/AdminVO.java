@@ -1,4 +1,4 @@
-package prj2_VO;
+package com.kmong.vo;
 
 public class AdminVO {
 	
