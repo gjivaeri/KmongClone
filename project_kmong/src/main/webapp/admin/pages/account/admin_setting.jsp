@@ -31,7 +31,7 @@
                     <input type="password" class="form-control p_input">
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Submit</button>
+					<input type="button" class="btn btn-primary btn-block enter-btn" value="Submit" style="height:40px; margin-top:35px;"/>
                   </div>
                 </form>
               </div>

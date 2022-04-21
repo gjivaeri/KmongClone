@@ -9,6 +9,9 @@
     <title>Admin Login</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
   </head>
+  <script>
+  
+  </script>
   <body>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -20,16 +23,15 @@
                 <form>
                   <div class="form-group">
                     <label>Username or email *</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="text" class="form-control p_input" name="admId">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="text" class="form-control p_input" name="admPw">
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    <input type="button" class="btn btn-primary btn-block enter-btn" value="Login" style="height:40px; margin-top:35px;"/>
                   </div>
-
                 </form>
               </div>
             </div>
