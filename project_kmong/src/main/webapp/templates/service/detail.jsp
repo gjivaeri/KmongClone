@@ -24,6 +24,19 @@ color:#333
 
 $(function(){
 	
+	$("#home-tab").click(function() {
+		var height=$(".service_explain").offset();
+		$("html, body").animate({scrollTop: height.top}, 10);
+	})
+	$("#profile-tab").click(function() {
+		var height=$(".price_information").offset();
+		$("html, body").animate({scrollTop: height.top}, 10);
+	})
+	
+	$("#contact-tab").click(function() {
+		var height=$(".user_comment").offset();
+		$("html, body").animate({scrollTop: height.top}, 10);
+	})
 });
 
 
@@ -63,13 +76,19 @@ $(function(){
 <div style="border-bottom:1px solid #808080">
 <ul class="nav nav-tabs" id="myTab" role="tablist" style="width:400px;float:left ;flex-direction: row">
   <li class="nav-item" role="presentation">
+  <a href="#target1">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">서비스 설명</button>
+  </a>
   </li>
   <li class="nav-item" role="presentation">
+  <a href="#target2">
     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">가격 정보</button>
+  </a>
   </li>
   <li class="nav-item" role="presentation">
+  <a href="#target3">
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">서비스 평가</button>
+  </a>
   </li>
 </ul>
 </div>
@@ -78,11 +97,52 @@ $(function(){
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
   
   <!-- 서비스 설명 -->
-<div>
-서비스 설명
+<div class="service_explain">
+<h3>서비스 설명</h3>
+<p>
+[기자]
+
+네. 조금 전인 7시쯤 전국 부장검사 대표 회의가 시작됐습니다.
+
+수사 실무 책임자인 전국 검찰청 부장검사 대표들이 자발적으로 한자리에 모인 건 검찰 역사상 처음인데요.
+
+각 검찰청 대표 60여 명 정도가 참석할 것으로 알려졌습니다.
+
+검찰 수사권 폐지의 문제점과 함께 정치적 중립성 확보 방안에 대해서도 폭넓게 논의될 것으로 보입니다.
+
+회의는 오늘 밤 늦게까지 이어질 예정인데 내일 오전 입장문이 발표될 예정입니다.
+
+민주당의 법안 논의 속도에 맞춰 검찰은 바쁘게 움직이고 있습니다.
+
+수도권에서 처음으로 의정부지검장이 기자들을 만나 법안의 문제점을 지적했고, 대검찰청 형사부도 기자간담회를 열어 "인권 보호가 어려워진다"고 강조했습니다.
+
+[김지용/대검 형사부장 : "(검찰의 역할은) 부실 수사로 피해자의 구제가 미흡한 것은 아닌지 등을 밝히고 이를 시정하여 국민의 권익을 보호해 주는 것입니다."]
+
+</p>
 </div>
 <hr/>
-<div style="margin-bottom: 20px">
+<div class="price_information">
+<h3>가격정보</h3>
+[기자]
+
+네. 조금 전인 7시쯤 전국 부장검사 대표 회의가 시작됐습니다.
+
+수사 실무 책임자인 전국 검찰청 부장검사 대표들이 자발적으로 한자리에 모인 건 검찰 역사상 처음인데요.
+
+각 검찰청 대표 60여 명 정도가 참석할 것으로 알려졌습니다.
+
+검찰 수사권 폐지의 문제점과 함께 정치적 중립성 확보 방안에 대해서도 폭넓게 논의될 것으로 보입니다.
+
+회의는 오늘 밤 늦게까지 이어질 예정인데 내일 오전 입장문이 발표될 예정입니다.
+
+민주당의 법안 논의 속도에 맞춰 검찰은 바쁘게 움직이고 있습니다.
+
+수도권에서 처음으로 의정부지검장이 기자들을 만나 법안의 문제점을 지적했고, 대검찰청 형사부도 기자간담회를 열어 "인권 보호가 어려워진다"고 강조했습니다.
+
+[김지용/대검 형사부장 : "(검찰의 역할은) 부실 수사로 피해자의 구제가 미흡한 것은 아닌지 등을 밝히고 이를 시정하여 국민의 권익을 보호해 주는 것입니다."]
+</div>
+<hr/>
+<div style="margin-bottom: 20px" class="user_comment">
 <h3>
 사용자 후기
 </h3>

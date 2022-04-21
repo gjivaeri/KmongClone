@@ -6,7 +6,7 @@ public class MemberVO {
 	
 	private int memberId, categoryId;
 	private String email, password, name, nick, tel, user_img, withdrawalReason, joinDate, ip;
-	private char expert, withdrawalStatus, agreement;
+	private String expert, withdrawalStatus, agreement;
 	private List<String> interestingList;
 	
 	
@@ -16,8 +16,8 @@ public class MemberVO {
 
 
 	public MemberVO(int memberId, int categoryId, String email, String password, String name, String nick, String tel,
-			String user_img, String withdrawalReason, String joinDate, String ip, char expert, char withdrawalStatus,
-			char agreement, List<String> interestingList) {
+			String user_img, String withdrawalReason, String joinDate, String ip, String expert, String withdrawalStatus,
+			String agreement, List<String> interestingList) {
 		super();
 		this.memberId = memberId;
 		this.categoryId = categoryId;
@@ -148,32 +148,32 @@ public class MemberVO {
 	}
 
 
-	public char getExpert() {
+	public String getExpert() {
 		return expert;
 	}
 
 
-	public void setExpert(char expert) {
+	public void setExpert(String expert) {
 		this.expert = expert;
 	}
 
 
-	public char getWithdrawalStatus() {
+	public String getWithdrawalStatus() {
 		return withdrawalStatus;
 	}
 
 
-	public void setWithdrawalStatus(char withdrawalStatus) {
+	public void setWithdrawalStatus(String withdrawalStatus) {
 		this.withdrawalStatus = withdrawalStatus;
 	}
 
 
-	public char getAgreement() {
+	public String getAgreement() {
 		return agreement;
 	}
 
 
-	public void setAgreement(char agreement) {
+	public void setAgreement(String agreement) {
 		this.agreement = agreement;
 	}
 
