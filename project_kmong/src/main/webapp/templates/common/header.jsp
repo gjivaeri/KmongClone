@@ -142,20 +142,21 @@ function handleSubmit(){
                    List<String> list= mpDAO.selectAllCategoryName();
                    
                    if(list!=null){
+                	   
 	                   for(int i=0; i<list.size(); i++){
 	                	   %><a href="#void" style="font-size: 16px; color:#5D5D5D;">
 	                	<%= list.get(i)%></a>
 	                	<%
 	                   }
-                   }else{%> <!-- select에서 문제생겼을 시 처리 (수정하기) -->
-                	<a href="#void" style="font-size: 16px; color:#5D5D5D;">IT/Programming</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">영상/사진</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">마케팅</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">디자인</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">번역 통역</a>
-                   <%
+                   }else{//select에서 문제생겼을 시 처리 (수정하기)
+                  
+	                  for(int i=0; i<5; i++){
+		              %>
+                		<a href="#void" style="font-size: 16px; color:#5D5D5D;">메뉴를 불러올 수 없습니다.</a>
+	                   <%
+	                   }
                    }
-                   %>
+	                   %>
                    
                     </div>
 

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kmong.vo.CategoryVO;
+
 
 public class MainPageDAO {
 
@@ -27,7 +29,7 @@ public class MainPageDAO {
 	}//getInstance
 	
 	
-	
+
 	
 	/**
 	 * Çì´õÀÇ ÀüÃ¼ Ä«Å×°í¸® ÀÌ¸§ °¡Á®¿À±â
@@ -39,34 +41,64 @@ public class MainPageDAO {
 		List<String> categoryList=new ArrayList<String>();
 		
 		
-		DbConnectionDBCP dbDBCP=DbConnectionDBCP.getInstance();
-		Connection con=dbDBCP.getConn();
+		Connection con=DbConnectionDBCP.getInstance().getConn();
 		
 		String selectCategoryName
-		="select category_name from category";
+		="select category_name from category where category_status='Y'";
 		
 		PreparedStatement pstmt=con.prepareStatement(selectCategoryName);
 		ResultSet rs=pstmt.executeQuery();
 		
-		try {
-			try(con;pstmt;rs) {
-				
-				while(rs.next()) {
-					String catagoryName=rs.getString("category_name");
-					categoryList.add(catagoryName);
+		try(con;pstmt;rs){
+			
+			while(rs.next()) {
+				String catagoryName=rs.getString("category_name");
+				categoryList.add(catagoryName);
 					
-				}//end while
-	
-			}//end try
-		}finally {
-			if(con!=null) {System.out.println("con ¾È´ÝÈû");}
-			if(pstmt!=null) {System.out.println("pstmt ¾È´ÝÈû");}
-			if(rs!=null) {System.out.println("rs ¾È´ÝÈû");}
-		}
-
+			}//end while
+			
+		}//try
+		if(con.isClosed()) {System.out.println("Àß´ÝÈû");}
+		if(pstmt.isClosed()) {System.out.println("Àß´ÝÈû");}
+		if(rs.isClosed()) {System.out.println("Àß´ÝÈû");}
 		return categoryList;
 		
-	}//insertMemberInfo
+	}//selectAllCategoryName
+	
+	
+	
+	
+	public List<CategoryVO> selectAllCategory() throws SQLException{
+		
+		List<CategoryVO> cVOlist=new ArrayList<CategoryVO>();
+		
+		Connection con=DbConnectionDBCP.getInstance().getConn();
+		
+		String selectCategoryName
+		="select category_id,category_name,category_image,input_date,category_status from category where category_status='Y'";
+		
+
+		PreparedStatement pstmt=con.prepareStatement(selectCategoryName);
+		ResultSet rs=pstmt.executeQuery();
+		
+		CategoryVO cVO=null;
+		
+		try(con;pstmt;rs){
+			
+			while(rs.next()) {
+				cVO=new CategoryVO();
+				cVO.setCategoryName(rs.getString("category_name"));
+				cVO.setCategoryImage(rs.getString("category_image"));
+					
+				cVOlist.add(cVO);
+			}//end while
+			
+		}//try
+		
+		return cVOlist;
+	}//selectAllCategory
+	
+	
 	
 	
 	
