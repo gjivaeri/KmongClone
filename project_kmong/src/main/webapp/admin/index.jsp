@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-	if(session==null || !request.isRequestedSessionIdValid()){
+	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
 	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
-}
+	}
 %>
     
 <!DOCTYPE html>

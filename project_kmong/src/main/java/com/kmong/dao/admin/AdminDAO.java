@@ -12,6 +12,9 @@ public class AdminDAO {
 
 	private static AdminDAO aDAO;
 	DbConnectionDBCP dbcp = DbConnectionDBCP.getInstance();
+	Connection con= null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
 	
 	private AdminDAO() {
 		
@@ -24,10 +27,7 @@ public class AdminDAO {
 		return aDAO;
 	}
 	
-	public boolean selectAdaminLogin(String admId, String admPw) throws SQLException {
-		Connection con= null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+	public boolean selectAdminLogin(String admId, String admPw) throws SQLException {
 		
 		boolean loginFlag = false;
 		
@@ -39,8 +39,7 @@ public class AdminDAO {
 			pstmt.setString(2, admPw);
 			
 			rs=pstmt.executeQuery();
-			
-			
+				
 			if(rs.next()&&rs.getInt(1) > 0) {
 				loginFlag=true;
 			}
@@ -48,6 +47,25 @@ public class AdminDAO {
 			dbcp.dbClose(rs, pstmt, con);
 		}
 		return loginFlag;
+	}
+	
+	
+	public boolean updateAdminPass(AdminVO avo) throws SQLException {
+		int cnt=0;
+		boolean flag=false;
+		String sql="update admin set pass=? where id=?";
+		Connection con=dbcp.getConn();
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, avo.getPass());
+		pstmt.setString(2, avo.getId());
+		cnt=pstmt.executeUpdate();
+		
+		try(con;pstmt;){
+			if(cnt > 0) {
+				flag=true;
+			}
+		}
+		return flag;
 	}
 
 

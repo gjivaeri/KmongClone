@@ -7,10 +7,17 @@
 AdminDAO aDAO = AdminDAO.getInstance();
 String id=request.getParameter("id");
 String pass=request.getParameter("pass");
-boolean loginFlag = aDAO.selectAdaminLogin(id, pass);
+System.out.print(id);
+
+boolean loginFlag = aDAO.selectAdminLogin(id, pass);
+
+if(loginFlag){
+	session.setAttribute("loginId", id);
+}
 
 JSONObject jsonObj = new JSONObject();
 jsonObj.put("loginFlag", loginFlag);
+
 
 out.println(jsonObj.toJSONString());
 
