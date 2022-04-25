@@ -24,7 +24,6 @@ public class AdminDAO {
 		return aDAO;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public boolean selectAdaminLogin(String admId, String admPw) throws SQLException {
 		Connection con= null;
 		PreparedStatement pstmt=null;

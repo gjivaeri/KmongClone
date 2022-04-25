@@ -1,8 +1,12 @@
+<%@page import="com.kmong.dao.account.AccountSettingDAO"%>
 <%@page import="com.kmong.dao.DbConnectionDBCP"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%
+DbConnectionDBCP db = DbConnectionDBCP.getInstance();
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -234,7 +238,6 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
-    <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/js/chart.js"></script>
