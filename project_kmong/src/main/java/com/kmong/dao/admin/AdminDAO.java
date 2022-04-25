@@ -24,13 +24,12 @@ public class AdminDAO {
 		return aDAO;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public boolean selectAdaminLogin(String admId, String admPw) throws SQLException {
 		Connection con= null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		boolean loginCon = false;
+		boolean loginFlag = false;
 		
 		try {
 			con=dbcp.getConn();
@@ -43,12 +42,12 @@ public class AdminDAO {
 			
 			
 			if(rs.next()&&rs.getInt(1) > 0) {
-				loginCon=true;
+				loginFlag=true;
 			}
 		}finally {
 			dbcp.dbClose(rs, pstmt, con);
 		}
-		return loginCon;
+		return loginFlag;
 	}
 
 
