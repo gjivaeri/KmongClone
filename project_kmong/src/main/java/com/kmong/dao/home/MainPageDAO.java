@@ -1,4 +1,4 @@
-package com.kmong.dao;
+package com.kmong.dao.home;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kmong.dao.DbConnectionDBCP;
 import com.kmong.vo.CategoryVO;
 
 
@@ -89,6 +90,7 @@ public class MainPageDAO {
 				cVO=new CategoryVO();
 				cVO.setCategoryName(rs.getString("category_name"));
 				cVO.setCategoryImage(rs.getString("category_image"));
+				cVO.setCategoryId(rs.getInt("category_id"));
 					
 				cVOlist.add(cVO);
 			}//end while

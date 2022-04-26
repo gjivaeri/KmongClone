@@ -1,3 +1,7 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="com.kmong.dao.register.MakeAccountDAO"%>
+<%@page import="com.kmong.vo.MemberVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +35,60 @@ $(function(){
 </head>
 
 <body>
+<%-- <%
+        String ip=request.getRemoteAddr();
+		String email=request.getParameter("email");
+		String password=request.getParameter("pass2");
+		String name=request.getParameter("name");
+		String nick=request.getParameter("nick");
+		String tel=request.getParameter("tel");
+		int categoryID=Integer.parseInt(request.getParameter("business"));
+		
+		String[] interests=request.getParameterValues("interests");
+		String[] agreementArr=request.getParameterValues("clause");
+		String agreement="";
+		
+		String expert=(String)session.getAttribute("flag");
+		
+		if(expert.equals("expert")){
+			expert="Y";
+		}else{
+			expert="N";
+		}
+		
+		/* System.out.println(ip);
+		System.out.println(email);
+		System.out.println(password);
+		System.out.println(name);
+		System.out.println(nick);
+		System.out.println(tel);
+		System.out.println("비즈니스"+categoryID);
+		for(String i:interests){
+			System.out.println(i);
+		} */
+		
+		
+		for(String i:agreementArr){
+			if(i.equals("선택1")){
+				agreement="Y";
+			}else{
+				agreement="N";
+			}
+		}
+		
+		
+        MakeAccountDAO madDAO=MakeAccountDAO.getInstance();
+		
+        MemberVO mVO
+        =new MemberVO(madDAO.selectMemberSeq(),categoryID,email,password,name,nick,tel,"","","",ip,expert,"",agreement,interests);
+        
+        mVO.setPassword(DataEncrypt.messageDigest("MD5", mVO.getPassword()));
+      
+        madDAO.insertMemberInfo(mVO);
+        madDAO.insertInterests(mVO, interests);
+        
+        
+        %> --%>
     <div class="register-step1">
         <div style="text-align: center;">
             <a href="http://localhost/project_kmong/templates/home/index.jsp">
