@@ -4,7 +4,7 @@ public class ExpertOrderVO {
 	
 	private int orderId, memberId, postId;
 	private String orderDate, memberNick, postImg, postTitle;
-	private char orderStatus;
+	private String orderStatus;
 	
 	
 	public ExpertOrderVO() {
@@ -13,7 +13,7 @@ public class ExpertOrderVO {
 
 
 	public ExpertOrderVO(int orderId, int memberId, int postId, String orderDate, String memberNick, String postImg,
-			String postTitle, char orderStatus) {
+			String postTitle, String orderStatus) {
 		super();
 		this.orderId = orderId;
 		this.memberId = memberId;
@@ -96,12 +96,12 @@ public class ExpertOrderVO {
 	}
 
 
-	public char getOrderStatus() {
+	public String getOrderStatus() {
 		return orderStatus;
 	}
 
 
-	public void setOrderStatus(char orderStatus) {
+	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
