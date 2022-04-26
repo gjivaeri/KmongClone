@@ -4,7 +4,7 @@ public class OrdersVO {
 
 	private int orderId, memberId, postId;
 	private String orderDate, orderImg, orderFinishDate;
-	private char orderStatus;
+	private String orderStatus;
 	
 	
 	
@@ -15,7 +15,7 @@ public class OrdersVO {
 
 
 	public OrdersVO(int orderId, int memberId, int postId, String orderDate, String orderImg, String orderFinishDate,
-			char orderStatus) {
+			String orderStatus) {
 		super();
 		this.orderId = orderId;
 		this.memberId = memberId;
@@ -100,13 +100,13 @@ public class OrdersVO {
 
 
 
-	public char getOrderStatus() {
+	public String getOrderStatus() {
 		return orderStatus;
 	}
 
 
 
-	public void setOrderStatus(char orderStatus) {
+	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 

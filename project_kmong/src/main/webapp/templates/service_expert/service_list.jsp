@@ -53,7 +53,7 @@
 					</div>
 					<hr orientation="horizontal" style="height: 2px;">
 					<div>
-					<select class="input-textDiv" style="cursor: pointer; font-size: 16px;">
+					<select class="input-textDiv" id="expertContract" style="cursor: pointer; font-size: 16px;">
 						<option value="ordersMng" selected disabled hidden>계약관리</option>
 						<option value="ordersReq">계약 요청 승인</option>
 						<option value="ordersCancel">완료된 계약</option>
