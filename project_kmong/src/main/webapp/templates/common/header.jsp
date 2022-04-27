@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.kmong.dao.MainPageDAO"%>
+<%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -7,10 +7,33 @@
 
 </style>
 <script type="text/javascript">
+<%
+if((String)session.getAttribute("loginTry")!=null){
+	%>alert("로그인에 실패하였습니다.\n아이디 또는 비밀번호를 확인해주세요.")<%
+	session.removeAttribute("loginTry");
+}
+if(((String)session.getAttribute("logoutDone"))!=null){
+	%>alert("로그아웃 하셨습니다.")<%
+	session.removeAttribute("logoutDone");
+}
+if(((String)session.getAttribute("logoutSession"))!=null){
+	%>alert("잘못된 경로입니다.")<%
+	session.removeAttribute("logoutSession");
+}
+
+
+//if(((String)session.getAttribute("login"))!=null){
+	//
+//	session.removeAttribute("login");
+	//session.invalidate();
+//}
+
+%>
 $(function(){
 	
 	$(".login-button").click(function(){
 		handleSubmit();
+		
 	});//click
 	
 });//ready
@@ -29,23 +52,48 @@ function handlePassEnter(evt){
 
 
 function handleSubmit(){
-	if($("#id").val()==""){
+	if($("#email").val()==""){
 		alert("이메일을 입력해주세요.");
-		$("#id").focus();
+		$("#email").focus();
+		return;
 	}else if($("#pass").val()==""){
 		alert("비밀번호를 입력해주세요.");
 		$("#pass").focus();
+		return;
 	}else{
-		/////백 !!!!!!!!      로그인 select 들어올 부분 //////
-		
-		
 		$("#loginFrm").submit();
 	}
 }//handleSubmit
 
 
 </script>
+<script type="text/javascript">
+ <%
+ 
+ if((String)session.getAttribute("join")!=null){ //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
+	 session.removeAttribute("join");
+} 
+ if((String)session.getAttribute("setPass")!=null){
+	 %>alert("비밀번호가 성공적으로 변경되었습니다.");<%
+	 session.removeAttribute("setPass");
+} 
+%>
+	
+	
+$(function(){
+	$(".login-btn").click(function(){
+	$("#modal").css("display","flex")
+})
 
+$("#closeBtn").click(function(){
+	$("#modal").css("display","none")
+})
+$("#bg").click(function(){
+	$("#modal").css("display","none")
+})
+});//
+
+</script>
 
 
     <div class="header">
@@ -87,9 +135,9 @@ function handleSubmit(){
 								            
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
-								                <form action="http://localhost/project_kmong/templates/home/index_member.jsp" method="get" id="loginFrm">
-								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="id" id="id"/>
-								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass"
+								                <form action="http://localhost/project_kmong/templates/home/login_action.jsp" method="get" id="loginFrm">
+								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="asdf@test.com"/>
+								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!1234"
 								                    onkeyup="handlePassEnter(event);"/>
 								                    
 								                    
@@ -142,20 +190,21 @@ function handleSubmit(){
                    List<String> list= mpDAO.selectAllCategoryName();
                    
                    if(list!=null){
+                	   
 	                   for(int i=0; i<list.size(); i++){
 	                	   %><a href="#void" style="font-size: 16px; color:#5D5D5D;">
 	                	<%= list.get(i)%></a>
 	                	<%
 	                   }
-                   }else{%> <!-- select에서 문제생겼을 시 처리 (수정하기) -->
-                	<a href="#void" style="font-size: 16px; color:#5D5D5D;">IT/Programming</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">영상/사진</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">마케팅</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">디자인</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D;">번역 통역</a>
-                   <%
+                   }else{//select에서 문제생겼을 시 처리 (수정하기)
+                  
+	                  for(int i=0; i<5; i++){
+		              %>
+                		<a href="#void" style="font-size: 16px; color:#5D5D5D;">메뉴를 불러올 수 없습니다.</a>
+	                   <%
+	                   }
                    }
-                   %>
+	                   %>
                    
                     </div>
 

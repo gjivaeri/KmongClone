@@ -26,8 +26,17 @@ padding-top:0px;
 
 
 </style>
-
 <script type="text/javascript">
+<%
+if((String)session.getAttribute("error")!=null){
+	if(((String)session.getAttribute("error")).equals("error")){
+		%>alert("문제가 발생하였습니다. 다시 시도해주세요.");
+	<%
+	session.removeAttribute("error");
+	}
+}
+%>
+
 $(function(){
 	$(".serviceBtn").mouseover(function(){
 		$("#check_1").css("color","#333");

@@ -1,3 +1,9 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="com.kmong.dao.register.MakeAccountDAO"%>
+<%@page import="com.kmong.vo.MemberVO"%>
+<%@page import="com.kmong.vo.CategoryVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
@@ -141,8 +147,30 @@
 }
 
 </style>
-    
 <script type="text/javascript">
+   window.history.forward();
+   function noBack() { window.history.forward(); }
+</script>
+<script type="text/javascript">
+
+<%
+if(request.getParameter("flag")==null){
+	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+	return;
+}
+
+
+if(request.getParameter("flag").equals("expert")){
+	session.setAttribute("flag","expert");
+}else{
+	session.setAttribute("flag","client");
+}
+
+
+%> 
+
+var emailConfirm=false;
+var nickConfirm=false;
 
 function selectAll(selectAll) {
 	const checkboxes = document.getElementsByName('clause');
@@ -152,15 +180,176 @@ function selectAll(selectAll) {
 	  })
 }//selectAll
 
-$(document).ready(function(){
-    $('.multi_select').selectpicker();
-})
 
+
+$(function(){
+    $('.multi_select').selectpicker();
+    
+    
+   $(".complete-btn").click(function(){
+    	
+    	//모든 필수 칸이 채워지고 
+	    var name=$("#name").val();
+	    var tel=$("#tel").val();
+	    var email=$("#email").val();
+	    var pass1=$("#pass1").val();
+	    var pass2=$("#pass2").val();
+	    var nick=$("#nick").val();
+	    var business=$("#businessSelect").val();
+	    var agreement="";
+	    
+	    var pattern=/\s/g;
+	    
+	    let reg_name1 = /^[가-힣]+$/; // 한글만
+	    let reg_mobile = /^\d{3}-\d{3,4}-\d{4}$/; // 휴대폰 번호
+	    let reg_email =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; // 길이까지 확실한 검증
+	    let reg_pw2 = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,}/; // 문자와 특수문자 조합의 6~24 자리
+	    let reg_nick1 = /^[가-힣a-zA-Z0-9_-]{4,20}$/; // 닉네임
+	    
+	    //---------------이름 유효성 검사--------------
+	    if(name==""){
+	    	alert("이름을 입력해주세요.");
+	    	$("#name").focus();return;
+	    }else if(name.match(pattern)){
+	    	alert("이름을 정확히 입력해주세요.");
+	    	$("#name").focus();return;
+	    }else if(!reg_name1.test(name)){
+	    	alert("이름을 정확히 입력해주세요.");
+	    	$("#name").focus();return;
+	    }
+	   
+	  //---------------전화번호 유효성 검사--------------
+	    if(tel==""){
+	    	alert("전화번호를 입력해주세요.");
+	    	$("#tel").focus();return;
+	    }else if(tel.match(pattern)){
+	    	alert("전화번호를 정확히 입력해주세요.");
+	    	$("#tel").focus();return;
+	    }else if(!reg_mobile.test(tel)){
+	    	alert("전화번호를 정확히 입력해주세요.");
+	    	$("#tel").focus();return;
+	    }
+	  
+	   //-------------이메일 유효성 검사--------------
+	    if(email==""){
+	    	alert("이메일을 입력해주세요.");
+	    	$("#email").focus();return;
+	    }else if(email.match(pattern)){
+	    	alert("이메일을 정확히 입력해주세요.");
+	    	$("#email").focus();return;
+	    }else if(!reg_email.test(email)){
+	    	alert("이메일을 정확히 입력해주세요.");
+	    	$("#email").focus();return;
+	    }
+	   
+	    //-------------비밀번호 유효성 검사--------------
+	    if(pass1==""){
+	    	alert("비밀번호를 입력해주세요.");
+	    	$("#pass1").focus();return;
+	    }else if(pass1.match(pattern)){
+	    	alert("비밀번호를 정확히 입력해주세요.");
+	    	$("#pass1").focus();return;
+	    }else if(!reg_pw2.test(pass1)){
+	    	alert("문자와 특수문자를 조합하여 8자 이상의 비밀번호를 입력해주세요.");
+	    	$("#pass1").focus();return;
+	    }
+
+	    
+	    //-------------비밀번호 확인 유효성 검사--------------
+	    if(pass2==""){
+	    	alert("비밀번호를 확인해주세요.");
+	    	$("#pass2").focus();return;
+	    }else if(pass2.match(pattern)){
+	    	alert("비밀번호를 확인해주세요.");
+	    	$("#pass1").focus();return;
+	    }else if(pass1!=pass2){
+	    	alert("비밀번호를 확인해주세요.");
+	    	$("#pass2").focus();return;
+	    }
+	    
+		//-------------닉네임 유효성 검사--------------
+	    if(nick==""){
+	    	alert("닉네임을 입력해주세요.");
+	    	$("#nick").focus();
+	    	return;
+	    }else if(nick.match(pattern)){
+	    	alert("닉네임에는 공백이 들어갈 수 없습니다.");
+	    	return;
+	    	$("#nick").focus();
+	    }else if(!reg_nick1.test(nick)){
+	    	alert("닉네임은 한글, 영어, 숫자, _, - 로만 입력 가능합니다.");
+	    	$("#nick").focus();
+	    	return;
+	    }
+	   
+		//-------------비즈니스 분야 select 유효성 검사--------------
+		
+		if(business==""){
+			alert("비지니스 분야를 선택해주세요.");
+			return;
+		}
+		
+		if($("#interestSelect").val()==null){
+			alert("관심사를 선택해주세요.");
+			return;
+		}
+		
+		var value="";
+		//확인된 체크 박스만 찾아서 반복
+		$("[name='clause']:checked").each(function(idx,ele){
+			value+=$(ele).val()+" ";
+			
+		});
+		
+		//--------------약관 유효성 검증-----------------------
+        if(!value.includes("필수1")){
+        	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
+        	return;
+        }else if(!value.includes("필수2")){
+        	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
+        	return;
+        }else if(!value.includes("필수3")){
+        	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
+        	return;
+        }//end if
+        
+      /*   //약관 선택
+        if(value.includes("선택1")){
+        	agreement='Y';
+        }
+        
+        
+        var expert="";
+        //전문가 여부
+        if(request.getParameter("flag")=='expert'){
+        	expert='Y';
+        } */
+        chkNull();
+		
+    });//click
+    
+    
+});//ready
+
+function chkNull(){
+	if(!emailConfirm){
+		alert("이메일 중복확인이 필요합니다.");
+		return;
+	}else if(!nickConfirm){
+		alert("닉네임 중복확인이 필요합니다.");
+		return;
+	}
+	
+	$("#frm").submit()
+}
 
 </script>
 
 </head>
-    <body>
+    <body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
+    
+
     <div class="register-step2">
         <div style="text-align: center;">
            <a href="http://localhost/project_kmong/templates/home/index.jsp">
@@ -171,19 +360,19 @@ $(document).ready(function(){
         <div class="register-box2">
             <div class="register-last">
             <!-- //////////////////form////////////////// -->
-                <form action="" method="get" name="frm">
+                <form action="http://localhost/project_kmong/templates/account/register_action.jsp" method="get" name="frm" id="frm">
                     <h1>딱 이것만 체크하면 가입완료!</h1>
                     <div class="regi-div">
                         <div class="requirement">이름<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="이름을 입력해주세요." />
+                        <input type="text" placeholder="이름을 입력해주세요." name="name" id="name" value="서지숙"/>
                     </div>
                     <div class="regi-div">
-                        <div class="requirement">전화 번호<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="전화 번호를 입력해주세요." />
+                        <div class="requirement">휴대폰 번호<label>&nbsp;*</label></div>
+                        <input type="text" placeholder="예시) 010-0000-0000" name="tel" id="tel" value="010-1234-0114"/>
                     </div>
                     <div class="regi-div">
-                        <div class="requirement">이메일<label>&nbsp;*</label></div>
-                        <input type="text" readonly="readonly" placeholder="이메일을 입력해주세요." style="margin-bottom: 8px;" />
+                        <div class="requirement">이메일<label>&nbsp;*</label><span id="spanEmail" style="float: right; color:#0000FF; display: none;">사용 가능</span></div>
+                        <input type="text" name="email" placeholder="이메일을 입력해주세요." style="margin-bottom: 8px;" id="email" value="asdf0000@google.com"/>
                         <div style="float: right;">
                           <input type="button" value="이메일 중복확인" class="confirm-exists show"  id="btnStyle1"/>
                         </div>
@@ -207,13 +396,13 @@ $(document).ready(function(){
 
                     <div class="regi-div">
                         <div class="requirement">비밀번호<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"/>
-                        <input type="text" placeholder="비밀번호를 한번 더 입력해주세요." />
+                        <input type="password" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1" value="fhzl!!6125"/>
+                        <input type="password" placeholder="비밀번호를 한번 더 입력해주세요." name="pass2" id="pass2" value="fhzl!!6125"/>
                     </div>
                     
                     <div class="regi-div">
-                        <div class="requirement">닉네임<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="닉네임을 입력해주세요." style="margin-bottom: 8px;"/>
+                        <div class="requirement">닉네임<label>&nbsp;*</label><span id="spanNick" style="float: right; color:#0000FF; display: none;">사용 가능</span></div>
+                        <input type="text" placeholder="한글, 영어, 숫자, _ , - 로 입력가능합니다." style="margin-bottom: 8px;" name="nick" id="nick" value="testtest"/>
                         <div style="float: right;">
                             <input type="button" value="닉네임 중복확인" class="confirm-exists show" id="btnStyle2"/>
                         </div><br/><br/>
@@ -223,11 +412,24 @@ $(document).ready(function(){
                         <div class="requirement" style="font-size: 16px;font-weight: bold;color: rgb(113, 113, 113);margin-bottom:10px;">비즈니스 분야<label>&nbsp;*</label></div>
                       
                       	<div class="select-box">
-                        <select class="selectpicker" data-width="100%" title="비즈니스 분야를 한 개만 선택해주세요." >
-                            <option>테스트1</option>
-                            <option>테스트2</option>
-                            <option>테스트3</option>
-                            <option>테스트4</option>
+                        <select class="selectpicker" data-width="100%" title="비즈니스 분야를 한 개만 선택해주세요." id="businessSelect" name="business">
+                            <% 
+			                   MainPageDAO mpDAO=MainPageDAO.getInstance();
+			                   List<CategoryVO> list=mpDAO.selectAllCategory();
+			                   if(list!=null){
+			                	   
+				                   for(int i=0; i<list.size(); i++){
+				                	   %><option value="<%= list.get(i).getCategoryId()%>">
+				                	<%= list.get(i).getCategoryName()%></option>
+				                	<%
+				                   }
+			                   }else{//select에서 문제생겼을 시 처리 (수정하기)
+			                  
+					              %>
+			                		<option>메뉴를 불러올 수 없습니다.</option>
+				                   <% 
+			                  		}
+	                   				%>
                         </select>
                   		</div>
                     </div>
@@ -239,13 +441,23 @@ $(document).ready(function(){
                         관심사<label>&nbsp;*</label></div>
         				<select class="multi_select w-100" 
 					        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
-					        multiple title="관심사 3가지를 선택하세요.">
-					            <option>test1</option>
-					            <option>test2</option>
-					            <option>test3</option>
-					            <option>test4</option>
-					            <option>test5</option>
-					            <option>test6</option>
+					        multiple title="관심사 3가지를 선택하세요." id="interestSelect" name="interests">
+					        <% 
+			                   
+			                   if(list!=null){
+			                	   
+				                   for(int i=0; i<list.size(); i++){
+				                	   %><option value="<%= list.get(i).getCategoryId()%>">
+				                	<%= list.get(i).getCategoryName()%></option>
+				                	<%
+				                   }
+			                   }else{//select에서 문제생겼을 시 처리 (수정하기)
+			                  
+					              %>
+			                		<option>메뉴를 불러올 수 없습니다.</option>
+				                   <% 
+			                  		}
+	                   				%>
 					        </select>
 					    </div>
                     
@@ -256,33 +468,29 @@ $(document).ready(function(){
                             <input type="checkbox" name="clause" value="selectAll" onclick="selectAll(this)" />
                             <span>모두 동의합니다.</span>
                         </div>
-                        <div class="agreements" style="margin-top: 15px;">
-                            <input type="checkbox" name="clause"/>
+                        <div class="agreements" style="margin-top: 15px;" >
+                            <input type="checkbox" name="clause" class="clause" value="필수1"/>
                             <span>만 14세 이상입니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause"/>
+                            <input type="checkbox" name="clause" class="clause" value="필수2"/>
                             <span>서비스 이용약관에 동의합니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause"/>
+                            <input type="checkbox" name="clause" class="clause" value="필수3"/>
                             <span>개인정보 수집/이용에 동의합니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause"/>
+                            <input type="checkbox" name="clause" class="clause" value="선택1"/>
                             <span>이벤트 할인 혜택 알림 수신에 동의합니다. (선택)</span>
-                        </div>
-                        <div class="agreements">
-                            <input type="checkbox" name="clause"/>
-                            <span>장기 미접속 시 계정 활성 상태 유지합니다. (선택)</span>
                         </div>
                         
                     </div>
 
-                    <input class="complete-btn" type="button"  value="버튼만 누르면 가입완료!"/>
+                    <input class="complete-btn" type="button"  value="버튼만 누르면 가입완료!" />
                 </form>
 
             </div>
@@ -294,14 +502,81 @@ $(document).ready(function(){
     <!-- Modal JS -->
     <script>
 
-      function show(){
-        $(".background").attr("class","background show");
-      }
+      function show(){//이메일 중복확인
+    	  $("#spanEmail").css("display","none");
+    	  
+    	  $.ajax({
+    		  url:"http://localhost/project_kmong/templates/account/emailConfirmation.jsp",
+    		  data:{email:$("#email").val()},
+    		  dataType:"json",
+    		  type:"get",
+    		  error:function(xhr){
+    			  alert(xhr.status);
+    		  },
+    		  success:function(jsonObj){
+    			  
+    			  if(jsonObj.validation=="isNotEmail"){
+    				  alert("올바른 이메일을 입력해주세요");
+    			  }else{
+    				  
+    				 if(jsonObj.flag){ //이메일이 기존에 있다면 
+    				 	$(".background").attr("class","background show");
+    			  	 
+    				 }else{
+    					 emailConfirm=true;
+    			  		$("#spanEmail").css("display","block");
+    			  	 }//end else
+    			  }//end else
+    			  
+    		  }//success
+    		  
+    	  });//ajax
+    	  
+      }//show
+      
+      
+      function show2(){ //닉네임 중복확인
+    	  $("#spanNick").css("display","none");
+    	  
+    	  $.ajax({
+    		  url:"http://localhost/project_kmong/templates/account/nickConfirmation.jsp",
+    		  data:{nick:$("#nick").val()},
+    		  dataType:"json",
+    		  type:"get",
+    		  error:function(xhr){
+    			  alert(xhr.status);
+    		  },
+    		  success:function(jsonObj){
+    			  
+    			  if(jsonObj.validation=="isNotNick"){
+    				  alert("올바른 닉네임을 입력해주세요.");
+    			  }else if(jsonObj.validation=="length"){
+    				  alert("닉네임은 5자 이상이어야 합니다.");
+    			  }else{
+    				  
+    				 if(jsonObj.flag){ // 기존에 있다면 
+    				 	$(".background").attr("class","background show");
+    			  	 
+    				 }else{ //사용가능
+    					nickConfirm=true;
+    			  		$("#spanNick").css("display","block");
+    			  	 }//end else
+    			  }//end else
+    			  
+    		  }//success
+    		  
+    	  });//ajax
+    	  
+      }//show
+      
+      
       function close(){
         $(".background").attr("class","background");
       }
 
-      $(".show").click(show);
+      $("#btnStyle1").click(show);
+      $("#btnStyle2").click(show2);
+      //$(".show").click(show);
       $(".close").click(close);
 
 
@@ -312,6 +587,10 @@ $(document).ready(function(){
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>
-    
+<script type="text/javascript">
+if(${param.hid eq 'login'}){
+document.getElementById("modal").style.display='flex';
+}//end if
+</script>
 </body>
 </html>

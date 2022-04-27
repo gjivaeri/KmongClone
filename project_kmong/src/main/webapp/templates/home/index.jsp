@@ -1,3 +1,4 @@
+<%@page import="com.kmong.vo.CategoryVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,9 +18,25 @@
 
 </style>
 
+<SCRIPT type="text/javascript">
+   window.history.forward();
+   function noBack() { window.history.forward(); }
+</SCRIPT>
 
+
+<%-- <script type="text/javascript">
+ <%
  
-<script type="text/javascript">
+ if((String)session.getAttribute("join")!=null){ //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
+	 session.removeAttribute("join");
+} 
+ if((String)session.getAttribute("setPass")!=null){
+	 %>alert("비밀번호가 성공적으로 변경되었습니다.");<%
+	 session.removeAttribute("setPass");
+} 
+%>
+	
+	
 $(function(){
 	$(".login-btn").click(function(){
 	$("#modal").css("display","flex")
@@ -33,10 +50,11 @@ $("#bg").click(function(){
 })
 });//
 
-</script>
+</script> --%>
 </head>
 
-<body>
+<body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
 <div id="wrap">
 <%@include file="../common/header.jsp"%>
 
@@ -142,22 +160,34 @@ $("#bg").click(function(){
             <!-- 카테고리 이미지 들어가는 부분-DB작업 들어감. -->
             <div class="main-category-img-collection">
                 <div style=" font-size: 14px; font-weight: bold; height: 20px;">비즈니스</div>
+               
+               
                 <div class="articles">
-               
-               
-                <% 
-                String[] category={"디자인","마케팅","영상 사진 음향","IT/프로그래밍","번역 통역" };
                 
-                for(int i=0; i<category.length;i++){
-                	%>
-                        <div class="article-squre">
+               <!-- 파일명 가져와서 이미지 넣기 수행/ 이미지 리사이징 해야함-->
+                <% 
+               
+                List<CategoryVO> cVOlist=mpDAO.selectAllCategory();
+                String categoryName="";
+                String categoryImg="";
+                
+                if(cVOlist!=null){
+                	for(int i=0;i<cVOlist.size();i++){
+                		
+                		categoryName=cVOlist.get(i).getCategoryName();
+                		categoryImg=cVOlist.get(i).getCategoryImage();
+                		
+                		%>
+                		<div class="article-squre">
                         <a href="#void" >
                             <img src="http://localhost/project_kmong/static/images/test.JPG" />
-                            <div class="main-span1"><%= category[i]%></div>
+                            <div class="main-span1"><%= categoryName%></div>
                         </a>
                         </div>
-                <%
-                }
+                		<%
+                		
+                	}//end for
+                }//end if
                 %>
                   
                 </div>
@@ -190,12 +220,14 @@ $("#bg").click(function(){
         <div style="display: flex; align-items:center; margin-top:70px; height:300px; background-color: antiquewhite;" >
             <div style="display: flex; margin:0px auto;">
                 <div style="display: flex; width: 1168px; height: 175px; grid-gap:15px;">
-                	<%for(int i=0; i<3; i++){ 
+                	<%for(int i=0; i<3; i++){
                 		%>
-                	<img src="http://localhost/project_kmong/static/images/will_replace.JPG"/>
-                	<%
+                		<img src="http://localhost/project_kmong/static/images/will_replace.JPG"/>
+                		
+                		<%
                 	}
                 	%>
+                	
                     
                 </div>
             </div>
@@ -211,10 +243,10 @@ $("#bg").click(function(){
 
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 if(${param.hid eq 'login'}){
 document.getElementById("modal").style.display='flex';
 }//end if
-</script>
+</script> -->
 </body>
 </html>

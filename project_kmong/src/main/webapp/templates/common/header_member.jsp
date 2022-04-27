@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+ <%
 
+if(((String)session.getAttribute("login"))==null){
+	session.setAttribute("logoutSession", "logout");
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+}
+if(((String)session.getAttribute("loginMsg"))!=null){
+	%>alert("로그인이 성공적으로 완료되었습니다.")<%
+	session.removeAttribute("loginMsg");
+}
+
+%> 
+
+$(function(){
+	$("#logoutBtn").click(function(){
+		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
+	})
+});//ready
+
+</script>
 <div class="header">
         <div class="header1">
             <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
@@ -20,7 +40,7 @@
                     </form>
                     <!-- ////////////////////// -->
                <div style="width: 250px;" class="buttons"> 
-                    <input type="button" value="로그아웃"class="login-btn" >
+                    <input type="button" value="로그아웃" class="login-btn" id="logoutBtn">
                     <div style="width: 270px; margin-right: 20px;">
                         <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" >
                     </div>
