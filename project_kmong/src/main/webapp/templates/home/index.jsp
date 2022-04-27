@@ -18,9 +18,25 @@
 
 </style>
 
+<SCRIPT type="text/javascript">
+   window.history.forward();
+   function noBack() { window.history.forward(); }
+</SCRIPT>
 
+
+<%-- <script type="text/javascript">
+ <%
  
-<script type="text/javascript">
+ if((String)session.getAttribute("join")!=null){ //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
+	 session.removeAttribute("join");
+} 
+ if((String)session.getAttribute("setPass")!=null){
+	 %>alert("비밀번호가 성공적으로 변경되었습니다.");<%
+	 session.removeAttribute("setPass");
+} 
+%>
+	
+	
 $(function(){
 	$(".login-btn").click(function(){
 	$("#modal").css("display","flex")
@@ -34,10 +50,11 @@ $("#bg").click(function(){
 })
 });//
 
-</script>
+</script> --%>
 </head>
 
-<body>
+<body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
 <div id="wrap">
 <%@include file="../common/header.jsp"%>
 
@@ -226,10 +243,10 @@ $("#bg").click(function(){
 
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 if(${param.hid eq 'login'}){
 document.getElementById("modal").style.display='flex';
 }//end if
-</script>
+</script> -->
 </body>
 </html>

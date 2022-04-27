@@ -30,10 +30,7 @@ img{
 <script type="text/javascript" src="http://localhost/project_kmong/static/js/file.js"></script>
 <!-- footer css -->
  <link rel='stylesheet' type='text/css' media='screen' href='http://localhost/project_kmong/static/css/footer.css'>
-
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript">window.history.forward(1);</script>
 </head>
 <body>
 <div id="wrap" >

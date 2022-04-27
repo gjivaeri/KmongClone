@@ -59,9 +59,9 @@ public class MainPageDAO {
 			}//end while
 			
 		}//try
-		if(con.isClosed()) {System.out.println("Àß´İÈû");}
-		if(pstmt.isClosed()) {System.out.println("Àß´İÈû");}
-		if(rs.isClosed()) {System.out.println("Àß´İÈû");}
+//		if(con.isClosed()) {System.out.println("Àß´İÈû");}
+//		if(pstmt.isClosed()) {System.out.println("Àß´İÈû");}
+//		if(rs.isClosed()) {System.out.println("Àß´İÈû");}
 		return categoryList;
 		
 	}//selectAllCategoryName

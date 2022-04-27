@@ -22,7 +22,19 @@ body{
 </style>
 
 
+
 <script type="text/javascript">
+
+<%
+
+if((String)session.getAttribute("join")==null){
+	//회원가입 과정을 거치지 않고 이 파일에 접근할 경우 메인페이지로 redirect
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+}else{
+	//session.removeAttribute("login"); //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
+}
+%>
+
 $(function(){
    
    $("#login-btn-after-register").click(function(){
@@ -35,60 +47,8 @@ $(function(){
 </head>
 
 <body>
-<%-- <%
-        String ip=request.getRemoteAddr();
-		String email=request.getParameter("email");
-		String password=request.getParameter("pass2");
-		String name=request.getParameter("name");
-		String nick=request.getParameter("nick");
-		String tel=request.getParameter("tel");
-		int categoryID=Integer.parseInt(request.getParameter("business"));
-		
-		String[] interests=request.getParameterValues("interests");
-		String[] agreementArr=request.getParameterValues("clause");
-		String agreement="";
-		
-		String expert=(String)session.getAttribute("flag");
-		
-		if(expert.equals("expert")){
-			expert="Y";
-		}else{
-			expert="N";
-		}
-		
-		/* System.out.println(ip);
-		System.out.println(email);
-		System.out.println(password);
-		System.out.println(name);
-		System.out.println(nick);
-		System.out.println(tel);
-		System.out.println("비즈니스"+categoryID);
-		for(String i:interests){
-			System.out.println(i);
-		} */
-		
-		
-		for(String i:agreementArr){
-			if(i.equals("선택1")){
-				agreement="Y";
-			}else{
-				agreement="N";
-			}
-		}
-		
-		
-        MakeAccountDAO madDAO=MakeAccountDAO.getInstance();
-		
-        MemberVO mVO
-        =new MemberVO(madDAO.selectMemberSeq(),categoryID,email,password,name,nick,tel,"","","",ip,expert,"",agreement,interests);
-        
-        mVO.setPassword(DataEncrypt.messageDigest("MD5", mVO.getPassword()));
-      
-        madDAO.insertMemberInfo(mVO);
-        madDAO.insertInterests(mVO, interests);
-        
-        
-        %> --%>
+
+
     <div class="register-step1">
         <div style="text-align: center;">
             <a href="http://localhost/project_kmong/templates/home/index.jsp">
@@ -114,5 +74,7 @@ $(function(){
         </div>
 
     </div>
+
 </body>
+
 </html>

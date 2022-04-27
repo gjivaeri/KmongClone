@@ -44,9 +44,10 @@ public class MakeAccountDAO {
 	}
 	
 	
-	public void insertMemberInfo(MemberVO mVO) throws SQLException{
+	public boolean insertMemberInfo(MemberVO mVO) throws SQLException{
 		
-		 
+		boolean flag=false;
+		
 		Connection con=DbConnectionDBCP.getInstance().getConn();
 		
 		
@@ -71,16 +72,17 @@ public class MakeAccountDAO {
 		
 		try(con;pstmt){
 		 pstmt.executeUpdate();
+		 flag=true;
 		}
-		System.out.println("¿Ï·á");
+		
+		return flag;
 	}//insertMemberInfo
 
 	
 	
-	public void insertInterests(MemberVO mVO, String[] interests) throws SQLException {
+	public boolean insertInterests(MemberVO mVO, String[] interests) throws SQLException {
 		
-		
-		
+		boolean flag=false;
 		
 		for(String i:interests) {
 		
@@ -99,9 +101,11 @@ public class MakeAccountDAO {
 			
 			try(con;pstmt){
 			 pstmt.executeUpdate();
+			 flag=true;
 			}//try
 			
 		}//end for
+		return flag;
 	}//insertInterests
 	
 	

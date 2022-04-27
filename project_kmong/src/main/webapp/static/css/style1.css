@@ -905,6 +905,7 @@ a{text-decoration: none; color: #333;}
     width: 100%;
     background-color: transparent;
     border-radius: 5px;
+    margin-bottom: 5px;
     /* transition: background-color 0.3s ease 0s, border-color 0.3s ease 0s; */
 }
 
@@ -941,7 +942,7 @@ a{text-decoration: none; color: #333;}
 
 .new-password-box{
     width: 560px;
-    height: 350px;
+    height: 380px;
     border: 1px solid rgb(221, 219, 219);
 }
 

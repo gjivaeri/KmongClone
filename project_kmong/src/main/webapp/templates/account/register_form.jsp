@@ -147,8 +147,27 @@
 }
 
 </style>
-    
 <script type="text/javascript">
+   window.history.forward();
+   function noBack() { window.history.forward(); }
+</script>
+<script type="text/javascript">
+
+<%
+if(request.getParameter("flag")==null){
+	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+	return;
+}
+
+
+if(request.getParameter("flag").equals("expert")){
+	session.setAttribute("flag","expert");
+}else{
+	session.setAttribute("flag","client");
+}
+
+
+%> 
 
 var emailConfirm=false;
 var nickConfirm=false;
@@ -240,7 +259,7 @@ $(function(){
 	    if(pass2==""){
 	    	alert("비밀번호를 확인해주세요.");
 	    	$("#pass2").focus();return;
-	    }else if(pass1.match(pattern)){
+	    }else if(pass2.match(pattern)){
 	    	alert("비밀번호를 확인해주세요.");
 	    	$("#pass1").focus();return;
 	    }else if(pass1!=pass2){
@@ -325,74 +344,10 @@ function chkNull(){
 }
 
 </script>
-<%
-if(request.getParameter("flag")==null){
-	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
-}
 
-/* if(request.getParameter("flag").equals("expert")){
-	session.setAttribute("flag","expert");
-}else{
-	session.setAttribute("flag","client");
-}
- */
-%>    
-<%
-        String ip=request.getRemoteAddr();
-		String email=request.getParameter("email");
-		String password=request.getParameter("pass2");
-		String name=request.getParameter("name");
-		String nick=request.getParameter("nick");
-		String tel=request.getParameter("tel");
-		int categoryID=Integer.parseInt(request.getParameter("business"));
-		
-		String[] interests=request.getParameterValues("interests");
-		String[] agreementArr=request.getParameterValues("clause");
-		String agreement="";
-		
-		String expert=request.getParameter("flag");
-		
-		if(expert.equals("expert")){
-			expert="Y";
-		}else{
-			expert="N";
-		}
-		
-		/* System.out.println(ip);
-		System.out.println(email);
-		System.out.println(password);
-		System.out.println(name);
-		System.out.println(nick);
-		System.out.println(tel);
-		System.out.println("비즈니스"+categoryID);
-		for(String i:interests){
-			System.out.println(i);
-		} */
-		
-		
-		for(String i:agreementArr){
-			if(i.equals("선택1")){
-				agreement="Y";
-			}else{
-				agreement="N";
-			}
-		}
-		
-		
-        MakeAccountDAO madDAO=MakeAccountDAO.getInstance();
-		
-        MemberVO mVO
-        =new MemberVO(madDAO.selectMemberSeq(),categoryID,email,password,name,nick,tel,"","","",ip,expert,"",agreement,interests);
-        
-        mVO.setPassword(DataEncrypt.messageDigest("MD5", mVO.getPassword()));
-      
-        madDAO.insertMemberInfo(mVO);
-        madDAO.insertInterests(mVO, interests);
-        
-        response.sendRedirect("http://localhost/project_kmong/templates/account/register_success.jsp");
-        %>
 </head>
-    <body>
+    <body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
     
 
     <div class="register-step2">
@@ -405,7 +360,7 @@ if(request.getParameter("flag")==null){
         <div class="register-box2">
             <div class="register-last">
             <!-- //////////////////form////////////////// -->
-                <form action="http://localhost/project_kmong/templates/account/register_form.jsp" method="get" name="frm" id="frm">
+                <form action="http://localhost/project_kmong/templates/account/register_action.jsp" method="get" name="frm" id="frm">
                     <h1>딱 이것만 체크하면 가입완료!</h1>
                     <div class="regi-div">
                         <div class="requirement">이름<label>&nbsp;*</label></div>
@@ -632,6 +587,10 @@ if(request.getParameter("flag")==null){
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>
-    
+<script type="text/javascript">
+if(${param.hid eq 'login'}){
+document.getElementById("modal").style.display='flex';
+}//end if
+</script>
 </body>
 </html>
