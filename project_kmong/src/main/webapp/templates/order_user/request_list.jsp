@@ -14,7 +14,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Login여부 -->
-<%@include file ="validSession.jsp" %>
+<%@include file ="validate_session.jsp" %>
 
 <% 
 int sid = Integer.parseInt(login);  
@@ -137,29 +137,7 @@ function prevSubmit() {
 		<hr>
 			<div id="aside-div">
 			<%@include file ="user_leftside.jsp" %>
-				<!-- <aside class="aside">
-					<div>
-						<div style="margin-top: 60p">
-						<div class="side-menu-wrapper">
-						<div id="side-menu-wrapper">
-							<img src="https://kmong.com/img/tools/default_profile@2x.png" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;">
-						</div>
-						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold">닉네임</span></div>
-						<div class="side-menu-title-wrapper" style="margin-top: 50px; font-weight: bold;">마이계약</div>
-						<div class="menu-list-wrapper"></div>
-						</div>
-						</div>
-					</div>
-					<hr orientation="horizontal" style="height: 2px;">
-					<div>
-					<select class="input-textDiv" id="contract" style="cursor: pointer; font-size: 16px;">
-						<option value="ordersMng" selected disabled hidden>계약관리</option>
-						<option value="ordersReq" selected="selected">계약 요청</option>
-						<option value="ordersCancel">계약 철회</option>
-						<option value="ordersList" >계약 리스트(현황)</option>
-					</select>
-					</div>
-				</aside> -->
+
 				<%!
 					String startDate;
 					String endDate;
@@ -276,16 +254,13 @@ function prevSubmit() {
 					<div style="text-align:center;height: 40px;">
 					<c:if test="${ isPrevPage }">
 
-					<!-- <input type="button" value="prev" id="prevBtn"/> -->
 					<a href="#void" onclick="prevSubmit()">prev</a>
-					<%-- <a href="?p=${prev}">prev</a> --%>
 					</c:if>
 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
 					<a href="?p=${i}&<%= param %>">${i}</a>
 					</c:forEach>
 					<c:if test="${ isNextPage }">
 
-					<!-- <input type="button" value="next" id="nextBtn"/> -->
 					<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>

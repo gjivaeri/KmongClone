@@ -12,7 +12,7 @@
 <%@include file="../common/cdn.jsp"%>
 <title>kmong</title>
 <!-- Login,전문가여부 -->
-<%@include file ="validateExpert.jsp" %>
+<%@include file ="validate_expert.jsp" %>
 
 <% 
 int sid = Integer.parseInt(login);  
@@ -83,30 +83,7 @@ function prevSubmit() {
 			</div>
 			<div id="aside-div">
 			<%@include file ="leftside.jsp" %>
-<!-- 				<aside class="aside">
-					<div>
-						<div style="margin-top: 60px">
-						<div class="side-menu-wrapper">
-						<div id="side-menu-wrapper">
-							<img src="https://kmong.com/img/tools/default_profile@2x.png" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;">
-						</div>
-						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold">닉네임</span></div>
-						<div class="side-menu-title-wrapper" style="margin-top: 50px; font-weight: bold;">마이계약</div>
-						<div class="menu-list-wrapper"></div>
-						</div>
-						</div>
-					</div>
-					<hr orientation="horizontal" style="height: 2px;">
-					<div>
-					<select class="input-textDiv" style="cursor: pointer; font-size: 16px;">
-						<option value="ordersMng" selected disabled hidden>계약관리</option>
-						<option value="ordersReq">계약 요청 승인</option>
-						<option value="ordersCancel">완료된 계약</option>
-						<option value="ordersList">철회된 계약</option>
-						<option value="myService">나의 서비스</option>
-					</select>
-					</div>
-				</aside> -->
+
 				<%!
 					String startDate;
 					String endDate;
@@ -185,20 +162,15 @@ function prevSubmit() {
 					
 					<div id="main-section1" style="width: 900px; height:900px; flex-wrap: wrap;">
 					
-<!-- 					<div style="flex-direction: column;">
-					<img src="https://kmong.com/img/tools/default_profile@2x.png" style="width: 100px; height: 100px; margin: 10px"/><br/>
-					<span>구매자 XXX님</span><br>
-					<span>구매 완료된 날짜</span>
-					</div> -->
 					<c:if test="${size==0}">
 					<div style="display: flex;justify-content: center;align-items: center;text-align: center;"><div style="margin-left:280px;"><img src="https://kmong.com/img/seller/nothing.png" title="내역없음" > <h5 class="font-color-lighter">내역이 없습니다.</h5></div></div>
 					</c:if>
 					<c:forEach items="${ list }" var="item">
-					<div style="margin:10px">
-					<a href="#void"><img src="${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
-					<div style="font-size: 12px;text-align: center;">주문번호 : ${ item.orderId }</div>
-					<div style="font-size: 12px;text-align: center;">구매자 ${ item.memberNick }님</div>
-					<div style="font-size: 12px;text-align: center;">완료 : ${ item.orderDate }</div>
+					<div style="margin:10px;">
+					<a href="#void"><img src="${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 25px;"/></a><br/>
+					<div style="font-size: 14px;text-align: center;">주문번호 : ${ item.orderId }</div>
+					<div style="font-size: 14px;text-align: center;">구매자 ${ item.memberNick }님</div>
+					<div style="font-size: 14px;text-align: center;">${ item.orderDate }</div>
 					</div>
 					</c:forEach>
 					</div>
