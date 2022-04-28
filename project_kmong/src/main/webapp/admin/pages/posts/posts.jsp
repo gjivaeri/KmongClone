@@ -1,7 +1,37 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.paging.PageImpl"%>
+<%@page import="com.kmong.paging.Paging"%>
+<%@page import="com.kmong.vo.admin.AdminPostsVO"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String opt="TITLE2";
+AdminDAO aDAO = AdminDAO.getInstance();
+List<AdminPostsVO> list = aDAO.selectAllPost(opt);
 
+Paging paging = new PageImpl(request,list);
+paging.setPagePerRecord(12);
+
+int firstPage = paging.getFirstPage();
+int lastPage = paging.getLastPage();
+boolean isNext = paging.isNextPage();
+boolean isPrev = paging.isPrevPage();
+List<AdminPostsVO> result = paging.getVoAsPagePerRecord();
+int nextPage = paging.getNextPage();
+int prevPage = paging.getPrevPage();
+
+pageContext.setAttribute("isNextPage", isNext);
+pageContext.setAttribute("isPrevPage", isPrev);
+pageContext.setAttribute("firstPage", firstPage);
+pageContext.setAttribute("lastPage", lastPage);
+pageContext.setAttribute("next", nextPage);
+pageContext.setAttribute("prev", prevPage);
+pageContext.setAttribute("list", result);
+pageContext.setAttribute("size", result.size());
+
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +60,6 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <!-- 여기에 본문 내용 채울 것. -->
-
 
             <div class="page-header">
               <h3 class="page-title"> Posts </h3>
@@ -67,78 +96,42 @@
                             <th> Write Date </th>
                           </tr>
                         </thead>
+                    <c:forEach var="posts" items="${list}">
                         <tbody>
                           <tr>
                             <td class="py-1">
-                              1
+                              ${posts.post_id}
                             </td>
-                            <td> IT/Programming </td>
+                            <td> ${posts.category_name} </td>
                             <td>
                                 <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
+                                ${posts.title }
                                 </a>
                             </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              2
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              3
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              4
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              5
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
+                            <td>${posts.email}</td>
+                            <td>${posts.post_date}</td>
                           </tr>
                         </tbody>
+                     </c:forEach>
                       </table>
                     </div> 
                   </div>
                   <div style="text-align:center;">
-                    여기서 페이지 구현
+                  
+					<form id="prevFrm">
+					<input type="hidden" value="${prev }" name="p">
+					<input type="hidden" value="<%= request.getParameter("startDate") %>" name="startDate">
+					<input type="hidden" value="<%= request.getParameter("endDate") %>" name="endDate">
+					<input type="hidden" value="<%= request.getParameter("keyword") %>" name="keyword">
+					</form>
+					<form id="nextFrm">
+					<input type="hidden" value="${next }" name="p">
+					<input type="hidden" value="<%= request.getParameter("startDate") %>" name="startDate">
+					<input type="hidden" value="<%= request.getParameter("endDate") %>" name="endDate">
+					<input type="hidden" value="<%= request.getParameter("keyword") %>" name="keyword">
+					</form>
+
+                  
                   </div>
 
                 </div>

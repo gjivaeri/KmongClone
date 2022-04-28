@@ -7,7 +7,7 @@
 	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
 	}
 %>
-    
+<% if(session.getAttribute("loginId")!=null){ %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +43,6 @@
 	  		},
 	  		success:function(jsonObj){
 	  			if(jsonObj.setFlag == true){
-	  				console.log("test");
  	  				location.href="http://localhost/project_kmong/admin/index.jsp";
 	  				return; 
 	  			}
@@ -94,3 +93,4 @@
     <!-- container-scroller -->
   </body>
 </html>
+<%}%>

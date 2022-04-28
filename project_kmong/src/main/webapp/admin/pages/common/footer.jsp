@@ -7,4 +7,7 @@
   </div>
 </footer>
 
+<!-- js동작 -->
 <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- mini-navbar 동작 -->
+<script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>

@@ -8,7 +8,8 @@
 	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
 	}
 %>
-    
+<!-- sendRedirect가 호출되도 jsp 코드는 계속 실행되므로  -->
+<% if(session.getAttribute("loginId")!=null){ %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -244,3 +245,4 @@
     <script src="http://localhost/project_kmong/admin/assets/js/chart.js"></script>
   </body>
 </html>
+<%}%>

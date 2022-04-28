@@ -23,7 +23,11 @@ if(loginFlag && newPass.equals(confPass)){
 	aVO.setId(id);
 	aVO.setPass(newPass);
 	aDAO.updateAdminPass(aVO);
+	if(!aDAO.updateAdminPass(aVO)){
+		msg="비밀번호 업데이트 중 문제가 발생했습니다";
+	}
 }
+
 if(!newPass.equals(confPass)){
 	msg="새 비밀번호가 일치하지 않습니다";
 }
