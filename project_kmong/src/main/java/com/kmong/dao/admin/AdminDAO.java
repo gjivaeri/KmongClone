@@ -106,16 +106,15 @@ public class AdminDAO {
 			if(opt == null){
 			sql.append("select * ");
 			sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-			sql.append(" from(select * from post order by post_date, post_id) p");
+			sql.append(" from(select * from post order by post_id, post_date) p");
 			sql.append(" join member m");
 			sql.append(" on m.member_id = p.member_id");
 			sql.append(" join category c");
 			sql.append(" on c.category_id = p.category_id)");
-			sql.append(" where rnum>=? and rnum<=?");
+			sql.append(" where rnum>=?");
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, 1);
-			pstmt.setInt(2, 10);
 			
 			sql.delete(0,  sql.toString().length());
 			
@@ -123,20 +122,19 @@ public class AdminDAO {
 			else{
 				sql.append("select * ");
 				sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-				sql.append(" from(select * from post order by post_date, post_id) p");
+				sql.append(" from(select * from post order by post_id, post_date) p");
 				sql.append(" join member m");
 				sql.append(" on m.member_id = p.member_id");
 				sql.append(" join category c");
 				sql.append(" on c.category_id = p.category_id");
 				sql.append(" where p.title like ? or c.category_name like ? or m.email like ?)");
-				sql.append(" where rnum>=? and rnum<=?");
+				sql.append(" where rnum>=?");
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, '%'+opt+'%');
 			pstmt.setString(2, '%'+opt+'%');
 			pstmt.setString(3, '%'+opt+'%');
 			pstmt.setInt(4, 1);
-			pstmt.setInt(5, 10);
 			
 			sql.delete(0,  sql.toString().length());
 
