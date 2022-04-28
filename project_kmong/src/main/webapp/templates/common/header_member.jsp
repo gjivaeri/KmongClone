@@ -1,6 +1,27 @@
+<%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+ <%
 
+if(((String)session.getAttribute("login"))==null){
+	session.setAttribute("logoutSession", "logout");
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+}
+if(((String)session.getAttribute("loginMsg"))!=null){
+	%>alert("로그인이 성공적으로 완료되었습니다.")<%
+	session.removeAttribute("loginMsg");
+}
+
+%> 
+
+$(function(){
+	$("#logoutBtn").click(function(){
+		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
+	})
+});//ready
+
+</script>
 <div class="header">
         <div class="header1">
             <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
@@ -20,7 +41,7 @@
                     </form>
                     <!-- ////////////////////// -->
                <div style="width: 250px;" class="buttons"> 
-                    <input type="button" value="로그아웃"class="login-btn" >
+                    <input type="button" value="로그아웃" class="login-btn" id="logoutBtn">
                     <div style="width: 270px; margin-right: 20px;">
                         <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" >
                     </div>
@@ -31,7 +52,15 @@
                     <div class="dropdown" style="width: 40px; border-radius: 50px;" >
                         <div style="height: 40px; width:40px; margin-left:0px;border-radius: 50px;">
                         
+                        <%
+                        MainPageDAO mpDAO=MainPageDAO.getInstance();
+                        String userImg=mpDAO.selectUserImg((String)session.getAttribute("login"));
+                        
+                        pageContext.setAttribute("userImg", userImg);
+                        %>
+                        <c:if test="">
                         <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        </c:if>
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px; z-index: 100;">

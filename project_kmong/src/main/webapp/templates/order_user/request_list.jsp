@@ -1,10 +1,30 @@
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="com.kmong.paging.PageImpl"%>
+<%@page import="com.kmong.paging.Paging"%>
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.vo.OrdersVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kmong.dao.orders.OrdersDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- Login여부 -->
+<%@include file ="validate_session.jsp" %>
+
+<% 
+int sid = Integer.parseInt(login);  
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="../common/cdn.jsp"%>
-<title>Insert title here</title>
+<title>kmong</title>
 
 <!-- datePicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -42,73 +62,234 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function() {
+		
 	 $( function() {
-		$( "#datepicker" ).datepicker();
-	} );
+		$( "#datepicker" ).datepicker({
+			format: "mm-dd-yyyy"
+		});
+	});
 	 $( function() {
-		$( "#datepicker2" ).datepicker();
-	} );
+		$( "#datepicker2" ).datepicker({
+			format: "mm-dd-yyyy"
+		});
+	});
+	 
+	 $("#contract").change(function() {
+		 if ($("#contract").val() == "ordersReq") {
+			 location.href="request_list.jsp";
+			 return;
+		 }
+		 if ($("#contract").val() == "ordersCancel") {
+			 location.href="cancel_list.jsp";
+			 return;
+		 }
+		 if ($("#contract").val() == "ordersList") {
+			 location.href="history_list.jsp";
+			 return;
+		 }
+	 });//change
+	 
+	 $('#cancelChk').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var recipient = button.data('id'); // Extract info from data-* attributes
+		  var modal = $(this);
+		  modal.find('#modalHid').val(recipient);
+		 
+		})
+	
+	 $("#modalOk").click(function() {
+		 let id=$("#modalHid").val()
+		 $.ajax({
+			 url:"cancle.jsp",
+			 method:"post",
+			 data : "id="+id,
+ 			 success:function() {
+ 				location.href=location.href;
+
+			 } 
+		 })
+	 })//click
+	 
+	 $("#searchBtn").click(function (){
+		 $("#frm").submit();
+	 }) 
+	 $("#prevBtn").click(function (){
+		 $("#prevFrm").submit();
+	 })
+	 $("#nextBtn").click(function (){
+		 $("#nextFrm").submit();
+	 })
+
+	 
+
+	 
 });//ready
+function nextSubmit() {
+	$("#nextFrm").submit();
+}
+function prevSubmit() {
+	$("#prevFrm").submit();
+}
 </script>
 </head>
 <body>
  <%@include file="../common/header_member.jsp"%>
 		<hr>
 			<div id="aside-div">
-				<aside class="aside">
-					<div>
-						<div style="margin-top: 60p">
-						<div class="side-menu-wrapper">
-						<div id="side-menu-wrapper">
-							<img src="https://kmong.com/img/tools/default_profile@2x.png" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;">
-						</div>
-						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold">닉네임</span></div>
-						<div class="side-menu-title-wrapper" style="margin-top: 50px; font-weight: bold;">마이계약</div>
-						<div class="menu-list-wrapper"></div>
-						</div>
-						</div>
-					</div>
-					<hr orientation="horizontal" style="height: 2px;">
-					<div>
-					<select class="input-textDiv" style="cursor: pointer; font-size: 16px;">
-						<option value="ordersMng" selected disabled hidden>계약관리</option>
-						<option value="ordersReq">계약 요청</option>
-						<option value="ordersCancel">계약 철회</option>
-						<option value="ordersList">계약 리스트(현황)</option>
-					</select>
-					</div>
-				</aside>
+			<%@include file ="user_leftside.jsp" %>
+
+				<%!
+					String startDate;
+					String endDate;
+					String keyword;
+				%>
+				<%
+					SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-YYYY");
+					startDate = request.getParameter("startDate");
+					if (startDate ==null) {
+						startDate = "01-01-2022";
+					}
+					
+					endDate = request.getParameter("endDate");
+					if (endDate == null) {
+						endDate = sdf.format(new Date());
+					}
+					
+					keyword = request.getParameter("keyword");
+					if (keyword == null) {
+						keyword = "";
+					}
+					
+					
+				%>
+				
 				<main style="margin-left: 24px; margin-top: 30px;">
 				<div>
 					<h1 style="font-size: 18px; font-weight: bold;">요청한 계약</h1>
+					<form id="frm" name="frm">
 					<div>
-					<input type="text" id="datepicker" value="mm-dd-yyyy"> - <input type="text" id="datepicker2" value="mm-dd-yyyy" >   <input type="text" class="input-text" placeholder="상품을 검색하세요."  style="border: 1px solid #CCCCCC">
+					<input type="text" id="datepicker" name="startDate" value="<%= startDate %>"> - <input type="text" id="datepicker2" name="endDate" value="<%= endDate %>">   <input type="text" class="input-text" name="keyword" placeholder="상품을 검색하세요."  style="width:300px; border: 1px solid #CCCCCC">
+					<input type="button" value="검색" id="searchBtn" class="btn btn-primary" style="height:35px"/>
+					<input type="hidden" name = "contractflag" value="${param.contractflag }"/>
 					</div>
-					<div id="main-section1" style="height: 500px;">
-					<div style="flex-direction: column;">
-					<img src="https://kmong.com/img/tools/default_profile@2x.png" style="width: 100px; height: 100px; margin: 10px"/><br/>
-					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cancelChk" style="float: right;">철회</button>
+					</form>
+					<!-- article -->
+					
+
+					<%
+					OrdersDAO oDAO = OrdersDAO.getInstance();
+					List<OrdersVO> list = oDAO.selectRequestedOrdersRange(startDate, endDate, keyword, "P" ,sid);
+					
+					Paging paging = new PageImpl(request,list);
+					paging.setPagePerRecord(12);
+					
+					int firstPage = paging.getFirstPage();
+					int lastPage = paging.getLastPage();
+					boolean isNext = paging.isNextPage();
+					boolean isPrev = paging.isPrevPage();
+					List<OrdersVO> result = paging.getVoAsPagePerRecord();
+					int nextPage = paging.getNextPage();
+					int prevPage = paging.getPrevPage();
+					
+					String param="";
+					try {	
+					if (request.getQueryString() != null) {
+						param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+						if(request.getQueryString().indexOf("p") == -1){
+							param = request.getQueryString();			
+						}	
+					}
+					} catch(Exception e) {
+						response.sendRedirect("request_list.jsp");
+					}
+					
+					pageContext.setAttribute("param",param);
+
+					
+					pageContext.setAttribute("isNextPage", isNext);
+					pageContext.setAttribute("isPrevPage", isPrev);
+					pageContext.setAttribute("firstPage", firstPage);
+					pageContext.setAttribute("lastPage", lastPage);
+					pageContext.setAttribute("next", nextPage);
+					pageContext.setAttribute("prev", prevPage);
+					pageContext.setAttribute("list", result);
+					pageContext.setAttribute("size", result.size());
+			
+					%>
+					
+					<div id="main-section1" style="width: 850px; height:900px; flex-wrap: wrap;">
+					<!-- 게시글 -->
+					<c:if test="${size==0}">
+					<div style="display: flex;justify-content: center;align-items: center;text-align: center;"><div style="margin-left:280px;"><img src="https://kmong.com/img/seller/nothing.png" title="내역없음" > <h5 class="font-color-lighter">내역이 없습니다.</h5></div></div>
+					</c:if>
+					<c:if test="${size!=0 }">
+					<c:forEach items="${ list }" var="item">
+					<div style=" margin:10px">
+					<a href="#void"><img src="${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
+					<div style="text-align: center;">주문번호 : ${item.orderId }</div>
+					<form id="orderForm" method="get">
+					<input type="hidden" name="id" value="${item.orderId }"/>
+					</form>
+					<button type="button" data-target="cancelChk" name="cancelBtn" data-id="${item.orderId }"
+					 class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cancelChk" style="margin-left : 60px">철회</button>
 					</div>
+					</c:forEach>
+					<!-- 게시글 -->
+					</div>
+					
+					<!-- paging -->
+					<form id="prevFrm">
+					<input type="hidden" value="${prev }" name="p">
+					<input type="hidden" value="<%= request.getParameter("startDate") %>" name="startDate">
+					<input type="hidden" value="<%= request.getParameter("endDate") %>" name="endDate">
+					<input type="hidden" value="<%= request.getParameter("keyword") %>" name="keyword">
+					</form>
+					<form id="nextFrm">
+					<input type="hidden" value="${next }" name="p">
+					<input type="hidden" value="<%= request.getParameter("startDate") %>" name="startDate">
+					<input type="hidden" value="<%= request.getParameter("endDate") %>" name="endDate">
+					<input type="hidden" value="<%= request.getParameter("keyword") %>" name="keyword">
+					</form>
+					
+					<div style="text-align:center;height: 40px;">
+					<c:if test="${ isPrevPage }">
+
+					<a href="#void" onclick="prevSubmit()">prev</a>
+					</c:if>
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
+					<a href="?p=${i}&<%= param %>">${i}</a>
+					</c:forEach>
+					<c:if test="${ isNextPage }">
+
+					<a href="#void" onclick="nextSubmit()">next</a>
+					</c:if>
+					</div>
+					
+					<!-- paging -->
+
 					
 					<!-- Modal -->
 					<div class="modal fade" id="cancelChk" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						 <form id="modalForm">
+						 <input type="hidden" value="" id="modalHid"/>
+						 </form>
 						 <div class="modal-dialog">
 						   <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body" style="text-align: center;">
-					       철회하시겠습니까?
-					      </div>
-					      <div class="modal-footer" style="flex-direction: row;">
-						       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="align-content: center;">OK</button>
+						      <div class="modal-header">
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body" style="text-align: center;">
+						       철회하시겠습니까?
+						      </div>
+					      <div class="modal-footer" style="flex-direction: row;align-content: center;">
+						       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalOk">OK</button>
 						       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						     </div>
 						   </div>
 					  </div>
 					</div>
-					
-					</div>
+					</c:if>					
+					<!-- article -->
 				</div>
 				</main>
 			</div>

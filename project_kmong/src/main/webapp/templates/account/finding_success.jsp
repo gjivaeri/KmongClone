@@ -11,6 +11,10 @@ body{
 }
 </style>
 <script type="text/javascript">
+   window.history.forward();
+   function noBack() { window.history.forward(); }
+</script>
+<script type="text/javascript">
 $(function(){
 	$("#btn").click(function(){
 		$("#frm").submit();
@@ -18,7 +22,13 @@ $(function(){
 });//ready
 </script>
 </head>
-<body>
+<body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
+<%
+if((String)session.getAttribute("id")==null){
+	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+}
+%>
     <div class="register-step1">
         <div style="text-align: center;">
             <a href="http://localhost/project_kmong/templates/home/index.jsp">
@@ -28,8 +38,7 @@ $(function(){
 
         <div class="regis-result-box">
             <div class="which-service" style="text-align: center;">
-                <h4>회원님의 아이디는 _____<!-- 아이디 받아오기 -->입니다.<h4>
-                
+                <h4>회원님의 아이디는 <span style="text-decoration: underline; font-size: 20px;"><%=(String)session.getAttribute("id") %></span><!-- 아이디 받아오기 -->입니다.<h4>
                 <div>
                     <form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp">
                		<input type="hidden" name="hid" value="login"/>
@@ -44,5 +53,6 @@ $(function(){
         </div>
 
     </div>
+<%session.removeAttribute("id"); %>
 </body>
 </html>

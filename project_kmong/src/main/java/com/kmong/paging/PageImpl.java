@@ -2,6 +2,7 @@ package com.kmong.paging;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 public class PageImpl<T> implements Paging<Object> {
@@ -13,7 +14,8 @@ public class PageImpl<T> implements Paging<Object> {
 	private int param;
 	private List<Object> VOList;
 	private int pagePerRecord;
-
+	private HttpServletRequest request;
+	
 
 
 	/**
@@ -22,12 +24,14 @@ public class PageImpl<T> implements Paging<Object> {
 	 * @param VOList
 	 */
 	public PageImpl(HttpServletRequest request,List<Object> VOList) {
+		this.request = request;
 		
 		this.gpp = 10;
 		this.pagePerRecord=10;
 		this.totalRecord = VOList.size();
 		this.VOList = VOList;
 		this.gtp=(totalRecord/pagePerRecord)+1;
+		
 		this.param = getParam(request);
 		this.firstPage = this.getFirstPage();
 		this.lastPage = this.getLastPage();
@@ -46,6 +50,7 @@ public class PageImpl<T> implements Paging<Object> {
 			return 1;
 		} 
 		if (Integer.parseInt(request.getParameter("p")) > this.getTotalPage()) {
+			
 			return this.gtp;
 		}
 		
@@ -58,6 +63,7 @@ public class PageImpl<T> implements Paging<Object> {
 	 */
 	public void setGroupPerPage(int num) {
 		this.gpp = num;
+		
 	}
 
 	/**
@@ -66,10 +72,13 @@ public class PageImpl<T> implements Paging<Object> {
 	 */
 	public void setPagePerRecord(int num) {
 		this.pagePerRecord = num;
+		this.gtp=(totalRecord/pagePerRecord)+1;
 	}
 
 	
 	
+
+
 	/**
 	 *각 페이지당 첫번째 페이지숫자 얻기
 	 */
@@ -97,7 +106,7 @@ public class PageImpl<T> implements Paging<Object> {
 		}
 		
 		if(this.gtp / this.gpp >  result) {
-			this.lastPage = this.gpp * (result+1);			
+			this.lastPage = this.gpp * (result+1);
 			return this.gpp * (result+1);
 		}
 		
@@ -142,9 +151,11 @@ public class PageImpl<T> implements Paging<Object> {
 	 */
 	@Override
 	public List<Object> getVoAsPagePerRecord() {
-
+		param = getParam(request);
 		param-=1;
+		
 		if(param*pagePerRecord+pagePerRecord > this.totalRecord) {
+			
 			return VOList.subList(param*pagePerRecord, VOList.size());
 		}
 		return VOList.subList(param*pagePerRecord, param*pagePerRecord+pagePerRecord);
@@ -163,3 +174,4 @@ public class PageImpl<T> implements Paging<Object> {
 
 	
 }
+

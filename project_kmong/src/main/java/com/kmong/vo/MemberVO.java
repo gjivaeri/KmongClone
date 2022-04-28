@@ -7,7 +7,7 @@ public class MemberVO {
 	private int memberId, categoryId;
 	private String email, password, name, nick, tel, user_img, withdrawalReason, joinDate, ip;
 	private String expert, withdrawalStatus, agreement;
-	private List<String> interestingList;
+	private String[] interestingList;
 	
 	
 	public MemberVO() {
@@ -17,7 +17,7 @@ public class MemberVO {
 
 	public MemberVO(int memberId, int categoryId, String email, String password, String name, String nick, String tel,
 			String user_img, String withdrawalReason, String joinDate, String ip, String expert, String withdrawalStatus,
-			String agreement, List<String> interestingList) {
+			String agreement, String[] interestingList) {
 		super();
 		this.memberId = memberId;
 		this.categoryId = categoryId;
@@ -178,12 +178,12 @@ public class MemberVO {
 	}
 
 
-	public List<String> getInterestingList() {
+	public String[] getInterestingList() {
 		return interestingList;
 	}
 
 
-	public void setInterestingList(List<String> interestingList) {
+	public void setInterestingList(String[] interestingList) {
 		this.interestingList = interestingList;
 	}
 

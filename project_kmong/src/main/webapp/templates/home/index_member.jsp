@@ -31,9 +31,6 @@ img{
 <!-- footer css -->
  <link rel='stylesheet' type='text/css' media='screen' href='http://localhost/project_kmong/static/css/footer.css'>
 
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 <div id="wrap" >
