@@ -17,7 +17,7 @@
 <%@include file ="validate_session.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login; 
 %>
 
 <!DOCTYPE html>

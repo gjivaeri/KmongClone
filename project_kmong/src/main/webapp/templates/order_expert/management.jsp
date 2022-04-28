@@ -16,7 +16,7 @@
 <%@include file ="validate_expert.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login;   
 %>
 <style type="text/css">
 

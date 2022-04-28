@@ -16,7 +16,7 @@
 <%@include file ="validate_session.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login;  
 %>
 <!-- datePicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
