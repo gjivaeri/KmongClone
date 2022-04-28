@@ -103,8 +103,6 @@ public class MemberDAO {
 		 * System.out.println(email); System.out.println(pass); System.out.println(id);
 		 * System.out.println(result);
 		 */		
-		System.out.println(pass);
-		System.out.println(cnt);
 		return flag;
 	}//selectPassword
 	

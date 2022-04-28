@@ -100,6 +100,31 @@ public class MainPageDAO {
 		return cVOlist;
 	}//selectAllCategory
 	
+	public String selectUserImg(String email) throws SQLException{
+		
+		String fileName="";
+		
+		Connection con=DbConnectionDBCP.getInstance().getConn();
+		
+		String selectUserImage
+		="select user_img from member where email=?";
+		
+		
+		PreparedStatement pstmt=con.prepareStatement(selectUserImage);
+		pstmt.setString(1, email);
+		
+		ResultSet rs=pstmt.executeQuery();
+		
+		try(con;pstmt;rs){
+			
+			while(rs.next()) {
+				fileName=rs.getString("user_img");
+			}//end while
+			
+		}//try
+		
+		return fileName;
+	}//selectAllCategory
 	
 	
 	

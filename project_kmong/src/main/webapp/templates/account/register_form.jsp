@@ -183,6 +183,13 @@ function selectAll(selectAll) {
 
 
 $(function(){
+
+	$("#toIndex").click(function(){
+		if(confirm("회원 가입을 그만두시겠습니까?")){
+			location.replace("http://localhost/project_kmong/templates/home/index.jsp");
+		}
+	})
+	
     $('.multi_select').selectpicker();
     
     
@@ -340,7 +347,7 @@ function chkNull(){
 		return;
 	}
 	
-	$("#frm").submit()
+	$("#frm").submit();
 }
 
 </script>
@@ -352,9 +359,9 @@ function chkNull(){
 
     <div class="register-step2">
         <div style="text-align: center;">
-           <a href="http://localhost/project_kmong/templates/home/index.jsp">
-                <div class="logo-div" style="margin-bottom: 30px;"></div>
-            </a>
+           <!-- <a href="http://localhost/project_kmong/templates/home/index.jsp"> -->
+                <div class="logo-div" style="margin-bottom: 30px; cursor: pointer;" id="toIndex"></div>
+           <!--  </a> -->
         </div>
 
         <div class="register-box2">
@@ -368,7 +375,7 @@ function chkNull(){
                     </div>
                     <div class="regi-div">
                         <div class="requirement">휴대폰 번호<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="예시) 010-0000-0000" name="tel" id="tel" value="010-1234-0114"/>
+                        <input type="text" placeholder="예시) 000-0000-0000" name="tel" id="tel" value="010-1234-0114"/>
                     </div>
                     <div class="regi-div">
                         <div class="requirement">이메일<label>&nbsp;*</label><span id="spanEmail" style="float: right; color:#0000FF; display: none;">사용 가능</span></div>

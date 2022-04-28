@@ -79,7 +79,7 @@ function handleSubmit2(){
         <div class="register-box1">
             <div class="finding-input" style="text-align: center;">
                
-                <div class="finding-input-text">아이디 찾기</div>
+                <div class="finding-input-text">아이디(이메일) 찾기</div>
                 <form action="http://localhost/project_kmong/templates/account/finding_id_action.jsp" id="frmId">
 	                <input type="text" placeholder="이름" name="name" id="name"/>  
 	               <input type="text" placeholder="휴대폰 번호" name="tel" id="tel"/>  

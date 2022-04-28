@@ -18,7 +18,7 @@
         
        
 		if(flag){
-			session.setAttribute("login", "confirmed"); //회원가입 성공 시
+			session.setAttribute("login", email); //회원가입 성공 시
 			session.setAttribute("loginMsg", "loginMsg");
 			response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
 		}else{
