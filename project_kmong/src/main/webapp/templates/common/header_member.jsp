@@ -4,7 +4,7 @@
 <script type="text/javascript">
  <%
 
-if(((String)session.getAttribute("login"))==null){
+if(((int)session.getAttribute("login"))==0){
 	session.setAttribute("logoutSession", "logout");
 	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 }
@@ -43,7 +43,7 @@ $(function(){
                <div style="width: 250px;" class="buttons"> 
                     <input type="button" value="로그아웃" class="login-btn" id="logoutBtn">
                     <div style="width: 270px; margin-right: 20px;">
-                        <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" >
+                        <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" onclick="location.href='http://localhost/project_kmong/templates/order_expert/management.jsp'">
                     </div>
                         
 
@@ -54,7 +54,7 @@ $(function(){
                         
                         <%
                         MainPageDAO mpDAO=MainPageDAO.getInstance();
-                        String userImg=mpDAO.selectUserImg((String)session.getAttribute("login"));
+                        String userImg=mpDAO.selectUserImg((int)session.getAttribute("login"));
                         
                         pageContext.setAttribute("userImg", userImg);
                         %>

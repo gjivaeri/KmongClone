@@ -100,18 +100,20 @@ public class MainPageDAO {
 		return cVOlist;
 	}//selectAllCategory
 	
-	public String selectUserImg(String email) throws SQLException{
+	
+	
+	public String selectUserImg(int id) throws SQLException{
 		
 		String fileName="";
 		
 		Connection con=DbConnectionDBCP.getInstance().getConn();
 		
 		String selectUserImage
-		="select user_img from member where email=?";
+		="select user_img from member where member_id=?";
 		
 		
 		PreparedStatement pstmt=con.prepareStatement(selectUserImage);
-		pstmt.setString(1, email);
+		pstmt.setInt(1, id);
 		
 		ResultSet rs=pstmt.executeQuery();
 		
