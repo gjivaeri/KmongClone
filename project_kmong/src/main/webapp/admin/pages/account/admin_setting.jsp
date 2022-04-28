@@ -2,13 +2,59 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
+<%
+	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
+	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
+	}
+%>
+<% if(session.getAttribute("loginId")!=null){ %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Admin Setting</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<style>
+  		#warning{height:10px; color:red; padding-top:5px;}
+  	</style>
   </head>
+  <script>
+  $(function(){
+	  $("#ad_setting").click(function(){
+		  adSetting();
+	  });//submit
+	  
+	  $("form").find('[name=confpass]').on("keyup", function(key){
+		  if(key.keyCode==13){
+		  adSetting();
+		  }
+	  });
+	  
+	  function adSetting(){
+		var curpass = $("form").find('[name=curpass]').val();
+		var newpass = $("form").find('[name=newpass]').val();
+		var confpass = $("form").find('[name=confpass]').val();
+		
+	  	$.ajax({
+	  		url:"admin_setting_pro.jsp",
+	  		data:{"curpass":curpass, "newpass":newpass, "confpass":confpass},
+	  		dataType:"json",
+	  		error:function(xhr){
+	  			alert(xhr.status+"/"+xhr.statusText);
+	  		},
+	  		success:function(jsonObj){
+	  			if(jsonObj.setFlag == true){
+ 	  				location.href="http://localhost/project_kmong/admin/index.jsp";
+	  				return; 
+	  			}
+	  			$("#warning").html(jsonObj.msg);
+	  		},		  
+	  	});//ajax
+	  };//adSetting
+	  
+	  
+	  
+  });//ready
+  </script>
   <body>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -20,18 +66,19 @@
                 <form>
                   <div class="form-group">
                     <label>Current Password</label>
-                    <input type="text" class="form-control p_input">
+                    <input type="password" class="form-control p_input" name="curpass">
                   </div>
                   <div class="form-group">
                     <label>New Password</label>
-                    <input type="email" class="form-control p_input">
+                    <input type="password" class="form-control p_input" name="newpass">
                   </div>
                   <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control p_input">
+                    <input type="password" class="form-control p_input" name="confpass">
+                    <div id="warning"></div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Submit</button>
+					<input type="button" class="btn btn-primary btn-block enter-btn" value="Submit" style="height:40px; margin-top:35px;" id="ad_setting"/>
                   </div>
                 </form>
               </div>
@@ -46,3 +93,4 @@
     <!-- container-scroller -->
   </body>
 </html>
+<%}%>
