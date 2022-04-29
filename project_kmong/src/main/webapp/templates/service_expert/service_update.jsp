@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.kmong.dao.MyServiceDAO"%>
 <%@page import="com.kmong.vo.PostVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,58 +50,6 @@ $(function() {
 			  return;
 		  }
 	  })
-	  
-	  //작성하지 않은 항목이 있을 경우
-	  $("#submitBtn").click(function(){
-		var title=$("#lengthNum1").val();
-		var category=$("#category").val();
-		var summary=$("#explain-ta").val();
-		var price=$("#price").val();
-		var term=$("#term").val();
-		var description=$("#summernote").val();
-		var postImg=$("#post-img").val();
-		if(title == ""){
-			alert("제목은 필수 입력입니다.");
-			$("#lengthNum1").focus();
-		}else if(category == ""){
-			alert("카테고리는 필수 입력입니다.");
-			$("#category").focus();
-		}else if(summary == ""){
-			alert("간단설명은 필수 입력입니다.");
-			$("#explain-ta").focus();
-		}else if(price == ""){
-			alert("가격은 필수 입력입니다.");
-			$("#price").focus();
-		}else if(term == "0"){
-			alert("작업기간은 필수 입력입니다.");
-			$("#term").focus();
-		}else if(description == ""){
-			alert("설명은 필수 입력입니다.");
-			$("#summernote").focus();
-		}else if(postImg == ""){
-			alert("사진은 필수 입력입니다.");
-			//$("#post-img").focus();
-		}//end if
-		
-		//업로드 파일은 이미지 파일만 업로드 가능, 업로드 가능 확장자는 png, jpg, gif, bmp
-		let ext = postImg.toLowerCase().substring(postImg.lastIndexOf(".")+1);
-		var compareExt="png,jpg,gif,bmp".split(",");
-		var flag=false;
-		for(var i=0; i<compareExt.length; i++){
-			if(compareExt[i] == ext){
-				flag=true;
-				break;
-			}
-		}
-		if( !flag ){
-			alert(fileName+"은 업로드 불가능 합니다.\n 이미지로만 업로드 가능합니다.\n 가능 확장자: png, jpg, gif, bmp");
-			return;
-		}
-		
-		$("#frm").submit();
-		
-	});//click
-	  
 });//ready
 </script>
 </head>
@@ -158,17 +107,25 @@ $(function() {
 					<span class="span-order">5</span>
 					<h2 class="span-h2">요청사항</h2></a>
 				</aside>
-				
-         	<form action="service_write_insert.jsp" id="frm" method="post">
+			<%
+			MyServiceDAO msDAO = MyServiceDAO.getInstance();
+			List<PostVO> list = msDAO.selectUpdateMyServiceList(153);
+			//System.out.println(list);
+			
+			pageContext.setAttribute("list", list);
+			%>	
+         	<form action="service_update_proc.jsp" method="post">
+         	<c:forEach items="${list}" var="items"> 
 			<div class="main-div" style="flex-direction: column;">
 			 <div style="margin-bottom: 5px;">
 			 <div style="float: right;">
-              <!--  <button role="button" type="reset" class="submitBtn" style=" width: 90px; height: 50px; font-size: 18px; background-color: #00CC99; color: #FFFFFF; border: #00946F; margin-right: 5px">
+              <button role="button" type="submit" class="submitBtn" style=" width: 90px; height: 50px; font-size: 18px; background-color: #00CC99; color: #FFFFFF; border: #00946F; margin-right: 5px">
                <span><strong>수정하기</strong></span>
-               </button> -->
-               <button role="button" type="submit" id="submitBtn" class="submitBtn" style="width: 90px; height: 50px; font-size: 18px; background-color: #e4e5ed; color: #727585; border: #e4e5ed">
-               <span>등록하기</span>
                </button>
+               <input type="hidden" value="${items.postId }" name="postId"/>
+               <!-- <button role="button" type="submit" class="submitBtn" style="width: 90px; height: 50px; font-size: 18px; background-color: #e4e5ed; color: #727585; border: #e4e5ed">
+               <span>등록하기</span>
+               </button> -->
 			 </div>
          	</div>
          		<div style="flex-direction: row">
@@ -177,11 +134,13 @@ $(function() {
 					<span class="span-name">제목</span>
 					</span> 
 					<div class="div-element">
-					<input placeholder="서비스를 잘 드러낼 수 있는 제목을 입력해주세요" maxlength="30" type="text" autocomplete="off" class="input-element" id="lengthNum1" name="title"/> 
+					<input value="${items.title }" maxlength="30" type="text" autocomplete="off" class="input-element" id="lengthNum1" name="title"/> 
 					<span id="output1"></span>
 					</div>
 				</div>
-					
+				<%
+				String[] category={"IT","A","B","C","D"};
+				%>	
 				<div class="main-div">
 					<span class="main-span">
 					<span class="span-name">카테고리</span>
@@ -189,11 +148,12 @@ $(function() {
 					<label style="font-size: 18px; min-width: 120px; color: #303441;">상위카테고리</label></div>
 					<div>
 					<select id="category" name="categoryId" style="width: 500px; height: 40px; border: 0px; font-size: 16px;">
-											<option selected="selected" value="1">IT/프로그래밍</option>
-											<option value="2">디자인</option>
-											<option value="3">영상/사진/음향</option>
-											<option value="4">마케팅</option>
-											<option value="5">변역/통역</option>
+											<option selected="selected" value="${items.categoryId }">${items.categoryId }</option>
+											<option value="1">IT</option>
+											<option value="2">A</option>
+											<option value="3">B</option>
+											<option value="4">C</option>
+											<option value="5">D</option>
 										</select>
 					</div>
 					</span> 
@@ -214,6 +174,7 @@ $(function() {
 					</span> 
 					<div class="div-element">
 					<textarea placeholder="- 메인페이지 시안 1개 제공 &#13;&#10;- 공지사항,FAQ페이지 &#13;&#10;- SNS로그인 연동" maxlength="60" autocomplete="off" id="explain-ta" name="summary"/> 
+					${items.summary}
 					</textarea>
 					<span id="output3"></span>
 					</div> 
@@ -223,7 +184,7 @@ $(function() {
 					<span class="span-name">금액(VAT포함)</span>
 					</span> 
 					<div class="div-element">
-					<input placeholder="금액" maxlength="30" type="text" autocomplete="off" class="input-element" name="price" id="price"/> 
+					<input value="${items.price }" maxlength="30" type="text" autocomplete="off" class="input-element" name="price"/> 
 					<span>원</span>
 					</div> 
 					</div>
@@ -233,7 +194,7 @@ $(function() {
 					</span> 
 					<div class="div-element">
 					<select id="term" name="term" style="width: 500px; height: 40px; border: 0px; font-size: 16px;">
-											<option value="0">선택해주세요.</option>
+											<option value="${items.term }" selected="selected">${items.term }</option>
 											<%for(int i=1; i<31;i++){ %>
 											<option value="<%= i %>"><%= i+"일" %></option>
 											<%} %>
@@ -246,18 +207,20 @@ $(function() {
 					</span> 
 					<div class="div-element" >
 					<textarea id="summernote" style="overflow: auto" name="description"/>
+					${items.description }
 					</textarea>
 					</div> 
-					</div>		
+					</div>	
+						
 				</div>			
 				<!-- <span class="main-span"> -->
 					<span class="span-name" style="flex-direction: column;">메인 이미지 등록(필수)
 					<!-- </span> --> 
 					
-					<input type=file name='file1' id="post-img" style='display: none;'> 
+					<input type=file name='file1' style='display: none;'> 
 					<div name='file2' id='file2' style="border: 1px solid #CCCCCC; width: 300px; margin-top: 10px">
 					<!-- <input type='text' name='file2' id='file2' class="input-text"> --> 
-					<img src="https://kmong.com/img/gig_form/img_gig_form_imageupload.png" border='0' style="width: 176px; height: 128px; cursor: pointer;"
+					<img src="${items.postImg }" border='0' style="width: 176px; height: 128px; cursor: pointer;"
 					onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value'/> 
 					</div>
 
@@ -283,6 +246,7 @@ $(function() {
 					</div>
 					
 					</div>
+					</c:forEach>
 					</form>
 				</div>	
 		</div>

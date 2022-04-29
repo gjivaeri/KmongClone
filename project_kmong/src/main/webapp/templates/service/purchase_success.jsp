@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,8 +54,13 @@ $(function(){
 <div style="width:1400px; margin:0px auto">
 
 <div style="width:150px; height:100px; margin:auto;margin-bottom: 1px" >
-<img src="http://localhost/project_kmong/static/images/kmong.PNG" />
+<img src="http://localhost/project_kmong/static/images/img_logo2.png" style="width: 150px; height:80px; margin:0px auto; margin-top: 10px"/>
 </div>
+
+<%
+PostDAO pDAO = PostDAO.getInstance();
+List<Map<String, String>> list = pDAO.selectPost(1);
+%>
 
 <div>
 
@@ -64,8 +72,8 @@ $(function(){
       <h1 class="h1"><strong>구매가 완료 되었습니다.</strong></h1><br/>
       <ul type="none">
          <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="2"/></li>
-         <li><strong>결제금액</strong> <input type="text" class="form-control" readonly="readonly" value="2"/></li>
-         <li><strong>상품명</strong> <input type="text" class="form-control" readonly="readonly" value="2"/></li>
+         <li><strong>결제금액</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("price") %>"/></li>
+         <li><strong>상품명</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("title") %>"/></li>
 
       </ul>
    </div>
