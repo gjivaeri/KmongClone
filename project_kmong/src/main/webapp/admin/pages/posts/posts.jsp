@@ -25,7 +25,7 @@ int prevPage = paging.getPrevPage();
 String param="";
 
 if (request.getQueryString() != null) {
-	param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+	//param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
 	if(request.getQueryString().indexOf("p") == -1){
 		param = request.getQueryString();			
 	}	
@@ -64,9 +64,11 @@ pageContext.setAttribute("size", result.size());
 		
 		$(function() {
 			 $("#prevBtn").click(function (){
+				
 				 $("#prevFrm").submit();
 			 })
 			 $("#nextBtn").click(function (){
+				
 				 $("#nextFrm").submit();
 			 })
 			 
@@ -74,7 +76,12 @@ pageContext.setAttribute("size", result.size());
 				 $("#search-frm").submit();
 			 })
 		});//ready
-
+		function nextSubmit() {
+			$("#nextFrm").submit();
+		}
+		function prevSubmit() {
+			$("#prevFrm").submit();
+		}
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">

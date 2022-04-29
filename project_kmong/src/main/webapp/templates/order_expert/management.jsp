@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.kmong.vo.ExpertOrderVO"%>
 <%@page import="com.kmong.paging.PageImpl"%>
 <%@page import="com.kmong.paging.Paging"%>
@@ -126,7 +127,7 @@ function prevSubmit() {
 					
 				%>
 					<%
-					
+					try {
 					List<ExpertOrderVO> list = oDAO.selectExpertRequestedOrdersRange(startDate, endDate, keyword, "P",sid);
 					
 					Paging paging = new PageImpl(request,list);
@@ -149,6 +150,13 @@ function prevSubmit() {
 					pageContext.setAttribute("next", nextPage);
 					pageContext.setAttribute("prev", prevPage);
 					pageContext.setAttribute("list", result);
+					pageContext.setAttribute("size", result.size());
+					
+				} catch(SQLException se) {
+					response.sendRedirect(request.getRequestURI());
+				} catch(Exception e) {
+					response.sendRedirect(request.getRequestURI());
+				}
 			
 					%>
 				<main style="margin-left: 24px; margin-top: 30px;">
