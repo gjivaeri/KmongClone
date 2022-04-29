@@ -4,7 +4,7 @@ public class PostVO {
 	
 	private int postId, memberId, price, term, categoryId;
 	private String title, summary, postDate, description, postImg;
-	private char status;
+	private String status;
 	private double starAvg;
 	
 	
@@ -15,7 +15,7 @@ public class PostVO {
 
 
 	public PostVO(int postId, int memberId, int price, int term, int categoryId, String title, String summary,
-			String postDate, String description, String postImg, char status, double starAvg) {
+			String postDate, String description, String postImg, String status, double starAvg) {
 		super();
 		this.postId = postId;
 		this.memberId = memberId;
@@ -153,13 +153,13 @@ public class PostVO {
 
 
 
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

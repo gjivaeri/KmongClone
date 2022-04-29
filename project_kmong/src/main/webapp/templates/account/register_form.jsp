@@ -154,16 +154,16 @@
 <script type="text/javascript">
 
 <%
-if(request.getParameter("flag")==null){
+if(request.getParameter("member")==null){
 	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
 	return;
 }
 
 
-if(request.getParameter("flag").equals("expert")){
-	session.setAttribute("flag","expert");
+if(request.getParameter("member").equals("expert")){
+	session.setAttribute("member","expert");
 }else{
-	session.setAttribute("flag","client");
+	session.setAttribute("member","client");
 }
 
 
@@ -391,7 +391,6 @@ function chkNull(){
                         <div class="modal_body">
                           <!-- <span class="material-icons" style="font-size:130px; color:#ab0000;">highlight_off</span> -->
                           <span class="material-icons-outlined" style="font-size:130px; color:#f0c04f;">outlet</span>
-                          <!-- 나중에 JSP로 flag에 따라 내용수정 -->
                           <h2>회원정보 존재</h2>
                           <h5>입력하신 계정은 이미 존재하는 계정입니다</h5><br/>
                           <div class="modal_bottom">

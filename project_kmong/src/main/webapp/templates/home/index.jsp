@@ -23,34 +23,6 @@
    function noBack() { window.history.forward(); }
 </SCRIPT>
 
-
-<%-- <script type="text/javascript">
- <%
- 
- if((String)session.getAttribute("join")!=null){ //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
-	 session.removeAttribute("join");
-} 
- if((String)session.getAttribute("setPass")!=null){
-	 %>alert("비밀번호가 성공적으로 변경되었습니다.");<%
-	 session.removeAttribute("setPass");
-} 
-%>
-	
-	
-$(function(){
-	$(".login-btn").click(function(){
-	$("#modal").css("display","flex")
-})
-
-$("#closeBtn").click(function(){
-	$("#modal").css("display","none")
-})
-$("#bg").click(function(){
-	$("#modal").css("display","none")
-})
-});//
-
-</script> --%>
 </head>
 
 <body onload="noBack();" 

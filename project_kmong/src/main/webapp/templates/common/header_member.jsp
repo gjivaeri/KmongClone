@@ -4,11 +4,11 @@
 <script type="text/javascript">
  <%
 
-if(((int)session.getAttribute("login"))==0){
+if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
 	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 }
-if(((String)session.getAttribute("loginMsg"))!=null){
+if(session.getAttribute("loginMsg")!=null){
 	%>alert("로그인이 성공적으로 완료되었습니다.")<%
 	session.removeAttribute("loginMsg");
 }
@@ -54,13 +54,28 @@ $(function(){
                         
                         <%
                         MainPageDAO mpDAO=MainPageDAO.getInstance();
-                        String userImg=mpDAO.selectUserImg((int)session.getAttribute("login"));
+                        if(session.getAttribute("login")!=null){
+                        	String userImg=mpDAO.selectUserImg((int)session.getAttribute("login"));
                         
-                        pageContext.setAttribute("userImg", userImg);
+	                        //pageContext.setAttribute("userImg", userImg);
+	                        if(userImg!=null){
+	                        	%><img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
+	                        }else{
+	                        	%><img src="http://localhost/project_kmong/static/images/default_profile.png" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
+	                        }
+                        }
                         %>
-                        <c:if test="">
-                        <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
-                        </c:if>
+                        <%-- <c:choose>
+                        
+                        <c:when test="${empty userImg}">
+                        <img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        </c:when>
+                        
+                        <c:other>
+                        <img src="http://localhost/project_kmong/static/images/logo.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        </c:other>
+                        </c:choose> --%>
+                        
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px; z-index: 100;">
