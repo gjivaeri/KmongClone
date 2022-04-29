@@ -7,10 +7,18 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
+String table="POST";
 String tempSearch=request.getParameter("search");
 AdminDAO aDAO = AdminDAO.getInstance();
 List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
+int totalCnt = aDAO.getAllCount(table);
+int todayCnt = aDAO.getTodayCount(table);
 
+pageContext.setAttribute("totalCnt", totalCnt);
+pageContext.setAttribute("todayCnt", todayCnt);
+
+
+/* paging */
 Paging paging = new PageImpl(request,list);
 paging.setPagePerRecord(10);
 
@@ -32,8 +40,6 @@ if (request.getQueryString() != null) {
 }
 
 pageContext.setAttribute("param",param);
-
-
 pageContext.setAttribute("isNextPage", isNext);
 pageContext.setAttribute("isPrevPage", isPrev);
 pageContext.setAttribute("firstPage", firstPage);
@@ -42,6 +48,7 @@ pageContext.setAttribute("next", nextPage);
 pageContext.setAttribute("prev", prevPage);
 pageContext.setAttribute("list", result);
 pageContext.setAttribute("size", result.size());
+/* endPaging */
 
 %>
     
@@ -50,39 +57,34 @@ pageContext.setAttribute("size", result.size());
   <head>
     <title>Posts</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+
   </head>
   <body>
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
       <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
-		<script>
-		const navActive = document.getElementById("nav-posts");
-		const uiShow = document.getElementById("ui-post");
-		navActive.classList.add('active');
-		uiShow.classList.add('show');
-		
-		$(function() {
-			 $("#prevBtn").click(function (){
+		<script type="text/javascript">
+		$(function(){
+			const navActive = document.getElementById("nav-posts");
+			const uiShow = document.getElementById("ui-post");
+			navActive.classList.add('active');
+			uiShow.classList.add('show');
 				
-				 $("#prevFrm").submit();
-			 })
-			 $("#nextBtn").click(function (){
-				
-				 $("#nextFrm").submit();
-			 })
-			 
 			 $("#search-btn").click(function(){
 				 $("#search-frm").submit();
 			 })
 		});//ready
+		
 		function nextSubmit() {
 			$("#nextFrm").submit();
 		}
 		function prevSubmit() {
 			$("#prevFrm").submit();
 		}
-		</script>
+
+	</script>
+
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
@@ -110,13 +112,13 @@ pageContext.setAttribute("size", result.size());
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Post List</h4>
+                    <div>총 게시글 수 : ${totalCnt}건 | 오늘 등록된 게시글 수: ${todayCnt}건</div><br/>
                     <div class="form-group">
                       <form id="search-frm">
                       <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Search Post title, category, writer" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" class="form-control" placeholder="Search No, PostNo, Category, Title, Writer" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                        	<input type="button" id="search-btn" class="btn btn-fw btn-outline-secondary" style="border:white;" value="Search">
-<!--                            <button class="btn btn-fw btn-outline-secondary" type="button">Search</button>  -->
+                        	<input type="button" id="search-btn" class="btn btn-fw btn-outline-secondary" style="border-color:white;" value="Search">
                         </div>
                       </div>
                       </form>
@@ -124,7 +126,7 @@ pageContext.setAttribute("size", result.size());
                     <div class="table-responsive">
                       <table class="table table-striped">
                       	<c:if test="${size==0}">
-                      		empty
+                      		no_exists_contents_replace_later
                       	</c:if>
                         <thead>
                           <tr>
@@ -144,16 +146,16 @@ pageContext.setAttribute("size", result.size());
                               ${posts.rnum}
                             </td>
                             <td class="py-1">
-                              ${posts.post_id}
+                              ${posts.postId}
                             </td>
-                            <td> ${posts.category_name} </td>
+                            <td> ${posts.categoryName} </td>
                             <td>
-                                <a href="posts_edit.jsp" style="color:white;">
+                                <a href="posts_edit.jsp?postId=${posts.postId}" style="color:white;">
                                 ${posts.title}
                                 </a>
                             </td>
                             <td>${posts.email}</td>
-                            <td>${posts.post_date}</td>
+                            <td>${posts.postDate}</td>
                           </tr>
                         </tbody>
                      </c:forEach>
@@ -165,7 +167,6 @@ pageContext.setAttribute("size", result.size());
 					<!-- paging -->
 					<c:if test="${size!=0}">
 
-	<!-- prev 버튼 누르면 쿼리스트링이 증감 -->
 					<form id="prevFrm">
 						<input type="hidden" value="${prev }" name="p">
 					</form>
@@ -184,8 +185,8 @@ pageContext.setAttribute("size", result.size());
 						<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>
-					<!-- paging -->
 					</c:if>
+					<!-- paging -->
                   </div>
                 </div>
               </div>

@@ -1,7 +1,56 @@
+<%@page import="com.kmong.paging.PageImpl"%>
+<%@page import="com.kmong.paging.Paging"%>
+<%@page import="com.kmong.vo.admin.AdminMemberVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String opt=request.getParameter("search");
+String exp="Y";
+String table="member";
+AdminDAO aDAO = AdminDAO.getInstance();
+List<AdminMemberVO> list = aDAO.selectAllMember(opt, exp);
+int totalCnt = aDAO.getAllCount(table, exp);
+int todayCnt = aDAO.getTodayCount(table, exp);
 
+pageContext.setAttribute("list", list);
+pageContext.setAttribute("todayCnt", todayCnt);
+pageContext.setAttribute("totalCnt", totalCnt);
+
+/* paging */
+Paging paging = new PageImpl(request,list);
+paging.setPagePerRecord(10);
+
+int firstPage = paging.getFirstPage();
+int lastPage = paging.getLastPage();
+boolean isNext = paging.isNextPage();
+boolean isPrev = paging.isPrevPage();
+List<AdminMemberVO> result = paging.getVoAsPagePerRecord();
+int nextPage = paging.getNextPage();
+int prevPage = paging.getPrevPage();
+
+String param="";
+
+if (request.getQueryString() != null) {
+	param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+	if(request.getQueryString().indexOf("p") == -1){
+		param = request.getQueryString();			
+	}	
+}
+
+pageContext.setAttribute("param",param);
+pageContext.setAttribute("isNextPage", isNext);
+pageContext.setAttribute("isPrevPage", isPrev);
+pageContext.setAttribute("firstPage", firstPage);
+pageContext.setAttribute("lastPage", lastPage);
+pageContext.setAttribute("next", nextPage);
+pageContext.setAttribute("prev", prevPage);
+pageContext.setAttribute("list", result);
+pageContext.setAttribute("size", result.size());
+/* endPaging */
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +68,11 @@
 		const uiShow = document.getElementById("ui-user");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+		$(function(){
+			$("#search-btn").click(function(){
+				$("#search-frm").submit();
+			})
+		})
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -48,17 +102,23 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Expert Status</h4>
-                    <div>총 전문가 수 : 15건 | 오늘 가입한 전문가 수: 11건</div><br/>
+                    <div>총 전문가 수 : ${totalCnt}건 | 오늘 가입한 전문가 수: ${todayCnt}건</div><br/>
                     <div class="form-group">
+                      <form id="search-frm">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Post title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" class="form-control" placeholder="Search email, expert number, nickname, category" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                          <button class="btn btn-fw btn-outline-secondary" type="button">Search</button>
+                        	<input type="button" id="search-btn" class="btn btn-fw btn-outline-secondary" style="border-color:white;" value="Search">
                         </div>
                       </div>
+                      </form>
                     </div><br/>
                     <div class="table-responsive">
+                    
                       <table class="table table-striped">
+                      	<c:if test="${size==0}">
+                      		no_exists_contents_replace_later
+                      	</c:if>                      
                         <thead>
                           <tr>
                             <th> ExpertNo. </th>
@@ -69,57 +129,49 @@
                             <th> Edit </th>
                           </tr>
                         </thead>
+                        <c:forEach var="exp" items="${list}">
                         <tbody>
                           <tr>
                             <td class="py-1">
-                              1
+                              ${exp.memberId}
                             </td>
-                            <td> expert1@naver.com </td>
-                            <td>전문가1</td>
-                            <td>IT/Programming</td>
-                            <td>April 9, 2022</td>
+                            <td>${exp.email}</td>
+                            <td>${exp.nick}</td>
+                            <td>${exp.categoryName }</td>
+                            <td>${exp.joinDate}</td>
                             <td> 
                               <a href="experts_edit.jsp" style="color:white;">
                                 수정
                               </a>
                             </td>
                           </tr>
-
-                          <tr>
-                            <td class="py-1">
-                              2
-                            </td>
-                            <td> user1@naver.com </td>
-                            <td>의뢰인1</td>
-                            <td>IT/Programming</td>
-                            <td>April 9, 2022</td>
-                            <td> 
-                              <a href="experts_edit.jsp" style="color:white;">
-                                수정
-                              </a>
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td class="py-1">
-                              3
-                            </td>
-                            <td> user1@naver.com </td>
-                            <td>의뢰인1</td>
-                            <td>IT/Programming</td>
-                            <td>April 9, 2022</td>
-                            <td> 
-                              <a href="experts_edit.jsp" style="color:white;">
-                                수정
-                              </a>
-                            </td>
-                          </tr>
-
                         </tbody>
+                        </c:forEach>
                       </table>
                     </div> 
                   </div>
-                  <div style="text-align: center;">Pagination 여기서 구현</div>
+					<!-- paging -->
+					<c:if test="${size!=0}">
+					<form id="prevFrm">
+						<input type="hidden" value="${prev }" name="p">
+					</form>
+					<form id="nextFrm">
+						<input type="hidden" value="${next }" name="p">
+					</form>
+					
+					<div style="text-align:center;height: 40px;">
+					<c:if test="${ isPrevPage }">
+						<a href="#void" onclick="prevSubmit()">prev</a>
+					</c:if>
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
+						<a href="?p=${i}&<%= param %>">${i}</a>
+					</c:forEach>
+					<c:if test="${ isNextPage }">
+						<a href="#void" onclick="nextSubmit()">next</a>
+					</c:if>
+					</div>
+					</c:if>
+					<!-- paging -->
 
                 </div>
               </div>
