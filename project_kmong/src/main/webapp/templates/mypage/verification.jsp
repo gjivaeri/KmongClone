@@ -71,7 +71,11 @@ $(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
+<<<<<<< HEAD
 						<form action="check_verifcation.jsp"  id="vefrm"  method="get">
+=======
+						<form action="check_verifcation.jsp" id="vefrm"  method="post">
+>>>>>>> refs/heads/khm
 						<section id="main-section1">
 						<div style="margin: 100px;">
 							<label style="margin-bottom: 10px;">비밀번호</label>

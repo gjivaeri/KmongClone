@@ -73,7 +73,11 @@
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">비밀번호 변경</h1>
+<<<<<<< HEAD
 						<form action="check_pw_edit.jsp" method="post"  id="pwfrm" name="ffrm">
+=======
+						<form action="check_pw_edit.jsp" method="post"  id="pwfrm" name="frm">
+>>>>>>> refs/heads/khm
 						<div id="update-pass-frm">
 						<!-- <section>
 						<div><label class="aside-a">현재 비밀번호</label></div>
