@@ -13,3 +13,6 @@
     <link rel="stylesheet" href="http://localhost/project_kmong/admin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="http://localhost/project_kmong/admin/assets/images/favicon.png" />
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    

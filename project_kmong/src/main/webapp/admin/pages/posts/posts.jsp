@@ -1,7 +1,49 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.paging.PageImpl"%>
+<%@page import="com.kmong.paging.Paging"%>
+<%@page import="com.kmong.vo.admin.AdminPostsVO"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String tempSearch=request.getParameter("search");
+AdminDAO aDAO = AdminDAO.getInstance();
+List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
 
+Paging paging = new PageImpl(request,list);
+paging.setPagePerRecord(10);
+
+int firstPage = paging.getFirstPage();
+int lastPage = paging.getLastPage();
+boolean isNext = paging.isNextPage();
+boolean isPrev = paging.isPrevPage();
+List<AdminPostsVO> result = paging.getVoAsPagePerRecord();
+int nextPage = paging.getNextPage();
+int prevPage = paging.getPrevPage();
+
+String param="";
+
+if (request.getQueryString() != null) {
+	param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+	if(request.getQueryString().indexOf("p") == -1){
+		param = request.getQueryString();			
+	}	
+}
+
+pageContext.setAttribute("param",param);
+
+
+pageContext.setAttribute("isNextPage", isNext);
+pageContext.setAttribute("isPrevPage", isPrev);
+pageContext.setAttribute("firstPage", firstPage);
+pageContext.setAttribute("lastPage", lastPage);
+pageContext.setAttribute("next", nextPage);
+pageContext.setAttribute("prev", prevPage);
+pageContext.setAttribute("list", result);
+pageContext.setAttribute("size", result.size());
+
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +61,20 @@
 		const uiShow = document.getElementById("ui-post");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+		
+		$(function() {
+			 $("#prevBtn").click(function (){
+				 $("#prevFrm").submit();
+			 })
+			 $("#nextBtn").click(function (){
+				 $("#nextFrm").submit();
+			 })
+			 
+			 $("#search-btn").click(function(){
+				 $("#search-frm").submit();
+			 })
+		});//ready
+
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -30,7 +86,6 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <!-- 여기에 본문 내용 채울 것. -->
-
 
             <div class="page-header">
               <h3 class="page-title"> Posts </h3>
@@ -49,17 +104,24 @@
                   <div class="card-body">
                     <h4 class="card-title">Post List</h4>
                     <div class="form-group">
+                      <form id="search-frm">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Post title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" class="form-control" placeholder="Search Post title, category, writer" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                          <button class="btn btn-fw btn-outline-secondary" type="button">Search</button>
+                        	<input type="button" id="search-btn" class="btn btn-fw btn-outline-secondary" style="border:white;" value="Search">
+<!--                            <button class="btn btn-fw btn-outline-secondary" type="button">Search</button>  -->
                         </div>
                       </div>
+                      </form>
                     </div><br/>
                     <div class="table-responsive">
                       <table class="table table-striped">
+                      	<c:if test="${size==0}">
+                      		empty
+                      	</c:if>
                         <thead>
                           <tr>
+                            <th> No. </th>
                             <th> PostNo. </th>
                             <th> Category </th>
                             <th> Title </th>
@@ -67,84 +129,62 @@
                             <th> Write Date </th>
                           </tr>
                         </thead>
+                        
+                    <c:forEach var="posts" items="${list}">
                         <tbody>
                           <tr>
                             <td class="py-1">
-                              1
+                              ${posts.rnum}
                             </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
                             <td class="py-1">
-                              2
+                              ${posts.post_id}
                             </td>
-                            <td> IT/Programming </td>
+                            <td> ${posts.category_name} </td>
                             <td>
                                 <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
+                                ${posts.title}
                                 </a>
                             </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              3
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              4
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              5
-                            </td>
-                            <td> IT/Programming </td>
-                            <td>
-                                <a href="posts_edit.jsp" style="color:white;">
-                                게시글의 타이틀이 들어가는 공간이다
-                                </a>
-                            </td>
-                            <td>작성자의이름</td>
-                            <td> May 15, 2015 </td>
+                            <td>${posts.email}</td>
+                            <td>${posts.post_date}</td>
                           </tr>
                         </tbody>
+                     </c:forEach>
+                     
                       </table>
                     </div> 
                   </div>
-                  <div style="text-align:center;">
-                    여기서 페이지 구현
-                  </div>
+					
+					<!-- paging -->
+					<c:if test="${size!=0}">
 
+	<!-- prev 버튼 누르면 쿼리스트링이 증감 -->
+					<form id="prevFrm">
+						<input type="hidden" value="${prev }" name="p">
+					</form>
+					<form id="nextFrm">
+						<input type="hidden" value="${next }" name="p">
+					</form>
+					
+					<div style="text-align:center;height: 40px;">
+					<c:if test="${ isPrevPage }">
+						<a href="#void" onclick="prevSubmit()">prev</a>
+					</c:if>
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
+						<a href="?p=${i}&<%= param %>">${i}</a>
+					</c:forEach>
+					<c:if test="${ isNextPage }">
+						<a href="#void" onclick="nextSubmit()">next</a>
+					</c:if>
+					</div>
+					<!-- paging -->
+					</c:if>
+                  </div>
                 </div>
               </div>
              </div>
              <!-- row ends -->
+
 
           </div>
           <!-- content-wrapper ends -->

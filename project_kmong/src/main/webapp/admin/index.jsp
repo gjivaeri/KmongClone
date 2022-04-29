@@ -1,9 +1,15 @@
-<%@page import="com.kmong.dao.DbConnectionDBCP"%>
+<%@page import="com.kmong.dao.account.AccountSettingDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
+<%
+	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
+	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
+	}
+%>
+<!-- sendRedirect가 호출되도 jsp 코드는 계속 실행되므로  -->
+<% if(session.getAttribute("loginId")!=null){ %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -234,9 +240,9 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
-    <script src="http://localhost/project_kmong/admin/assets/vendors/js/vendor.bundle.base.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
     <script src="http://localhost/project_kmong/admin/assets/js/chart.js"></script>
   </body>
 </html>
+<%}%>

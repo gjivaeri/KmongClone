@@ -3,7 +3,7 @@
     
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face text-warning"></i></a>
+    <a class="navbar-brand brand-logo-mini kmong-title" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face"></i></a>
   </div>
 
   <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -21,7 +21,7 @@
       </li>
     </ul>
 
-    <!-- 관리자계장 관리 -->
+    <!-- 관리자계정 관리 -->
     <ul class="navbar-nav navbar-nav-right">
       
       <li class="nav-item dropdown">
@@ -48,7 +48,7 @@
           </a>
           <div class="dropdown-divider"></div>
 
-          <a class="dropdown-item preview-item" href="#void">
+          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/templates/home/index.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-baby-face-outline text-info"></i>
