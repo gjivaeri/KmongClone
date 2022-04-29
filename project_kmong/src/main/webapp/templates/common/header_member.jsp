@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
- <%
+<%--  <%
 
 if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
@@ -16,7 +16,7 @@ if(session.getAttribute("loginMsg")!=null){
 	session.removeAttribute("loginMsg");
 }
 
-%> 
+%>  --%>
 
 $(function(){
 	$("#logoutBtn").click(function(){
@@ -90,7 +90,7 @@ $(function(){
                         
                         <span style="font-size: 11px; padding-left: 10px; ">계정 설정</span>
                        <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                        <a href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"  style="font-size: 13px;">나의 정보</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/my_info_edit2.jsp"  style="font-size: 13px;">나의 정보</a>
                         <a href="http://localhost/project_kmong/templates/mypage/pw_edit.jsp" style="font-size: 13px;">비밀번호 변경</a>
                         <a href="http://localhost/project_kmong/templates/mypage/withdrawing.jsp" style="font-size: 13px;">회원 탈퇴</a>
                         </div>

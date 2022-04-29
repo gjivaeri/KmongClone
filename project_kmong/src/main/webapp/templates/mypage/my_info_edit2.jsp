@@ -81,18 +81,29 @@
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>	
 <script type="text/javascript">
+ <%
+if(session.getAttribute("fileName")!=null){
+	%>alert((String)session.getAttribute("fileName"))<%
+}else{
+	%>alert("nothing")<%
+}
+%>
 $(function() {
 //$(document).ready(function(){
     $('.multi_select').selectpicker();
 //})
 
-$("#infobtn").click(function() {
+	$("#infobtn").click(function() {
+		
+		$("#frm").submit();
+	})//click
 	
 	
-	$("#frm").submit();
-})//click
-
-
+	$("#file-input").change(function(){
+		alert("오키");
+		$("#profileFrm").submit();
+		 
+	})
 
 });//ready
 
@@ -117,22 +128,26 @@ $("#infobtn").click(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
-						<form action="check_my_info_edit.jsp" id="frm" name="frm" method="post" enctype="multipart/form-data">
 						<section id="main-section1">
 							<section id="main-section2">
 								<div id="div-img">
 									<img src="https://kmong.com/img/tools/main_user_gray.png"
 										alt="프로필 사진" id="profile-img" />
 								</div>
+						<form action="http://localhost/project_kmong/templates/mypage/profile_process.jsp" 
+										id="profileFrm" name="profileFrm" enctype="multipart/form-data" method="post">
 								<div style="margin-top: 10px;">
-									<button type="button" color="default" class="profile-btn" id="profileBtn">
-										<span><label for="file-input" style="cursor: pointer;">프로필 변경
-										<input  name="upFile" id="file-input" type="file" accept="image/gif, image/jpeg, image/jpg, image/png" style="display:none">
-										</label>
-										</span>
+									<button type="button" color="default" class="profile-btn" id="profileBtn" for="file-input">
+										
+										<div>
+											<label style="cursor: pointer;">프로필 변경</label>
+												<input type="file" name="upFile" id="file-input"  accept="image/gif, image/jpeg, image/jpg, image/png" style="display:none"/>
+										</div>
 									</button>
 								</div>
+							</form>
 							</section>
+							
 							<section id="main-section2">
 								<div class="section2-div">
 									<label for="username" class="section2-label">
@@ -172,6 +187,7 @@ $("#infobtn").click(function() {
 								</div>
 								
 								
+						<form action="check_my_info_edit.jsp" id="frm" name="frm" method="post" enctype="multipart/form-data">
 								<div class="section2-div">
 									<label for="username" class="section2-label">
 									<span class="section2-span">비즈니스분야
@@ -197,7 +213,6 @@ pageContext.setAttribute("categoryList", list1);
 								
 								
 								<%
-					    	
 					    	 int memberId=(int)session.getAttribute("login");
 					    	AccountSettingDAO asDAO=new AccountSettingDAO();
 					    	List<InterestVO> list3=asDAO.findinterest(memberId);
@@ -231,6 +246,7 @@ pageContext.setAttribute("categoryList", list1);
 								</c:forEach>
 					   		</select>
 					    	</div>
+					</form>
 					    
 					    	
 							
@@ -239,7 +255,6 @@ pageContext.setAttribute("categoryList", list1);
 							<button  id="infobtn" type="button" data-testid="submit-button" class="submit-btn" style="float: right; margin-top: 10px">
 							<span>확인</span>
 							</button>
-					</form>
 					</div>
 				</main>
 			</div>
