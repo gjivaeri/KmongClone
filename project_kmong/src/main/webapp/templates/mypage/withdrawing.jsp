@@ -52,7 +52,7 @@
 			return;
 		}  //end if
 		
-			$("#frm").submit();
+			$("#wifrm").submit();
 		});//click
  
 	});//ready
@@ -77,7 +77,7 @@
 						<h1 style="font-size: 18px; font-weight: bold;">회원탈퇴</h1>
 						<div id="main-section1">
 						<section>
-						<form action="check_withdrawing.jsp" method="get" id="frm" name="frm">
+						<form action="check_withdrawing.jsp" method="get" id="wifrm" name="frm">
 							<div>크몽을 떠나는 이유를 알려주세요.</div>
 							<ul>
 							<li data-testid="이용하고 싶은 서비스가 없어요">
