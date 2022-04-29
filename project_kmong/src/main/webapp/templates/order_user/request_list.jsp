@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Enumeration"%>
@@ -177,6 +178,9 @@ function prevSubmit() {
 					
 
 					<%
+					String param="";
+					try{
+						
 					OrdersDAO oDAO = OrdersDAO.getInstance();
 					List<OrdersVO> list = oDAO.selectRequestedOrdersRange(startDate, endDate, keyword, "P" ,sid);
 					
@@ -191,17 +195,15 @@ function prevSubmit() {
 					int nextPage = paging.getNextPage();
 					int prevPage = paging.getPrevPage();
 					
-					String param="";
-					try {	
+					
+					
 					if (request.getQueryString() != null) {
 						param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
 						if(request.getQueryString().indexOf("p") == -1){
 							param = request.getQueryString();			
 						}	
 					}
-					} catch(Exception e) {
-						response.sendRedirect("request_list.jsp");
-					}
+
 					
 					pageContext.setAttribute("param",param);
 
@@ -214,6 +216,12 @@ function prevSubmit() {
 					pageContext.setAttribute("prev", prevPage);
 					pageContext.setAttribute("list", result);
 					pageContext.setAttribute("size", result.size());
+					
+				} catch(SQLException se) {
+					response.sendRedirect(request.getRequestURI());
+				} catch(Exception e) {
+					response.sendRedirect(request.getRequestURI());
+				}
 			
 					%>
 					

@@ -19,4 +19,16 @@
     <servlet-name>AdminPostsProcess</servlet-name>
     <url-pattern>/admin_posts</url-pattern>
   </servlet-mapping>
+<error-page>
+  	<error-code>404</error-code>
+  	<location>/templates/common/error/error404.jsp</location>
+</error-page> 
+<error-page>
+  	<error-code>405</error-code>
+  	<location>/templates/common/error/error404.jsp</location>
+</error-page> 
+<error-page>
+  	<error-code>500</error-code>
+  	<location>/templates/common/error/error404.jsp</location>
+</error-page> 
 </web-app>
