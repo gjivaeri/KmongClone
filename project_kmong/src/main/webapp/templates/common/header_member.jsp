@@ -35,7 +35,7 @@ $(function(){
                                     
                                     <div class="search-button">
                                         <a href="#void"><img src="http://localhost/project_kmong/static/images/search.png" style="width:20px; padding-bottom:2px;  object-fit: cover;" /></a>
-                                    </div> 
+                                    </div>    
                             </div>
                         </div>
                     </form>
