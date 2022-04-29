@@ -21,6 +21,17 @@
 <SCRIPT type="text/javascript">
    window.history.forward();
    function noBack() { window.history.forward(); }
+   
+   $(function(){
+		
+		$("#searchBtnInAD").click(function() {
+			alert($("#mainInput").val())
+			var inputText=$("#mainInput").val();
+			location.href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1="+inputText;
+		});
+
+		
+	});//ready
 </SCRIPT>
 
 </head>
@@ -45,16 +56,13 @@
                        <div class="ad-search2">
                            <div class="ad-search">
                            
-                            <form>
-                            <div class="typewriter"><input type="text" value="웹페이지 제작" id="mainInput"
+                            <form action="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=">
+                            <div class="typewriter">
+                            <input type="text"  id="mainInput" 
                             style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;">
                             </div>
-<!--                             <div class="typewriter"><h5>웹페이지 제작</h5></div> -->
-                            <!-- <div class="typewriter">
-                                <h1>The cat and the hat.</h1>
-                              </div> -->
                               
-                               <div class="white-search-btn">
+                               <div class="white-search-btn" id="searchBtnInAD">
                                </div>
                                
                               </form>
@@ -63,11 +71,11 @@
                         </div>
                     </form> 
                     <div class="tag-box">
-                        <div class="tags"><a style="opacity: unset;" href="#void">#웹페이지제작</a></div>
-                        <div class="tags"><a href="#void">#로고</a></div>
-                        <div class="tags"><a href="#void">#인스타</a></div>
-                        <div class="tags"><a href="#void">#일러스트</a></div>
-                        <div class="tags"><a href="#void">#영상편집</a></div>
+                        <div class="tags"><a style="opacity: unset;" href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=웹페이지제작">#웹페이지제작</a></div>
+                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=로고">#로고</a></div>
+                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=인스타">#인스타</a></div>
+                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=일러스트">#일러스트</a></div>
+                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=영상편집">#영상편집</a></div>
 
                     </div>
                 </div>
@@ -130,7 +138,7 @@
             </div>
             
             <!-- 카테고리 이미지 들어가는 부분-DB작업 들어감. -->
-            <div class="main-category-img-collection">
+            <div class="main-category-img-collection" style="background-color: rgb(250, 250, 252); border-radius: 20px;">
                 <div style=" font-size: 14px; font-weight: bold; height: 20px;">비즈니스</div>
                
                
@@ -151,8 +159,8 @@
                 		
                 		%>
                 		<div class="article-squre">
-                        <a href="#void" >
-                            <img src="http://localhost/project_kmong/static/images/test.JPG" />
+                        <a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" >
+                            <img src="http://localhost/project_kmong/static/<%=categoryImg %>" />
                             <div class="main-span1"><%= categoryName%></div>
                         </a>
                         </div>

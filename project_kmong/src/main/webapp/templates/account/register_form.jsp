@@ -161,9 +161,9 @@ if(request.getParameter("member")==null){
 
 
 if(request.getParameter("member").equals("expert")){
-	session.setAttribute("member","expert");
+	session.setAttribute("flag","expert");
 }else{
-	session.setAttribute("member","client");
+	session.setAttribute("flag","client");
 }
 
 
@@ -402,8 +402,9 @@ function chkNull(){
 
                     <div class="regi-div">
                         <div class="requirement">비밀번호<label>&nbsp;*</label></div>
-                        <input type="password" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1" value="fhzl!!6125"/>
-                        <input type="password" placeholder="비밀번호를 한번 더 입력해주세요." name="pass2" id="pass2" value="fhzl!!6125"/>
+                        <input type="password" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1"/>
+                        <input type="password" placeholder="비밀번호를 한번 더 입력해주세요." name="pass2" id="pass2"/>
+                       <!--  <span id="d" style="float: right; color:#0000FF; display: none;">비밀</span> -->
                     </div>
                     
                     <div class="regi-div">

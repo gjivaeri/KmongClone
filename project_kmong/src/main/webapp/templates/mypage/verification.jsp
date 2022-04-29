@@ -38,7 +38,7 @@ $(function() {
 				}//end if
 				
 				
-				$("#frm").submit();
+				$("#vefrm").submit();
 			});//click
 				
 			
@@ -64,14 +64,18 @@ $(function() {
 					<strong>계정설정</strong>
 				</div>
 				<hr orientation="horizontal" style="height: 2px;">
-				<a href="my_info_edit.jsp" class="aside-a">나의 정보</a> 
-					<a href="pw_edit.jsp" class="aside-a">비밀번호 변경</a> 
-					<a href="withdrawing.jsp" class="aside-a">회원탈퇴</a>
+				<a href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp" class="aside-a">나의 정보</a> 
+					<a href="http://localhost/project_kmong/templates/mypage/pw_edit.jsp" class="aside-a">비밀번호 변경</a> 
+					<a href="http://localhost/project_kmong/templates/mypage/withdrawing.jsp" class="aside-a">회원탈퇴</a>
 			</aside>
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
-						<form action="check_verifcation.jsp" id="frm"  method="post">
+
+
+						
+
+						<form action="check_verifcation.jsp"  id="vefrm"  method="get">
 						<section id="main-section1">
 						<div style="margin: 100px;">
 							<label style="margin-bottom: 10px;">비밀번호</label>

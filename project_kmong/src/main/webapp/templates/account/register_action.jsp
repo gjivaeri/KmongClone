@@ -55,10 +55,11 @@
 %>
 </c:catch>
 <c:if test="${not empty e }">
-	<%
+	<%-- <%
 	session.setAttribute("error", "error");
 	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
-	%>
+	%> --%>
+	<c:out value="${e}"/>
 </c:if>
 
 

@@ -9,11 +9,11 @@
     pageEncoding="UTF-8"%>
 
  <%
- session.setAttribute("lo", 28);
- int memberId=(int)session.getAttribute("lo");
+
+ int memberId=(int)session.getAttribute("login");
  
  //카테고리
-/*  int bucategoryId=Integer.parseInt(request.getParameter("buCategoryId"));
+ int bucategoryId=Integer.parseInt(request.getParameter("buCategoryId"));
  MemberVO mVO=new MemberVO();
  AccountSettingDAO asDAO=AccountSettingDAO.getInstance();
  mVO.setMemberId(memberId);
@@ -33,8 +33,8 @@
  for(int i=0;i<inter1.length;i++){
 	 asDAO.insertinterest(memberId, inter1[i]);
  }//end for
-  */
- //프로필 사진변경
+  
+/*  //프로필 사진변경
   AccountSettingDAO asDAO=AccountSettingDAO.getInstance();  // 위에 있다 나중에 지울 것
 boolean dupFlag=(boolean)session.getAttribute("insertFileFlag");
 
@@ -59,7 +59,7 @@ if(!dupFlag){
 		session.setAttribute("insertFileFlag", true);
 	
 	
-}
+} */
 
 
 
