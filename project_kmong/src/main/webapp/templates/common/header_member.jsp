@@ -20,8 +20,8 @@ $(function(){
 		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
 	})
 	
-	$("#searchbtn").click(function() {
-		${"#frm"}.submit();
+	$("#searchbtn").click(function(){
+		$("#frm").submit();
 		
 	})
 });//ready
