@@ -8,6 +8,7 @@
 <%
 //세션에 저장되어 있는 memberID 를 가져온다
 
+
 int memberId=(int)session.getAttribute("login");
 
 
@@ -15,6 +16,8 @@ String password=request.getParameter("pass");
 //DB조회
 AccountSettingDAO asDAO=AccountSettingDAO.getInstance();
 String chkpass=asDAO.selectCheckPassword(memberId,password);
+
+
 
 if(chkpass == null){
 	%><script>alert("비밀번호가 일치하지 않습니다."); history.back();</script> <%

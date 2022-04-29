@@ -6,6 +6,7 @@
     %>
 
     <%
+  
    
     int memberId=(int)session.getAttribute("login");
     String pass1=request.getParameter("updatePassword");

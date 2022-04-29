@@ -92,7 +92,7 @@ $(function() {
 $("#infobtn").click(function() {
 	
 	
-	$("#frm").submit();
+	$("#myfrm").submit();
 })//click
 
 
@@ -120,7 +120,7 @@ $("#infobtn").click(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
-						<form action="check_my_info_edit.jsp" id="frm" name="frm" method="post" enctype="multipart/form-data">
+						<form action="check_my_info_edit.jsp" id="myfrm" name="frm" method="post" enctype="multipart/form-data">
 						<section id="main-section1">
 							<section id="main-section2">
 								<div id="div-img">

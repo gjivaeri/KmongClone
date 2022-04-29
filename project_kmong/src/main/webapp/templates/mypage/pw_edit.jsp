@@ -48,7 +48,7 @@
 			$("#pass2").focus();
 			return;
 		}
-		  	$("#frm").submit();  
+		  	$("#pwfrm").submit();  
 		  	
 
 		})//click
@@ -73,7 +73,7 @@
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">비밀번호 변경</h1>
-						<form action="check_pw_edit.jsp" method="post"  id="frm" name="frm">
+						<form action="check_pw_edit.jsp" method="post"  id="pwfrm" name="ffrm">
 						<div id="update-pass-frm">
 						<!-- <section>
 						<div><label class="aside-a">현재 비밀번호</label></div>

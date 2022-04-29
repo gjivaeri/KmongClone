@@ -468,8 +468,8 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 		// 3. DataSource에서 Connection 얻기
 		con = instance.getConn();
 		// 4. 쿼리문 생성객체 얻기
-		String selectCategoryid = "select  name, tel, nick, email from member where member_id=?";
-		pstmt = con.prepareStatement(selectCategoryid);
+		String selectinfor = "select  name, tel, nick, email from member where member_id=?";
+		pstmt = con.prepareStatement(selectinfor);
 		// 5.바인드 변수 값 할당
 		pstmt.setInt(1,memberId );
 		// 6. 쿼리문 수행후 결과 얻기
