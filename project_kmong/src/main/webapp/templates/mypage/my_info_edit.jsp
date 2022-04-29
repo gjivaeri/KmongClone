@@ -138,7 +138,7 @@ $("#infobtn").click(function() {
 							</section>
 							<%
 							
-					List<MemberVO> list5=	asDAO.selectinformation(memberId);
+					List<MemberVO> list5=asDAO.selectinformation(memberId);
 						pageContext.setAttribute("infor", list5);
 							
 							%>

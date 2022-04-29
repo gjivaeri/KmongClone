@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kmong.vo.CategoryVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,12 +25,10 @@ if(((String)session.getAttribute("logoutSession"))!=null){
 }
 
 
-//if(((String)session.getAttribute("login"))!=null){
-	//
-//	session.removeAttribute("login");
-	//session.invalidate();
-//}
-
+/* if((session.getAttribute("login"))!=null){
+	response.sendRedirect("http://localhost/project_kmong/templates/common/header_member.jsp");
+}
+ */
 %>
 $(function(){
 	
@@ -110,7 +110,7 @@ $("#searchbtn").click(function() {
                             <input class="search-input" type="text" name="search_input1" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                             
                             <div class="search-button">
-                                <img src="http://localhost/project_kmong/static/images/search.png" id="searchbtn" style="width:20px; padding-bottom:2px; object-fit: cover;" />
+                                <img src="http://localhost/project_kmong/static/images/search.png" id="searchbtn" style="width:20px; padding-bottom:2px; object-fit: cover; cursor: pointer;" />
                             </div> 
                     </div>
                 </div>
@@ -191,13 +191,14 @@ $("#searchbtn").click(function() {
                    
                    <% 
                    MainPageDAO mpDAO=MainPageDAO.getInstance();
-                   List<String> list= mpDAO.selectAllCategoryName();
+                  // List<String> list= mpDAO.selectAllCategoryName();
+                   List<CategoryVO> cVO=new ArrayList<CategoryVO>();
+                   cVO=mpDAO.selectAllCategory();
                    
-                   if(list!=null){
-                	   
-	                   for(int i=0; i<list.size(); i++){
-	                	   %><a href="#void" style="font-size: 16px; color:#5D5D5D;">
-	                	<%= list.get(i)%></a>
+                   if(cVO!=null){
+	                   for(int i=0; i<cVO.size(); i++){
+	                	   %><a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" style="font-size: 16px; color:#5D5D5D;">
+	                	<%=cVO.get(i).getCategoryName()%></a>
 	                	<%
 	                   }
                    }else{//select에서 문제생겼을 시 처리 (수정하기)

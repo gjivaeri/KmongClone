@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kmong.vo.CategoryVO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,7 +42,7 @@ $(function(){
                                     <input name="search_input1" class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                                     
                                     <div class="search-button">
-                                        <img  src="http://localhost/project_kmong/static/images/search.png"  id="searchbtn" style="width:20px; padding-bottom:2px;  object-fit: cover;" />
+                                        <img  src="http://localhost/project_kmong/static/images/search.png"  id="searchbtn" style="width:20px; padding-bottom:2px;  object-fit: cover; cursor: pointer;" />
                                     </div>    
                             </div>
                         </div>
@@ -111,11 +114,25 @@ $(function(){
                     <div id="menuUnderline" style="width: 180px; height: 5px; background-color: #f0c04f; display: none;"></div>
                     <span style="font-size: 8px; padding-left: 10px; padding-top: 10px;">비즈니스</span>
                    <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">IT/Programming</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">영상/사진</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">마케팅</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">디자인</a>
-                    <a href="#void" style="font-size: 16px; color:#5D5D5D; padding-left:20px;">번역 통역</a>
+                   <% 
+                   List<CategoryVO> cVO=new ArrayList<CategoryVO>();
+                   cVO=mpDAO.selectAllCategory();
+                   
+                   if(cVO!=null){
+	                   for(int i=0; i<cVO.size(); i++){
+	                	   %><a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" style="font-size: 16px; color:#5D5D5D;">
+	                	<%=cVO.get(i).getCategoryName()%></a>
+	                	<%
+	                   }
+                   }else{//select에서 문제생겼을 시 처리 (수정하기)
+                  
+	                  for(int i=0; i<5; i++){
+		              %>
+                		<a href="#void" style="font-size: 16px; color:#5D5D5D;">메뉴를 불러올 수 없습니다.</a>
+	                   <%
+	                   }
+                   }
+	                   %>
                     </div>
 
                 </div>
