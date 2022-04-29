@@ -114,13 +114,13 @@ body{    padding-top: 0px;}
     <div class="css-9z4ppi eru4v6r3">
       <img
         src="https://d2v80xjmx68n4w.cloudfront.net/assets/images/desktop/kmong-ghost@2x.png"
-        alt="404, 요청하신 페이지를 찾을 수 없습니다."
+        alt="405, 잘못된 요청입니다."
         width="350"
         height="350"
       />
     </div>
     <p class="css-p4ywka eru4v6r2">405</p>
-    <h1 class="css-1r3i1b6 eru4v6r1">요청하신 페이지를 찾을 수 없습니다.</h1>
+    <h1 class="css-1r3i1b6 eru4v6r1">잘못된 요청입니다.</h1>
     <p class="css-1nvv8ic eru4v6r0">
       페이지가 삭제되었거나 주소가 변경되었을 수 있습니다.
     </p>

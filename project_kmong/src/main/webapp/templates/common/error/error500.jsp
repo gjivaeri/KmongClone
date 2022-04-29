@@ -114,15 +114,15 @@ body{    padding-top: 0px;}
     <div class="css-9z4ppi eru4v6r3">
       <img
         src="https://d2v80xjmx68n4w.cloudfront.net/assets/images/desktop/kmong-ghost@2x.png"
-        alt="404, 요청하신 페이지를 찾을 수 없습니다."
+        alt="500, 사용량이 일시적으로 많습니다."
         width="350"
         height="350"
       />
     </div>
     <p class="css-p4ywka eru4v6r2">500</p>
-    <h1 class="css-1r3i1b6 eru4v6r1">요청하신 페이지를 찾을 수 없습니다.</h1>
+    <h1 class="css-1r3i1b6 eru4v6r1">사용량이 일시적으로 많습니다.</h1>
     <p class="css-1nvv8ic eru4v6r0">
-      페이지가 삭제되었거나 주소가 변경되었을 수 있습니다.
+      잠시 후 다시 시도해 주세요!
     </p>
     <a role="link" color="market" href="/project_kmong/templates/home/index.jsp" class="btn btn-warning css-nlw5bq eklkj754"
       ><span class="css-1oteowz eklkj753"><strong>메인페이지로 돌아가기</strong></span></a
