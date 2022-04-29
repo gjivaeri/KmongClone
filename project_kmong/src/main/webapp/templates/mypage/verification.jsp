@@ -57,6 +57,25 @@ $(function() {
  <%@include file="../common/header_member.jsp"%>
 		<hr>
 
+<%
+if(request.getParameter("service")==null) {
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+}else{
+
+String asd = request.getParameter("service");
+String dfg="";
+if(asd.equals("info")) {
+	session.setAttribute("service", "info");
+}
+if(asd.equals("pass")) {
+	session.setAttribute("service", "pass");
+}
+if(asd.equals("withdraw")) {
+	session.setAttribute("service", "withdraw");
+}}
+
+
+%>
 		<!-- main div -->
 		<div id="aside-div">
 			<aside class="aside">
@@ -64,9 +83,9 @@ $(function() {
 					<strong>계정설정</strong>
 				</div>
 				<hr orientation="horizontal" style="height: 2px;">
-				<a href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp" class="aside-a">나의 정보</a> 
-					<a href="http://localhost/project_kmong/templates/mypage/pw_edit.jsp" class="aside-a">비밀번호 변경</a> 
-					<a href="http://localhost/project_kmong/templates/mypage/withdrawing.jsp" class="aside-a">회원탈퇴</a>
+				<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=info" class="aside-a">나의 정보</a> 
+					<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass" class="aside-a">비밀번호 변경</a> 
+					<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw" class="aside-a">회원탈퇴</a>
 			</aside>
 				<main style="margin-left: 24px;">
 					<div>
@@ -75,7 +94,7 @@ $(function() {
 
 						
 
-						<form action="check_verifcation.jsp"  id="vefrm"  method="get">
+						<form action="check_verifcation.jsp"  id="vefrm"  method="post">
 						<section id="main-section1">
 						<div style="margin: 100px;">
 							<label style="margin-bottom: 10px;">비밀번호</label>

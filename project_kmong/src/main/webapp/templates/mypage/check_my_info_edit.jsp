@@ -13,13 +13,16 @@
  int memberId=(int)session.getAttribute("login");
  
  //카테고리
- int bucategoryId=Integer.parseInt(request.getParameter("buCategoryId"));
+ String bucategoryId1=request.getParameter("buCategoryId");  // 얘가 왜 널인지 왜 안얻어 질까요....
+ int bucategoryId=Integer.parseInt(bucategoryId1);
  MemberVO mVO=new MemberVO();
  AccountSettingDAO asDAO=AccountSettingDAO.getInstance();
  mVO.setMemberId(memberId);
  mVO.setCategoryId(bucategoryId);
  asDAO.updateMemberCategoryId(mVO);
+
  
+
  
  //관심사
   String[] inter=request.getParameterValues("interestcategory");
@@ -33,6 +36,11 @@
  for(int i=0;i<inter1.length;i++){
 	 asDAO.insertinterest(memberId, inter1[i]);
  }//end for
+ 
+ session.setAttribute("msg", "msg");
+ response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp");
+ 
+
   
 /*  //프로필 사진변경
   AccountSettingDAO asDAO=AccountSettingDAO.getInstance();  // 위에 있다 나중에 지울 것
@@ -66,12 +74,9 @@ if(!dupFlag){
 
 
 
- 
-// InterestVO iVO=new InterestVO();
-// iVO.setMemberId(memberId);
- 
- //asDAO.updateMemberInterestId(iVO);
- //out.println(bucategoryId+"<br/>");
- //out.println(bucategoryId);
+
+
+
+
  
  %>
