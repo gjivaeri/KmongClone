@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.kmong.paging.PageImpl"%>
 <%@page import="com.kmong.paging.Paging"%>
 <%@page import="com.kmong.vo.OrdersVO"%>
@@ -16,7 +17,7 @@
 <%@include file ="validate_session.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login;  
 %>
 <!-- datePicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -135,6 +136,10 @@ function prevSubmit() {
 					</form>
 					
 					<%
+					String param="";
+					
+					try{
+						
 					OrdersDAO oDAO = OrdersDAO.getInstance();
 					List<OrdersVO> list = oDAO.selectRequestedOrdersRange(startDate, endDate, keyword, "Y" ,sid);
 					
@@ -149,19 +154,16 @@ function prevSubmit() {
 					int nextPage = paging.getNextPage();
 					int prevPage = paging.getPrevPage();
 					
-					String param="";
+					
 						
-					try {	
+				
 					if (request.getQueryString() != null) {
 						param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
 						if(request.getQueryString().indexOf("p") == -1){
 							param = request.getQueryString();			
 						}	
 					}
-					} catch(Exception e) {
-						System.out.println(e.getStackTrace());
-						response.sendRedirect("history_list.jsp");
-					}
+					 
 					
 					pageContext.setAttribute("param",param);
 
@@ -174,9 +176,15 @@ function prevSubmit() {
 					pageContext.setAttribute("prev", prevPage);
 					pageContext.setAttribute("list", result);
 					pageContext.setAttribute("size", result.size());
+					
+				} catch(SQLException se) {
+					response.sendRedirect(request.getRequestURI());
+				} catch(Exception e) {
+					response.sendRedirect(request.getRequestURI());
+				}
 			
 					%>					
-					<div id="main-section1" style="width: 1050px; height:900px; flex-wrap: wrap;">
+					<div id="main-section1" style="width: 850px; height:900px; flex-wrap: wrap;">
 					<!-- 게시글 -->
 					<c:if test="${size==0}">
 					<div style="display: flex;justify-content: center;align-items: center;text-align: center;"><div style="margin-left:280px;"><img src="https://kmong.com/img/seller/nothing.png" title="내역없음" > <h5 class="font-color-lighter">내역이 없습니다.</h5></div></div>

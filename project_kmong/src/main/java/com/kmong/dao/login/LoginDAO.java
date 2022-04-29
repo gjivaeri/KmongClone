@@ -24,30 +24,29 @@ public class LoginDAO {
 	}//getInstance
 	
 	
-	public boolean selectLoginInfo(String email,String pass) throws SQLException{
-		boolean result=false;
+	public int selectLoginInfo(String email,String pass) throws SQLException{
+		int memberId=0;
 		
 		Connection con=DbConnectionDBCP.getInstance().getConn();
 		
-		String selectEmail="select email from member where password=? and email=? and withdrawal_status='N'";
+		String selectEmail="select member_id from member where password=? and email=? and withdrawal_status='N'";
 
 		PreparedStatement pstmt=con.prepareStatement(selectEmail);
 		pstmt.setString(1, pass);
 		pstmt.setString(2, email);
 		ResultSet rs=pstmt.executeQuery();
-		String id="";
 		try(con;pstmt;rs) {
 			
 			while(rs.next()) {
-			id=rs.getString("email");
-			
-			result=id.equals(email);
+			memberId=rs.getInt("member_id");
 			}
 		}//
 		/*
 		 * System.out.println(email); System.out.println(pass); System.out.println(id);
 		 * System.out.println(result);
-		 */		return result;
+		 */		
+		System.out.println(memberId);
+		return memberId;
 	}//selectEmail
 	
 	

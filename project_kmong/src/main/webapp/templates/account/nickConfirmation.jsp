@@ -6,6 +6,11 @@
     pageEncoding="UTF-8"
     info="이메일 중복확인 JSON"
     trimDirectiveWhitespaces="true"%>
+ <%
+ if(request.getParameter("nick")==null){
+	 response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+ }
+ %>
  <%  
 String nick=request.getParameter("nick");
 JSONObject jsonObj=new JSONObject();

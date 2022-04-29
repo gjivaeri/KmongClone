@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.kmong.paging.PageImpl"%>
 <%@page import="com.kmong.paging.Paging"%>
 <%@page import="com.kmong.vo.ExpertOrderVO"%>
@@ -15,7 +16,7 @@
 <%@include file ="validate_expert.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login;  
 %>
 <!-- datePicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -130,7 +131,7 @@ function prevSubmit() {
 					</form>
 					
 					<%
-					
+					try{
 					List<ExpertOrderVO> list = oDAO.selectExpertRequestedOrdersRange(startDate, endDate, keyword, "N",sid);
 					
 					Paging paging = new PageImpl(request,list);
@@ -167,6 +168,12 @@ function prevSubmit() {
 					pageContext.setAttribute("list", result);
 					
 					pageContext.setAttribute("size", result.size());
+					
+				} catch(SQLException se) {
+					response.sendRedirect(request.getRequestURI());
+				} catch(Exception e) {
+					response.sendRedirect(request.getRequestURI());
+				}
 					%>
 					
 					<div id="main-section1" style="width: 900px; height:900px; flex-wrap: wrap;">

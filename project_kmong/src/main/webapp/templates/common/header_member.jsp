@@ -4,11 +4,11 @@
 <script type="text/javascript">
  <%
 
-if(((String)session.getAttribute("login"))==null){
+if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
 	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 }
-if(((String)session.getAttribute("loginMsg"))!=null){
+if(session.getAttribute("loginMsg")!=null){
 	%>alert("로그인이 성공적으로 완료되었습니다.")<%
 	session.removeAttribute("loginMsg");
 }
@@ -19,6 +19,11 @@ $(function(){
 	$("#logoutBtn").click(function(){
 		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
 	})
+	
+	$("#searchbtn").click(function(){
+		$("#frm").submit();
+		
+	})
 });//ready
 
 </script>
@@ -28,14 +33,14 @@ $(function(){
             
                 <div style="flex-grow: 1;"></div>
                 
-                    <form>
+                    <form action="http://localhost/project_kmong/templates/service/search_result.jsp" method="get" id="frm" name="frm">
                         <div class="search-div">
                             <div class="search-bar-div">
-                                    <input class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
+                                    <input name="search_input1" class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                                     
                                     <div class="search-button">
-                                        <a href="#void"><img src="http://localhost/project_kmong/static/images/search.png" style="width:20px; padding-bottom:2px;  object-fit: cover;" /></a>
-                                    </div> 
+                                        <img  src="http://localhost/project_kmong/static/images/search.png"  id="searchbtn" style="width:20px; padding-bottom:2px;  object-fit: cover;" />
+                                    </div>    
                             </div>
                         </div>
                     </form>
@@ -43,7 +48,7 @@ $(function(){
                <div style="width: 250px;" class="buttons"> 
                     <input type="button" value="로그아웃" class="login-btn" id="logoutBtn">
                     <div style="width: 270px; margin-right: 20px;">
-                        <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" >
+                        <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" onclick="location.href='http://localhost/project_kmong/templates/order_expert/management.jsp'">
                     </div>
                         
 
@@ -54,22 +59,37 @@ $(function(){
                         
                         <%
                         MainPageDAO mpDAO=MainPageDAO.getInstance();
-                        String userImg=mpDAO.selectUserImg((String)session.getAttribute("login"));
+                        if(session.getAttribute("login")!=null){
+                        	String userImg=mpDAO.selectUserImg((int)session.getAttribute("login"));
                         
-                        pageContext.setAttribute("userImg", userImg);
+	                        //pageContext.setAttribute("userImg", userImg);
+	                        if(userImg!=null){
+	                        	%><img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
+	                        }else{
+	                        	%><img src="http://localhost/project_kmong/static/images/default_profile.png" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
+	                        }
+                        }
                         %>
-                        <c:if test="">
-                        <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
-                        </c:if>
+                        <%-- <c:choose>
+                        
+                        <c:when test="${empty userImg}">
+                        <img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        </c:when>
+                        
+                        <c:other>
+                        <img src="http://localhost/project_kmong/static/images/logo.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        </c:other>
+                        </c:choose> --%>
+                        
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px; z-index: 100;">
                         
                         <span style="font-size: 11px; padding-left: 10px; ">계정 설정</span>
                        <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                        <a href="#void"  style="font-size: 13px;">나의 정보</a>
-                        <a href="#void" style="font-size: 13px;">비밀번호 변경</a>
-                        <a href="#void" style="font-size: 13px;">회원 탈퇴</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"  style="font-size: 13px;">나의 정보</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/pw_edit.jsp" style="font-size: 13px;">비밀번호 변경</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/withdrawing.jsp" style="font-size: 13px;">회원 탈퇴</a>
                         </div>
                     </div>
                    

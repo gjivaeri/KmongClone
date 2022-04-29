@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="com.kmong.paging.PageImpl"%>
 <%@page import="com.kmong.paging.Paging"%>
 <%@page import="com.kmong.vo.ExpertOrderVO"%>
@@ -15,7 +16,7 @@
 <%@include file ="validate_expert.jsp" %>
 
 <% 
-int sid = Integer.parseInt(login);  
+int sid = login;  
 %>
 <!-- datePicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -110,8 +111,9 @@ function prevSubmit() {
 				%>
 				
 				<%
-					
-					List<ExpertOrderVO> list = oDAO.selectExpertRequestedOrdersRange(startDate, endDate, keyword, "Y",sid);
+					 
+					//try{
+					List<ExpertOrderVO>list = oDAO.selectExpertRequestedOrdersRange(startDate, endDate, keyword, "Y",sid);
 					
 					Paging paging = new PageImpl(request,list);
 					paging.setPagePerRecord(12);
@@ -125,16 +127,14 @@ function prevSubmit() {
 					int prevPage = paging.getPrevPage();
 					
 					String param="";
-					try {	
+
 					if (request.getQueryString() != null) {
 						param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
 						if(request.getQueryString().indexOf("p") == -1){
 							param = request.getQueryString();			
 						}	
 					}
-					} catch(Exception e) {
-						response.sendRedirect("success_list.jsp");
-					}
+
 					
 					pageContext.setAttribute("param",param);
 					
@@ -146,6 +146,12 @@ function prevSubmit() {
 					pageContext.setAttribute("prev", prevPage);
 					pageContext.setAttribute("list", result);
 					pageContext.setAttribute("size", result.size());
+					
+/* 				} catch(SQLException se) {
+						response.sendRedirect(request.getRequestURI());
+					} catch(Exception e) {
+						response.sendRedirect(request.getRequestURI());
+					}  */
 			
 					%>
 				<main style="margin-left: 24px; margin-top: 30px;">
@@ -208,3 +214,4 @@ function prevSubmit() {
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>
+

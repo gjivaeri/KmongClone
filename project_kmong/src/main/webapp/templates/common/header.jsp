@@ -19,6 +19,7 @@ if(((String)session.getAttribute("logoutDone"))!=null){
 if(((String)session.getAttribute("logoutSession"))!=null){
 	%>alert("잘못된 경로입니다.")<%
 	session.removeAttribute("logoutSession");
+
 }
 
 
@@ -91,6 +92,9 @@ $("#closeBtn").click(function(){
 $("#bg").click(function(){
 	$("#modal").css("display","none")
 })
+$("#searchbtn").click(function() {
+		$("#frm").submit();
+	})
 });//
 
 </script>
@@ -100,13 +104,13 @@ $("#bg").click(function(){
         <div class="header1">
             <a href="http://localhost/project_kmong/templates/home/index.jsp"><div class="logo-div"></div></a>
             <div style="flex-grow: 1;"></div>
-            <form>
+            <form action="http://localhost/project_kmong/templates/service/search_result.jsp" method="get" id="frm" name="frm">
                 <div class="search-div">
                     <div class="search-bar-div">
-                            <input class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
+                            <input class="search-input" type="text" name="search_input1" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                             
                             <div class="search-button">
-                                <a href="#void"><img src="http://localhost/project_kmong/static/images/search.png" style="width:20px; padding-bottom:2px; object-fit: cover;" /></a>
+                                <img src="http://localhost/project_kmong/static/images/search.png" id="searchbtn" style="width:20px; padding-bottom:2px; object-fit: cover;" />
                             </div> 
                     </div>
                 </div>

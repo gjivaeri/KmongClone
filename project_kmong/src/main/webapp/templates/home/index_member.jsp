@@ -1,5 +1,11 @@
+<%@page import="com.kmong.vo.PostVO"%>
+<%@page import="com.kmong.dao.login.MemberDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.vo.InterestVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +84,7 @@ img{
                     </div>
                 </div>
 
-                <div  style="width: 577px; height: 376px;">
+                <div  style="width: 577px; height: 376px; ">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -121,20 +127,35 @@ img{
                 <div style="margin-bottom:50px; font-size: 20px; font-weight:bold; color: #303441; font-family: 'Metro Sans',sans-serif;">
                  관심사가 비슷한 회원들이 본 서비스
                 </div>
-                
+                <c:catch var="e">
                 <div class="service">
-                    <%for(int i=0; i<8 ; i++){
+                <%
+                int member_id=(int)session.getAttribute("login");
+                
+                List<Integer> categoryList=new ArrayList<Integer>(); //관심사 VO 리스트
+                
+                //세션으로 받아온 회원의 멤버 아이디 넣고 관심사 카테고리 아이디 얻기
+                categoryList=mpDAO.selectInterests(member_id);
+                int num=(int)(Math.random()*categoryList.size());//리스트가 3개라면 123중 랜덤으로 하나를 고름
+                
+                //고른 수에 해당하는 리스트 방에서 category id를 가져옴
+                List<PostVO> postList=new ArrayList<PostVO>();
+                postList=mpDAO.selectPosts(categoryList.get(num));
+                
+                for(int i=0; i<postList.size() ; i++){
                     	%>
                     	<article class="post-one-by-one">
                     	<a href="#void">
-                    		<img src="http://localhost/project_kmong/static/images/adImg2.PNG" style="border-radius: 1px;"/>
+                    		<img src="http://localhost/project_kmong/static/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px;"/>
                     		<h6 data-testid="title" class="css-10894jy ezeyqpv9" style="font-size: 13px;  margin-top: 8px;">
-                    		로고 제작 공모전 488회 우승 명함이벤트 로고 제작해 드립니다.
+                    		<%=postList.get(i).getSummary()%>
                     		</h6>
-                    		<div style="text-align: right; margin-top: 10px"><strong>30,000원~</strong></div>
+                    		<div style="text-align: right; margin-top: 10px">
+                    		<strong><fmt:formatNumber value="<%=postList.get(i).getPrice()%>" pattern="#,###,###"/>원</strong>
+                    		</div>
                     		<div class="star-preview">
 	                    		<span style="padding-right: 2px">★</span>
-	                    		<span style="color:#333; padding-top:5px; font-size: 12px">5.0&nbsp;&nbsp;2개의 평가</span>
+	                    		<span style="color:#333; padding-top:5px; font-size: 12px"><%=postList.get(i).getStarAvg()%>&nbsp;&nbsp;2개의 평가</span>
                     		</div>
                     		
                     		</a>
@@ -143,7 +164,10 @@ img{
                     <% 
                     }
                     %>
-
+				</c:catch>
+				<c:if test="${not empty e }">
+				오류
+				</c:if>
                 </div>
                 
             </div>

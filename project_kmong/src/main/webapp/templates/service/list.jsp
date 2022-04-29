@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +117,13 @@ pageContext.setAttribute("categoryList", list1);
 
 <a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 <span>></span>
-<a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00">IT</a>
+<%
+String query1=request.getParameter("categoryId");
+
+
+
+%>
+<a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00"><c:out value="${categorylist.categoryName }"/></a>
 
 
 <!--인기순  -->
@@ -140,13 +147,17 @@ pageContext.setAttribute("categoryList", list1);
 
 
 
-<%
-String query=request.getParameter("categoryId");
-List<PostVO> list2=mnDAO.selectCategoryMenu(1);
+<%   // 이게 왜 가지는 건지 모르겠네...
+if(query1=="null") {
+	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp");
+}
+int query2=Integer.parseInt(query1);
+//int query=Integer.parseInt(request.getParameter("categoryId"));    // forward 로 categoryid=null 이면 1인 페이지로 이동하게 ? 만들기
+List<PostVO> list2=mnDAO.selectCategoryMenu(query2);
 pageContext.setAttribute("categoryMenu", list2);
 %>
-<%= query %>
-<%-- <c:forEach var="categoryMenu" items="${ categoryMenu}">
+
+ <c:forEach var="categoryMenu" items="${ categoryMenu}">
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp" class="css-1mr8hr4 ezeyqpv17">
 <div>
@@ -163,7 +174,7 @@ pageContext.setAttribute("categoryMenu", list2);
 <div class="css-1eoy87d ezeyqpv6">
   <div class="css-1ff36h2 ezeyqpv8"></div>
   <div class="css-s5xdrg ezeyqpv5">
-    <div data-testid="price" class="css-1848xfl ezeyqpv4"><c:out value="${category.price}"/>원</div>
+    <div data-testid="price" class="css-1848xfl ezeyqpv4"><fmt:formatNumber value="${categoryMenu.price}" pattern="#,###"/>원</div>
   </div>
 </div>
 
@@ -178,12 +189,12 @@ pageContext.setAttribute("categoryMenu", list2);
 </div>
 </a>
 </article>
-</c:forEach> --%>
+</c:forEach> 
 
 
 
 
-<article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
+<!-- <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp" class="css-1mr8hr4 ezeyqpv17">
 
 <div>
@@ -423,8 +434,10 @@ pageContext.setAttribute("categoryMenu", list2);
 </article>
 
 </div>
-</div>
+</div> -->
 <!-- -------------------------------메뉴페이지 끝--------------------------------------------- -->
+</div>
+</div>
 </div>
 </div>
 

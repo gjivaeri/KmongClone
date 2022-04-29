@@ -33,7 +33,7 @@ int prevPage = paging.getPrevPage();
 String param="";
 
 if (request.getQueryString() != null) {
-	param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+	//param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
 	if(request.getQueryString().indexOf("p") == -1){
 		param = request.getQueryString();			
 	}	

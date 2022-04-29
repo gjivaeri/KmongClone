@@ -14,11 +14,11 @@
 		
         String pass=DataEncrypt.messageDigest("MD5",password);
         
-       	boolean flag=lDAO.selectLoginInfo(email, pass);
+       	int memberID=lDAO.selectLoginInfo(email, pass);
         
        
-		if(flag){
-			session.setAttribute("login", email); //회원가입 성공 시
+		if(memberID!=0){
+			session.setAttribute("login", memberID); 
 			session.setAttribute("loginMsg", "loginMsg");
 			response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
 		}else{

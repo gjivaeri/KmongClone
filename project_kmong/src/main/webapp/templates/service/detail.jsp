@@ -1,3 +1,7 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.kmong.vo.PostVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,8 +17,42 @@ font-weight: bold;
 color:#333
 }
 
-
-
+/* 별점구현 */
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 2em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
 
 
 
@@ -57,10 +95,15 @@ $(function(){
 <a href="http://localhost/project_kmong/templates/service/list.jsp" style="color:#333; text-decoration: none" class="css-123">디자인</a>
 </div>
 </section>
-
+<%
+PostDAO pDAO = PostDAO.getInstance();
+List<Map<String, String>> list = pDAO.selectPost(40);
+%>
 <section>
 <div style="height:450px; margin-bottom: 30px">
-<img src="http://localhost/project_kmong/static/images/img.PNG"  style="height:100%; width:100% " />
+<!-- <img src="http://localhost/project_kmong/static/images/img.PNG"  style="height:100%; width:100% " /> -->
+<img src="http://localhost/project_kmong/static/<%= list.get(0).get("post_img") %>"  style="height:100%; width:100% " />
+
 </div>
 </section>
 
@@ -100,46 +143,14 @@ $(function(){
 <div class="service_explain">
 <h3>서비스 설명</h3>
 <p>
-[기자]
-
-네. 조금 전인 7시쯤 전국 부장검사 대표 회의가 시작됐습니다.
-
-수사 실무 책임자인 전국 검찰청 부장검사 대표들이 자발적으로 한자리에 모인 건 검찰 역사상 처음인데요.
-
-각 검찰청 대표 60여 명 정도가 참석할 것으로 알려졌습니다.
-
-검찰 수사권 폐지의 문제점과 함께 정치적 중립성 확보 방안에 대해서도 폭넓게 논의될 것으로 보입니다.
-
-회의는 오늘 밤 늦게까지 이어질 예정인데 내일 오전 입장문이 발표될 예정입니다.
-
-민주당의 법안 논의 속도에 맞춰 검찰은 바쁘게 움직이고 있습니다.
-
-수도권에서 처음으로 의정부지검장이 기자들을 만나 법안의 문제점을 지적했고, 대검찰청 형사부도 기자간담회를 열어 "인권 보호가 어려워진다"고 강조했습니다.
-
-[김지용/대검 형사부장 : "(검찰의 역할은) 부실 수사로 피해자의 구제가 미흡한 것은 아닌지 등을 밝히고 이를 시정하여 국민의 권익을 보호해 주는 것입니다."]
+<%= list.get(0).get("description") %>
 
 </p>
 </div>
 <hr/>
 <div class="price_information">
 <h3>가격정보</h3>
-[기자]
-
-네. 조금 전인 7시쯤 전국 부장검사 대표 회의가 시작됐습니다.
-
-수사 실무 책임자인 전국 검찰청 부장검사 대표들이 자발적으로 한자리에 모인 건 검찰 역사상 처음인데요.
-
-각 검찰청 대표 60여 명 정도가 참석할 것으로 알려졌습니다.
-
-검찰 수사권 폐지의 문제점과 함께 정치적 중립성 확보 방안에 대해서도 폭넓게 논의될 것으로 보입니다.
-
-회의는 오늘 밤 늦게까지 이어질 예정인데 내일 오전 입장문이 발표될 예정입니다.
-
-민주당의 법안 논의 속도에 맞춰 검찰은 바쁘게 움직이고 있습니다.
-
-수도권에서 처음으로 의정부지검장이 기자들을 만나 법안의 문제점을 지적했고, 대검찰청 형사부도 기자간담회를 열어 "인권 보호가 어려워진다"고 강조했습니다.
-
-[김지용/대검 형사부장 : "(검찰의 역할은) 부실 수사로 피해자의 구제가 미흡한 것은 아닌지 등을 밝히고 이를 시정하여 국민의 권익을 보호해 주는 것입니다."]
+<%= list.get(0).get("price") %>원
 </div>
 <hr/>
 <div style="margin-bottom: 20px" class="user_comment">
@@ -180,17 +191,36 @@ $(function(){
 <!-- 댓글작성 -->
 <div class="comments">
 
+<form class="mb-3" name="myform" id="myform" method="post">
 <div>
 <div>닉네임</div>
-<div style="display:flex; flex-direction: row">
+<!-- <div style="display:flex; flex-direction: row">
 <div>☆☆☆☆☆</div><div><span>( )</span></div>
-</div>
-</div>
-<div>
+</div> -->
+	<fieldset>
+		<span class="text-bold">별점을 선택해주세요</span>
+		<input type="radio" name="reviewStar" value="5" id="rate1"><label
+			for="rate1">★</label>
+		<input type="radio" name="reviewStar" value="4" id="rate2"><label
+			for="rate2">★</label>
+		<input type="radio" name="reviewStar" value="3" id="rate3"><label
+			for="rate3">★</label>
+		<input type="radio" name="reviewStar" value="2" id="rate4"><label
+			for="rate4">★</label>
+		<input type="radio" name="reviewStar" value="1" id="rate5"><label
+			for="rate5">★</label>
+	</fieldset>
+	<div>
+		<textarea class="col-auto form-control" type="text" id="reviewContents"
+				  placeholder="후기를 남겨주세요."></textarea>
+	</div>
+<!-- <div>
 <textarea placeholder="댓글을 입력해주세요." style="width:100%"></textarea>
-</div>
+</div> -->
 <div style="width:100px; float:right; margin-top: 5px">
 <input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary"/>
+</div>
+</form>			
 </div>
 </div>
   
@@ -221,22 +251,23 @@ $(function(){
 <section style="margin-bottom: 30px">
 <h3>"고객 만족 우선주의" 48시간 이내, 로고에 명함까지 드립니다.</h3>
 <hr/>
-<div style="text-align: right"><h3>45,000원</h3></div>
+<div style="text-align: right"><h3><%= list.get(0).get("price") %>원</h3></div>
 </section>
 
 <section style="margin-bottom: 30px ">
 <div style="border:1px solid rgb(228,229,237)">
 <div style="margin-bottom: 15px">
-<img src="http://localhost/project_kmong/static/images/img.PNG" style="height:300px; width:100%"/>
+<img src="http://localhost/project_kmong/static/<%= list.get(0).get("post_img") %>" style="height:300px; width:100%"/>
 </div>
 <div style="margin-bottom: 15px">
-<img src="http://localhost/project_kmong/static/images/img2.PNG"/><span>작업일 : 5일</span>
+<img src="http://localhost/project_kmong/static/images/img2.png"/><span><%= list.get(0).get("term") %>일</span>
 </div>
 
 <div style="margin:0px auto; width:70% ;margin-bottom: 50px">
 <button role="button" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://localhost/project_kmong/templates/service/purchase_success.jsp'">
 <span class="css-1oteowz eklkj753">
-<span>구매하기</span></span>
+<span><strong>구매하기</strong></span>
+</span>
 </button>
 </div>
 </div>
@@ -248,7 +279,7 @@ $(function(){
 <img src="http://localhost/project_kmong/static/images/mykmong.PNG" style="width:100%;height:100%"/>
 </div>
 <div style="font-size: 25px">
-<strong>전문가 닉네임</strong>
+<strong><%= list.get(0).get("nick") %></strong>
 </div>
 </div>
 </section>

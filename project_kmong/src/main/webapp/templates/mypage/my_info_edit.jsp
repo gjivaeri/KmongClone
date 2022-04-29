@@ -1,5 +1,16 @@
+<%@page import="com.kmong.vo.InterestVO"%>
+<%@page import="com.kmong.dao.account.AccountSettingDAO"%>
+<%@page import="com.kmong.vo.CategoryVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.account.MenuDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	 <%
+    session.setAttribute("insertFileFlag", false);
+    %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,10 +81,20 @@
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>	
 <script type="text/javascript">
-
-$(document).ready(function(){
+$(function() {
+//$(document).ready(function(){
     $('.multi_select').selectpicker();
-})
+//})
+
+$("#infobtn").click(function() {
+	
+	
+	$("#frm").submit();
+})//click
+
+
+
+});//ready
 
 </script>
 </head>
@@ -96,6 +117,7 @@ $(document).ready(function(){
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
+						<form action="check_my_info_edit.jsp" id="frm" name="frm" method="post" enctype="multipart/form-data">
 						<section id="main-section1">
 							<section id="main-section2">
 								<div id="div-img">
@@ -103,9 +125,9 @@ $(document).ready(function(){
 										alt="프로필 사진" id="profile-img" />
 								</div>
 								<div style="margin-top: 10px;">
-									<button role="button" color="default" class="profile-btn">
+									<button type="button" color="default" class="profile-btn">
 										<span><label for="file-input" style="cursor: pointer;">프로필 변경
-										<input id="file-input" type="file" accept="image/gif, image/jpeg, image/jpg, image/png" style="display: none;">
+										<input  name="upFile" id="file-input" type="file" accept="image/gif, image/jpeg, image/jpg, image/png" style="display:none">
 										</label>
 										</span>
 									</button>
@@ -149,32 +171,51 @@ $(document).ready(function(){
 									</div>
 								</div>
 								
+								
 								<div class="section2-div">
 									<label for="username" class="section2-label">
 									<span class="section2-span">비즈니스분야
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-										<select style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
-											<option selected="selected" value="IT">IT/프로그래밍</option>
-											<option value="design">디자인</option>
+										<select name="buCategoryId" style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
+<%
+MenuDAO mnDAO=new MenuDAO();   
+List<CategoryVO> list1=mnDAO.selectAllCategory();
+pageContext.setAttribute("categoryList", list1);
+%>
+										<c:forEach var="categorylist"  items="${categoryList }">
+											<option  value="${categorylist.categoryId }"><c:out value="${categorylist.categoryName}"/></option>
+								<!-- 			<option value="design">디자인</option>
 											<option value="media">영상/사진/음향</option>
 											<option value="marketing">마케팅</option>
-											<option value="translate">변역/통역</option>
+											<option value="translate">변역/통역</option> -->
+											</c:forEach>
 										</select>
 									</div>
 								</div>
 								
+								
+								<%
+					    	
+					    	 int memberId=(int)session.getAttribute("login");
+					    	AccountSettingDAO asDAO=new AccountSettingDAO();
+					    	List<InterestVO> list3=asDAO.findinterest(memberId);
+					    	pageContext.setAttribute("interest", list3);
+					    	%>
 							<div class="multi_select_box">
                         		<label for="username" class="section2-label">
                        			<span class="section2-span">관심사
 		                        </span>	
 		                        </label>
-        					<select class="multi_select w-100" 
+        					<select class="multi_select w-100"  name="interestcategory"
 						        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
 						        multiple title="관심사 3가지를 선택하세요.">
-					            <option value="design">디자인</option>
-								<option value="media">영상/사진/음향</option>
+						        <c:forEach var="categorylist1" items="${categoryList }">
+					            <option value="${categorylist1.categoryId }" <c:forEach var="inter" items="${ interest}"><c:if test="${inter.categoryId eq categorylist1.categoryId }"> selected="selected"</c:if></c:forEach>><c:out value="${categorylist1.categoryName }"/></option>
+					            
+					             
+						<!-- 		<option value="media">영상/사진/음향</option>
 								<option value="marketing">마케팅</option>
 								<option value="translate">변역/통역</option>
 								<option value="writing">문서/글쓰기</option>
@@ -186,14 +227,19 @@ $(document).ready(function(){
 								<option value="hobby">취미</option>
 								<option value="lifeservice">생활서비스</option>
 								<option value="psychological">심리상담</option>
-								<option value="VOD">VOD</option>
+								<option value="VOD">VOD</option> -->
+								</c:forEach>
 					   		</select>
 					    	</div>
+					    
+					    	
 							
 							</section>
 						</section>
-							<button role="button" type="submit" data-testid="submit-button" class="submit-btn" style="float: right; margin-top: 10px">
+							<button  id="infobtn" type="button" data-testid="submit-button" class="submit-btn" style="float: right; margin-top: 10px">
 							<span>확인</span>
+							</button>
+					</form>
 					</div>
 				</main>
 			</div>
