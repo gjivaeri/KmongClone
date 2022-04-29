@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@include file="../common/cdn.jsp"%>
-<title>Insert title here</title>
+<title>kmong</title>
 
 <!-- bootstrap CDN -->
 <link
