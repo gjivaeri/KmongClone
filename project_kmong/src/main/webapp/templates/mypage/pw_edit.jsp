@@ -29,6 +29,29 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function() {
+		$("#updatechkbtn").click(function() {
+			var pass1=$("#pass1").val();
+			var pass2=$("#pass2").val();
+			
+		if(pass1 ==""){
+			alert("새로운 비밀번호를 입력해주세요");
+			$("#pass1").focus();
+			return;
+		}//end if
+		if(pass2 ==""){
+			alert("한번더 입력해주세요");
+			$("#pass2").focus();
+	return;
+		}//end if
+		if(pass1 != pass2) {
+			alert("비밀번호가 서로 일치하지 않습니다.");
+			$("#pass2").focus();
+			return;
+		}
+		  	$("#frm").submit();  
+		  	
+
+		})//click
 
 	});//ready
 </script>
@@ -50,11 +73,12 @@
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">비밀번호 변경</h1>
+						<form action="check_pw_edit.jsp" method="post"  id="frm" name="frm">
 						<div id="update-pass-frm">
-						<section>
+						<!-- <section>
 						<div><label class="aside-a">현재 비밀번호</label></div>
 						<div class="input-textDiv"><input type="password" placeholder="기존 비밀번호를 입력해주세요." name="currentPassword" class="input-text" value=""></div>
-						</section>
+						</section> -->
 						<section>
 						<div class="passwd-chk-div">
 							<label class="aside-a"><span>변경할 비밀번호</span></label>
@@ -62,20 +86,23 @@
 						</div>
 						<div class="passwd-chk-div">
 							<div class="input-textDiv">
-								<input type="password" class="input-text" placeholder="변경할 비밀번호를 입력해주세요." name="updatePassword" value="">
+								<input type="password" class="input-text" placeholder="변경할 비밀번호를 입력해주세요." name="updatePassword" value="" id="pass1">
 							</div>
 							<div class="input-textDiv">
-								<input type="password" class="input-text" placeholder="변경할 비밀번호를 한번 더 입력해주세요." name="updatePasswordchk"  value="">
+								<input type="password" class="input-text" placeholder="변경할 비밀번호를 한번 더 입력해주세요." name="updatePasswordchk"  value="" id="pass2">
 							</div>
 						</div>
 						</section>
 						<div style="margin-top: 20px; display: flex;">
-							<div style="flex-grow:1;"></div>
-							<button role="button" type="submit" data-testid="submit-button" class="submit-btn" data-bs-toggle="modal" data-bs-target="#passChk">
+							<div style="flex-grow:1;"><span></span></div>
+							<button type="button" type="button"  class="submit-btn" id="updatechkbtn">
 							<span>변경하기</span>
 							</button>
 						</div>
 						</div>
+						</form>
+						
+						<!-- data-testid="submit-button"   data-bs-toggle="modal"   data-bs-target="#passChk"     -->
 						
 						<!-- Modal -->
 						<div class="modal fade" id="passChk" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

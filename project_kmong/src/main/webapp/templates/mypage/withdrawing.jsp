@@ -26,7 +26,35 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function() {
+		
+		
+		
+		$("#btn").click(function() {
+	 	var email = $("#textemail").val();
+	 	
+		 if($('input:radio[name=reasons]').is(':checked') !=true){
+				alert("탈퇴 이유를 선택해주세요.");
+				return;
+				
+		}//emd if
+			
+		if(email ==""){
+		alert("이메일을 입력해주세요.")	;
+		$("#textemail").focus();
+		return;
+		}//if
+		
+		
 
+		
+ 		if($('#chkbox').is(':checked') != true){
+			alert("주의사항 확인버튼을 클릭해주세요.");
+			return;
+		}  //end if
+		
+			$("#frm").submit();
+		});//click
+ 
 	});//ready
 </script>
 </head>
@@ -49,6 +77,7 @@
 						<h1 style="font-size: 18px; font-weight: bold;">회원탈퇴</h1>
 						<div id="main-section1">
 						<section>
+						<form action="check_withdrawing.jsp" method="get" id="frm" name="frm">
 							<div>크몽을 떠나는 이유를 알려주세요.</div>
 							<ul>
 							<li data-testid="이용하고 싶은 서비스가 없어요">
@@ -130,7 +159,7 @@
 							<section style="margin-top: 32px;">
 							<div style="color: #303441;">이메일 확인</div>
 							<div class="input-textDiv">
-								<input type="text" placeholder="크몽에 가입하신 이메일을 적어주세요" value="" class="input-text">
+								<input type="text" placeholder="크몽에 가입하신 이메일을 적어주세요" class="input-text" name="email1"  id="textemail"/>
 							</div>
 							</section>
 							<ul id="agree-ui">
@@ -142,14 +171,20 @@
 								<li class="agree-li">• 충전 캐시 또는 수익금이 있을 경우, 캐시 환불 및 수익금 출금을 통해 정산이 완료된 이후 탈퇴를 신청하셔야 합니다.<br>* 무상으로 지급된 크몽캐시는 탈퇴와 함께 자동 소멸됩니다.</li>
 							</ul>
 							<div>
-							<input type="checkbox" style="width: 16px; height: 16px;">
+							<input type="checkbox" style="width: 16px; height: 16px" id="chkbox">
 							<span>주의사항을 모두 확인하였습니다.</span>
+							</form>
 							<div style="margin-top: 20px; display: flex;">
 								<div style="flex-grow:1;"></div>
-								<button role="button"  data-testid="leave-button" class="submit-btn" data-bs-toggle="modal" data-bs-target="#withdrawalChk" style="background-color: #E4E5ED; border-color: #E4E5ED">
+								<button type="button" class="submit-btn" style="background-color: #E4E5ED; border-color: #E4E5ED"id="btn">
 								<span>회원 탈퇴</span>
 								</button>
 							</div>
+							
+							<!-- data-testid="leave-button"     data-bs-target="#withdrawalChk"    data-bs-toggle="modal"     -->
+							
+							
+							
 							
 							<!-- Modal -->
 						<div class="modal fade" id="withdrawalChk" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -162,7 +197,7 @@
 						       탈퇴가 성공적으로 완료되었습니다.
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%">확인</button>
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%" >확인</button>
 						      </div>
 						    </div>
 						  </div>

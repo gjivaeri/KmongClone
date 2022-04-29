@@ -118,11 +118,11 @@ public class MenuDAO {
 			// 4. 쿼리문 생성객체 얻기
 			StringBuilder selectSearchMenu = new StringBuilder();
 			selectSearchMenu.append("	select post_img, title, price, star_avg	").append("	from post	")
-					.append("	where title like= '%'||?||'%'	");
+					.append("	where title like ?	");
 
 			pstmt = con.prepareStatement(selectSearchMenu.toString());
 			// 5. 바인드 변수 값 할당
-			pstmt.setString(1, search);
+			pstmt.setString(1, "%"+search+"%");
 			// 6. 쿼리문 수행후 결과 얻기
 			rs = pstmt.executeQuery();
 
@@ -145,5 +145,47 @@ public class MenuDAO {
 		return list;
 
 	}// selectSearchMenu
+	
+	public boolean selectCategoryId(int categoryId)throws SQLException {
+		
+		boolean flag=false;
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
+		
+		
+		try {
+		//1. JNDI 사용객체 생성
+		//2. 설정된 DBCP 에서 DataSource 얻기
+		//3. DataSource에서 Connection 얻기
+			con=instance.getConn();
+		//4. 쿼리문 생성객체 얻기
+		String selectpass="select category_id from category where category_id = ?";
+		pstmt=con.prepareStatement(selectpass);
+		//5. 바인드 변수 값 설정
+		pstmt.setInt(1, categoryId);
+		
+		//6. 쿼리문 수행 후 결과 얻기
+		rs=pstmt.executeQuery();
+		
+		flag=rs.next();
+	
+		
+			
+
+		
+		
+		}finally {
+		//7. 연결끊기
+		instance.dbClose(rs, pstmt, con);
+		}//end finally
+		
+		
+		return flag;
+			
+		}//selectCheckPassword
 
 }// class

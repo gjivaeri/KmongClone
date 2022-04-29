@@ -26,6 +26,29 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function() {
+	
+				
+			$("#passbtn").click(function() {
+				var pass=$("#chkpass").val();
+				
+				if(pass == "") {
+					alert("비밀번호를 입력해주세요.");
+					$("#chkpass").focus();
+					return;
+				}//end if
+				
+				
+				$("#frm").submit();
+			});//click
+				
+			
+		
+	//	})//ajax
+		
+		
+	//})//click
+	
+	
 
 });//ready
 </script>
@@ -48,18 +71,22 @@ $(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
+						<form action="check_verifcation.jsp" id="frm"  method="post">
 						<section id="main-section1">
 						<div style="margin: 100px;">
 							<label style="margin-bottom: 10px;">비밀번호</label>
-							<input type="password" class="input-text" placeholder="비밀번호입력" name="pass" style="border: 1px solid #CCCCCC;"/>
+							<input type="password" id="chkpass" class="input-text" placeholder="비밀번호입력" name="pass" style="border: 1px solid #CCCCCC;"/>
 						</div>
 						</section>
 						<div style="margin-top: 20px; display: flex;">
 							<div style="flex-grow:1;"></div>
-							<button role="button" type="submit" data-testid="submit-button" class="submit-btn" data-bs-toggle="modal" data-bs-target="#checkModal">
+							<button type="button" type="button" class="submit-btn" id="passbtn">
 							<span>확인</span>
 							</button>
 						</div>
+				</form>
+				
+				<!-- data-testid="submit-button"   data-bs-toggle="modal"    data-bs-target="#checkModal" -->
 						
 						<!-- Modal -->
 						<div class="modal fade" id="checkModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -76,7 +103,7 @@ $(function() {
 						      </div>
 						    </div>
 						  </div>
-						</div>
+						</div> 
 						
 					</div>
 				</main>
