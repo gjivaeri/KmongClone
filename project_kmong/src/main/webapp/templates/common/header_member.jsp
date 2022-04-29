@@ -19,6 +19,11 @@ $(function(){
 	$("#logoutBtn").click(function(){
 		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
 	})
+	
+	$("#searchbtn").click(function() {
+		${"#frm"}.submit();
+		
+	})
 });//ready
 
 </script>
@@ -28,13 +33,13 @@ $(function(){
             
                 <div style="flex-grow: 1;"></div>
                 
-                    <form>
+                    <form action="http://localhost/project_kmong/templates/service/search_result.jsp" method="get" id="frm" name="frm">
                         <div class="search-div">
                             <div class="search-bar-div">
-                                    <input class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
+                                    <input name="search_input1" class="search-input" type="text" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                                     
                                     <div class="search-button">
-                                        <a href="#void"><img src="http://localhost/project_kmong/static/images/search.png" style="width:20px; padding-bottom:2px;  object-fit: cover;" /></a>
+                                        <img  src="http://localhost/project_kmong/static/images/search.png"  id="searchbtn" style="width:20px; padding-bottom:2px;  object-fit: cover;" />
                                     </div>    
                             </div>
                         </div>
@@ -82,9 +87,9 @@ $(function(){
                         
                         <span style="font-size: 11px; padding-left: 10px; ">계정 설정</span>
                        <!-- 카테고리 메뉴 DB에서 불러오기 -->
-                        <a href="#void"  style="font-size: 13px;">나의 정보</a>
-                        <a href="#void" style="font-size: 13px;">비밀번호 변경</a>
-                        <a href="#void" style="font-size: 13px;">회원 탈퇴</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"  style="font-size: 13px;">나의 정보</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/pw_edit.jsp" style="font-size: 13px;">비밀번호 변경</a>
+                        <a href="http://localhost/project_kmong/templates/mypage/withdrawing.jsp" style="font-size: 13px;">회원 탈퇴</a>
                         </div>
                     </div>
                    
