@@ -452,9 +452,10 @@ public List<InterestVO> findinterest(int memberId) throws SQLException {
 }// selectAllCategory
 
 public List<MemberVO> selectinformation(int memberId) throws SQLException {
-	
-
 	List<MemberVO> list = new ArrayList<MemberVO>();
+
+
+	
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -467,21 +468,20 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 		// 3. DataSource에서 Connection 얻기
 		con = instance.getConn();
 		// 4. 쿼리문 생성객체 얻기
-		String selectCategoryid = "select  name, tell, nick, email from member where member_id=?";
+		String selectCategoryid = "select  name, tel, nick, email from member where member_id=?";
 		pstmt = con.prepareStatement(selectCategoryid);
 		// 5.바인드 변수 값 할당
 		pstmt.setInt(1,memberId );
 		// 6. 쿼리문 수행후 결과 얻기
 		rs = pstmt.executeQuery();
-
 		MemberVO mVO = null;
 		while (rs.next()) {
 			mVO = new MemberVO();
 			
 			mVO.setName(rs.getString("name"));
-			mVO.setName(rs.getString("name"));
-			mVO.setName(rs.getString("name"));
-			mVO.setName(rs.getString("name"));
+			mVO.setTel(rs.getString("tel"));
+			mVO.setNick(rs.getString("nick"));
+			mVO.setEmail(rs.getString("email"));
 
 			list.add(mVO);
 		} // end while
@@ -490,8 +490,8 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 		// 7.연결끊기
 		instance.dbClose(rs, pstmt, con);
 	} // end finally
-
 	return list;
+
 
 }
 }//class

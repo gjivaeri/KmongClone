@@ -1,3 +1,4 @@
+<%@page import="com.kmong.vo.MemberVO"%>
 <%@page import="com.kmong.vo.InterestVO"%>
 <%@page import="com.kmong.dao.account.AccountSettingDAO"%>
 <%@page import="com.kmong.vo.CategoryVO"%>
@@ -9,6 +10,8 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	 <%
     session.setAttribute("insertFileFlag", false);
+	 int memberId=(int)session.getAttribute("login");
+	 AccountSettingDAO asDAO=new AccountSettingDAO();
     %>
 	
 <!DOCTYPE html>
@@ -133,6 +136,13 @@ $("#infobtn").click(function() {
 									</button>
 								</div>
 							</section>
+							<%
+							
+					List<MemberVO> list5=asDAO.selectinformation(memberId);
+						pageContext.setAttribute("infor", list5);
+							
+							%>
+							<c:forEach var="info" items="${infor}">
 							<section id="main-section2">
 								<div class="section2-div">
 									<label for="username" class="section2-label">
@@ -140,7 +150,7 @@ $("#infobtn").click(function() {
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="이름" maxlength="17" class="input-text">
+									<input type="text" placeholder="<c:out value="${info.name }"/>" maxlength="17" class="input-text">
 									</div>
 								</div>
 								<div class="section2-div">
@@ -149,7 +159,7 @@ $("#infobtn").click(function() {
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="전화번호" maxlength="17" class="input-text">
+									<input type="text" placeholder="<c:out value="${info.tel }"/>" maxlength="17" class="input-text">
 									</div>
 								</div>
 								<div class="section2-div">
@@ -158,7 +168,7 @@ $("#infobtn").click(function() {
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="닉네임" maxlength="17" class="input-text">
+									<input type="text" placeholder="<c:out value="${info.nick }"/>" maxlength="17" class="input-text">
 									</div>
 								</div>
 								<div class="section2-div">
@@ -167,10 +177,10 @@ $("#infobtn").click(function() {
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="이메일" maxlength="17" class="input-text">
+									<input type="text" placeholder="<c:out value="${info.email }"/>" maxlength="17" class="input-text">
 									</div>
 								</div>
-								
+								</c:forEach>
 								
 								<div class="section2-div">
 									<label for="username" class="section2-label">
@@ -198,8 +208,8 @@ pageContext.setAttribute("categoryList", list1);
 								
 								<%
 					    	
-					    	 int memberId=(int)session.getAttribute("login");
-					    	AccountSettingDAO asDAO=new AccountSettingDAO();
+					    	
+					    	
 					    	List<InterestVO> list3=asDAO.findinterest(memberId);
 					    	pageContext.setAttribute("interest", list3);
 					    	%>
@@ -215,19 +225,7 @@ pageContext.setAttribute("categoryList", list1);
 					            <option value="${categorylist1.categoryId }" <c:forEach var="inter" items="${ interest}"><c:if test="${inter.categoryId eq categorylist1.categoryId }"> selected="selected"</c:if></c:forEach>><c:out value="${categorylist1.categoryName }"/></option>
 					            
 					             
-						<!-- 		<option value="media">영상/사진/음향</option>
-								<option value="marketing">마케팅</option>
-								<option value="translate">변역/통역</option>
-								<option value="writing">문서/글쓰기</option>
-								<option value="business">비즈니스컨설팅</option>
-								<option value="twojob">투잡/노하우</option>
-								<option value="luck">운세</option>
-								<option value="capacity">직무역량</option>
-								<option value="order">주문제작</option>
-								<option value="hobby">취미</option>
-								<option value="lifeservice">생활서비스</option>
-								<option value="psychological">심리상담</option>
-								<option value="VOD">VOD</option> -->
+					
 								</c:forEach>
 					   		</select>
 					    	</div>
