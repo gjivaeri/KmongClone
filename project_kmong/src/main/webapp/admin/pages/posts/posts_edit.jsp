@@ -1,8 +1,16 @@
+<%@page import="com.kmong.vo.admin.AdminPostsVO"%>
+<%@page import="com.kmong.dao.admin.AdminPostDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+int postId = Integer.parseInt(request.getParameter("postId"));
+AdminPostDAO apDAO = AdminPostDAO.getInstance();
+AdminPostsVO apVO = apDAO.selectDetailPost(postId);
+request.setAttribute("post", apVO);
+request.setAttribute("postNum", postId);
+%>
 
-    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,7 +58,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Post Edit</h4>
                     <form class="form-sample">
-                      <p class="card-description"> Post info </p>
+                      <p class="card-description"> Post No. ${postNum } </p>
 
                       <!-- 이름, 작성자 -->
                       <div class="row">
@@ -58,7 +66,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Title</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" value="게시글이름">
+                              <input type="text" class="form-control" value="${post.title}">
                             </div>
                           </div>
                         </div>
@@ -67,7 +75,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Writer</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" value="전문가1">
+                              <input type="text" class="form-control" value="${post.email}">
                             </div>
                           </div>
                         </div>
@@ -80,8 +88,8 @@
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
                               <select class="form-control">
+                                <option value="${post.categoryName }" selected>${post.categoryName }</option>
                                 <option>IT/Programming</option>
-                                <option value="영상" selected>영상</option>
                                 <option>Category3</option>
                                 <option>Category4</option>
                               </select>
@@ -92,7 +100,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Write-Date</label>
                             <div class="col-sm-9">
-                              <input class="form-control" placeholder="dd/mm/yyyy" value="09/04/2022">
+                              <input class="form-control" placeholder="dd/mm/yyyy" value="${post.postDate}">
                             </div>
                           </div>
                         </div>
@@ -104,7 +112,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Price</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" value="50,000">
+                              <input type="text" class="form-control" value="${post.price}">
                             </div>
                           </div>
                         </div>
@@ -146,7 +154,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="exampleTextarea1">Summary</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="3">요약글이 들어가는 공간</textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="3">${post.summary}</textarea>
                           </div>
                         </div>
                       </div>
@@ -154,7 +162,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="exampleTextarea1">Service Information</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="8">상세글이 들어가는 공간</textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="8">${post.description}</textarea>
                           </div>
                         </div>
                       </div>
