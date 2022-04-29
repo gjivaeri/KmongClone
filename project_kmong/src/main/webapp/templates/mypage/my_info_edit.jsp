@@ -244,6 +244,7 @@ pageContext.setAttribute("categoryList", list1);
 		</div>
 		
 	</div>
+	
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>
