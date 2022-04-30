@@ -97,13 +97,14 @@ if(session.getAttribute("pwConfirmed")!=null){
 		<%
 		session.setAttribute("pwConfirmed","done");
 		session.setAttribute("confirmed", "info");
-		}else if(((String)session.getAttribute("pwConfirmed")).equals("done")&&((String)session.getAttribute("confirmed")).equals("info")){
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				||!(((String)session.getAttribute("confirmed")).equals("info"))){
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
 		
-		}else{
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				&&(!((String)session.getAttribute("confirmed")).equals("info"))){
 			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
 		}
-	//	session.removeAttribute("pwConfirmed"); 
-	
 }else{
 		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
 }
