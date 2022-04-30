@@ -16,6 +16,32 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
+<%
+String asd="";
+String text="";
+//session.removeAttribute("service");
+if(request.getParameter("service")==null) {
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+}else{
+
+	asd = request.getParameter("service");
+	//String dfg="";
+	if(asd.equals("info")) {
+		session.setAttribute("service", "info");
+		text="나의 정보";
+	}
+	if(asd.equals("pass")) {
+		session.setAttribute("service", "pass");
+		text="비밀번호 변경";
+	}
+	if(asd.equals("withdraw")) {
+		session.setAttribute("service", "withdraw");
+		text="회원탈퇴";
+	}
+}
+
+
+%>
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
 	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
@@ -57,25 +83,6 @@ $(function() {
  <%@include file="../common/header_member.jsp"%>
 		<hr>
 
-<%
-if(request.getParameter("service")==null) {
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
-}else{
-
-String asd = request.getParameter("service");
-String dfg="";
-if(asd.equals("info")) {
-	session.setAttribute("service", "info");
-}
-if(asd.equals("pass")) {
-	session.setAttribute("service", "pass");
-}
-if(asd.equals("withdraw")) {
-	session.setAttribute("service", "withdraw");
-}}
-
-
-%>
 		<!-- main div -->
 		<div id="aside-div">
 			<aside class="aside">
@@ -89,7 +96,7 @@ if(asd.equals("withdraw")) {
 			</aside>
 				<main style="margin-left: 24px;">
 					<div>
-						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
+						<h1 style="font-size: 18px; font-weight: bold;"><%=text %></h1>
 
 
 						

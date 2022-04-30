@@ -25,6 +25,24 @@
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+<%
+if(session.getAttribute("pwConfirmed")!=null){
+
+	if(((String)session.getAttribute("pwConfirmed")).equals("withdraw")){
+	%>
+		alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");
+		session.setAttribute("confirmed", "withdraw");
+	}else if(((String)session.getAttribute("pwConfirmed")).equals("done")&&((String)session.getAttribute("confirmed")).equals("withdraw")){
+		
+	}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+	}
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+}%>
 	$(function() {
 		
 		
