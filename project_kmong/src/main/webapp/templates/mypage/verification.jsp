@@ -36,7 +36,7 @@ if(request.getParameter("service")==null) {
 	}
 	if(asd.equals("withdraw")) {
 		session.setAttribute("service", "withdraw");
-		text="회원탈퇴";
+		text="회원 탈퇴";
 	}
 }
 
