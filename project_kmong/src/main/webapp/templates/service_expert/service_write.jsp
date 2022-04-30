@@ -8,12 +8,12 @@
 <head>
 <%@include file="../common/cdn.jsp"%>
 <title>kmong</title>
-<%-- 
+ 
 <%@include file ="../order_expert/validate_expert.jsp" %>
 
 <% 
 int sid = login;  
-%> --%>
+%> 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -66,45 +66,66 @@ $(function() {
 		var term=$("#term").val();
 		var description=$("#summernote").val();
 		var postImg=$("#post-img").val();
-		if(title == ""){
-			alert("제목은 필수 입력입니다.");
-			$("#lengthNum1").focus();
-		}else if(category == ""){
-			alert("카테고리는 필수 입력입니다.");
-			$("#category").focus();
-		}else if(summary == ""){
-			alert("간단설명은 필수 입력입니다.");
-			$("#explain-ta").focus();
-		}else if(price == ""){
-			alert("가격은 필수 입력입니다.");
-			$("#price").focus();
-		}else if(term == "0"){
-			alert("작업기간은 필수 입력입니다.");
-			$("#term").focus();
-		}else if(description == ""){
-			alert("설명은 필수 입력입니다.");
-			$("#summernote").focus();
-		}else if(postImg == ""){
-			alert("사진은 필수 입력입니다.");
-			//$("#post-img").focus();
-		}//end if
 		
-		//업로드 파일은 이미지 파일만 업로드 가능, 업로드 가능 확장자는 png, jpg, gif, bmp
-		let ext = postImg.toLowerCase().substring(postImg.lastIndexOf(".")+1);
-		var compareExt="png,jpg,gif,bmp".split(",");
-		var flag=false;
-		for(var i=0; i<compareExt.length; i++){
-			if(compareExt[i] == ext){
-				flag=true;
-				break;
+			if(title == ""){
+				alert("제목은 필수 입력입니다.");
+				$("#lengthNum1").focus();
+				return false;
 			}
-		}
-		if( !flag ){
-			alert(fileName+"은 업로드 불가능 합니다.\n 이미지로만 업로드 가능합니다.\n 가능 확장자: png, jpg, gif, bmp");
-			return;
-		}
+			
+			if(category == ""){
+				alert("카테고리는 필수 입력입니다.");
+				$("#category").focus();
+				return false;
+			}
+			
+			if(summary == ""){
+				alert("간단설명은 필수 입력입니다.");
+				$("#explain-ta").focus();
+				return false;
+			}
+			
+			if(price == 0){
+				alert("가격은 필수 입력입니다.");
+				$("#price").focus();
+				return false;
+			}
+			
+			if(term == "0"){
+				alert("작업기간은 필수 입력입니다.");
+				$("#term").focus();
+				return false;
+			}
+			
+			if(description == ""){
+				alert("설명은 필수 입력입니다.");
+				$("#summernote").focus();
+				return false;
+			}
+			
+			if(postImg == ""){
+				alert("사진은 필수 입력입니다.");
+				return false;
+				//$("#post-img").focus();
+			}//end if
+			
+			//업로드 파일은 이미지 파일만 업로드 가능, 업로드 가능 확장자는 png, jpg, gif, bmp
+			let ext = postImg.toLowerCase().substring(postImg.lastIndexOf(".")+1);
+			var compareExt="png,jpg,gif,bmp".split(",");
+			var flag=false;
+			for(var i=0; i<compareExt.length; i++){
+				if(compareExt[i] == ext){
+					flag=true;
+					break;
+				}
+			}
+			if( !flag ){
+				alert(postImg+"은 업로드 불가능 합니다.\n 이미지로만 업로드 가능합니다.\n 가능 확장자: png, jpg, gif, bmp");
+				$("#post-img").focus();
+				return false;
+			}
 		
-		$("#frm").submit();
+			$("#frm").submit();
 		
 	});//click
 	  
