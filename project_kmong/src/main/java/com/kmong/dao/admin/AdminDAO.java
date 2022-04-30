@@ -11,6 +11,7 @@ import javax.naming.spi.DirStateFactory.Result;
 
 import com.kmong.dao.DbConnectionDBCP;
 import com.kmong.vo.AdminVO;
+import com.kmong.vo.CategoryVO;
 import com.kmong.vo.MemberVO;
 import com.kmong.vo.PostVO;
 import com.kmong.vo.admin.AdminMemberVO;
@@ -196,12 +197,13 @@ public class AdminDAO {
 			if(opt == null){
 			sql.append("select * ");
 			sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-			sql.append(" from(select * from post order by post_id, post_date) p");
+			sql.append(" from(select * from post order by post_date desc, post_id desc) p");
 			sql.append(" join member m");
 			sql.append(" on m.member_id = p.member_id");
 			sql.append(" join category c");
 			sql.append(" on c.category_id = p.category_id)");
 			sql.append(" where rnum>=?");
+			
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, 1);
@@ -212,13 +214,14 @@ public class AdminDAO {
 			else{
 				sql.append("select * ");
 				sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-				sql.append(" from(select * from post order by post_id, post_date) p");
+				sql.append(" from(select * from post order by post_date desc, post_id desc) p");
 				sql.append(" join member m");
 				sql.append(" on m.member_id = p.member_id");
 				sql.append(" join category c");
 				sql.append(" on c.category_id = p.category_id)");
 				sql.append(" where title like ? or category_name like ? or email like ? ");
 				sql.append(" or to_char(post_id) like ? or to_char(rnum) like ? ");
+
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, '%'+opt+'%');
@@ -374,6 +377,28 @@ public class AdminDAO {
 		return list;
 	}
 	
+	public List<CategoryVO> selectAllCategory() throws SQLException {
+		Connection con = dc.getConn();
+		String sql = "select * from category";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		List<CategoryVO> list = new ArrayList<CategoryVO>();
+		CategoryVO cVO = null;
+		
+		try(con; pstmt; rs;){
+			while(rs.next()) {
+				cVO=new CategoryVO();
+				cVO.setCategoryId(rs.getInt("category_id"));
+				cVO.setCategoryName(rs.getString("category_name"));
+				cVO.setCategoryImage(rs.getString("category_image"));
+				cVO.setCategoryStatus(rs.getString("category_status"));
+				
+				list.add(cVO);
+			}
+		}
+		return list;
+	}
+	
 };//class
 		
 		
@@ -386,13 +411,9 @@ public class AdminDAO {
 + updateMember(memberVO): boolean
 + deleteMember(memberVO): boolean
 
-+ selectDetailOrders(int): ordersVO
-+ updateOrders(oderVO, char): boolean //취소
 
 + selectAllCategory(): List<categoryVO> //모든 카테고리 조회
 + selectRegisteredCategory(): int //등록된 카테고리 수
 + selectDetailCategory(int): categoryVO
-+ updateCategory(categoryVO): boolean
-+ updateCategory(categoryVO, char): boolean //카테고리 삭제
 + insertCategory(String, String): void //카테고리 추가
 */

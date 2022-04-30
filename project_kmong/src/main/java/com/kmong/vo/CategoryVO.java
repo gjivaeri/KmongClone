@@ -3,8 +3,7 @@ package com.kmong.vo;
 public class CategoryVO {
 
 	private int categoryId;
-	private String categoryName, categoryImage, inputDate;
-	private char  categoryStatus;
+	private String categoryName, categoryImage, inputDate, categoryStatus;
 	
 	
 	public CategoryVO() {
@@ -14,7 +13,7 @@ public class CategoryVO {
 
 
 	public CategoryVO(int categoryId, String categoryName, String categoryImage, String inputDate,
-			char categoryStatus) {
+			String categoryStatus) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
@@ -66,12 +65,12 @@ public class CategoryVO {
 	}
 
 
-	public char getCategoryStatus() {
+	public String getCategoryStatus() {
 		return categoryStatus;
 	}
 
 
-	public void setCategoryStatus(char categoryStatus) {
+	public void setCategoryStatus(String categoryStatus) {
 		this.categoryStatus = categoryStatus;
 	}
 	
