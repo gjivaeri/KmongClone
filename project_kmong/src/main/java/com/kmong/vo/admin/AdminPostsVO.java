@@ -3,17 +3,18 @@ package com.kmong.vo.admin;
 import java.util.Date;
 
 public class AdminPostsVO {
-	int rnum, postId, price; 
+	int rnum, postId, price, categoryId; 
 	String categoryName, title, email, summary, description, img;
 	Date postDate;
 	
 	public AdminPostsVO() {
 	}
 	
-	public AdminPostsVO(int rnum, int postId, int price, String categoryName, String title, String email, String summary,
+	public AdminPostsVO(int rnum, int postId, int price, int categoryId, String categoryName, String title, String email, String summary,
 			String description, String img, Date postDate) {
 		this.rnum = rnum;
 		this.postId = postId;
+		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.title = title;
 		this.email = email;
@@ -31,6 +32,10 @@ public class AdminPostsVO {
 	public int getPrice() {
 		return price;
 	}
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
 
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
@@ -38,6 +43,10 @@ public class AdminPostsVO {
 	
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public int getPostId() {

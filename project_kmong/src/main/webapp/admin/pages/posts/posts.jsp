@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/admin_validate.jsp" %>
 <%
 String table="POST";
 String tempSearch=request.getParameter("search");
@@ -13,9 +14,6 @@ AdminDAO aDAO = AdminDAO.getInstance();
 List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
 int totalCnt = aDAO.getAllCount(table);
 int todayCnt = aDAO.getTodayCount(table);
-
-pageContext.setAttribute("totalCnt", totalCnt);
-pageContext.setAttribute("todayCnt", todayCnt);
 
 
 /* paging */
@@ -112,7 +110,7 @@ pageContext.setAttribute("size", result.size());
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Post List</h4>
-                    <div>총 게시글 수 : ${totalCnt}건 | 오늘 등록된 게시글 수: ${todayCnt}건</div><br/>
+                    <div>총 게시글 수 : <%=totalCnt %>건 | 오늘 등록된 게시글 수: <%=todayCnt %>건</div><br/>
                     <div class="form-group">
                       <form id="search-frm">
                       <div class="input-group">

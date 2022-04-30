@@ -1,7 +1,15 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.vo.CategoryVO"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@include file="../common/admin_validate.jsp" %>
+<%
+AdminDAO aDAO = AdminDAO.getInstance();
+List<CategoryVO> cVOlist= aDAO.selectAllCategory();
+pageContext.setAttribute("list", cVOlist);
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -57,75 +65,19 @@
                       <div class="col-12">
                         <div class="preview-list">
 
+						<c:forEach var="category" items="${list}">
                           <div class="preview-item border-bottom">
                             <div class="preview-thumbnail">
-                              <div class="preview-icon bg-primary">
-                                <i class="mdi mdi-monitor"></i>
-                              </div>
+                              <img src="http://localhost/project_kmong/static/${category.categoryImage}"/>
                             </div>
                             <div class="preview-item-content d-sm-flex flex-grow">
                               <div class="flex-grow">
-                                <h4 class="preview-subject">IT/프로그래밍</h4>
-                                <a class="text-muted mb-0" href="categories_edit.jsp">edit</a>
+                                <h4 class="preview-subject">${category.categoryName}</h4>
+                                <a class="text-muted mb-0" href="http://localhost/project_kmong/admin/pages/categories/categories_edit.jsp?id=${category.categoryId}">edit</a>
                               </div>
                             </div>
                           </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-success">
-                                <i class="mdi mdi-auto-fix"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h4 class="preview-subject">디자인</h4>
-                                <a class="text-muted mb-0" href="categories_edit.jsp">edit</a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-info">
-                                <i class="mdi mdi-camcorder-box"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h4 class="preview-subject">영상/사진/음향</h4>
-                                <a class="text-muted mb-0" href="categories_edit.jsp">edit</a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-danger">
-                                <i class="mdi mdi-chart-bar"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h4 class="preview-subject">마케팅</h4>
-                                <a class="text-muted mb-0" href="categories_edit.jsp">edit</a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-warning">
-                                <i class="mdi mdi-file-document"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h4 class="preview-subject">번역/통역</h4>
-                                <a class="text-muted mb-0" href="categories_edit.jsp">edit</a>
-                              </div>
-                            </div>
-                          </div>
+                        </c:forEach>
 
                           <br/>
                           <a href="categories_add.jsp">

@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/admin_validate.jsp" %>
 <%
 String opt = request.getParameter("search");
 String exp = "N";
@@ -147,7 +148,7 @@ pageContext.setAttribute("size", result.size());
                             <td>${ user.nick }</td>
                             <td>${ user.joinDate }</td>
                             <td> 
-                              <a href="users_edit.jsp" style="color:white;">
+                              <a href="http://localhost/project_kmong/admin/pages/users/users_edit.jsp?id=${user.memberId }" style="color:white;">
                                 수정
                               </a>
                             </td>
