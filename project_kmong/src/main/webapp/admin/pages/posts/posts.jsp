@@ -14,9 +14,6 @@ List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
 int totalCnt = aDAO.getAllCount(table);
 int todayCnt = aDAO.getTodayCount(table);
 
-pageContext.setAttribute("totalCnt", totalCnt);
-pageContext.setAttribute("todayCnt", todayCnt);
-
 
 /* paging */
 Paging paging = new PageImpl(request,list);
@@ -112,7 +109,7 @@ pageContext.setAttribute("size", result.size());
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Post List</h4>
-                    <div>총 게시글 수 : ${totalCnt}건 | 오늘 등록된 게시글 수: ${todayCnt}건</div><br/>
+                    <div>총 게시글 수 : <%=totalCnt %>건 | 오늘 등록된 게시글 수: <%=todayCnt %>건</div><br/>
                     <div class="form-group">
                       <form id="search-frm">
                       <div class="input-group">

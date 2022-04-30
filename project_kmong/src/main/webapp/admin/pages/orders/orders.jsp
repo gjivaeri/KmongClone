@@ -23,14 +23,6 @@ int totalStatCntP = aDAO.getAllCount(table, "P");
 int todayStatCntP = aDAO.getTodayCount(table, "P");
 
 request.setAttribute("list", list);
-request.setAttribute("totalCnt", totalCnt);
-request.setAttribute("totalStatCntY", totalStatCntY);
-request.setAttribute("totalStatCntN", totalStatCntN);
-request.setAttribute("totalStatCntP", totalStatCntP);
-request.setAttribute("todayCnt", todayCnt);
-request.setAttribute("todayStatCntY", todayStatCntY);
-request.setAttribute("todayStatCntN", todayStatCntN);
-request.setAttribute("todayStatCntP", todayStatCntP);
 /* end order count */
 /* paging */
 Paging paging = new PageImpl(request,list);
@@ -125,8 +117,8 @@ pageContext.setAttribute("size", result.size());
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Order Status</h4>
-                    <div>총 결제내역 : ${totalCnt}건 | 완료: ${totalStatCntY }건 | 대기중: ${totalStatCntP }건 | 취소:${totalStatCntN }건</div>
-                    <div>오늘 결제내역 : ${todayCnt}건 | 완료: ${todayStatCntY }건 | 대기중: ${todayStatCntP }건 | 취소:${todayStatCntN }건</div><br/>
+                    <div>총 결제내역 : <%=totalCnt %>건 | 완료: <%=totalStatCntY %>건 | 대기중: <%=totalStatCntP %>건 | 취소: <%=totalStatCntN %>건</div>
+                    <div>오늘 결제내역 : <%=todayCnt %>건 | 완료: <%=todayStatCntY %>건 | 대기중: <%=todayStatCntP %>건 | 취소: <%=todayStatCntN %>건</div><br/>
                     <div class="form-group">
                       <form id="search-frm">
                       <div class="input-group">
@@ -163,7 +155,7 @@ pageContext.setAttribute("size", result.size());
                               ${order.orderId }
                             </td>
                             <td>${order.postId }</td>
-                            <td><a href="orders_detail.jsp" style="color:white">${order.title }</a></td>
+                            <td><a href="http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=${order.orderId }" style="color:white">${order.title }</a></td>
                             <td>${order.expert }</td>
                             <td>${order.user }</td>
                             <td>${order.price}</td>

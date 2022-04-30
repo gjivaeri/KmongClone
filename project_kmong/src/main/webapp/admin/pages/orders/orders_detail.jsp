@@ -1,7 +1,18 @@
+<%@page import="com.kmong.vo.admin.AdminOrdersVO"%>
+<%@page import="com.kmong.dao.admin.AdminOrderDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+if(request.getQueryString() == null){
+	response.sendRedirect("http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=3");
+	return;
+}
 
+int orderId = Integer.parseInt(request.getParameter("id"));
+AdminOrderDAO aoDAO = AdminOrderDAO.getInstance();
+AdminOrdersVO aoVO = aoDAO.selectDetailOrder(orderId);
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +30,15 @@
 		const uiShow = document.getElementById("ui-order");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+		$(function(){
+			$("#cancel-order").click(function(){
+				var warning = confirm("주문을 취소하시겠습니까?")
+				if(warning){
+				$("#frm").submit();
+				}
+			});
+		});//ready
+
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -62,7 +82,7 @@
                               <h4>주문번호</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">3</h6>
+                                <h6 class="preview-subject"><%=aoVO.getOrderId() %></h6>
                             </div>
                           </div>
 
@@ -71,7 +91,7 @@
                               <h4>게시글번호</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">5</h6>
+                                <h6 class="preview-subject"><%=aoVO.getPostId() %></h6>
                             </div>
                           </div>
 
@@ -80,7 +100,7 @@
                               <h4>게시글제목</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">게시글제목 입니다</h6>
+                                <h6 class="preview-subject"><%=aoVO.getTitle() %></h6>
                             </div>
                           </div>
 
@@ -89,7 +109,7 @@
                               <h4>주문일</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">April 20, 2022</h6>
+                                <h6 class="preview-subject"><%=aoVO.getOrderDate() %></h6>
                             </div>
                           </div>
 
@@ -98,7 +118,7 @@
                               <h4>전문가</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">expert1</h6>
+                                <h6 class="preview-subject"><%=aoVO.getExpert() %></h6>
                             </div>
                           </div>
 
@@ -107,7 +127,7 @@
                               <h4>사용자</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">user1</h6>
+                                <h6 class="preview-subject"><%=aoVO.getUser() %></h6>
                             </div>
                           </div>
 
@@ -116,7 +136,7 @@
                               <h4>가격</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">50,000</h6>
+                                <h6 class="preview-subject"><%=aoVO.getPrice() %></h6>
                             </div>
                           </div>
 
@@ -125,12 +145,16 @@
                               <h4>상태</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">Canceled</h6>
+                                <h6 class="preview-subject"><%=aoVO.getStatus() %></h6>
                             </div>
                           </div>
                           <br/>
-                          <button type="button" class="btn btn-outline-danger btn-icon-text">
-                            <i class="mdi mdi-delete-forever btn-icon-prepend"></i>Delete</button>
+						<form action="orders_detail_pro.jsp" method="post" id="frm">
+						    <input type="text" value="<%=aoVO.getOrderId() %>" name="orderId" style="display:none">
+                           <button type="button" class="btn btn-outline-danger btn-icon-text" id="cancel-order">
+                            <i class="mdi mdi-delete-forever btn-icon-prepend"></i>Cancel Order
+                            </button>
+                        </form>
                         </div>
                       </div>
                     </div>

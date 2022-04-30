@@ -54,7 +54,14 @@ public class AdminPostDAO {
 		}
 		return post;
 	}
-	
+	/*
+	 * public boolean updatePost(AdminPostsVO apVO) { boolean result = false;
+	 * Connection con = dc.getConn(); StringBuilder sql = new StringBuilder();
+	 * sql.append("update post set title=?, summary=?, price=?, category_)
+	 * PreparedStatement pstmt = con.prepareStatement(sql);
+	 * 
+	 * return result; }
+	 */	
 	
 
 }

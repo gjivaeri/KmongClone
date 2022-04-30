@@ -147,7 +147,7 @@ pageContext.setAttribute("size", result.size());
                             <td>${ user.nick }</td>
                             <td>${ user.joinDate }</td>
                             <td> 
-                              <a href="users_edit.jsp" style="color:white;">
+                              <a href="http://localhost/project_kmong/admin/pages/users/users_edit.jsp?id=${user.memberId }" style="color:white;">
                                 수정
                               </a>
                             </td>
