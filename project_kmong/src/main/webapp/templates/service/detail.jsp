@@ -145,7 +145,7 @@ if (session.getAttribute("login") != null) {
 </section>
 <%
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(40);
+List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는 게시물의 정보 조회
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
@@ -261,9 +261,15 @@ List<Map<String, String>> list = pDAO.selectPost(40);
 		<textarea class="col-auto form-control" type="text" id="reviewContents" name="reviewText" placeholder="후기를 남겨주세요."></textarea>
 	</div>
 <div style="width:100px; float:right; margin-top: 5px">
+<<<<<<< HEAD
 <input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary" id="reviewBtn"/>
 </div>
 <input type="hidden" value="<%= postId %>" name="postId" />
+=======
+<input type="button" value="등록" style="width:100`12	/*-+7sdg%" class="btn btn-outline-secondary"/>
+
+ ㅍdiv>
+>>>>>>> branch 'master' of https://github.com/gjivaeri/KmongClone.git
 </form>			
 </div>
 <!-- 댓글작성 -->

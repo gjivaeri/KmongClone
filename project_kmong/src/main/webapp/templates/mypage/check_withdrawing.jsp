@@ -5,8 +5,9 @@
 
     <%
     request.setCharacterEncoding("UTF-8");
-    session.setAttribute("lo", 5);
+    session.setAttribute("lo",1);
     int memberId=(int)session.getAttribute("lo");
+    //int memberId=(int)session.getAttribute("login");
     String email=request.getParameter("email1");
     String reason=request.getParameter("reasons");
     MemberVO mVO=new MemberVO();

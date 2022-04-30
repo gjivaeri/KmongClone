@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-    
+<%@include file="../common/admin_validate.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,10 +14,50 @@
       <!-- sidebar.jsp (left)-->
       <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
 		<script>
+		$(function(){
 		const navActive = document.getElementById("nav-category");
 		const uiShow = document.getElementById("ui-category");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+
+		$("#add-category").click(function(){
+			var catName = $("#category-name").val()
+			if(catName==""){
+				alert("카테고리명을 입력해주세요");
+				return;
+			}
+			var fileName = $(".file-upload-default").val();
+			let ext=fileName.toLowerCase().substring(fileName.lastIndexOf(".")+1);
+			var compareExt = "png,jpg,gif,bmp".split(",");
+			var flag=false;
+			
+			for(var i = 0 ; i < compareExt.length; i++){
+				if(compareExt[i] == ext){
+					flag=true;
+					break;
+				}//end if
+			}//end for
+			
+			if(!flag){
+				alert(fileName+"은 업로드 불가능합니다. \n이미지만 업로드 가능합니다");
+				return;
+			}
+			
+			var warning = confirm("카테고리를 추가하시겠습니까?")
+			if(warning){
+			$("#add-frm").submit();
+			}
+		});
+
+			    $('.file-upload-browse').on('click', function() {
+			      var file = $(this).parent().parent().parent().find('.file-upload-default');
+			      file.trigger('click');
+			    });
+			    $('.file-upload-default').on('change', function() {
+			      $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+			    });
+
+	});//ready
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -49,7 +88,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Category Add</h4>
-                    <form class="form-sample">
+                    <form method="post" action="categories_add_pro.jsp" enctype="multipart/form-data" class="form-sample" id="add-frm" >
                       <p class="card-description">Category Add </p>
 
                       <!-- 이름, 작성자 -->
@@ -58,18 +97,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Title</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" value="카테고리이름">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Category Image</label>
-                            <div class="col-sm-9">
-                              <img src="http://localhost/project_kmong/admin/assets/images/auth/Login_bg.jpg" style="height:200px;" alt="thumbnail">
+                              <input type="text" class="form-control" placeholder="카테고리명 입력" name="name" id="category-name">
                             </div>
                           </div>
                         </div>
@@ -80,7 +108,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Image Upload</label>
                             <div class="col-sm-9">
-                              <input type="file" name="img[]" class="file-upload-default">
+                              <input type="file" name="uploadImg" class="file-upload-default">
                               <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
                                 <span class="input-group-append">
@@ -91,7 +119,7 @@
                           </div>
                         </div>
                       </div>
-                      <button type="button" class="btn btn-outline-primary btn-icon-text">
+                      <button type="button" class="btn btn-outline-primary btn-icon-text" id="add-category">
                         <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
 
 

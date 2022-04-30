@@ -1,15 +1,30 @@
+<%@page import="com.kmong.vo.CategoryVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@page import="com.kmong.dao.account.AccountSettingDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@include file="pages/common/admin_validate.jsp" %>
 <%
-	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
-	}
+AdminDAO aDAO = AdminDAO.getInstance();
+
+int totalPost = aDAO.getAllCount("post");
+int totalExp = aDAO.getAllCount("member", "Y");
+int totalUser = aDAO.getAllCount("member", "N");
+int totalOrderY = aDAO.getAllCount("orders", "Y");
+int totalOrderN = aDAO.getAllCount("orders", "N");
+int totalOrderP = aDAO.getAllCount("orders", "P");
+
+int todayPost = aDAO.getTodayCount("post");
+int todayExp = aDAO.getTodayCount("member", "Y");
+int todayUser = aDAO.getTodayCount("member", "N");
+int todayOrderY = aDAO.getTodayCount("orders", "Y");
+
+Date today = new Date();
+/* end order count */
 %>
-<!-- sendRedirect가 호출되도 jsp 코드는 계속 실행되므로  -->
-<% if(session.getAttribute("loginId")!=null){ %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +39,7 @@
 		<script>
 		const navActive = document.getElementById("nav-dashboard");
 		navActive.classList.add('active');
+		localStorage.setItem("todayOrderY", <%=todayOrderY%>);
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -45,8 +61,8 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">30 명</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+5</p>
+                          <h2 class="mb-0"><%=totalUser %> 명</h2>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+<%=todayUser %></p>
                         </div>
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -65,8 +81,8 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">30 명</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                          <h2 class="mb-0"><%=totalExp %> 명</h2>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+<%=todayExp%></p>
                         </div>
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -85,8 +101,8 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">30 개</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                          <h2 class="mb-0"><%=totalPost %> 개</h2>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+<%=todayPost %></p>
                         </div>
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -105,8 +121,8 @@
                     <div class="row">
                       <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                          <h2 class="mb-0">30 건</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                          <h2 class="mb-0"><%=totalOrderY %> 건</h2>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">+<%=todayOrderY%></p>
                         </div>
                       </div>
                       <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
@@ -124,16 +140,16 @@
               <div class="col-md-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">오늘의 주문내역</h4><br/>
+                    <h4 class="card-title">주문현황</h4><br/>
                     <canvas id="doughnutChart" style="height:250px"></canvas>
 
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Tranfer to Stripe</h6>
-                        <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        <h6 class="mb-1">Current Revenue</h6>
+                        <p class="text-muted mb-0"><%=today %></p>
                       </div>
                       <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">$593</h6>
+                        <h6 class="font-weight-bold mb-0">$999</h6>
                       </div>
                     </div>
                   </div>
@@ -145,77 +161,38 @@
               <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between" style="margin-bottom:20px;">
                       <h4 class="card-title mb-1">등록된 카테고리</h4>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <div class="preview-list">
-                          <div class="preview-item border-bottom">
+               
+                <% List<CategoryVO> cVOlist=aDAO.selectAllCategory();
+                String categoryName="";
+                String categoryImg="";
+                
+                if(cVOlist!=null){
+                	for(int i=0;i<cVOlist.size();i++){
+                		
+                	categoryName=cVOlist.get(i).getCategoryName();
+                	categoryImg=cVOlist.get(i).getCategoryImage();
+                		
+                %>
+                           <div class="preview-item border-bottom">
                             <div class="preview-thumbnail">
-                              <div class="preview-icon bg-primary">
-                                <i class="mdi mdi-monitor"></i>
-                              </div>
+								<img src="http://localhost/project_kmong/static/<%=categoryImg%>" />
                             </div>
                             <div class="preview-item-content d-sm-flex flex-grow">
                               <div class="flex-grow">
-                                <h6 class="preview-subject">IT/프로그래밍</h6>
+                                <h6 class="preview-subject"><%= categoryName%></h6>
                               </div>
                             </div>
                           </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-success">
-                                <i class="mdi mdi-auto-fix"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">디자인</h6>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-info">
-                                <i class="mdi mdi-camcorder-box"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">영상/사진/음향</h6>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-danger">
-                                <i class="mdi mdi-chart-bar"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">마케팅</h6>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="preview-item">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-warning">
-                                <i class="mdi mdi-file-document"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content d-sm-flex flex-grow">
-                              <div class="flex-grow">
-                                <h6 class="preview-subject">번역/통역</h6>
-                              </div>
-                            </div>
-                          </div>
-                          
+                <%    		
+                	}//end for
+                }//end if
+                %>                          
                         </div>
 					<!--preview-list ends -->
                       </div>
@@ -240,9 +217,14 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
+    <script>
+    var complete = <%=totalOrderY%>;
+    var canceled = <%=totalOrderN%>;
+    var pending = <%=totalOrderP%>;
+    </script>
     <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/chart.js"></script>
+<!--     <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script> -->
+    <script src="http://localhost/project_kmong/admin/assets/js/chart.js">
+    </script>
   </body>
 </html>
-<%}%>

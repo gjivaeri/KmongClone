@@ -3,63 +3,116 @@ package com.kmong.vo.admin;
 import java.util.Date;
 
 public class AdminPostsVO {
-	int rnum, post_id; 
-	String category_name, title, email;
-	Date post_date;
+	int rnum, postId, price, categoryId; 
+	String categoryName, title, email, summary, description, img;
+	Date postDate;
 	
 	public AdminPostsVO() {
 	}
 	
-	public AdminPostsVO(int rnum, int post_id, String category_name, String title, String email, Date post_date) {
+	public AdminPostsVO(int rnum, int postId, int price, int categoryId, String categoryName, String title, String email, String summary,
+			String description, String img, Date postDate) {
 		this.rnum = rnum;
-		this.post_id = post_id;
-		this.category_name = category_name;
+		this.postId = postId;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 		this.title = title;
 		this.email = email;
-		this.post_date = post_date;
+		this.summary = summary;
+		this.description = description;
+		this.img = img;
+		this.postDate = postDate;
+		this.price = price;
 	}
+
 	public int getRnum() {
 		return rnum;
 	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
-	public int getPost_id() {
-		return post_id;
+	
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public void setPost_id(int post_id) {
-		this.post_id = post_id;
+	
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getCategory_name() {
-		return category_name;
+
+	public int getPostId() {
+		return postId;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getPost_date() {
-		return post_date;
-	}
-	public void setPost_date(Date post_date) {
-		this.post_date = post_date;
+
+	public String getSummary() {
+		return summary;
 	}
 
-	@Override
-	public String toString() {
-		return "AdminPostsVO [rnum=" + rnum + ", post_id=" + post_id + ", category_name=" + category_name + ", title="
-				+ title + ", email=" + email + ", post_date=" + post_date + "]";
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+
 	
 	
 }

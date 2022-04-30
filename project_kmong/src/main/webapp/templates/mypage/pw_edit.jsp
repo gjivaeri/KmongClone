@@ -28,6 +28,30 @@
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+<%
+if(session.getAttribute("pwConfirmed")!=null){
+	if(((String)session.getAttribute("pwConfirmed")).equals("pass")){
+		%>
+		alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");    
+		session.setAttribute("confirmed", "pass");
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				|| !(((String)session.getAttribute("confirmed")).equals("pass"))){
+			
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+		
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				&&(!((String)session.getAttribute("confirmed")).equals("pass"))){
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+		}      
+		
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+}%>
+	
+	
+	
 	$(function() {
 		$("#updatechkbtn").click(function() {
 			var pass1=$("#pass1").val();
@@ -48,7 +72,7 @@
 			$("#pass2").focus();
 			return;
 		}
-		  	$("#frm").submit();  
+		  	$("#pwfrm").submit();  
 		  	
 
 		})//click
@@ -73,7 +97,11 @@
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">비밀번호 변경</h1>
-						<form action="check_pw_edit.jsp" method="post"  id="frm" name="frm">
+
+
+						
+						<form action="check_pw_edit.jsp" method="post"  id="pwfrm" name="ffrm">
+
 						<div id="update-pass-frm">
 						<!-- <section>
 						<div><label class="aside-a">현재 비밀번호</label></div>

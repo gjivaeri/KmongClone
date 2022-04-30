@@ -1,7 +1,17 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.admin.AdminMemberDAO"%>
+<%@page import="com.kmong.vo.admin.AdminMemberVO"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@include file="../common/admin_validate.jsp" %>
+<%
+int memberId = Integer.parseInt(request.getParameter("id"));
+AdminMemberDAO amDAO = AdminMemberDAO.getInstance();
+AdminMemberVO amVO = amDAO.selectMember(memberId, "N");
+List<String> interests = amDAO.selectInterests(memberId);
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +25,18 @@
       <!-- sidebar.jsp (left)-->
       <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
 		<script>
+		$(function(){
 		const navActive = document.getElementById("nav-users");
 		const uiShow = document.getElementById("ui-user");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+			$("#delete-member").click(function(){
+				var warning = confirm("계정을 삭제하시겠습니까?")
+				if(warning){
+				$("#frm").submit();
+				}
+			});
+		});
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -60,7 +78,7 @@
                               <h4>회원번호</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">3</h6>
+                                <h6 class="preview-subject"><%=amVO.getMemberId() %></h6>
                             </div>
                           </div>
 
@@ -69,7 +87,7 @@
                               <h4>이메일</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">user1@naver.com</h6>
+                                <h6 class="preview-subject"><%=amVO.getEmail() %></h6>
                             </div>
                           </div>
 
@@ -78,7 +96,7 @@
                               <h4>닉네임</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">username</h6>
+                                <h6 class="preview-subject"><%=amVO.getNick() %></h6>
                             </div>
                           </div>
 
@@ -87,7 +105,7 @@
                               <h4>가입일</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">April 20, 2022</h6>
+                                <h6 class="preview-subject"><%=amVO.getJoinDate() %></h6>
                             </div>
                           </div>
 
@@ -96,7 +114,7 @@
                               <h4>전문분야</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">IT/Programming, 문학, 영상</h6>
+                                <h6 class="preview-subject"><%=amVO.getCategoryName() %></h6>
                             </div>
                           </div>
 
@@ -105,12 +123,24 @@
                               <h4>관심사</h4>
                             </div>
                             <div class="preview-item-content">
-                                <h6 class="preview-subject">영상</h6>
+                                <h5 class="preview-subject">
+                              <% 
+                              		String interest="";
+                              		for(int i = 0 ; i < interests.size() ; i ++) {
+                                   		interest = interests.get(i);
+                              %>
+                              <%=interest %>&ensp;   
+                              <%} %>
+                                </h5>
                             </div>
                           </div><br/>
-                    	  <button type="button" class="btn btn-outline-danger btn-icon-text">
-                      		<i class="mdi mdi-delete-forever btn-icon-prepend"></i>Delete
-                      	  </button>
+						<form action="users_edit_pro.jsp" method="post" id="frm">
+						    <input type="text" value="false" name="isExpert" style="display:none">
+						    <input type="text" value=<%=amVO.getMemberId() %> name="memberId" style="display:none">
+                           <button type="button" class="btn btn-outline-danger btn-icon-text" id="delete-member">
+                            <i class="mdi mdi-delete-forever btn-icon-prepend"></i>Delete
+                            </button>
+                        </form>
                 		</div>
               		  </div>
             	   </div>

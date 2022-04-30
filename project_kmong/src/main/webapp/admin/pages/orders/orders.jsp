@@ -1,7 +1,62 @@
+<%@page import="com.kmong.paging.PageImpl"%>
+<%@page import="com.kmong.paging.Paging"%>
+<%@page import="com.kmong.vo.admin.AdminOrdersVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/admin_validate.jsp" %>
+<%
+String opt=request.getParameter("search");
+String table = "orders";
+AdminDAO aDAO = AdminDAO.getInstance();
+List<AdminOrdersVO> list =  aDAO.selectAllOrder(opt);
 
+/* order count  */
+int totalCnt = aDAO.getAllCount(table);
+int todayCnt = aDAO.getTodayCount(table);
+int totalStatCntY = aDAO.getAllCount(table, "Y");
+int todayStatCntY = aDAO.getTodayCount(table, "Y");
+int totalStatCntN = aDAO.getAllCount(table, "N");
+int todayStatCntN = aDAO.getTodayCount(table, "N");
+int totalStatCntP = aDAO.getAllCount(table, "P");
+int todayStatCntP = aDAO.getTodayCount(table, "P");
+
+request.setAttribute("list", list);
+/* end order count */
+/* paging */
+Paging paging = new PageImpl(request,list);
+paging.setPagePerRecord(10);
+
+int firstPage = paging.getFirstPage();
+int lastPage = paging.getLastPage();
+boolean isNext = paging.isNextPage();
+boolean isPrev = paging.isPrevPage();
+List<AdminOrdersVO> result = paging.getVoAsPagePerRecord();
+int nextPage = paging.getNextPage();
+int prevPage = paging.getPrevPage();
+
+String param="";
+
+if (request.getQueryString() != null) {
+	param = request.getQueryString().substring(request.getQueryString().indexOf("p")+4);
+	if(request.getQueryString().indexOf("p") == -1){
+		param = request.getQueryString();			
+	}	
+}
+
+pageContext.setAttribute("param",param);
+pageContext.setAttribute("isNextPage", isNext);
+pageContext.setAttribute("isPrevPage", isPrev);
+pageContext.setAttribute("firstPage", firstPage);
+pageContext.setAttribute("lastPage", lastPage);
+pageContext.setAttribute("next", nextPage);
+pageContext.setAttribute("prev", prevPage);
+pageContext.setAttribute("list", result);
+pageContext.setAttribute("size", result.size());
+/* endPaging */
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +74,20 @@
 		const uiShow = document.getElementById("ui-order");
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+		
+		$(function(){
+			$(".N").html("<label class='badge badge-outline-danger'>[N] Canceled</label>");
+			$(".Y").html("<label class='badge badge-outline-success'>[Y] Approved</label>");
+			$(".P").html("<label class='badge badge-outline-warning'>[P] Pending</label>");
+		});//ready
+
+		function nextSubmit() {
+			$("#nextFrm").submit();
+		}
+		function prevSubmit() {
+			$("#prevFrm").submit();
+		}
+
 		</script>
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
@@ -49,18 +118,23 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Order Status</h4>
-                    <div>총 결제내역 : 15건 | 완료: 11건 | 대기중: 2건 | 취소:2건</div>
-                    <div>오늘 결제내역 : 15건 | 완료: 11건 | 대기중: 2건 | 취소:2건</div><br/>
+                    <div>총 결제내역 : <%=totalCnt %>건 | 완료: <%=totalStatCntY %>건 | 대기중: <%=totalStatCntP %>건 | 취소: <%=totalStatCntN %>건</div>
+                    <div>오늘 결제내역 : <%=todayCnt %>건 | 완료: <%=todayStatCntY %>건 | 대기중: <%=todayStatCntP %>건 | 취소: <%=todayStatCntN %>건</div><br/>
                     <div class="form-group">
+                      <form id="search-frm">
                       <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Post title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" class="form-control" placeholder="Search OrderNo, PostNo, Post title, expert, user, status" aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                          <button class="btn btn-fw btn-outline-secondary" type="button">Search</button>
+                        	<input type="button" id="search-btn" class="btn btn-fw btn-outline-secondary" style="border-color:white;" value="Search">
                         </div>
                       </div>
+                      </form>
                     </div><br/>
                     <div class="table-responsive">
                       <table class="table">
+                         <c:if test="${size==0}">
+                      		no_exists_contents_replace_later
+                      	</c:if>
                         <thead>
                           <tr>
           
@@ -76,57 +150,49 @@
                           </tr>
                         </thead>
                         <tbody>
-
+                        <c:forEach var="order" items="${list }">
                           <tr>
                             <td class="py-1">
-                              15
+                              ${order.orderId }
                             </td>
-                            <td>1</td>
-                            <td><a href="orders_detail.jsp" style="color:white">IT관련 서비스 게시글</a></td>
-                            <td>expert1</td>
-                            <td>user5</td>
-                            <td>50,000</td>
-                            <td>April 9, 2023</td>
-                            <td>
-                              <div class="badge badge-outline-warning">Pending</div>
+                            <td>${order.postId }</td>
+                            <td><a href="http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=${order.orderId }" style="color:white">${order.title }</a></td>
+                            <td>${order.expert }</td>
+                            <td>${order.user }</td>
+                            <td>${order.price}</td>
+                            <td>${order.orderDate }</td>
+                            <td>	
+                              <div class="${order.status }" ></div>
                             </td>
                           </tr>
-
-                          <tr>
-                            <td class="py-1">
-                              14
-                            </td>
-                            <td>1</td>
-                            <td><a href="orders_detail.jsp" style="color:white">IT관련 서비스 게시글</a></td>
-                            <td>expert1</td>
-                            <td>user5</td>
-                            <td>50,000</td>
-                            <td>April 9, 2023</td>
-                            <td><label class="badge badge-outline-success">Approved</label></td>
-                          </tr>
-
-                          <tr>
-                            <td class="py-1">
-                              13
-                            </td>
-                            <td>1</td>
-                            <td><a href="orders_detail.jsp" style="color:white">IT관련 서비스 게시글</a></td>
-                            <td>expert1</td>
-                            <td>user5</td>
-                            <td>50,000</td>
-                            <td>April 9, 2023</td>
-                            <td><label class="badge badge-outline-danger">Canceled</label></td>
-                          </tr>                        
-
-
-
+                        </c:forEach>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  <div style="text-align: center;">Pagination 여기서 구현</div>
+					<!-- paging -->
+					<c:if test="${size!=0}">
 
-                </div>
+					<form id="prevFrm">
+						<input type="hidden" value="${prev }" name="p">
+					</form>
+					<form id="nextFrm">
+						<input type="hidden" value="${next }" name="p">
+					</form>
+					
+					<div style="text-align:center;height: 40px;">
+					<c:if test="${ isPrevPage }">
+						<a href="#void" onclick="prevSubmit()">prev</a>
+					</c:if>
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
+						<a href="?p=${i}&<%= param %>">${i}</a>
+					</c:forEach>
+					<c:if test="${ isNextPage }">
+						<a href="#void" onclick="nextSubmit()">next</a>
+					</c:if>
+					</div>
+					</c:if>
+					<!-- paging -->
               </div>
 
 			</div>
