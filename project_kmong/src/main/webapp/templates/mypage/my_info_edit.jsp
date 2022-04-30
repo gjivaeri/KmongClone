@@ -84,9 +84,32 @@
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>	
 <script type="text/javascript">
+
 <%if(session.getAttribute("msg")!=null) {%>
-alert("변경이 완료되었습니다.");
-<%session.removeAttribute("msg"); }%>
+	alert("변경이 완료되었습니다.");
+<%
+	session.removeAttribute("msg"); 
+}
+
+if(session.getAttribute("pwConfirmed")!=null){
+	if(((String)session.getAttribute("pwConfirmed")).equals("info")){
+		%>alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");
+		session.setAttribute("confirmed", "info");
+		}else if(((String)session.getAttribute("pwConfirmed")).equals("done")&&((String)session.getAttribute("confirmed")).equals("info")){
+		
+		}else{
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+		}
+	//	session.removeAttribute("pwConfirmed"); 
+	
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+}
+%>
+
+
 $(function() {
 	
 //$(document).ready(function(){
