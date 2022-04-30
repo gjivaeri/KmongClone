@@ -2,11 +2,18 @@
 <%@page import="com.kmong.vo.PostVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%session.setAttribute("insertImgFlag", false); %>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="../common/cdn.jsp"%>
 <title>kmong</title>
+<%-- 
+<%@include file ="../order_expert/validate_expert.jsp" %>
+
+<% 
+int sid = login;  
+%> --%>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -158,8 +165,8 @@ $(function() {
 					<span class="span-order">5</span>
 					<h2 class="span-h2">요청사항</h2></a>
 				</aside>
-				
-         	<form action="service_write_insert.jsp" id="frm" method="post">
+			
+         	<form action="service_write_insert.jsp" id="frm" method="post" name="frm" enctype="multipart/form-data">
 			<div class="main-div" style="flex-direction: column;">
 			 <div style="margin-bottom: 5px;">
 			 <div style="float: right;">
@@ -171,6 +178,15 @@ $(function() {
                </button>
 			 </div>
          	</div>
+         	<%-- <%
+         	MyServiceDAO msDAO = MyServiceDAO.getInstance();
+			int postId = msDAO.insertMyService(pVO);
+			//System.out.println(list);
+			
+			pageContext.setAttribute("list", list);
+         	%>
+         	
+         		<input type="hidden" name="postId" value="${ }"/> --%>
          		<div style="flex-direction: row">
 				<div class="main-div">		
 					<span class="main-span">

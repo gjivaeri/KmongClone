@@ -97,7 +97,7 @@ $(function(){
 </section>
 <%
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(40);
+List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는 게시물의 정보 조회
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
@@ -218,8 +218,9 @@ List<Map<String, String>> list = pDAO.selectPost(40);
 <textarea placeholder="댓글을 입력해주세요." style="width:100%"></textarea>
 </div> -->
 <div style="width:100px; float:right; margin-top: 5px">
-<input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary"/>
-</div>
+<input type="button" value="등록" style="width:100`12	/*-+7sdg%" class="btn btn-outline-secondary"/>
+
+ ㅍdiv>
 </form>			
 </div>
 </div>
