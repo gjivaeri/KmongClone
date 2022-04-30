@@ -10,7 +10,7 @@
 
  <%
 
- int memberId=(int)session.getAttribute("login");
+ int memberId=(int)session.getAttribute("lo");
  
  //카테고리
  String bucategoryId1=request.getParameter("buCategoryId");  // 얘가 왜 널인지 왜 안얻어 질까요....

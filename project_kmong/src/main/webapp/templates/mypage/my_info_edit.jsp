@@ -10,7 +10,9 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	 <%
     session.setAttribute("insertFileFlag", false);
-	 int memberId=(int)session.getAttribute("login");
+	// int memberId=(int)session.getAttribute("login");
+	 session.setAttribute("lo",1);
+	 int memberId=(int)session.getAttribute("lo");
 	 AccountSettingDAO asDAO=new AccountSettingDAO();
     %>
 	
@@ -119,7 +121,13 @@ $(function() {
 
 $("#infobtn").click(function() {
 	
-	
+/* 		var f= $("#selectinterest>option:selected").val() ) 
+ if(f==null) {
+	alert("관심사를 선택해주세요");
+	return;
+}  */
+
+
 	$("#myfrm").submit();
 });//click
 
@@ -255,7 +263,7 @@ for(CategoryVO list : list1) {
                        			<span class="section2-span">관심사
 		                        </span>	
 		                        </label>
-        					<select class="multi_select w-100"  name="interestcategory"
+        					<select class="multi_select w-100"  name="interestcategory" id="selectinterest
 						        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
 						        multiple title="관심사 3가지를 선택하세요.">
 						        <c:forEach var="categorylist1" items="${categoryList }">
