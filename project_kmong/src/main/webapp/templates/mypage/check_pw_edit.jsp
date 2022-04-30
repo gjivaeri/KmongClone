@@ -7,8 +7,9 @@
 
     <%
   
-   
-    int memberId=(int)session.getAttribute("login");
+    session.setAttribute("lo",1);
+    int memberId=(int)session.getAttribute("lo");
+   // int memberId=(int)session.getAttribute("login");
     String pass1=request.getParameter("updatePassword");
     String pass2=request.getParameter("updatePasswordchk");
     MemberVO mVO=new MemberVO();

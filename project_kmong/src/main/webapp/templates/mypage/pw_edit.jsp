@@ -28,6 +28,30 @@
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+<%
+if(session.getAttribute("pwConfirmed")!=null){
+	if(((String)session.getAttribute("pwConfirmed")).equals("pass")){
+		%>
+		alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");    
+		session.setAttribute("confirmed", "pass");
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				|| !(((String)session.getAttribute("confirmed")).equals("pass"))){
+			
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+		
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				&&(!((String)session.getAttribute("confirmed")).equals("pass"))){
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+		}      
+		
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+}%>
+	
+	
+	
 	$(function() {
 		$("#updatechkbtn").click(function() {
 			var pass1=$("#pass1").val();

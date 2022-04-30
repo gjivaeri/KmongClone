@@ -84,7 +84,35 @@
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>	
 <script type="text/javascript">
+
+<%if(session.getAttribute("msg")!=null) {%>
+	alert("변경이 완료되었습니다.");
+<%
+	session.removeAttribute("msg"); 
+}
+
+if(session.getAttribute("pwConfirmed")!=null){
+	if(((String)session.getAttribute("pwConfirmed")).equals("info")){
+		%>alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");
+		session.setAttribute("confirmed", "info");
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				||!(((String)session.getAttribute("confirmed")).equals("info"))){
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+		
+		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+				&&(!((String)session.getAttribute("confirmed")).equals("info"))){
+			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+		}
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+}
+%>
+
+
 $(function() {
+	
 //$(document).ready(function(){
     $('.multi_select').selectpicker();
 //})
@@ -93,7 +121,7 @@ $("#infobtn").click(function() {
 	
 	
 	$("#myfrm").submit();
-})//click
+});//click
 
 
 
@@ -120,7 +148,7 @@ $("#infobtn").click(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
-						<form action="check_my_info_edit.jsp" id="myfrm" name="frm" method="post" enctype="multipart/form-data">
+						<form action="check_my_info_edit.jsp" id="myfrm" name="frm" method="get" enctype="multipart/form-data">
 						<section id="main-section1">
 							<section id="main-section2">
 								<div id="div-img">
@@ -188,26 +216,35 @@ $("#infobtn").click(function() {
 									</span>
 									</label>
 									<div class="input-textDiv" disabled="">
-										<select name="buCategoryId" style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
+										<select id="buCategoryId" name="buCategoryId" style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
 <%
 MenuDAO mnDAO=new MenuDAO();   
 List<CategoryVO> list1=mnDAO.selectAllCategory();
 pageContext.setAttribute("categoryList", list1);
+
+int cateId=asDAO.selectCategoryid(memberId);
+pageContext.setAttribute("cateId", cateId);
+
+for(CategoryVO list : list1) {
+	%>
+	<option  value="<%=list.getCategoryId()%>"  <%if(list.getCategoryId() == cateId) { %>selected="selected" <%}%>> <%= list.getCategoryName() %></option> <% 
+}
 %>
-										<c:forEach var="categorylist"  items="${categoryList }">
-											<option  value="${categorylist.categoryId }"><c:out value="${categorylist.categoryName}"/></option>
+
+										<%-- <c:forEach var="categorylist"  items="${categoryList }">   <!-- 왜 값 비교가 완될까....  <c:if test="${categorylist.categoryId}== <%= cateId %>   "> selected="selected"</c:if>>-->
+											<option  value="${categorylist.categoryId } " <c:if test="${categorylist.categoryId eq  cateId}    "> selected="selected"</c:if>> <c:out value="${categorylist.categoryName}"/></option>
 								<!-- 			<option value="design">디자인</option>
 											<option value="media">영상/사진/음향</option>
 											<option value="marketing">마케팅</option>
 											<option value="translate">변역/통역</option> -->
-											</c:forEach>
+											</c:forEach> --%>
 										</select>
 									</div>
 								</div>
 								
 								
 								<%
-					    	
+								
 					    	
 					    	
 					    	List<InterestVO> list3=asDAO.findinterest(memberId);
@@ -230,7 +267,7 @@ pageContext.setAttribute("categoryList", list1);
 					   		</select>
 					    	</div>
 					    
-					    	
+					    
 							
 							</section>
 						</section>
