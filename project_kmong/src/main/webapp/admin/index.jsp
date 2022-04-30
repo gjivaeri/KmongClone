@@ -6,13 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@include file="pages/common/admin_validate.jsp" %>
 <%
-	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
-	return;
-	}
-
 AdminDAO aDAO = AdminDAO.getInstance();
 
 int totalPost = aDAO.getAllCount("post");
@@ -228,7 +223,7 @@ Date today = new Date();
     var pending = <%=totalOrderP%>;
     </script>
     <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script>
+<!--     <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script> -->
     <script src="http://localhost/project_kmong/admin/assets/js/chart.js">
     </script>
   </body>

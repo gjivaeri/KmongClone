@@ -197,7 +197,7 @@ public class AdminDAO {
 			if(opt == null){
 			sql.append("select * ");
 			sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-			sql.append(" from(select * from post order by post_date desc, post_id desc) p");
+			sql.append(" from(select * from post where post_status <> 'N' order by post_date desc, post_id desc) p");
 			sql.append(" join member m");
 			sql.append(" on m.member_id = p.member_id");
 			sql.append(" join category c");
@@ -214,7 +214,7 @@ public class AdminDAO {
 			else{
 				sql.append("select * ");
 				sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-				sql.append(" from(select * from post order by post_date desc, post_id desc) p");
+				sql.append(" from(select * from post where post_status <> 'N' order by post_date desc, post_id desc) p");
 				sql.append(" join member m");
 				sql.append(" on m.member_id = p.member_id");
 				sql.append(" join category c");
@@ -268,7 +268,7 @@ public class AdminDAO {
 			sql.append(" from member m");
 			sql.append(" join category c");
 			sql.append(" on c.category_id = m.category_id");
-			sql.append(" where expert = ?");
+			sql.append(" where expert = ? and withdrawal_status <> 'Y'");
 			sql.append(" order by join_date desc, member_id");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, exp);
@@ -279,7 +279,8 @@ public class AdminDAO {
 		sql.append(" from member m");
 		sql.append(" join category c");
 		sql.append(" on c.category_id = m.category_id");
-		sql.append(" where expert = ? and nick like ? or m.email like ? or c.category_name like ? or to_char(member_id) like ?");
+		sql.append(" where expert = ? and withdrawal_status <> 'Y'");
+		sql.append(" and nick like ? or m.email like ? or c.category_name like ? or to_char(member_id) like ?");
 		sql.append(" order by join_date desc, member_id");
 		
 		pstmt = con.prepareStatement(sql.toString());
@@ -379,7 +380,8 @@ public class AdminDAO {
 	
 	public List<CategoryVO> selectAllCategory() throws SQLException {
 		Connection con = dc.getConn();
-		String sql = "select * from category";
+		String sql = "select * from category where category_status <> 'N'";
+		/* String sql = "select * from category where category_status <> 'N"; */
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		List<CategoryVO> list = new ArrayList<CategoryVO>();
@@ -401,19 +403,3 @@ public class AdminDAO {
 	
 };//class
 		
-		
-	
-	
-
-/* Methos to be created later
-
-
-+ updateMember(memberVO): boolean
-+ deleteMember(memberVO): boolean
-
-
-+ selectAllCategory(): List<categoryVO> //모든 카테고리 조회
-+ selectRegisteredCategory(): int //등록된 카테고리 수
-+ selectDetailCategory(int): categoryVO
-+ insertCategory(String, String): void //카테고리 추가
-*/
