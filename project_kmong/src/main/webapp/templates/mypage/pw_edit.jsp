@@ -37,7 +37,8 @@ if(session.getAttribute("pwConfirmed")!=null){
 		session.setAttribute("pwConfirmed","done");    
 		session.setAttribute("confirmed", "pass");
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
-				||!(((String)session.getAttribute("confirmed")).equals("pass"))){
+				|| !(((String)session.getAttribute("confirmed")).equals("pass"))){
+			
 			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
 		
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
