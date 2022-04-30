@@ -3,6 +3,7 @@
 <%@page import="com.kmong.vo.PostVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%session.setAttribute("updateImgFlag", false); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,8 +109,10 @@ $(function() {
 					<h2 class="span-h2">요청사항</h2></a>
 				</aside>
 			<%
+			int postId = Integer.parseInt(request.getParameter("postId2"));
+			
 			MyServiceDAO msDAO = MyServiceDAO.getInstance();
-			List<PostVO> list = msDAO.selectUpdateMyServiceList(153);
+			List<PostVO> list = msDAO.selectUpdateMyServiceList(postId);
 			//System.out.println(list);
 			
 			pageContext.setAttribute("list", list);
