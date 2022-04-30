@@ -34,7 +34,7 @@ if(session.getAttribute("pwConfirmed")!=null){
 		%>
 		alert("비밀번호가 확인되었습니다.");
 		<%
-		session.setAttribute("pwConfirmed","done");
+		session.setAttribute("pwConfirmed","done");    
 		session.setAttribute("confirmed", "pass");
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				||!(((String)session.getAttribute("confirmed")).equals("pass"))){
