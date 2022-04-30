@@ -2,6 +2,7 @@ package com.kmong.dao.admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.kmong.dao.DbConnectionDBCP;
@@ -22,19 +23,51 @@ public class AdminCategoryDAO {
 		return acDAO;
 	}
 	
+	public CategoryVO selectDetailCategory(int categoryId) throws SQLException{
+		Connection con = dc.getConn();
+		String sql = "select * from category where category_id = ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, categoryId);
+		ResultSet rs = pstmt.executeQuery();
+		CategoryVO cVO = null;
+		
+		try(con; pstmt; rs;){
+			while(rs.next()) {
+				cVO = new CategoryVO();
+				cVO.setCategoryId(rs.getInt("category_id"));
+				cVO.setCategoryName(rs.getString("category_name"));
+				cVO.setCategoryImage(rs.getString("category_image"));
+				cVO.setCategoryStatus(rs.getString("category_status"));
+			}
+		}
+		return cVO;
+	}
+	
+	
 	public int insertCategory(String name, String image) throws SQLException{
+		int result = 0;
+		
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
+		
+		/* to avoid empty number of category_id 
 		sql.append(" insert into category(category_id, category_name, category_image)");
 		sql.append(" values((select NVL(MAX(category_id), 0)+1 from category), ?, ?)");
+		*/
+		sql.append(" insert into category(category_name, category_image)");
+		sql.append(" values(?, ?)");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		
 		pstmt.setString(1, name);
 		pstmt.setString(2, image);
+		result =  pstmt.executeUpdate();
 		
 		try(con; pstmt;){
-			return pstmt.executeUpdate();
+			if(result > 0) {
+				return result;
+			}
 		}
+		return -1; //error;
 	}
 	
 	public boolean updateCategory(int categoryId, String name, String image) throws SQLException{
@@ -78,7 +111,6 @@ public class AdminCategoryDAO {
 
 }
 /*
- * + selectAllCategory(): List<categoryVO> //모든 카테고리 조회 +
  * selectRegisteredCategory(): int //등록된 카테고리 수 
  * + selectDetailCategory(int):
  * categoryVO 

@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%
-	if(session==null || session.getAttribute("loginId")==null || session.getAttribute("loginId").equals("")){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
-	}
-%>
-<% if(session.getAttribute("loginId")!=null){ %>
+<%@include file="../common/admin_validate.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -93,4 +87,3 @@
     <!-- container-scroller -->
   </body>
 </html>
-<%}%>

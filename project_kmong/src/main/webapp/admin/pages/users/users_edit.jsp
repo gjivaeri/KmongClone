@@ -5,11 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/admin_validate.jsp" %>
 <%
-if(request.getQueryString() == null){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/users/users.jsp");
-	return;
-}
 int memberId = Integer.parseInt(request.getParameter("id"));
 AdminMemberDAO amDAO = AdminMemberDAO.getInstance();
 AdminMemberVO amVO = amDAO.selectMember(memberId, "N");

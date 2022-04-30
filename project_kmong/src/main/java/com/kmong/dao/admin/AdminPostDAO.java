@@ -54,19 +54,51 @@ public class AdminPostDAO {
 		}
 		return post;
 	}
-	/*
-	 * public boolean updatePost(AdminPostsVO apVO) { boolean result = false;
-	 * Connection con = dc.getConn(); StringBuilder sql = new StringBuilder();
-	 * sql.append("update post set title=?, summary=?, price=?, category_)
-	 * PreparedStatement pstmt = con.prepareStatement(sql);
-	 * 
-	 * return result; }
-	 */	
 	
-
-}
-/*
- * + selectDetailPost(int): postVO //게시글상세페이지 
- * + updatePost(postVO): boolean +
- * updatePost(postVO, char): boolean //게시글 삭제
- */
+	public boolean updatePost(AdminPostsVO apVO) throws SQLException{
+		boolean result = false;
+		
+		Connection con = dc.getConn();
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update post");
+		sql.append(" set title = ?, summary = ?, price = ?, description = ?, post_img = ?, category_id = ?");
+		sql.append(" where post_id = ?");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+		pstmt.setString(1, apVO.getTitle());
+		pstmt.setString(2, apVO.getSummary());
+		pstmt.setInt(3, apVO.getPrice());
+		pstmt.setString(4, apVO.getDescription());
+		pstmt.setString(5, apVO.getImg());
+		pstmt.setInt(6, apVO.getCategoryId());
+		pstmt.setInt(7, apVO.getPostId());
+		int rowCount = pstmt.executeUpdate();
+		
+		try(con; pstmt;){
+			if(rowCount > 0) {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	public boolean deletePost(int postId) throws SQLException{
+		boolean result = false;
+		
+		Connection con = dc.getConn();
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update post");
+		sql.append(" set post_status = 'N'");
+		sql.append(" where post_id = ?");
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
+		pstmt.setInt(1, postId);
+		int rowCount = pstmt.executeUpdate();
+		
+		try(con; pstmt;){
+			if(rowCount > 0) {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+}//

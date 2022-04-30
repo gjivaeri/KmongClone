@@ -197,12 +197,13 @@ public class AdminDAO {
 			if(opt == null){
 			sql.append("select * ");
 			sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-			sql.append(" from(select * from post order by post_id, post_date) p");
+			sql.append(" from(select * from post order by post_date desc, post_id desc) p");
 			sql.append(" join member m");
 			sql.append(" on m.member_id = p.member_id");
 			sql.append(" join category c");
 			sql.append(" on c.category_id = p.category_id)");
 			sql.append(" where rnum>=?");
+			
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, 1);
@@ -213,13 +214,14 @@ public class AdminDAO {
 			else{
 				sql.append("select * ");
 				sql.append(" from(select rownum rnum, p.post_id, c.category_name, p.title, m.email, p.post_date");
-				sql.append(" from(select * from post order by post_id, post_date) p");
+				sql.append(" from(select * from post order by post_date desc, post_id desc) p");
 				sql.append(" join member m");
 				sql.append(" on m.member_id = p.member_id");
 				sql.append(" join category c");
 				sql.append(" on c.category_id = p.category_id)");
 				sql.append(" where title like ? or category_name like ? or email like ? ");
 				sql.append(" or to_char(post_id) like ? or to_char(rnum) like ? ");
+
 
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, '%'+opt+'%');
