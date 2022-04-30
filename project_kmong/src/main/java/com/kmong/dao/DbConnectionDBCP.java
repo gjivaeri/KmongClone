@@ -45,7 +45,6 @@ public class DbConnectionDBCP {
 		if (rs != null) {rs.close();}
 		if (stmt != null) {stmt.close();}
 		if (con != null) {
-			System.out.println("con close");
 			con.close();}
 	}
 	

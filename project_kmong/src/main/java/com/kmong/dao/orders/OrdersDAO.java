@@ -29,7 +29,7 @@ public class OrdersDAO {
 		return instance;
 	}
 	
-	public void InsertOrders(OrdersVO ovo) throws SQLException {
+	public void insertOrders(OrdersVO ovo) throws SQLException {
 		
 		Connection con =  dc.getConn();
 		String sql = "insert into orders(order_finish_date,member_id,post_id) values(?,?,?)";
