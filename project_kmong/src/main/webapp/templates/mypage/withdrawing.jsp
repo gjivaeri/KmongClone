@@ -25,6 +25,27 @@
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+<%
+if(session.getAttribute("pwConfirmed")!=null){
+
+	if(((String)session.getAttribute("pwConfirmed")).equals("withdraw")){
+	%>
+		alert("비밀번호가 확인되었습니다.");
+		<%
+		session.setAttribute("pwConfirmed","done");
+		session.setAttribute("confirmed", "withdraw");
+	}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+			||!(((String)session.getAttribute("confirmed")).equals("withdraw"))){
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+	
+	}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
+			&&(!((String)session.getAttribute("confirmed")).equals("withdraw"))){
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+	}
+}else{
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+}%>
 	$(function() {
 		
 		
@@ -52,7 +73,7 @@
 			return;
 		}  //end if
 		
-			$("#frm").submit();
+			$("#wifrm").submit();
 		});//click
  
 	});//ready
@@ -77,7 +98,7 @@
 						<h1 style="font-size: 18px; font-weight: bold;">회원탈퇴</h1>
 						<div id="main-section1">
 						<section>
-						<form action="check_withdrawing.jsp" method="get" id="frm" name="frm">
+						<form action="check_withdrawing.jsp" method="get" id="wifrm" name="frm">
 							<div>크몽을 떠나는 이유를 알려주세요.</div>
 							<ul>
 							<li data-testid="이용하고 싶은 서비스가 없어요">
@@ -173,12 +194,12 @@
 							<div>
 							<input type="checkbox" style="width: 16px; height: 16px" id="chkbox">
 							<span>주의사항을 모두 확인하였습니다.</span>
-							</form>
 							<div style="margin-top: 20px; display: flex;">
 								<div style="flex-grow:1;"></div>
 								<button type="button" class="submit-btn" style="background-color: #E4E5ED; border-color: #E4E5ED"id="btn">
 								<span>회원 탈퇴</span>
 								</button>
+							</form>
 							</div>
 							
 							<!-- data-testid="leave-button"     data-bs-target="#withdrawalChk"    data-bs-toggle="modal"     -->
@@ -210,6 +231,7 @@
 				</main>
 			</div>
 		</div>
+		
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>

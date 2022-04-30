@@ -118,6 +118,48 @@ public boolean updateMemberImg(MemberVO MVO)throws SQLException {
 	else return false;
 }//updateMemberImg
 
+public int selectCategoryid(int memberId)throws SQLException {
+	
+	int selectcaid=0;
+	
+	Connection con=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
+	
+	
+	try {
+	//1. JNDI 사용객체 생성
+	//2. 설정된 DBCP 에서 DataSource 얻기
+	//3. DataSource에서 Connection 얻기
+		con=instance.getConn();
+	//4. 쿼리문 생성객체 얻기
+	String selectCategoryId="select category_id from member where member_id=?";
+	pstmt=con.prepareStatement(selectCategoryId);
+	//5. 바인드 변수 값 설정
+	pstmt.setInt(1, memberId);
+	
+	//6. 쿼리문 수행 후 결과 얻기
+	rs=pstmt.executeQuery();
+	
+	while(rs.next()) {
+		selectcaid=rs.getInt("category_id");
+		//chkpass 에 값 넣기 return 값과 request 값이 같으면 정보변경 창 으로 이동하게 함
+	}; 
+	
+	
+	}finally {
+	//7. 연결끊기
+	instance.dbClose(rs, pstmt, con);
+	}//end finally
+	
+	
+	return selectcaid;
+		
+	}//selectCheckPassword
+
+
 
 public boolean  updateMemberCategoryId(MemberVO MVO)throws SQLException {
 	
@@ -151,37 +193,6 @@ public boolean  updateMemberCategoryId(MemberVO MVO)throws SQLException {
 }//updateMemberCategoryId
 
 
-public boolean updateMemberInterestId(InterestVO IVO)throws SQLException {
-	
-	int flag=0;
-	
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	
-	DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
-	
-	try {
-	//1. JNDI 사용객체 생성
-	//2. 설정된 DBCP 에서 DataSource 얻기
-	//3. DataSource에서 Connection 얻기
-		con=instance.getConn();
-	//4.쿼리문 생성객체 얻기
-			String updateInsertId="update interest set category_id=? where member_id=?";
-			pstmt=con.prepareStatement(updateInsertId);
-			//5.바인드 변수 값 설정
-			pstmt.setInt(1, IVO.getCategoryId());
-			pstmt.setInt(2, IVO.getMemberId());
-			//6. 쿼리문 실행후 결과 값 얻기
-		flag=	pstmt.executeUpdate();
-			}finally {
-			//7. 연결끊기
-				instance.dbClose(null, pstmt, con);
-			}//end finally
-	
-	
-	if(flag>0) return true;
-	else return false;
-}//updateMemberInterestId
 
 
 public boolean updateMemberPassword(MemberVO MVO)throws SQLException {
@@ -468,8 +479,8 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 		// 3. DataSource에서 Connection 얻기
 		con = instance.getConn();
 		// 4. 쿼리문 생성객체 얻기
-		String selectCategoryid = "select  name, tel, nick, email from member where member_id=?";
-		pstmt = con.prepareStatement(selectCategoryid);
+		String selectinfor = "select  name, tel, nick, email from member where member_id=?";
+		pstmt = con.prepareStatement(selectinfor);
 		// 5.바인드 변수 값 할당
 		pstmt.setInt(1,memberId );
 		// 6. 쿼리문 수행후 결과 얻기
@@ -494,4 +505,7 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 
 
 }
+
+
+
 }//class

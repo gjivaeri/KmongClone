@@ -138,7 +138,7 @@
             </div>
             
             <!-- 카테고리 이미지 들어가는 부분-DB작업 들어감. -->
-            <div class="main-category-img-collection">
+            <div class="main-category-img-collection" style="background-color: rgb(250, 250, 252); border-radius: 20px;">
                 <div style=" font-size: 14px; font-weight: bold; height: 20px;">비즈니스</div>
                
                
@@ -160,7 +160,7 @@
                 		%>
                 		<div class="article-squre">
                         <a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" >
-                            <img src="http://localhost/project_kmong/static/images/test.JPG" />
+                            <img src="http://localhost/project_kmong/static/<%=categoryImg %>" />
                             <div class="main-span1"><%= categoryName%></div>
                         </a>
                         </div>

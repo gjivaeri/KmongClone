@@ -75,6 +75,7 @@ public class MakeAccountDAO {
 		 flag=true;
 		}
 		
+		System.out.println(flag);
 		return flag;
 	}//insertMemberInfo
 

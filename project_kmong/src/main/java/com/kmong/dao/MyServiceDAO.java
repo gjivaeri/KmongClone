@@ -45,7 +45,7 @@ public class MyServiceDAO {
 	    	System.out.println("DB연결성공");
 	    	
 	    	String selectCheckAccount=
-	    			"select member_id from member where expert='Y' and email=?"; //전문가인지 사용자인지 체크
+	    			"select member_id from member where and email=?"; //전문가인지 사용자인지 체크
 	    	pstmt=con.prepareStatement(selectCheckAccount);
 	    	pstmt.setString(1, uiVO.getEmail());
 	    	
@@ -104,6 +104,7 @@ public class MyServiceDAO {
 	    try {
 	    	StringBuilder insertMyService = new StringBuilder();
 	    	con = dbcp.getConn();
+	    	System.out.println("DB연결 성공");
 	    	
 	    	insertMyService
 	    		.append("insert into post(post_id, title, summary, price, term, description, post_img, category_id)	")
@@ -113,6 +114,7 @@ public class MyServiceDAO {
 	    	pstmt=con.prepareStatement(insertMyService.toString());
 	    	
 	    	pstmt.setString(1, pVO.getTitle());
+	    	//pstmt.setInt(2, pVO.getMemberId());
 	    	pstmt.setString(2, pVO.getSummary());
 	    	pstmt.setInt(3, pVO.getPrice());
 	    	pstmt.setInt(4, pVO.getTerm());

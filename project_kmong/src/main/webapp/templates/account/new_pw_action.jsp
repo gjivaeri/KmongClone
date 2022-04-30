@@ -40,7 +40,6 @@
 	session.setAttribute("newPass", "fail");
 	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
 	%>
-<
 	
 </c:if>
     
