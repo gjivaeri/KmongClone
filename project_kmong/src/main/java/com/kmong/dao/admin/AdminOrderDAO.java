@@ -79,8 +79,3 @@ public class AdminOrderDAO {
 		return result;
 	}
 }//class
-
-/*
- * + selectDetailOrders(int): ordersVO + updateOrders(oderVO, char): boolean
- * //√Îº“
- */

@@ -110,9 +110,3 @@ public class AdminCategoryDAO {
 	}
 
 }
-/*
- * selectRegisteredCategory(): int //등록된 카테고리 수 
- * + selectDetailCategory(int):
- * categoryVO 
- * + insertCategory(String, String): void //카테고리 추가
- */
