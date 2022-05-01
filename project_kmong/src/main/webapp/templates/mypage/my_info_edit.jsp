@@ -121,7 +121,10 @@ $(function() {
 //})
 
 	$("#infobtn").click(function() {
-		
+		if($("#interest1").val()==null){
+	         alert("관심사를 선택해주세요.");
+	         return;
+	      }
 		$("#myfrm").submit();
 	});//click
 
@@ -315,7 +318,7 @@ for(CategoryVO list : list1) {
 		                        </label>
         					<select class="multi_select w-100"  name="interestcategory"
 						        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
-						        multiple title="관심사 3가지를 선택하세요.">
+						        multiple title="관심사 3가지를 선택하세요." id="interest1">
 						        <c:forEach var="categorylist1" items="${categoryList }">
 					            <option value="${categorylist1.categoryId }" <c:forEach var="inter" items="${ interest}"><c:if test="${inter.categoryId eq categorylist1.categoryId }"> selected="selected"</c:if></c:forEach>><c:out value="${categorylist1.categoryName }"/></option>
 					            
