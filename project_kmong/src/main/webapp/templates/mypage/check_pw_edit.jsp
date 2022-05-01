@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="com.kmong.vo.MemberVO"%>
 <%@page import="com.kmong.dao.account.AccountSettingDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,14 +8,14 @@
 
     <%
   
-    session.setAttribute("lo",1);
-    int memberId=(int)session.getAttribute("lo");
-   // int memberId=(int)session.getAttribute("login");
+  
+   int memberId=(int)session.getAttribute("login");
     String pass1=request.getParameter("updatePassword");
-    String pass2=request.getParameter("updatePasswordchk");
+    String pass2=DataEncrypt.messageDigest("MD5",request.getParameter("updatePasswordchk"));  //request.getParameter("updatePasswordchk");
     MemberVO mVO=new MemberVO();
     mVO.setMemberId(memberId);
-    mVO.setPassword(pass1);
+  
+    mVO.setPassword(pass2);
     
     AccountSettingDAO asDAO= AccountSettingDAO.getInstance();
     
@@ -29,7 +30,7 @@
     
     
     asDAO.updateMemberPassword(mVO);
-    %><script>alert("비밀번호 변경이 완료되었습니다."); location.href="http://localhost/project_kmong/templates/home/index.jsp"; 
+    %><script>alert("비밀번호 변경이 완료되었습니다."); location.href="http://localhost/project_kmong/templates/home/index.jsp?hid=login"; 
 </script><% 
  
    

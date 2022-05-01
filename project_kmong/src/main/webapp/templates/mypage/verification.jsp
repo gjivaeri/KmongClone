@@ -92,7 +92,11 @@ $(function() {
 <!-- <body > -->
 <body nload="noBack();" 
    onpageshow="if (event.persisted) noBack();" onunload="">
+   
+   
  <%@include file="../common/header_member.jsp"%>
+ 
+ 
 		<hr>
 
 		<!-- main div -->

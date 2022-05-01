@@ -17,7 +17,6 @@ session.getAttribute("login");
 if(session.getAttribute("login") == null) {
 	%>
 <%@include file="../common/header.jsp"%>
-
 <%
 } else{
 	%><%@include file="../common/header_member.jsp"%>
@@ -188,8 +187,16 @@ pageContext.setAttribute("categoryList", list1);
 <!-- 메뉴페이지 시작..................................................................................................................... -->
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
+<% 
 
+if(session.getAttribute("login") == null) {
+	%>
 <a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+<%
+} else{
+	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+	<% }
+%>
 <span>></span>
 <a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00"><c:out value="${categorylist.categoryName }"/></a>
 
@@ -299,7 +306,7 @@ int count= mnDAO.commentcount(postId);
 <div class="css-mkpab3 ezeyqpv2">
   <span role="img" rotate="0" data-testid="rating-icon" class="ezeyqpv3 css-wlmn2t e181xm9y1">
   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
-      <path d="M8.37094152,8.12482574 L2.52598096,8.59636398 L2.36821881,8.6135218 C0.881583763,8.81867772 0.513822851,10.1467426 1.72605142,11.1443161 L6.11068071,14.7526934 L4.80553251,20.0682859 L4.77348322,20.2161997 C4.50052597,21.673724 5.6402616,22.4726949 6.9887771,21.699537 L12.00271,18.8250573 L17.0166429,21.699537 L17.1506515,21.7715841 C18.4829447,22.4403279 19.5680516,21.5674348 19.1998875,20.0682859 L17.8937294,14.7526934 L22.2793686,11.1443161 L22.3984321,11.0405714 C23.4954951,10.0270601 23.0352205,8.72174778 21.479439,8.59636398 L15.6334685,8.12482574 L13.3880977,3.09014615 C12.7393731,1.6361626 11.2656405,1.63707337 10.6173223,3.09014615 L8.37094152,8.12482574 Z" ></path></svg></span>
+      <path style="color: rgb(255, 212, 0)" d="M8.37094152,8.12482574 L2.52598096,8.59636398 L2.36821881,8.6135218 C0.881583763,8.81867772 0.513822851,10.1467426 1.72605142,11.1443161 L6.11068071,14.7526934 L4.80553251,20.0682859 L4.77348322,20.2161997 C4.50052597,21.673724 5.6402616,22.4726949 6.9887771,21.699537 L12.00271,18.8250573 L17.0166429,21.699537 L17.1506515,21.7715841 C18.4829447,22.4403279 19.5680516,21.5674348 19.1998875,20.0682859 L17.8937294,14.7526934 L22.2793686,11.1443161 L22.3984321,11.0405714 C23.4954951,10.0270601 23.0352205,8.72174778 21.479439,8.59636398 L15.6334685,8.12482574 L13.3880977,3.09014615 C12.7393731,1.6361626 11.2656405,1.63707337 10.6173223,3.09014615 L8.37094152,8.12482574 Z" ></path></svg></span>
       <c:out value="${categoryMenu.starAvg }"/><span class="css-p9bq5v ezeyqpv0"></span>
   <div class="css-0 ezeyqpv1"><%=count %>개의 평가</div>
 </div>

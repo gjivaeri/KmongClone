@@ -161,8 +161,16 @@ pageContext.setAttribute("categoryList", list1);
 <!-- 메뉴페이지 시작..................................................................................................................... -->
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
+<% 
 
-<a href="http://localhost/project_kmong/templates/home/index.jsp"  class="css-mz86x3 e1rp7ga00">홈</a>
+if(session.getAttribute("login") == null) {
+	%>
+<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+<%
+} else{
+	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+	<% }
+%>
 <!-- <span>></span>
 <a href="/" class="css-mz86x3 e1rp7ga00">IT</a> -->
 <hr/>
