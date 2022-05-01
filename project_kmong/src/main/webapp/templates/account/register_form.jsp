@@ -279,7 +279,7 @@ $(function(){
 	    	alert("비밀번호를 정확히 입력해주세요.");
 	    	$("#pass1").focus();return;
 	    }else if(!reg_pw2.test(pass1)){
-	    	alert("문자와 특수문자를 조합하여 8자 이상의 비밀번호를 입력해주세요.");
+	    	alert("문자와 특수문자, 숫자를 조합하여 8자 이상의 비밀번호를 입력해주세요.");
 	    	$("#pass1").focus();return;
 	    }
 

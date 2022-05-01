@@ -9,7 +9,10 @@
 
 if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	%>
+	location.replace("http://localhost/project_kmong/templates/home/index.jsp");<%
+	//return;
+	//response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 }
 if(session.getAttribute("loginMsg")!=null){
 	%>alert("로그인이 성공적으로 완료되었습니다.")<%

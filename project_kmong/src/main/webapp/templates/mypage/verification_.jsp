@@ -111,8 +111,6 @@ $(function() {
 						<h1 style="font-size: 18px; font-weight: bold;"><%=text %></h1>
 
 
-						
-
 						<form action="check_verifcation.jsp"  id="vefrm"  method="post">
 						<section id="main-section1">
 						<div style="margin: 100px;">
