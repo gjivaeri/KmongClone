@@ -92,7 +92,11 @@ $(function() {
 <!-- <body > -->
 <body nload="noBack();" 
    onpageshow="if (event.persisted) noBack();" onunload="">
+   
+   
  <%@include file="../common/header_member.jsp"%>
+ 
+ 
 		<hr>
 
 		<!-- main div -->
@@ -110,6 +114,8 @@ $(function() {
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;"><%=text %></h1>
 
+
+						
 
 						<form action="check_verifcation.jsp"  id="vefrm"  method="post">
 						<section id="main-section1">

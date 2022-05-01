@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="netscape.javascript.JSObject"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.kmong.dao.account.AccountSettingDAO"%>
@@ -33,13 +34,14 @@ if(sdf==null){
 }
 
 
-session.setAttribute("lo",1);
- int memberId=(int)session.getAttribute("lo");
-//int memberId=(int)session.getAttribute("login");
+
+int memberId=(int)session.getAttribute("login");
 
 
+String password=DataEncrypt.messageDigest("MD5",request.getParameter("pass"));
+//String password=request.getParameter("pass");
 
-String password=request.getParameter("pass");
+
 //DB조회
 AccountSettingDAO asDAO=AccountSettingDAO.getInstance();
 String chkpass=asDAO.selectCheckPassword(memberId,password);
