@@ -184,7 +184,7 @@ input
 .ad-body{
     width:100%;
     height:480px; 
-    background-color: cadetblue;  /* cadetblue */
+	background-color: cadetblue;  /* cadetblue */
     display: flex; 
     flex-direction: row; 
     align-items: center;
