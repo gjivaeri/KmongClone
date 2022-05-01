@@ -53,6 +53,8 @@
    padding-bottom:13px;
    margin-bottom: 20px;
 }
+
+      
 </style>
 <!-- jQuery CDN -->
 <script
@@ -85,6 +87,7 @@
 </script>	
 <script type="text/javascript">
 
+//app.use('/uploads', express.static('uploads'));
 <%if(session.getAttribute("msg")!=null) {%>
 	alert("변경이 완료되었습니다.");
 <%
@@ -117,25 +120,68 @@ $(function() {
     $('.multi_select').selectpicker();
 //})
 
-$("#infobtn").click(function() {
-	
-	
-	$("#myfrm").submit();
-});//click
+	$("#infobtn").click(function() {
+		
+		$("#myfrm").submit();
+	});//click
 
+	$("#file-input").change(function(){
+		
+		var form=$("#profileFrm")[0];
+		var formData=new FormData(form);
+		
+		formData.append("fileObj", $("#file-input")[0].files[0]);
 
+		
+		   $.ajax({
+			   type: "POST",
+			   dataType:"json",
+		        enctype: 'multipart/form-data',
+		        url: "http://localhost/project_kmong/templates/mypage/profile_process.jsp",
+		        data: formData,
+		        processData: false,
+		        contentType: false,
+		        cache: false,
+		        timeout: 600000,
+		        success: function (data) {
+		        setTimeout(function() {
+		        	location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+		        	},3000);
+		       // location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+		        },
+		        error: function (e) {
+		            console.log("ERROR : ", e);
+		        }
+	        }); // $.ajax 
+	})
 
+	/* $("#proImg").error( function () {
+		alert("Asdfds");
+	    $(this).attr("src", "default_profile.png");
+	    location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+	}); */
 });//ready
+
+
+function refresh(){
+	//this.src = "default_profile.png";
+	//$("#proImg").attr("src", "default_profile.png");  
+	setTimeout(function() {
+	location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+	},2000);
+	//location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+}
+
 
 </script>
 </head>
-<body>
+<body >
  <%@include file="../common/header_member.jsp"%>
 		<hr>
 			<!-- main div -->
 			<div id="aside-div">
 				<aside class="aside">
-					<div>
+					<div id="d">
 						<strong>계정설정</strong>
 					</div>
 					<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"/>
@@ -148,20 +194,32 @@ $("#infobtn").click(function() {
 				<main style="margin-left: 24px;">
 					<div>
 						<h1 style="font-size: 18px; font-weight: bold;">나의 정보</h1>
-						<form action="check_my_info_edit.jsp" id="myfrm" name="frm" method="get" enctype="multipart/form-data">
 						<section id="main-section1">
 							<section id="main-section2">
 								<div id="div-img">
-									<img src="https://kmong.com/img/tools/main_user_gray.png"
-										alt="프로필 사진" id="profile-img" />
+								<%if(fileName==null){
+									%><img src="http://localhost/project_kmong/static/upload/default_profile.png"
+								alt="프로필 사진1" id="profile-img" style="object-fit: cover;" id="proImg1"/><%
+								}else{
+
+								%>		<img src="http://localhost/project_kmong/static/upload/<%=fileName%>"
+								alt="" id="profile-img" style="object-fit: cover;" id="proImg" onerror="this.src='default_profile.png'; refresh()"/> <%
+								}%>
+										
+					
+						
 								</div>
 								<div style="margin-top: 10px;">
-									<button type="button" color="default" class="profile-btn">
-										<span><label for="file-input" style="cursor: pointer;">프로필 변경
-										<input  name="upFile" id="file-input" type="file" accept="image/gif, image/jpeg, image/jpg, image/png" style="display:none">
+								
+							
+                          <form id="profileFrm" name="profileFrm" enctype="multipart/form-data" method="post"> 
+									<button type="button" color="default" class="profile-btn" id="btnProfile">
+										<span><label style="cursor: pointer;"" id="profileLabel" for="file-input">프로필 변경
+										 <input  name="upFile" id="file-input" type="file" accept="image/gif, image/jpeg, image/jpg, image/png" style="display:none"> 
 										</label>
 										</span>
 									</button>
+							</form>
 								</div>
 							</section>
 							<%
@@ -170,15 +228,15 @@ $("#infobtn").click(function() {
 						pageContext.setAttribute("infor", list5);
 							
 							%>
-							<c:forEach var="info" items="${infor}">
 							<section id="main-section2">
+							<c:forEach var="info" items="${infor}">
 								<div class="section2-div">
 									<label for="username" class="section2-label">
 									<span class="section2-span">이름
 									</span>
 									</label>
-									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="<c:out value="${info.name }"/>" maxlength="17" class="input-text">
+									<div class="input-textDiv" >
+									<input type="text" placeholder="<c:out value="${info.name }"/>" maxlength="17" class="input-text" readonly="readonly"/>
 									</div>
 								</div>
 								<div class="section2-div">
@@ -186,8 +244,8 @@ $("#infobtn").click(function() {
 									<span class="section2-span">전화번호
 									</span>
 									</label>
-									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="<c:out value="${info.tel }"/>" maxlength="17" class="input-text">
+									<div class="input-textDiv" >
+									<input type="text" placeholder="<c:out value="${info.tel }"/>" maxlength="17" class="input-text" readonly="readonly"/>
 									</div>
 								</div>
 								<div class="section2-div">
@@ -195,8 +253,8 @@ $("#infobtn").click(function() {
 									<span class="section2-span">닉네임
 									</span>
 									</label>
-									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="<c:out value="${info.nick }"/>" maxlength="17" class="input-text">
+									<div class="input-textDiv" >
+									<input type="text" placeholder="<c:out value="${info.nick }"/>" maxlength="17" class="input-text" readonly="readonly"/>
 									</div>
 								</div>
 								<div class="section2-div">
@@ -204,19 +262,19 @@ $("#infobtn").click(function() {
 									<span class="section2-span">이메일
 									</span>
 									</label>
-									<div class="input-textDiv" disabled="">
-									<input type="text" placeholder="<c:out value="${info.email }"/>" maxlength="17" class="input-text">
+									<div class="input-textDiv" >
+									<input type="text" placeholder="<c:out value="${info.email }"/>" maxlength="17" class="input-text" readonly="readonly"/>
 									</div>
 								</div>
 								</c:forEach>
 								
+						<form action="check_my_info_edit.jsp" id="myfrm" name="frm" method="get" >
 								<div class="section2-div">
-									<label for="username" class="section2-label">
-									<span class="section2-span">비즈니스분야
-									</span>
-									</label>
-									<div class="input-textDiv" disabled="">
-										<select id="buCategoryId" name="buCategoryId" style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
+										<label for="username" class="section2-label">
+											<span class="section2-span">비즈니스분야</span>
+										</label>
+								<div class="input-textDiv" >
+								<select id="buCategoryId" name="buCategoryId" style="width: 500px;  height: 40px; border: 0px; font-size: 16px;">
 <%
 MenuDAO mnDAO=new MenuDAO();   
 List<CategoryVO> list1=mnDAO.selectAllCategory();
@@ -262,26 +320,23 @@ for(CategoryVO list : list1) {
 					            <option value="${categorylist1.categoryId }" <c:forEach var="inter" items="${ interest}"><c:if test="${inter.categoryId eq categorylist1.categoryId }"> selected="selected"</c:if></c:forEach>><c:out value="${categorylist1.categoryName }"/></option>
 					            
 					             
-					
 								</c:forEach>
 					   		</select>
 					    	</div>
+					</form>
 					    
-					    
-							
-							</section>
-						</section>
+					</section>
+				</section>
 							<button  id="infobtn" type="button" data-testid="submit-button" class="submit-btn" style="float: right; margin-top: 10px">
 							<span>확인</span>
 							</button>
-					</form>
 					</div>
 				</main>
 			</div>
 		</div>
 		
 	</div>
-	
+
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>

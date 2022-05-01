@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
-<%--  <%
+<%
 
 if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
@@ -16,7 +16,7 @@ if(session.getAttribute("loginMsg")!=null){
 	session.removeAttribute("loginMsg");
 }
 
-%>  --%>
+%>
 
 $(function(){
 	$("#logoutBtn").click(function(){
@@ -61,15 +61,16 @@ $(function(){
                         <div style="height: 40px; width:40px; margin-left:0px;border-radius: 50px;">
                         
                         <%
+                        String fileName="";
                         MainPageDAO mpDAO=MainPageDAO.getInstance();
                         if(session.getAttribute("login")!=null){
-                        	String userImg=mpDAO.selectUserImg((int)session.getAttribute("login"));
+                        	fileName=mpDAO.selectUserImg((int)session.getAttribute("login"));
                         
 	                        //pageContext.setAttribute("userImg", userImg);
-	                        if(userImg!=null){
-	                        	%><img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
+	                        if(fileName!=null){
+	                        	%><img src="http://localhost/project_kmong/static/upload/<%=fileName%>" onerror="this.src='default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
 	                        }else{
-	                        	%><img src="http://localhost/project_kmong/static/images/default_profile.png" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
+	                        	%><img src="http://localhost/project_kmong/static/upload/default_profile.png" onerror="this.src='default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
 	                        }
                         }
                         %>
@@ -110,7 +111,7 @@ $(function(){
                     <img class="categories" src="http://localhost/project_kmong/static/images/drop_down.PNG" style="margin-bottom: 3px; width: 12px; height: 5px; object-fit: cover;"/>
                     </div>
                     
-                    <div class="dropdown-content">
+                    <div class="dropdown-content"">
                     <div id="menuUnderline" style="width: 180px; height: 5px; background-color: #f0c04f; display: none;"></div>
                     <span style="font-size: 8px; padding-left: 10px; padding-top: 10px;">비즈니스</span>
                    <!-- 카테고리 메뉴 DB에서 불러오기 -->

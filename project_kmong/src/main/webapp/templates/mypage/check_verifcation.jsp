@@ -48,7 +48,10 @@ String chkpass=asDAO.selectCheckPassword(memberId,password);
 
 //pageContext.setAttribute("dfg", dfg);
 if(chkpass == null){
-	%><script>alert("비밀번호가 일치하지 않습니다."); history.back();</script> <%
+	%><!-- <script>alert("비밀번호가 일치하지 않습니다.");</script> --><%
+	session.setAttribute("alert","fail");
+	response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service="+passConfirmed);
+	
 }else if(chkpass.equals(password)) {
 	session.setAttribute("pwConfirmed",passConfirmed);
 	session.removeAttribute("service");

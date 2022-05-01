@@ -126,7 +126,8 @@ public class MainPageDAO {
 			}//end while
 			
 		}//try
-		
+		System.out.println(id);
+		System.out.println("파일명"+fileName);
 		return fileName;
 	}//selectUserImg
 	
@@ -158,10 +159,10 @@ public class MainPageDAO {
 			}//end while
 			
 		}//try
-		System.out.println("관심사"+memberId);
-		for(int i:iVOList) {
-			System.out.println(i);
-		}
+		//System.out.println("관심사"+memberId);
+//		for(int i:iVOList) {
+//			System.out.println(i);
+//		}
 		return iVOList;
 	}//selectAllCategory
 	

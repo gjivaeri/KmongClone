@@ -15,17 +15,29 @@
 }
 
 
-
+#mainInput::placeholder {
+  color: #FFFFFF;
+}
 </style>
 
 <SCRIPT type="text/javascript">
    window.history.forward();
    function noBack() { window.history.forward(); }
    
+   
    $(function(){
-		
+	//var colorArr={"#008299","#8748E1","#FF9436","#FFFFE6"};
+   var myCarousel = document.getElementById('carouselExampleIndicators')
+	//alert(myCarousel)
+   myCarousel.addEventListener('slide.bs.carousel', function () {
+     //$(".ad-body").css
+    alert($('img[src^=.PNG]').val());
+     
+   })
+   
+   
 		$("#searchBtnInAD").click(function() {
-			alert($("#mainInput").val())
+			//alert($("#mainInput").val())
 			var inputText=$("#mainInput").val();
 			location.href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1="+inputText;
 		});
@@ -58,7 +70,7 @@
                            
                             <form action="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=">
                             <div class="typewriter">
-                            <input type="text"  id="mainInput" 
+                            <input type="text"  id="mainInput" placeholder="웹페이지 제작"
                             style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;">
                             </div>
                               
@@ -223,10 +235,10 @@
 
 </div>
 
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 if(${param.hid eq 'login'}){
 document.getElementById("modal").style.display='flex';
 }//end if
-</script> -->
+</script>
 </body>
 </html>

@@ -20,7 +20,7 @@
    <%
 	
 	 //1. 업로드 될 파일의 경로 얻기
-	 File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/upload");//절대경로
+	 File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/templates/mypage/upload_image");//절대경로
 	 
 	 //System.out.println(saveDirectory.getPath());
 	 //2. 업로드 될 파일의 크기 설정
@@ -33,7 +33,7 @@
 	 
 	 
 	 
-	 //String fileName=mr.getParameter("upFile"); //파일명은 getParameter로 얻어지지 않는다.
+	 String fileName=mr.getParameter("upFile"); //파일명은 getParameter로 얻어지지 않는다.
 	 //String originalName=mr.getOriginalFileName("upFile"); //원본 파일명
 	 String fileSystemName=mr.getFilesystemName("upFile"); //FileRenamePolicy 클래스에 의해 변화된 이름 
 	//FileRenamePolicy 클래스에 의해 변화된 이름 : 파일명 뒤에 1,2 증가하는 숫자가 붙는다.
@@ -58,27 +58,26 @@
 	JSONObject jsonObj=new JSONObject();
 	
 	if(cnt!=0){
-		//session.setAttribute("fileName", "done");
+		session.setAttribute("fileName", "done");
 		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp?file="+img);
-		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"); 
-		
+		response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"); 
 		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/image.jsp"); */
 		
-		
-		//MainPageDAO mDAO=MainPageDAO.getInstance();
-		//String img=mDAO.selectUserImg((int)session.getAttribute("login"));
+		/* 
+		MainPageDAO mDAO=MainPageDAO.getInstance();
+		String img=mDAO.selectUserImg((int)session.getAttribute("login"));
 		//session.setAttribute("flag",img);
-		//jsonObj.put("flag",img);
-		//jsonObj.put("d","fds");
+		jsonObj.put("flag",img);
+		jsonObj.put("d","fds");
 		
 		out.print(jsonObj.toJSONString());
 		/* session.setAttribute("fileName", img);
 		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp?file="+img);
 		response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"); */
-		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/image.jsp"); 
+		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/image.jsp"); */
 	}else{
-		//jsonObj.put("flag","nothing");
-		//out.print(jsonObj.toJSONString());
+		jsonObj.put("flag","nothing");
+		out.print(jsonObj.toJSONString());
 	}
 	
 	

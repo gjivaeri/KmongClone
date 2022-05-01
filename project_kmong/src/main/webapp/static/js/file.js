@@ -35,7 +35,7 @@ $(function(){
 		//$("#mainInput").css("border","0px");
 		$("#mainInput").css("width","150px");
 		$("#mainInput").css("border-right","1px solid #FFFFFF");
-		$("#mainInput").prop("value","웹페이지 제작");
+		$("#mainInput").css("background-color","transparent");
 	})
 
 });//ready

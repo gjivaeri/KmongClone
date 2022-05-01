@@ -12,6 +12,9 @@ body{
 }
 </style>
 <script type="text/javascript">
+window.history.forward();
+function noBack() { window.history.forward(); }
+
 $(function(){
 
 		$("#btn").click(function(){
@@ -54,7 +57,8 @@ if((String)session.getAttribute("setPass")==null){
 	session.removeAttribute("setPass");
 }
 %> 
-<body>
+<body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
     <div class="register-step1">
         <div style="text-align: center;">
            <a href="http://localhost/project_kmong/templates/home/index.jsp">
