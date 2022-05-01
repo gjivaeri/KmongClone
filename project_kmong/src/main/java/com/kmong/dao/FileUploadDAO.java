@@ -8,19 +8,19 @@ import java.util.Date;
 import com.kmong.vo.MemberVO;
 
 
-public class FileUploadDAO1 {
+public class FileUploadDAO {
 
-private static FileUploadDAO1 fDAO;
+private static FileUploadDAO fDAO;
 	
 	
-	private FileUploadDAO1() {
+	private FileUploadDAO() {
 		
 	}
 	
 	
-	public static FileUploadDAO1 getInstance() {
+	public static FileUploadDAO getInstance() {
 		if(fDAO==null) {
-			fDAO=new FileUploadDAO1();
+			fDAO=new FileUploadDAO();
 		}//end if
 		return fDAO;
 	}//getInstance
@@ -29,7 +29,7 @@ private static FileUploadDAO1 fDAO;
 	
 	public int updateProfileFile(MemberVO mVO) throws SQLException{
 		
-		System.out.println(mVO.getUser_img()+"÷");
+		//System.out.println(mVO.getUser_img()+"÷");
 		Connection con=DbConnectionDBCP.getInstance().getConn();
 		int rowCnt=0;
 		String insertFileName="update member set user_img=? where member_id=?";
