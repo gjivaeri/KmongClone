@@ -45,7 +45,7 @@ public class MyServiceDAO {
 	    	System.out.println("DB연결성공");
 	    	
 	    	String selectCheckAccount=
-	    			"select member_id from member where expert='Y' and email=?"; //전문가인지 사용자인지 체크
+	    			"select member_id from member where and email=?"; //전문가인지 사용자인지 체크
 	    	pstmt=con.prepareStatement(selectCheckAccount);
 	    	pstmt.setString(1, uiVO.getEmail());
 	    	
@@ -104,22 +104,24 @@ public class MyServiceDAO {
 	    try {
 	    	StringBuilder insertMyService = new StringBuilder();
 	    	con = dbcp.getConn();
+	    	System.out.println("DB연결 성공");
 	    	
 	    	insertMyService
-	    		.append("insert into post(post_id, title, summary, price, term, description, post_img, category_id)	")
-	    		.append("values(post_seq.nextval,?,?,?,?,?,?,?)	");
+	    		.append("insert into post(post_id, member_id, title, summary, price, term, description, post_img, category_id)	")
+	    		.append("values(post_seq.nextval,?,?,?,?,?,?,?,?)	");
 	    		//.append("where member_id=?	");
 	    	
 	    	pstmt=con.prepareStatement(insertMyService.toString());
 	    	
-	    	pstmt.setString(1, pVO.getTitle());
-	    	pstmt.setString(2, pVO.getSummary());
-	    	pstmt.setInt(3, pVO.getPrice());
-	    	pstmt.setInt(4, pVO.getTerm());
+	    	pstmt.setInt(1, pVO.getMemberId());
+	    	pstmt.setString(2, pVO.getTitle());
+	    	pstmt.setString(3, pVO.getSummary());
+	    	pstmt.setInt(4, pVO.getPrice());
+	    	pstmt.setInt(5, pVO.getTerm());
 	    	//pstmt.setString(5, pVO.getPostDate());
-	    	pstmt.setString(5, pVO.getDescription());
-	    	pstmt.setString(6, pVO.getPostImg());
-	    	pstmt.setInt(7, pVO.getCategoryId());
+	    	pstmt.setString(6, pVO.getDescription());
+	    	pstmt.setString(7, pVO.getPostImg());
+	    	pstmt.setInt(8, pVO.getCategoryId());
 	    	//pstmt.setInt(9, pVO.getMemberId());
 	    	
 	    	pstmt.executeUpdate();

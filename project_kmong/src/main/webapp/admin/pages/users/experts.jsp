@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/admin_validate.jsp" %>
 <%
 String opt=request.getParameter("search");
 String exp="Y";
@@ -16,8 +17,6 @@ int totalCnt = aDAO.getAllCount(table, exp);
 int todayCnt = aDAO.getTodayCount(table, exp);
 
 pageContext.setAttribute("list", list);
-pageContext.setAttribute("todayCnt", todayCnt);
-pageContext.setAttribute("totalCnt", totalCnt);
 
 /* paging */
 Paging paging = new PageImpl(request,list);
@@ -102,7 +101,7 @@ pageContext.setAttribute("size", result.size());
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Expert Status</h4>
-                    <div>총 전문가 수 : ${totalCnt}건 | 오늘 가입한 전문가 수: ${todayCnt}건</div><br/>
+                    <div>총 전문가 수 : <%=totalCnt %>건 | 오늘 가입한 전문가 수: <%=todayCnt %>건</div><br/>
                     <div class="form-group">
                       <form id="search-frm">
                       <div class="input-group">
@@ -140,7 +139,7 @@ pageContext.setAttribute("size", result.size());
                             <td>${exp.categoryName }</td>
                             <td>${exp.joinDate}</td>
                             <td> 
-                              <a href="experts_edit.jsp" style="color:white;">
+                              <a href="http://localhost/project_kmong/admin/pages/users/experts_edit.jsp?id=${exp.memberId }" style="color:white;">
                                 수정
                               </a>
                             </td>

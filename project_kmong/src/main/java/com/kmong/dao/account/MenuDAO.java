@@ -73,7 +73,7 @@ public class MenuDAO {
 			con = instance.getConn();
 			// 4. 쿼리문 생성객체 얻기
 			StringBuilder selectMenu = new StringBuilder();
-			selectMenu.append("	select post_img, title, price, star_avg	").append("	from post	")
+			selectMenu.append("	select post_id, post_img, title, price, star_avg	").append("	from post	")
 					.append("	where category_id=?	");
 
 			pstmt = con.prepareStatement(selectMenu.toString());
@@ -86,7 +86,7 @@ public class MenuDAO {
 			PostVO PVO = null;
 			while (rs.next()) {
 				PVO = new PostVO();
-
+				PVO.setPostId(rs.getInt("post_id"));
 				PVO.setPostImg(rs.getString("post_img"));
 				PVO.setTitle(rs.getString("title"));
 				PVO.setPrice(rs.getInt("price"));
@@ -117,7 +117,7 @@ public class MenuDAO {
 			con = instance.getConn();
 			// 4. 쿼리문 생성객체 얻기
 			StringBuilder selectSearchMenu = new StringBuilder();
-			selectSearchMenu.append("	select post_img, title, price, star_avg	").append("	from post	")
+			selectSearchMenu.append("	select post_id, post_img, title, price, star_avg	").append("	from post	")
 					.append("	where title like ?	");
 
 			pstmt = con.prepareStatement(selectSearchMenu.toString());
@@ -130,6 +130,8 @@ public class MenuDAO {
 			while (rs.next()) {
 				PVO = new PostVO();
 
+				
+				PVO.setPostId(rs.getInt("post_id"));
 				PVO.setPostImg(rs.getString("post_img"));
 				PVO.setTitle(rs.getString("title"));
 				PVO.setPrice(rs.getInt("price"));
@@ -187,5 +189,48 @@ public class MenuDAO {
 		return flag;
 			
 		}//selectCheckPassword
+	
+	public List<PostVO> selectDateMenu(int categoryId) throws SQLException {
+		List<PostVO> list = new ArrayList<PostVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		DbConnectionDBCP instance = DbConnectionDBCP.getInstance();
+
+		try {
+			// 1. JNDI 사용객체 생성
+			// 2. 설정된 DBCP 에서 DataSource 얻기
+			// 3. DataSource에서 Connection 얻기
+			con = instance.getConn();
+			// 4. 쿼리문 생성객체 얻기
+			StringBuilder selectMenu = new StringBuilder();
+			selectMenu.append("	select post_id, post_img, title, price, star_avg	").append("	from post	")
+					.append("	where category_id=? order by post_date	");
+
+			pstmt = con.prepareStatement(selectMenu.toString());
+
+			// 5. 바인드 변수 값 할당
+			pstmt.setInt(1, categoryId);
+			// 6.쿼리문 수행 후 결과 얻기
+			rs = pstmt.executeQuery();
+
+			PostVO PVO = null;
+			while (rs.next()) {
+				PVO = new PostVO();
+
+				PVO.setPostImg(rs.getString("post_img"));
+				PVO.setTitle(rs.getString("title"));
+				PVO.setPrice(rs.getInt("price"));
+				PVO.setStarAvg(rs.getDouble("star_avg"));
+
+				list.add(PVO);
+			} // end while
+		} finally {
+			// 7.연결끊기
+			instance.dbClose(rs, pstmt, con);
+		} // end finally
+		return list;
+	}// selectCategoryMenu
 
 }// class

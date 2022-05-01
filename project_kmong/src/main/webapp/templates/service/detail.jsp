@@ -1,3 +1,6 @@
+<%@page import="com.kmong.vo.CommentsVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kmong.dao.CommentsDAO"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.kmong.vo.PostVO"%>
 <%@page import="java.util.List"%>
@@ -75,6 +78,31 @@ $(function(){
 		var height=$(".user_comment").offset();
 		$("html, body").animate({scrollTop: height.top}, 10);
 	})
+	
+	$("#reviewBtn").click(function() {
+		
+		var starFlag = false;
+		for (var i = 0; i < 5; i++) {	
+	  		if($("[name='reviewStar']")[i].checked == true) {
+	  			starFlag = true;
+				break;
+			}  		
+		}
+		
+		if (!starFlag) {
+			alert("별점을 선택해주세요");
+			return;
+		}
+		
+		if($("#reviewContents").val() == "") {
+			alert("후기를 남겨주세요");
+			return;
+		}
+		
+		if (starFlag) {
+			$("#myform").submit();
+		}
+	})
 });
 
 
@@ -83,6 +111,26 @@ $(function(){
 </head>
 <body>
 <body>
+<% session.setAttribute("login",5); %>
+<% 
+if(request.getParameter("id") == null) {
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	return;
+}
+int postId = Integer.parseInt(request.getParameter("id"));
+
+CommentsDAO c = CommentsDAO.getInstance();
+if (session.getAttribute("login") != null) {
+	int sid = (Integer)session.getAttribute("login");
+	String loginNick = c.selectNickByMemberId(sid);
+	boolean isWriteComment = c.isWriteComment(sid, postId);
+	pageContext.setAttribute("loginNick", loginNick);
+	pageContext.setAttribute("isWriteComment", isWriteComment);
+}
+
+
+%>
+
 <%@include file="../common/header_member.jsp"%>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <hr/>
@@ -97,7 +145,7 @@ $(function(){
 </section>
 <%
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(40);
+List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는 게시물의 정보 조회
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
@@ -158,45 +206,44 @@ List<Map<String, String>> list = pDAO.selectPost(40);
 사용자 후기
 </h3>
 </div>
-
+<%
+	
+	ArrayList<CommentsVO> cList =  (ArrayList)c.selectCommentsAll(postId);
+	
+	pageContext.setAttribute("cList", cList);
+%>
+<!-- comments -->
+<c:forEach items="${ cList }" var="item">
 <div class="comment">
 <div>
-<div>닉네임</div>
-<div class="date">
-<div>★★★★★<span>(5.0) </span></div><div style="margin-left: 10px">22.04.10 14:24</div>
-</div>
-</div>
-<div>
-<div>
-<p>급하게 만들어 달라고 했는데 정말 잘 만드셨어요. 감사합니다!!</p>
-</div>
-</div>
+<div><span style="font-weight: bold;">${item.nick }</span>
+<span style="font-size: small;">${item.inputDate }</span>
 </div>
 
-
-<div class="comment">
-<div>
-<div>닉네임</div>
 <div class="date">
-<div>★★★★★<span>(5.0) </span></div><div style="margin-left: 10px">22.04.10 14:24</div>
+<div>	
+	<c:forEach begin="1" end="5" step="1" var="var">
+	<span style="color: ${var<item.star?'#fad103':'#f0f0f0'}">★</span>
+	</c:forEach>
+</div>
 </div>
 </div>
 <div>
 <div>
-<p>급하게 만들어 달라고 했는데 정말 잘 만드셨어요. 감사합니다!!</p>
+<p>${item.review }</p>
 </div>
 </div>
 </div>
+</c:forEach>
+<!-- comments -->
+
 
 <!-- 댓글작성 -->
-<div class="comments">
-
-<form class="mb-3" name="myform" id="myform" method="post">
+<c:if test="${isWriteComment }">
 <div>
-<div>닉네임</div>
-<!-- <div style="display:flex; flex-direction: row">
-<div>☆☆☆☆☆</div><div><span>( )</span></div>
-</div> -->
+<div class="comments">
+<form class="mb-3" name="myform" id="myform" method="post" action="review_process.jsp">
+<div>${loginNick }</div>
 	<fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
 		<input type="radio" name="reviewStar" value="5" id="rate1"><label
@@ -211,18 +258,23 @@ List<Map<String, String>> list = pDAO.selectPost(40);
 			for="rate5">★</label>
 	</fieldset>
 	<div>
-		<textarea class="col-auto form-control" type="text" id="reviewContents"
-				  placeholder="후기를 남겨주세요."></textarea>
+		<textarea class="col-auto form-control" type="text" id="reviewContents" name="reviewText" placeholder="후기를 남겨주세요."></textarea>
 	</div>
-<!-- <div>
-<textarea placeholder="댓글을 입력해주세요." style="width:100%"></textarea>
-</div> -->
 <div style="width:100px; float:right; margin-top: 5px">
-<input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary"/>
+<<<<<<< HEAD
+<input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary" id="reviewBtn"/>
 </div>
+<input type="hidden" value="<%= postId %>" name="postId" />
+=======
+<input type="button" value="등록" style="width:100`12	/*-+7sdg%" class="btn btn-outline-secondary"/>
+
+ ㅍdiv>
+>>>>>>> branch 'master' of https://github.com/gjivaeri/KmongClone.git
 </form>			
 </div>
+<!-- 댓글작성 -->
 </div>
+</c:if>
   
   
   
