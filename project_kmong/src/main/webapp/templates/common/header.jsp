@@ -15,7 +15,7 @@ if((String)session.getAttribute("loginTry")!=null){
 	session.removeAttribute("loginTry");
 }
 if(((String)session.getAttribute("logoutDone"))!=null){
-	%>alert("로그아웃 하셨습니다.")<%
+	%>alert("로그아웃 되었습니다.")<%
 	session.removeAttribute("logoutDone");
 }
 if(((String)session.getAttribute("logoutSession"))!=null){
