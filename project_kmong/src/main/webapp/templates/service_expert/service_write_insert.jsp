@@ -10,11 +10,13 @@
 
 	 boolean ImgFileFlag = (boolean)session.getAttribute("insertImgFlag");
 	 PostVO pVO = new PostVO();
-	 System.out.println(ImgFileFlag);
+	 System.out.println("ImgFileFlag: "+ImgFileFlag);
+	 //System.out.println(session.getAttribute("login"));
+	 session.setAttribute("memberId", 5);
+	 System.out.println("memberId: "+session.getAttribute("memberId"));
+	
 	 
 	if(!ImgFileFlag){
-		//String ip = request.getRemoteAddr(); 
-	
 		
 	//1. 업로드될 파일의 경로 얻기
 	File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/PostimgUpload");
@@ -24,12 +26,11 @@
 	MultipartRequest mr = new MultipartRequest(request, saveDirectory.getPath(), fileSize, "UTF-8",	new DefaultFileRenamePolicy());
 	
 	
-	//int postId = mr.getParameter("postId");
 	System.out.println(mr.getParameter("title"));
 	String title = mr.getParameter("title");
-	System.out.println(mr.getParameter("categoryId"));
+	//System.out.println(mr.getParameter("categoryId"));
 	int categoryId = Integer.parseInt(mr.getParameter("categoryId"));
-	String summary = mr.getParameter("summary");
+	String summary = mr.getParameter("summary").trim();
 	int term = Integer.parseInt(mr.getParameter("term"));
 	String description = mr.getParameter("description");
 	//System.out.println(mr.getParameter("file1"));
@@ -37,20 +38,13 @@
 	
 	//String postImg = mr.getParameter("file1");
 	String postImg =mr.getFilesystemName("file1");
-	int price = Integer.parseInt(mr.getParameter("price").trim());
 	
-/* 	System.out.println(mr.getParameter("title"));
-	String title = mr.getParameter("title");
-	System.out.println(request.getParameter("categoryId"));
-	int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-	String summary = request.getParameter("summary");
-	int term = Integer.parseInt(request.getParameter("term"));
-	String description = request.getParameter("description");
-	String postImg = request.getParameter("file1");
-	int price = Integer.parseInt(request.getParameter("price").trim());
-	 */
-				
-	/* PostVO pVO = new PostVO(); */
+	System.out.println("price : "+mr.getParameter("price").trim());
+	int price = Integer.parseInt(mr.getParameter("price").trim());
+	System.out.println("price2 : "+ price);
+	
+	int memberId = (Integer)session.getAttribute("memberId");
+	
 	pVO.setTitle(title);
 	pVO.setCategoryId(categoryId);
 	pVO.setSummary(summary);
@@ -58,15 +52,10 @@
 	pVO.setTerm(term);
 	pVO.setDescription(description);
 	pVO.setPostImg(postImg);
-				
+	pVO.setMemberId(memberId);
+	
 	MyServiceDAO msDAO = MyServiceDAO.getInstance();
 	msDAO.insertMyService(pVO);
-	
-	/* PostImgFileVO pifVO = new PostImgFileVO("postImg");
-	pifVO.setPostImg(postImg);
-	
-	PostImgFileUploadDAO pifuDAO = PostImgFileUploadDAO.getInstance();
-	pifuDAO.insertImgFile(pifVO); */
 	
 	response.sendRedirect("http://localhost/project_kmong/templates/service_expert/service_list.jsp");
 	

@@ -17,6 +17,7 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 <%
+
 String asd="";
 String text="";
 //session.removeAttribute("service");
@@ -51,6 +52,15 @@ if(request.getParameter("service")==null) {
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
+ window.history.forward();
+function noBack() { window.history.forward(); }
+
+<%
+if(session.getAttribute("alert")!=null){
+	session.removeAttribute("alert");
+	%>alert("비밀번호가 일치하지 않습니다.")<%
+}%>
+
 $(function() {
 	
 				
@@ -79,8 +89,14 @@ $(function() {
 });//ready
 </script>
 </head>
-<body>
+<!-- <body > -->
+<body nload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
+   
+   
  <%@include file="../common/header_member.jsp"%>
+ 
+ 
 		<hr>
 
 		<!-- main div -->

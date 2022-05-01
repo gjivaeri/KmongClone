@@ -4,18 +4,17 @@ public class PostVO {
 	
 	private int postId, memberId, price, term, categoryId;
 	private String title, summary, postDate, description, postImg;
-	private String status;
+	private String postStatus;
 	private double starAvg;
 	
 	
 	public PostVO() {
 		super();
 	}
-	
 
 
 	public PostVO(int postId, int memberId, int price, int term, int categoryId, String title, String summary,
-			String postDate, String description, String postImg, String status, double starAvg) {
+			String postDate, String description, String postImg, String postStatus, double starAvg) {
 		super();
 		this.postId = postId;
 		this.memberId = memberId;
@@ -27,10 +26,9 @@ public class PostVO {
 		this.postDate = postDate;
 		this.description = description;
 		this.postImg = postImg;
-		this.status = status;
+		this.postStatus = postStatus;
 		this.starAvg = starAvg;
 	}
-
 
 
 	public int getPostId() {
@@ -38,11 +36,9 @@ public class PostVO {
 	}
 
 
-
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
-
 
 
 	public int getMemberId() {
@@ -50,11 +46,9 @@ public class PostVO {
 	}
 
 
-
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
-
 
 
 	public int getPrice() {
@@ -62,11 +56,9 @@ public class PostVO {
 	}
 
 
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 
 
 	public int getTerm() {
@@ -74,11 +66,9 @@ public class PostVO {
 	}
 
 
-
 	public void setTerm(int term) {
 		this.term = term;
 	}
-
 
 
 	public int getCategoryId() {
@@ -86,11 +76,9 @@ public class PostVO {
 	}
 
 
-
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-
 
 
 	public String getTitle() {
@@ -98,11 +86,9 @@ public class PostVO {
 	}
 
 
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 
 
 	public String getSummary() {
@@ -110,11 +96,9 @@ public class PostVO {
 	}
 
 
-
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-
 
 
 	public String getPostDate() {
@@ -122,11 +106,9 @@ public class PostVO {
 	}
 
 
-
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
-
 
 
 	public String getDescription() {
@@ -134,11 +116,9 @@ public class PostVO {
 	}
 
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 
 	public String getPostImg() {
@@ -146,23 +126,19 @@ public class PostVO {
 	}
 
 
-
 	public void setPostImg(String postImg) {
 		this.postImg = postImg;
 	}
 
 
-
-	public String getStatus() {
-		return status;
+	public String getPostStatus() {
+		return postStatus;
 	}
 
 
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
 	}
-
 
 
 	public double getStarAvg() {
@@ -170,21 +146,21 @@ public class PostVO {
 	}
 
 
-
 	public void setStarAvg(double starAvg) {
 		this.starAvg = starAvg;
 	}
-
 
 
 	@Override
 	public String toString() {
 		return "PostVO [postId=" + postId + ", memberId=" + memberId + ", price=" + price + ", term=" + term
 				+ ", categoryId=" + categoryId + ", title=" + title + ", summary=" + summary + ", postDate=" + postDate
-				+ ", description=" + description + ", postImg=" + postImg + ", status=" + status + ", starAvg="
+				+ ", description=" + description + ", postImg=" + postImg + ", postStatus=" + postStatus + ", starAvg="
 				+ starAvg + "]";
 	}
 	
+
+
 	
 	
 	

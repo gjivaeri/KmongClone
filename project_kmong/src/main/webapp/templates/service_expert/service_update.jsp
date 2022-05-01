@@ -141,9 +141,6 @@ $(function() {
 					<span id="output1"></span>
 					</div>
 				</div>
-				<%
-				String[] category={"IT","A","B","C","D"};
-				%>	
 				<div class="main-div">
 					<span class="main-span">
 					<span class="span-name">카테고리</span>
@@ -152,11 +149,11 @@ $(function() {
 					<div>
 					<select id="category" name="categoryId" style="width: 500px; height: 40px; border: 0px; font-size: 16px;">
 											<option selected="selected" value="${items.categoryId }">${items.categoryId }</option>
-											<option value="1">IT</option>
-											<option value="2">A</option>
-											<option value="3">B</option>
-											<option value="4">C</option>
-											<option value="5">D</option>
+											<option value="1">디자인</option>
+											<option value="2">IT프로그래밍</option>
+											<option value="3">영상·사진·음향</option>
+											<option value="4">마케팅</option>
+											<option value="5">번역·통역</option>
 										</select>
 					</div>
 					</span> 

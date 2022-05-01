@@ -11,6 +11,24 @@
 <html>
 <head>
 <%@include file="../common/cdn.jsp"%>
+
+<%
+session.getAttribute("login");
+if(session.getAttribute("login") == null) {
+	%>
+<%@include file="../common/header.jsp"%>
+<%
+} else{
+	%><%@include file="../common/header_member.jsp"%>
+	<% }
+%>
+
+
+<% if(request.getQueryString()==null){
+	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
+	return;
+}
+%>
 <title>Insert title here</title>
 <!-- 공통CSS-->
 <style type="text/css">
@@ -52,6 +70,40 @@ color:#333
 </style>
 
 <script type="text/javascript">
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
+//파라미터에서 원하는 쿼리의 원하는 값을 얻기 위한 함수
+var getUrlParameter = function getUrlParameter(sParam) {
+ //url parameter를 얻어온다, 그 후 대부분의 문자를 디코딩하는 함수 사용
+ var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+     sURLVariables = sPageURL.split('&'),
+     sParameterName,
+     i;
+
+     //window.location.search는 ?sort=post_date와 같은 쿼리스트링 부분을 가지고 온다.
+     //substring(1)로 객체의 시작인덱스부터 가져옴
+
+ for (i = 0; i < sURLVariables.length; i++) {
+     sParameterName = sURLVariables[i].split('=');
+
+     if (sParameterName[0] === sParam) {
+         return sParameterName[1] === undefined ? true : sParameterName[1];
+     }
+ }
+};
+
+//select 옵션을 바꾸는 onchage를 감지하면 쿼리문과 함께 해당하는 URL로 이동한다
+function sort(selectIdx){
+	var page = getUrlParameter('p');
+	var categoryId = getUrlParameter('categoryId');
+	var nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?categoryId='
+		+categoryId+selectIdx;
+	if(page!=undefined){
+		nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?'
+			+'p='+page+'&categoryId='+categoryId+selectIdx;
+	}
+	window.location.href=nextURL; 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(function(){
 	var bold="";
@@ -64,9 +116,7 @@ $(function(){
 		$(bold).css({"font-weight" : "bold" ,"color" : "#333"})
 		
 	});
-	
-	
-	
+		
 	$(".ebpz7lm6").click(function() {
 		bold=this;
 		$(".ebpz7lm6").css({"font-weight" : "normal" ,"color" : "rgb(85, 89, 105)"}) 
@@ -76,10 +126,21 @@ $(function(){
 	function nextSubmit() {
 		$("#nextFrm").submit();
 	}
+	
 	function prevSubmit() {
 		$("#prevFrm").submit();
 	}
-	
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
+//선택한 option값을 계속 selected시키기 위한 코드, 페이지가 시작하자마자 실행되어야함
+	var sort = getUrlParameter('sort');
+	if(sort == 'post_date'){
+	 $('.sort-date').prop('selected', 'selected')
+	}else if(sort == 'star_avg'){
+	 $('.sort-star').prop('selected', 'selected')
+	}else{
+	 $('.sort-date').prop('selected', 'selected')
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 }); //ready
 
@@ -111,7 +172,9 @@ pageContext.setAttribute("categoryList", list1);
 <h1 class="css-1bmlbzf e18el20q0">카테고리</h1>
 <hr style="border:2px solid RGB(252, 212, 0)"/>
 <c:forEach var="categorylist" items="${categoryList}">
+
 <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0" ><c:out value="${categorylist.categoryName }"/></a></div>
+
 </c:forEach>
 <!-- <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">문서 번역</a></div>
 <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">ABCDE</a></div>
@@ -124,15 +187,17 @@ pageContext.setAttribute("categoryList", list1);
 <!-- 메뉴페이지 시작..................................................................................................................... -->
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
+<% 
 
+if(session.getAttribute("login") == null) {
+	%>
 <a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
-<span>></span>
 <%
-String query1=request.getParameter("categoryId");
-
-
-
+} else{
+	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+	<% }
 %>
+<span>></span>
 <a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00"><c:out value="${categorylist.categoryName }"/></a>
 
 
@@ -142,11 +207,12 @@ String query1=request.getParameter("categoryId");
 
 </div>
 <div style="margin-right: 12px">
-<select name="defaultFilter" class="form-select" aria-label="Default select example">
-	<option value="평점순">평점순</option>
-	<option value="신규등록순">신규등록순</option>
+<!-- ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)/////////////////////////////////////// -->
+<select name="sort-posts" onchange="sort(this.value)" class="form-select" aria-label="Default select example">
+	<option class="sort-date" value="&sort=post_date">신규등록순</option>
+	<option class="sort-star" value="&sort=star_avg">평점순</option>
 </select>
-
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 </div>
 </div>
 <!-- menu 시작 -->
@@ -155,15 +221,24 @@ String query1=request.getParameter("categoryId");
 
 
 <%   
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
+String query1=request.getParameter("categoryId");
+String sortIdx = request.getParameter("sort");
+//페이지 이동해도 쿼리값을 유지시기키 위함
+String sortQuery="&sort="+sortIdx;
+request.setAttribute("catId", query1);
+request.setAttribute("sortQuery", sortQuery);
+
 if(query1==null) {    
 	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp");
 }
 int query2=Integer.parseInt(query1);
 //int query=Integer.parseInt(request.getParameter("categoryId")); 
-List<PostVO> list2=mnDAO.selectCategoryMenu(query2);  /*  카테고리 클릭했을때 쿼리스트링으로 얻어서  매개변수에 넣은다음 메뉴들 찾아오는건데  처음이 null이라 list.jsp가 오류남*/
-pageContext.setAttribute("categoryMenu", list2);
-
-Paging paging = new PageImpl(request,list2);
+//List<PostVO> list2=mnDAO.selectCategoryMenu(query2);  /*  카테고리 클릭했을때 쿼리스트링으로 얻어서  매개변수에 넣은다음 메뉴들 찾아오는건데  처음이 null이라 list.jsp가 오류남*/
+List<PostVO> sortedList = mnDAO.selectDateMenu(query2, sortIdx);
+pageContext.setAttribute("categoryMenu", sortedList);
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Paging paging = new PageImpl(request,sortedList);
 					paging.setPagePerRecord(12);
 					
 					int firstPage = paging.getFirstPage();
@@ -174,8 +249,16 @@ Paging paging = new PageImpl(request,list2);
 					int nextPage = paging.getNextPage();
 					int prevPage = paging.getPrevPage();
 					
+					String param="";
 
-					
+					if (request.getQueryString() != null) {
+						if(request.getQueryString().indexOf("p") == -1){
+							//param = request.getQueryString();		
+							param = request.getQueryString().substring(request.getQueryString().indexOf("p")+1);
+						}	
+					}
+
+					pageContext.setAttribute("param",param);
 					pageContext.setAttribute("isNextPage", isNext);
 					pageContext.setAttribute("isPrevPage", isPrev);
 					pageContext.setAttribute("firstPage", firstPage);
@@ -184,9 +267,11 @@ Paging paging = new PageImpl(request,list2);
 					pageContext.setAttribute("prev", prevPage);
 					pageContext.setAttribute("list", result);
 					pageContext.setAttribute("size", result.size());
+					
 %>
 
  <c:forEach var="categoryMenu" items="${list}">
+ <%-- <c:if test="${categoryMenu.postStatus eq 'Y' }">  왜 안나오지 리스트가...--%> 
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${categoryMenu.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
@@ -207,34 +292,46 @@ Paging paging = new PageImpl(request,list2);
   </div>
 </div>
 
+
+<c:set value="${categoryMenu.postId }" var="postId"/>
+<%
+String asd=pageContext.getAttribute("postId").toString();
+int postId=Integer.parseInt(asd);
+int count= mnDAO.commentcount(postId);
+
+
+%>
+
 </div>
 <div class="css-mkpab3 ezeyqpv2">
   <span role="img" rotate="0" data-testid="rating-icon" class="ezeyqpv3 css-wlmn2t e181xm9y1">
   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
-      <path d="M8.37094152,8.12482574 L2.52598096,8.59636398 L2.36821881,8.6135218 C0.881583763,8.81867772 0.513822851,10.1467426 1.72605142,11.1443161 L6.11068071,14.7526934 L4.80553251,20.0682859 L4.77348322,20.2161997 C4.50052597,21.673724 5.6402616,22.4726949 6.9887771,21.699537 L12.00271,18.8250573 L17.0166429,21.699537 L17.1506515,21.7715841 C18.4829447,22.4403279 19.5680516,21.5674348 19.1998875,20.0682859 L17.8937294,14.7526934 L22.2793686,11.1443161 L22.3984321,11.0405714 C23.4954951,10.0270601 23.0352205,8.72174778 21.479439,8.59636398 L15.6334685,8.12482574 L13.3880977,3.09014615 C12.7393731,1.6361626 11.2656405,1.63707337 10.6173223,3.09014615 L8.37094152,8.12482574 Z" ></path></svg></span>
-      <c:out value="${category.starAvg }"/><span class="css-p9bq5v ezeyqpv0"></span>
-  <div class="css-0 ezeyqpv1">2개의 평가</div>
+      <path style="color: rgb(255, 212, 0)" d="M8.37094152,8.12482574 L2.52598096,8.59636398 L2.36821881,8.6135218 C0.881583763,8.81867772 0.513822851,10.1467426 1.72605142,11.1443161 L6.11068071,14.7526934 L4.80553251,20.0682859 L4.77348322,20.2161997 C4.50052597,21.673724 5.6402616,22.4726949 6.9887771,21.699537 L12.00271,18.8250573 L17.0166429,21.699537 L17.1506515,21.7715841 C18.4829447,22.4403279 19.5680516,21.5674348 19.1998875,20.0682859 L17.8937294,14.7526934 L22.2793686,11.1443161 L22.3984321,11.0405714 C23.4954951,10.0270601 23.0352205,8.72174778 21.479439,8.59636398 L15.6334685,8.12482574 L13.3880977,3.09014615 C12.7393731,1.6361626 11.2656405,1.63707337 10.6173223,3.09014615 L8.37094152,8.12482574 Z" ></path></svg></span>
+      <c:out value="${categoryMenu.starAvg }"/><span class="css-p9bq5v ezeyqpv0"></span>
+  <div class="css-0 ezeyqpv1"><%=count %>개의 평가</div>
 </div>
 </div>
 </a>
 </article>
+<%-- </c:if> --%>
 </c:forEach> 
 
 
 
 
-
-<!-- -------------------------------메뉴페이지 끝--------------------------------------------- -->
+<!----------------------------------------- 메뉴페이지 끝 ----------------------------------------->
 </div>
 </div>
 </div>
 </div>
-<!-- paging -->
+<!----------------------------------------- paging ----------------------------------------->
 					<form id="prevFrm">
 					<input type="hidden" value="${prev}" name="p">
+					<input type="hidden" value="${catId }" name="categoryId"/>
 					</form>
 					<form id="nextFrm">
 					<input type="hidden" value="${next }" name="p">
+					<input type="hidden" value="${catId }" name="categoryId"/>
 					</form>
 					
 					<div style="text-align:center;height: 40px;">
@@ -242,17 +339,17 @@ Paging paging = new PageImpl(request,list2);
 					<a href="#void" onclick="prevSubmit()">prev</a>
 					</c:if>
 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
-					<a href="?p=${i}">${i}</a>
+						<a href="?p=${i}&categoryId=${catId}${sortQuery}">${i}</a>
 					</c:forEach>
 					<c:if test="${ isNextPage }">
 					<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>
 					
-					<!-- paging -->	
+					<!----------------------------------------- paging ----------------------------------------->
 
 
-<!--  footer-->
+<!----------------------------------------- footer ----------------------------------------->
 <%@include file="../common/footer.jsp" %>
 
 

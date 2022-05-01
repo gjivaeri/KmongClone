@@ -45,7 +45,7 @@ public class LoginDAO {
 		 * System.out.println(email); System.out.println(pass); System.out.println(id);
 		 * System.out.println(result);
 		 */		
-		System.out.println(memberId);
+		//System.out.println(memberId);
 		return memberId;
 	}//selectEmail
 	

@@ -53,6 +53,9 @@ if(session.getAttribute("pwConfirmed")!=null){
 	
 	
 	$(function() {
+		 let reg_pw2 = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,}/;
+		 var pattern=/\s/g;
+		 
 		$("#updatechkbtn").click(function() {
 			var pass1=$("#pass1").val();
 			var pass2=$("#pass2").val();
@@ -65,9 +68,16 @@ if(session.getAttribute("pwConfirmed")!=null){
 		if(pass2 ==""){
 			alert("한번더 입력해주세요");
 			$("#pass2").focus();
-	return;
-		}//end if
-		if(pass1 != pass2) {
+				return;
+		}else if(!reg_pw2.test(pass1)){
+	          alert("문자와 특수문자, 숫자를 조합하여 8자 이상의 비밀번호를 입력해주세요.");
+	          $("#pass1").focus();return;
+	          
+	       }else if(pass1.match(pattern)){
+	           alert("비밀번호를 정확히 입력해주세요.");
+	           $("#pass1").focus();return;
+	           
+	       }else if(pass1 != pass2) {
 			alert("비밀번호가 서로 일치하지 않습니다.");
 			$("#pass2").focus();
 			return;

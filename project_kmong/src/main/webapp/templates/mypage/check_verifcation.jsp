@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="netscape.javascript.JSObject"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.kmong.dao.account.AccountSettingDAO"%>
@@ -33,13 +34,14 @@ if(sdf==null){
 }
 
 
-session.setAttribute("lo",1);
- int memberId=(int)session.getAttribute("lo");
-//int memberId=(int)session.getAttribute("login");
+
+int memberId=(int)session.getAttribute("login");
 
 
+String password=DataEncrypt.messageDigest("MD5",request.getParameter("pass"));
+//String password=request.getParameter("pass");
 
-String password=request.getParameter("pass");
+
 //DB조회
 AccountSettingDAO asDAO=AccountSettingDAO.getInstance();
 String chkpass=asDAO.selectCheckPassword(memberId,password);
@@ -48,7 +50,10 @@ String chkpass=asDAO.selectCheckPassword(memberId,password);
 
 //pageContext.setAttribute("dfg", dfg);
 if(chkpass == null){
-	%><script>alert("비밀번호가 일치하지 않습니다."); history.back();</script> <%
+	%><!-- <script>alert("비밀번호가 일치하지 않습니다.");</script> --><%
+	session.setAttribute("alert","fail");
+	response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service="+passConfirmed);
+	
 }else if(chkpass.equals(password)) {
 	session.setAttribute("pwConfirmed",passConfirmed);
 	session.removeAttribute("service");

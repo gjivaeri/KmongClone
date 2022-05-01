@@ -31,8 +31,8 @@ public class MemberDAO {
 		Connection con=DbConnectionDBCP.getInstance().getConn();
 		
 		String selectEmail="select email from member where name=? and tel=? and withdrawal_status='N'";
-		System.out.println(mVO.getName());
-		System.out.println(mVO.getTel());
+		//System.out.println(mVO.getName());
+		//System.out.println(mVO.getTel());
 		
 		PreparedStatement pstmt=con.prepareStatement(selectEmail);
 		pstmt.setString(1, mVO.getName());
@@ -51,8 +51,8 @@ public class MemberDAO {
 		 * System.out.println(result);
 		 * 
 		 */
-		System.out.println(foundEmail);
-		System.out.println(flag);
+		//System.out.println(foundEmail);
+		//System.out.println(flag);
 		return foundEmail;
 	}//selectID
 	

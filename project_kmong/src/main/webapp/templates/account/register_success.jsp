@@ -62,7 +62,7 @@ $(function(){
                 
                 <div>
 
-				<form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp">
+				<form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp?hid=login">
                     <input   class="login-button" id="login-btn-after-register" type="button" value="로그인 하기" 
                     
                    			onmouseover="$('#login-btn-after-register').css('background-color','rgb(240, 192, 79)')" 

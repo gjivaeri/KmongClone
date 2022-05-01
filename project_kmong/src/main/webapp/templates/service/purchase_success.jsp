@@ -1,3 +1,4 @@
+<%@page import="com.kmong.vo.OrdersVO"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmong.dao.PostDAO"%>
@@ -58,8 +59,20 @@ $(function(){
 </div>
 
 <%
+request.setCharacterEncoding("UTF-8");
+
+System.out.println(request.getParameter("post_id"));
+int postId = Integer.parseInt(request.getParameter("post_id"));
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(1);
+List<Map<String, String>> list = pDAO.selectPost(postId);
+
+int memberId = (Integer)session.getAttribute("login");
+
+OrdersVO oVO = new OrdersVO();
+oVO.setPostId(postId);
+oVO.setMemberId(memberId);
+System.out.println(oVO);
+pDAO.insertOrder(oVO);
 %>
 
 <div>
@@ -71,7 +84,7 @@ List<Map<String, String>> list = pDAO.selectPost(1);
       </svg><br/>
       <h1 class="h1"><strong>구매가 완료 되었습니다.</strong></h1><br/>
       <ul type="none">
-         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="2"/></li>
+         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="2"/><%= list.get(0).get("order_id") %></li>
          <li><strong>결제금액</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("price") %>"/></li>
          <li><strong>상품명</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("title") %>"/></li>
 

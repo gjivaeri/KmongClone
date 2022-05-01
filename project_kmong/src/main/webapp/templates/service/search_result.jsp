@@ -21,7 +21,7 @@ a {
 
 /*nav  */
 
-.categorybox{display:flex ;flex:0 0 200px;flex-direction: column}
+.categorybox{display:flex ;flex:0 0 200px;flex-direction: column; height: 500px;}
 
 /* menu */
 .menu{display:flex; flex-direction: row}
@@ -46,7 +46,41 @@ color:#333
 <!-- JQuery CDN -->
 
 <script type="text/javascript">
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
+//파라미터에서 원하는 쿼리의 원하는 값을 얻기 위한 함수
+var getUrlParameter = function getUrlParameter(sParam) {
+//url parameter를 얻어온다, 그 후 대부분의 문자를 디코딩하는 함수 사용
+var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+   sURLVariables = sPageURL.split('&'),
+   sParameterName,
+   i;
 
+   //window.location.search는 ?sort=post_date와 같은 쿼리스트링 부분을 가지고 온다.
+   //substring(1)로 객체의 시작인덱스부터 가져옴
+
+for (i = 0; i < sURLVariables.length; i++) {
+   sParameterName = sURLVariables[i].split('=');
+
+   if (sParameterName[0] === sParam) {
+       return sParameterName[1] === undefined ? true : sParameterName[1];
+   }
+}
+};
+
+//select 옵션을 바꾸는 onchage를 감지하면 쿼리문과 함께 해당하는 URL로 이동한다
+function sort(selectIdx){
+	var page = getUrlParameter('p');
+	var searchIdx = getUrlParameter('search_input1');
+	http://localhost/project_kmong/templates/service/search_result.jsp
+	var nextURL = 'http://localhost/project_kmong/templates/service/search_result.jsp?search_input1='
+		+searchIdx+selectIdx;
+	if(page!=undefined){
+		nextURL = 'http://localhost/project_kmong/templates/service/search_result.jsp?'
+			+'p='+page+'&search_input1='+searchIdx+selectIdx;
+	}
+	window.location.href=nextURL; 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
 $(function(){
 	
 	var bold="";
@@ -73,7 +107,17 @@ $(function(){
 	function prevSubmit() {
 		$("#prevFrm").submit();
 	}
-	
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
+	//선택한 option값을 계속 selected시키기 위한 코드, 페이지가 시작하자마자 실행되어야함
+		var sort = getUrlParameter('sort');
+		if(sort == 'post_date'){
+		 $('.sort-date').prop('selected', 'selected')
+		}else if(sort == 'star_avg'){
+		 $('.sort-star').prop('selected', 'selected')
+		}else{
+		 $('.sort-date').prop('selected', 'selected')
+		}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });//ready
 
 
@@ -82,7 +126,16 @@ $(function(){
 </head>
 <body>
 <body>
+<%
+session.getAttribute("login");
+if(session.getAttribute("login") == null) {
+	%>
 <%@include file="../common/header.jsp"%>
+<%
+} else{
+	%><%@include file="../common/header_member.jsp"%>
+	<% }
+%>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <hr/>
 <!-- -----------------------------------------------------------------  -->
@@ -98,6 +151,7 @@ pageContext.setAttribute("categoryList", list1);
 <h1 class="css-1bmlbzf e18el20q0">카테고리</h1>
 <hr style="border:2px solid RGB(252, 212, 0)"/>
 <c:forEach var="categorylist" items="${categoryList }"> 
+
 <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0"><c:out value="${categorylist.categoryName }"/></a></div>
 
  </c:forEach>
@@ -107,17 +161,41 @@ pageContext.setAttribute("categoryList", list1);
 <!-- 메뉴페이지 시작..................................................................................................................... -->
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
+<% 
 
-<a href="http://localhost/project_kmong/templates/home/index.jsp"  class="css-mz86x3 e1rp7ga00">홈</a>
+if(session.getAttribute("login") == null) {
+	%>
+<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+<%
+} else{
+	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+	<% }
+%>
 <!-- <span>></span>
 <a href="/" class="css-mz86x3 e1rp7ga00">IT</a> -->
 <hr/>
 <%  
+////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
 String search_input=request.getParameter("search_input1");
+if(search_input==null){
+	search_input="";
+}
+String sortIdx = request.getParameter("sort");
 
-List <PostVO> llist=mnDAO.selectSearchMenu(search_input);
+String sortQuery="&sort="+sortIdx;
+String searchQuery = "&search_input1="+search_input;
+
+request.setAttribute("sortQuery", sortQuery);
+request.setAttribute("searchQuery",searchQuery);
+List<PostVO> llist=null;
+
+
+if(!search_input.equals("")){
+llist=mnDAO.selectSearchMenu(search_input, sortIdx);
+
+
 //pageContext.setAttribute("search1", llist);
-
+//////////////////////////////////////////////////////////////////////////////
 %>
 
 <%
@@ -156,11 +234,12 @@ List <PostVO> llist=mnDAO.selectSearchMenu(search_input);
 					}
 
 					pageContext.setAttribute("param",param);
-				
-					%>
+
+%>
+<%-- <%if(!search_input.equals("")){%>	 --%>				
 <section class="search">
 <h4>"&nbsp;<%= search_input %>&nbsp;"</h4>에 대한 서비스 검색 결과
-<span>&nbsp; (2,202건)</span>
+
 </section>
 
 <!--인기순  -->
@@ -169,13 +248,13 @@ List <PostVO> llist=mnDAO.selectSearchMenu(search_input);
 
 </div>
 <div style="margin-right: 12px">
-<select name="defaultFilter" class="form-select" aria-label="Default select example">
-	<option value="인기순" selected>인기순</option>
-	<option value="추첨순">추첨순</option>
-	<option value="평점순">평점순</option>
-	<option value="응답순">응답순</option>
-	<option value="신규등록순">신규등록순</option>
+
+<!-- ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)/////////////////////////////////////// -->
+<select name="sort-posts" onchange="sort(this.value)" class="form-select" aria-label="Default select example">
+	<option class="sort-date" value="&sort=post_date">신규등록순</option>
+	<option class="sort-star" value="&sort=star_avg">평점순</option>
 </select>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </div>
 </div>
@@ -183,18 +262,10 @@ List <PostVO> llist=mnDAO.selectSearchMenu(search_input);
 <div class="startmenu">
 
 
-<%-- <%   // 이게 왜 가지는 건지 모르겠네...
-String query1=request.getParameter("categoryId");
-if(query1=="null") {
-	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
-int query2=Integer.parseInt(query1);
-}
-//int query=Integer.parseInt(request.getParameter("categoryId"));    // forward 로 categoryid=null 이면 1인 페이지로 이동하게 ? 만들기
-List<PostVO> list2=mnDAO.selectCategoryMenu(1);
-pageContext.setAttribute("categoryMenu", list2);
-%> --%>
-<!-- 이게 아니라 search 한 검색 결과로 for 를 돌려야 한다.  -->
+
+
 <c:forEach var="search1" items="${list}">
+<%-- <c:if test="${search1.postStatus eq 'Y'}"> --%>
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${search1.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
@@ -214,6 +285,15 @@ pageContext.setAttribute("categoryMenu", list2);
     <div data-testid="price" class="css-1848xfl ezeyqpv4"><fmt:formatNumber value="${search1.price}" pattern="#,###"/>원</div>
   </div>
 </div>
+<c:set value="${search1.postId }" var="postId"/>
+<%
+String asd=pageContext.getAttribute("postId").toString();
+int postId=Integer.parseInt(asd);
+int count= mnDAO.commentcount(postId);
+
+
+%>
+
 
 </div>
 <div class="css-mkpab3 ezeyqpv2">
@@ -221,11 +301,12 @@ pageContext.setAttribute("categoryMenu", list2);
   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
       <path d="M8.37094152,8.12482574 L2.52598096,8.59636398 L2.36821881,8.6135218 C0.881583763,8.81867772 0.513822851,10.1467426 1.72605142,11.1443161 L6.11068071,14.7526934 L4.80553251,20.0682859 L4.77348322,20.2161997 C4.50052597,21.673724 5.6402616,22.4726949 6.9887771,21.699537 L12.00271,18.8250573 L17.0166429,21.699537 L17.1506515,21.7715841 C18.4829447,22.4403279 19.5680516,21.5674348 19.1998875,20.0682859 L17.8937294,14.7526934 L22.2793686,11.1443161 L22.3984321,11.0405714 C23.4954951,10.0270601 23.0352205,8.72174778 21.479439,8.59636398 L15.6334685,8.12482574 L13.3880977,3.09014615 C12.7393731,1.6361626 11.2656405,1.63707337 10.6173223,3.09014615 L8.37094152,8.12482574 Z" ></path></svg></span>
       <c:out value="${search1.starAvg }"/><span class="css-p9bq5v ezeyqpv0"></span>
-  <div class="css-0 ezeyqpv1">2개의 평가</div>
+  <div class="css-0 ezeyqpv1"><%= count %>개의 평가</div>
 </div>
 </div>
 </a>
 </article>
+<%-- </c:if> --%>
 </c:forEach> 
 
 
@@ -248,14 +329,20 @@ pageContext.setAttribute("categoryMenu", list2);
 					<c:if test="${ isPrevPage }">
 					<a href="#void" onclick="prevSubmit()">prev</a>
 					</c:if>
-					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
-					<a href="?p=${i}&<%= param %>">${i}</a>
+					<c:forEach var="i" begin="${firstPage}" end="${lastPage-1}" step="1">					
+					<a href="?p=${i}${searchQuery}${sortQuery}">${i}</a> 
 					</c:forEach>
 					<c:if test="${ isNextPage }">
 					<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>
-					
+<%}else{
+%><h2 style="margin-bottom: 500px;">검색어를 입력해주세요. </h2>
+</div>
+</div>
+</div><%
+}
+%>					
 					<!-- paging -->	
 <!--  footer-->
 <%@include file="../common/footer.jsp" %>
