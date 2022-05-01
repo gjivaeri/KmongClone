@@ -26,18 +26,16 @@
    
    
 $(function(){
-	var colorArr=["cadetblue","#FFFFE6","#8748E1","#FF9436"];
-   var myCarousel = document.getElementById('carouselExampleIndicators')
+	var colorArr=["rgb(5, 68, 78)","rgb(67, 20, 133)","rgb(6, 87, 203)","rgb(229, 125, 99)"];
+	var myCarousel = document.getElementById('carouselExampleIndicators')
 
    myCarousel.addEventListener('slide.bs.carousel', function (e) {
-    
+	   
 	   for(var i=0; i<4 ; i++){
-		   if(e.from==i){
-			   //alert(i);
+		   if(e.to==i){
 			   $(".ad-body").css("background-color",colorArr[i]);
 		   }
 	   }
-	   
    })
    
    
@@ -118,7 +116,7 @@ $(function(){
                             <img src="http://localhost/project_kmong/static/images/adImg2.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </div>
                           <div class="carousel-item">
-                            <img src="http://localhost/project_kmong/static/images/adImg3.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://localhost/project_kmong/static/images/adImg6.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </div>
                           <div class="carousel-item">
                             <img src="http://localhost/project_kmong/static/images/adImg4.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">

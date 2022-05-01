@@ -12,28 +12,18 @@
 <head>
 <%@include file="../common/cdn.jsp"%>
 
-<%
-session.getAttribute("login");
-if(session.getAttribute("login") == null) {
-	%>
-<%@include file="../common/header.jsp"%>
-<%
-} else{
-	%><%@include file="../common/header_member.jsp"%>
-	<% }
-%>
 
 
 <% if(request.getQueryString()==null){
-	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
-	return;
+   response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
+   return;
 }
 %>
 <title>Insert title here</title>
 <!-- 공통CSS-->
 <style type="text/css">
 a {
-	color: rgb(48 52 65);
+   color: rgb(48 52 65);
     background-color: transparent;
 }
 
@@ -93,61 +83,61 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 //select 옵션을 바꾸는 onchage를 감지하면 쿼리문과 함께 해당하는 URL로 이동한다
 function sort(selectIdx){
-	var page = getUrlParameter('p');
-	var categoryId = getUrlParameter('categoryId');
-	var nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?categoryId='
-		+categoryId+selectIdx;
-	if(page!=undefined){
-		nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?'
-			+'p='+page+'&categoryId='+categoryId+selectIdx;
-	}
-	window.location.href=nextURL; 
+   var page = getUrlParameter('p');
+   var categoryId = getUrlParameter('categoryId');
+   var nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?categoryId='
+      +categoryId+selectIdx;
+   if(page!=undefined){
+      nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?'
+         +'p='+page+'&categoryId='+categoryId+selectIdx;
+   }
+   window.location.href=nextURL; 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(function(){
-	var bold="";
-	
-	$(".ebpz7lm6").hover(function() {
-		$(this).css({"font-weight" : "bold" ,"color" : "#333"})
-		
-	}, function() {
-		$(".ebpz7lm6").css({"font-weight" : "normal" ,"color" : "rgb(85, 89, 105)"}) 
-		$(bold).css({"font-weight" : "bold" ,"color" : "#333"})
-		
-	});
-		
-	$(".ebpz7lm6").click(function() {
-		bold=this;
-		$(".ebpz7lm6").css({"font-weight" : "normal" ,"color" : "rgb(85, 89, 105)"}) 
-		$(this).css({"font-weight" : "bold" ,"color" : "#333"})
-	}); 
-	
-	function nextSubmit() {
-		$("#nextFrm").submit();
-	}
-	
-	function prevSubmit() {
-		$("#prevFrm").submit();
-	}
+   var bold="";
+   
+   $(".ebpz7lm6").hover(function() {
+      $(this).css({"font-weight" : "bold" ,"color" : "#333"})
+      
+   }, function() {
+      $(".ebpz7lm6").css({"font-weight" : "normal" ,"color" : "rgb(85, 89, 105)"}) 
+      $(bold).css({"font-weight" : "bold" ,"color" : "#333"})
+      
+   });
+      
+   $(".ebpz7lm6").click(function() {
+      bold=this;
+      $(".ebpz7lm6").css({"font-weight" : "normal" ,"color" : "rgb(85, 89, 105)"}) 
+      $(this).css({"font-weight" : "bold" ,"color" : "#333"})
+   }); 
+   
+   function nextSubmit() {
+      $("#nextFrm").submit();
+   }
+   
+   function prevSubmit() {
+      $("#prevFrm").submit();
+   }
 ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
 //선택한 option값을 계속 selected시키기 위한 코드, 페이지가 시작하자마자 실행되어야함
-	var sort = getUrlParameter('sort');
-	if(sort == 'post_date'){
-	 $('.sort-date').prop('selected', 'selected')
-	}else if(sort == 'star_avg'){
-	 $('.sort-star').prop('selected', 'selected')
-	}else{
-	 $('.sort-date').prop('selected', 'selected')
-	}
+   var sort = getUrlParameter('sort');
+   if(sort == 'post_date'){
+    $('.sort-date').prop('selected', 'selected')
+   }else if(sort == 'star_avg'){
+    $('.sort-star').prop('selected', 'selected')
+   }else{
+    $('.sort-date').prop('selected', 'selected')
+   }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+   
 }); //ready
 
 /* function bold(this){
-	
-	$(this).css("font-weight" , "bold")
-	
+   
+   $(this).css("font-weight" , "bold")
+   
 }//bold */
 
 </script>
@@ -155,7 +145,17 @@ $(function(){
 </head>
 <body>
 
+<%
+session.getAttribute("login");
+if(session.getAttribute("login") == null) {
+   %>
 <%@include file="../common/header.jsp"%>
+<%
+} else{
+   %><%@include file="../common/header_member.jsp"%>
+   <% }
+%>
+
 <hr/>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <!-- -----------------------------------------------------------------  -->
@@ -190,12 +190,12 @@ pageContext.setAttribute("categoryList", list1);
 <% 
 
 if(session.getAttribute("login") == null) {
-	%>
+   %>
 <a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 <%
 } else{
-	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
-	<% }
+   %><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+   <% }
 %>
 <span>></span>
 <a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00"><c:out value="${categorylist.categoryName }"/></a>
@@ -209,8 +209,8 @@ if(session.getAttribute("login") == null) {
 <div style="margin-right: 12px">
 <!-- ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)/////////////////////////////////////// -->
 <select name="sort-posts" onchange="sort(this.value)" class="form-select" aria-label="Default select example">
-	<option class="sort-date" value="&sort=post_date">신규등록순</option>
-	<option class="sort-star" value="&sort=star_avg">평점순</option>
+   <option class="sort-date" value="&sort=post_date">신규등록순</option>
+   <option class="sort-star" value="&sort=star_avg">평점순</option>
 </select>
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
 </div>
@@ -230,7 +230,7 @@ request.setAttribute("catId", query1);
 request.setAttribute("sortQuery", sortQuery);
 
 if(query1==null) {    
-	response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp");
+   response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp");
 }
 int query2=Integer.parseInt(query1);
 //int query=Integer.parseInt(request.getParameter("categoryId")); 
@@ -239,35 +239,35 @@ List<PostVO> sortedList = mnDAO.selectDateMenu(query2, sortIdx);
 pageContext.setAttribute("categoryMenu", sortedList);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 Paging paging = new PageImpl(request,sortedList);
-					paging.setPagePerRecord(12);
-					
-					int firstPage = paging.getFirstPage();
-					int lastPage = paging.getLastPage();
-					boolean isNext = paging.isNextPage();
-					boolean isPrev = paging.isPrevPage();
-					List<PostVO> result = paging.getVoAsPagePerRecord();
-					int nextPage = paging.getNextPage();
-					int prevPage = paging.getPrevPage();
-					
-					String param="";
+               paging.setPagePerRecord(12);
+               
+               int firstPage = paging.getFirstPage();
+               int lastPage = paging.getLastPage();
+               boolean isNext = paging.isNextPage();
+               boolean isPrev = paging.isPrevPage();
+               List<PostVO> result = paging.getVoAsPagePerRecord();
+               int nextPage = paging.getNextPage();
+               int prevPage = paging.getPrevPage();
+               
+               String param="";
 
-					if (request.getQueryString() != null) {
-						if(request.getQueryString().indexOf("p") == -1){
-							//param = request.getQueryString();		
-							param = request.getQueryString().substring(request.getQueryString().indexOf("p")+1);
-						}	
-					}
+               if (request.getQueryString() != null) {
+                  if(request.getQueryString().indexOf("p") == -1){
+                     //param = request.getQueryString();      
+                     param = request.getQueryString().substring(request.getQueryString().indexOf("p")+1);
+                  }   
+               }
 
-					pageContext.setAttribute("param",param);
-					pageContext.setAttribute("isNextPage", isNext);
-					pageContext.setAttribute("isPrevPage", isPrev);
-					pageContext.setAttribute("firstPage", firstPage);
-					pageContext.setAttribute("lastPage", lastPage);
-					pageContext.setAttribute("next", nextPage);
-					pageContext.setAttribute("prev", prevPage);
-					pageContext.setAttribute("list", result);
-					pageContext.setAttribute("size", result.size());
-					
+               pageContext.setAttribute("param",param);
+               pageContext.setAttribute("isNextPage", isNext);
+               pageContext.setAttribute("isPrevPage", isPrev);
+               pageContext.setAttribute("firstPage", firstPage);
+               pageContext.setAttribute("lastPage", lastPage);
+               pageContext.setAttribute("next", nextPage);
+               pageContext.setAttribute("prev", prevPage);
+               pageContext.setAttribute("list", result);
+               pageContext.setAttribute("size", result.size());
+               
 %>
 
  <c:forEach var="categoryMenu" items="${list}">
@@ -325,28 +325,28 @@ int count= mnDAO.commentcount(postId);
 </div>
 </div>
 <!----------------------------------------- paging ----------------------------------------->
-					<form id="prevFrm">
-					<input type="hidden" value="${prev}" name="p">
-					<input type="hidden" value="${catId }" name="categoryId"/>
-					</form>
-					<form id="nextFrm">
-					<input type="hidden" value="${next }" name="p">
-					<input type="hidden" value="${catId }" name="categoryId"/>
-					</form>
-					
-					<div style="text-align:center;height: 40px;">
-					<c:if test="${ isPrevPage }">
-					<a href="#void" onclick="prevSubmit()">prev</a>
-					</c:if>
-					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
-						<a href="?p=${i}&categoryId=${catId}${sortQuery}">${i}</a>
-					</c:forEach>
-					<c:if test="${ isNextPage }">
-					<a href="#void" onclick="nextSubmit()">next</a>
-					</c:if>
-					</div>
-					
-					<!----------------------------------------- paging ----------------------------------------->
+               <form id="prevFrm">
+               <input type="hidden" value="${prev}" name="p">
+               <input type="hidden" value="${catId }" name="categoryId"/>
+               </form>
+               <form id="nextFrm">
+               <input type="hidden" value="${next }" name="p">
+               <input type="hidden" value="${catId }" name="categoryId"/>
+               </form>
+               
+               <div style="text-align:center;height: 40px;">
+               <c:if test="${ isPrevPage }">
+               <a href="#void" onclick="prevSubmit()">prev</a>
+               </c:if>
+               <c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
+                  <a href="?p=${i}&categoryId=${catId}${sortQuery}">${i}</a>
+               </c:forEach>
+               <c:if test="${ isNextPage }">
+               <a href="#void" onclick="nextSubmit()">next</a>
+               </c:if>
+               </div>
+               
+               <!----------------------------------------- paging ----------------------------------------->
 
 
 <!----------------------------------------- footer ----------------------------------------->

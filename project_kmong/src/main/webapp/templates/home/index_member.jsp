@@ -41,8 +41,18 @@ img{
 
 <SCRIPT type="text/javascript">
    
-   
    $(function(){
+	var colorArr=["rgb(5, 68, 78)","rgb(67, 20, 133)","rgb(6, 87, 203)","rgb(229, 125, 99)"];
+	var myCarousel = document.getElementById('carouselExampleIndicators')
+	
+	myCarousel.addEventListener('slide.bs.carousel', function (e) {
+	   
+	   for(var i=0; i<4 ; i++){
+		   if(e.to==i){
+			   $(".ad-body").css("background-color",colorArr[i]);
+		   }
+	   }
+	})
 		
 		$("#searchBtnInAD").click(function() {
 			//alert($("#mainInput").val())
@@ -115,7 +125,7 @@ img{
                             <img src="http://localhost/project_kmong/static/images/adImg2.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </div>
                           <div class="carousel-item">
-                            <img src="http://localhost/project_kmong/static/images/adImg3.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://localhost/project_kmong/static/images/adImg6.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </div>
                           <div class="carousel-item">
                             <img src="http://localhost/project_kmong/static/images/adImg4.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">

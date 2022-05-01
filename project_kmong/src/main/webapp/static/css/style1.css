@@ -184,11 +184,13 @@ input
 .ad-body{
     width:100%;
     height:480px; 
-	background-color: cadetblue;  /* cadetblue */
+	background-color: rgb(5, 68, 78);  /* cadetblue */
     display: flex; 
     flex-direction: row; 
     align-items: center;
-    z-index: -1;}
+    z-index: -1;
+    transition:  background-color 1s, transform 1s;
+    }
 
 
 .ad-div{width: 1200px; height: 380px;  margin-top: 50px;
