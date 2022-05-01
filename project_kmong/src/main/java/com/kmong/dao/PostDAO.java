@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.kmong.vo.CommentsVO;
 import com.kmong.vo.MemberVO;
+import com.kmong.vo.OrdersVO;
 import com.kmong.vo.PostVO;
 
 public class PostDAO {
@@ -47,9 +48,10 @@ public class PostDAO {
 			con = dbcp.getConn();
 			System.out.println("DB연동 성공");
 			selectPost
-					.append("select m.nick, p.member_id, p.price, p.term, p.star_avg, p.category_id, p.title, p.summary, p.description, p.post_img, to_char(p.post_date,'yyyy-mm-dd') post_date	")
-					.append("from post p, member m	")
-					.append("where (p.member_id(+)=m.member_id) and p.post_id=?	");
+					.append("select o.order_id, m.nick, p.post_id, p.member_id, p.price, p.term, p.star_avg, p.category_id, p.title, p.summary, p.description, p.post_img, to_char(p.post_date,'yyyy-mm-dd') post_date	")
+					.append("from post p, member m, orders o	")
+					.append("where (p.member_id(+)=m.member_id) and (m.member_id(+)=o.member_id) and p.post_id=?	");
+					//.append("where (p.member_id(+)=m.member_id) and p.post_id=?	");
 			
 			pstmt=con.prepareStatement(selectPost.toString());
 			pstmt.setInt(1, postId);
@@ -59,6 +61,9 @@ public class PostDAO {
 			Map<String, String> map = new HashMap<String, String>();
 			while(rs.next()) {
 				
+				map.put("order_id", Integer.toString(rs.getInt("order_id")));
+				map.put("member_id", Integer.toString(rs.getInt("member_id")));
+				map.put("post_id", Integer.toString(rs.getInt("post_id")));
 				map.put("price", Integer.toString(rs.getInt("price")));
 				map.put("term", Integer.toString(rs.getInt("term")));
 				map.put("category_id", Integer.toString(rs.getInt("category_id")));
@@ -104,6 +109,28 @@ public class PostDAO {
 	    	dbcp.dbClose(null, pstmt, con);
 	    }
 
+	}//insertConmments 
+	
+	public void insertOrder(OrdersVO oVO)throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con=dbcp.getConn();
+			System.out.println("DB연결 성공");
+			
+			String insertOrder=
+					"insert into orders(member_id, post_id) values(?,?)	";
+			pstmt=con.prepareStatement(insertOrder);
+			
+			pstmt.setInt(1, oVO.getMemberId());
+			pstmt.setInt(2, oVO.getPostId());
+			
+			pstmt.executeUpdate();
+		}finally {
+			dbcp.dbClose(null, pstmt, con);
+		}
+		
 	}//insertConmments 
 
 }

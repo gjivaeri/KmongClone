@@ -36,7 +36,13 @@ public class AdminDAO {
 		return aDAO;
 	}
 	
-	/* search Admin's account */
+	/**
+	 * 관리자 로그인 구현을 위한 계정조회
+	 * @param admId
+	 * @param admPw
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean selectAdminLogin(String admId, String admPw) throws SQLException {
 		
 		boolean loginFlag = false;
@@ -56,7 +62,12 @@ public class AdminDAO {
 		return loginFlag;
 	}
 	
-//	update Admin's password
+	/**
+	 * 관리자 계정 비밀번호 업데이트
+	 * @param avo
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateAdminPass(AdminVO avo) throws SQLException {
 		int cnt=0;
 		boolean flag=false;
@@ -76,6 +87,12 @@ public class AdminDAO {
 		return flag;
 	}
 	
+	/**
+	 * 전체 개수 조회 - post
+	 * @param table
+	 * @return
+	 * @throws SQLException
+	 */
 	public int getAllCount(String table) throws SQLException {
 		int cnt = 0;
 		Connection con=dc.getConn();
@@ -91,6 +108,13 @@ public class AdminDAO {
 		return cnt;
 	};
 	
+	/**
+	 * 전체 개수 조회 - member, orders
+	 * @param table
+	 * @param val
+	 * @return
+	 * @throws SQLException
+	 */
 	public int getAllCount(String table, String val) throws SQLException {
 		int cnt = 0;
 		String condition="";
@@ -123,6 +147,12 @@ public class AdminDAO {
 		return cnt;
 	};
 
+	/**
+	 * 오늘 개수 조회 - post
+	 * @param table
+	 * @return
+	 * @throws SQLException
+	 */
 	public int getTodayCount(String table) throws SQLException {
 		int cnt = 0;		
 		String dateCol = table.toLowerCase().equals("orders") ? "order" : table;
@@ -146,6 +176,13 @@ public class AdminDAO {
 		return cnt;
 	};
 	
+	/**
+	 * 오늘 개수 조회 - orders, member
+	 * @param table
+	 * @param val
+	 * @return
+	 * @throws SQLException
+	 */
 	public int getTodayCount(String table, String val) throws SQLException {
 		int cnt = 0;		
 		String dateCol = "";
@@ -185,6 +222,12 @@ public class AdminDAO {
 	};
 
 	
+	/**
+	 * 전체 게시글 조회
+	 * @param opt
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<AdminPostsVO> selectAllPost(String opt) throws SQLException{
 		
 		List<AdminPostsVO> list = new ArrayList<AdminPostsVO>();
@@ -255,6 +298,13 @@ public class AdminDAO {
 			}
 	}//selectAllPost;
 	
+	/**
+	 * 전체 멤버 조회
+	 * @param opt
+	 * @param exp
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<AdminMemberVO>selectAllMember(String opt, String exp) throws SQLException{
 		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
 		Connection con = dc.getConn();
@@ -313,6 +363,12 @@ public class AdminDAO {
 		}
 	}
 			
+	/**
+	 * 전체 주문 조회
+	 * @param opt
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<AdminOrdersVO> selectAllOrder(String opt) throws SQLException{
 		List<AdminOrdersVO> list = new ArrayList<AdminOrdersVO>();
 		Connection con = dc.getConn();
@@ -378,6 +434,11 @@ public class AdminDAO {
 		return list;
 	}
 	
+	/**
+	 * 전체 카테고리 조회
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<CategoryVO> selectAllCategory() throws SQLException {
 		Connection con = dc.getConn();
 		String sql = "select * from category where category_status <> 'N'";
