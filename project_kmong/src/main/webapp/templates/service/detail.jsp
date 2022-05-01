@@ -124,8 +124,12 @@ if (session.getAttribute("login") != null) {
 	int sid = (Integer)session.getAttribute("login");
 	String loginNick = c.selectNickByMemberId(sid);
 	boolean isWriteComment = c.isWriteComment(sid, postId);
+	double savg = c.selectAvgStar(postId);
+	String starAvg = String.format("%.1f", savg);
 	pageContext.setAttribute("loginNick", loginNick);
 	pageContext.setAttribute("isWriteComment", isWriteComment);
+	pageContext.setAttribute("starAvg", starAvg);
+	pageContext.setAttribute("savg", savg);
 }
 
 
@@ -156,8 +160,11 @@ List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는
 </section>
 
 <section class="star" style="margin-bottom: 40px">
-<div>★★★★★</div>
-<div>5.0</div>
+	<c:forEach begin="1" end="5" step="1" var="var">
+	<span style="color: ${var<=savg?'#fad103':'#f0f0f0'}">★</span>
+	</c:forEach>
+<div></div>
+<div>${ starAvg }</div>
 
 </section>
 <nav>
@@ -223,7 +230,7 @@ List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는
 <div class="date">
 <div>	
 	<c:forEach begin="1" end="5" step="1" var="var">
-	<span style="color: ${var<item.star?'#fad103':'#f0f0f0'}">★</span>
+	<span style="color: ${var<=item.star?'#fad103':'#f0f0f0'}">★</span>
 	</c:forEach>
 </div>
 </div>
@@ -261,24 +268,17 @@ List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는
 		<textarea class="col-auto form-control" type="text" id="reviewContents" name="reviewText" placeholder="후기를 남겨주세요."></textarea>
 	</div>
 <div style="width:100px; float:right; margin-top: 5px">
-<<<<<<< HEAD
+
 <input type="button" value="등록" style="width:100%" class="btn btn-outline-secondary" id="reviewBtn"/>
 </div>
 <input type="hidden" value="<%= postId %>" name="postId" />
-=======
-<input type="button" value="등록" style="width:100`12	/*-+7sdg%" class="btn btn-outline-secondary"/>
 
- ㅍdiv>
->>>>>>> branch 'master' of https://github.com/gjivaeri/KmongClone.git
 </form>			
 </div>
 <!-- 댓글작성 -->
 </div>
 </c:if>
-  
-  
-  
-     </div>
+</div>
   
 </div>
 </div>

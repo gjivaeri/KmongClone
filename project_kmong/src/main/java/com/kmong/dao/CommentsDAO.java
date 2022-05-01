@@ -82,7 +82,7 @@ public class CommentsDAO {
 		pstmt.setInt(2, postId);
 		ResultSet rs = pstmt.executeQuery();
 		int countComment = 0;
-		int countOrder = getCountOrder(memberId);
+		int countOrder = getCountOrder(memberId,postId);
 		boolean flag = false;
 	
 		try(con;pstmt;rs;) {
@@ -98,11 +98,28 @@ public class CommentsDAO {
 		
 	}
 	
-	private int getCountOrder(int memberId) throws SQLException {
-		String sql = "select count(order_id) from orders where member_id = ?";
+	public double selectAvgStar(int postId) throws SQLException {
+		String sql = "select avg(star) from comments where post_id= ?";
+		Connection con = dc.getConn();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, postId);
+		ResultSet rs = pstmt.executeQuery();
+		double result = 0;
+		try(con;pstmt;rs;) {
+			while(rs.next()) {
+				result = rs.getDouble(1);
+			}
+			return result;
+		}
+	}
+	
+	
+	private int getCountOrder(int memberId,int postId) throws SQLException {
+		String sql = "select count(order_id) from orders where member_id = ? and post_id=?";
 		Connection con = dc.getConn();
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, memberId);
+		pstmt.setInt(2, postId);
 		ResultSet rs = pstmt.executeQuery();
 		int countOrder = 0;
 		try(con;pstmt;rs;) {
@@ -113,6 +130,8 @@ public class CommentsDAO {
 			return countOrder;
 		}
 	}
+	
+	
 
 	
 
