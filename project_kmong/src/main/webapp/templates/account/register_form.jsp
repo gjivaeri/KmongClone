@@ -184,6 +184,8 @@ function selectAll(selectAll) {
 
 $(function(){
 
+	
+	
 	$("#toIndex").click(function(){
 		if(confirm("회원 가입을 그만두시겠습니까?")){
 			location.replace("http://localhost/project_kmong/templates/home/index.jsp");
@@ -193,8 +195,28 @@ $(function(){
     $('.multi_select').selectpicker();
     
     
+	$("#email").keyup(function(){
+		emailConfirm=false;
+		$("#spanEmail").css("display","none");
+	})
+	
+	$("#nick").keyup(function(){
+		nickConfirm=false;
+		$("#spanNick").css("display","none");
+	})
+	
+	
+	
    $(".complete-btn").click(function(){
     	
+	$(".clause").change(function(){
+	        if($(".clause").is(":checked")){
+	            alert("체크박스 체크했음!");
+	        }else{
+	            alert("체크박스 체크 해제!");
+	        }
+	 });  
+
     	//모든 필수 칸이 채워지고 
 	    var name=$("#name").val();
 	    var tel=$("#tel").val();
@@ -309,16 +331,10 @@ $(function(){
 		});
 		
 		//--------------약관 유효성 검증-----------------------
-        if(!value.includes("필수1")){
+        if(!value.includes("필수1")||!value.includes("필수2")||!value.includes("필수3")){
         	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
         	return;
-        }else if(!value.includes("필수2")){
-        	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
-        	return;
-        }else if(!value.includes("필수3")){
-        	alert("필수 항목에 동의하지 않을 시 회원가입이 불가합니다.");
-        	return;
-        }//end if
+        }
         
       /*   //약관 선택
         if(value.includes("선택1")){
@@ -350,6 +366,9 @@ function chkNull(){
 	$("#frm").submit();
 }
 
+function keyDownhandle(){
+	
+}
 </script>
 
 </head>
@@ -404,7 +423,7 @@ function chkNull(){
                         <div class="requirement">비밀번호<label>&nbsp;*</label></div>
                         <input type="password" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1"/>
                         <input type="password" placeholder="비밀번호를 한번 더 입력해주세요." name="pass2" id="pass2"/>
-                       <!--  <span id="d" style="float: right; color:#0000FF; display: none;">비밀</span> -->
+                       <span id="d" style="float: right; color:#0000FF; display: none;">비밀</span> 
                     </div>
                     
                     <div class="regi-div">
@@ -448,7 +467,7 @@ function chkNull(){
                         관심사<label>&nbsp;*</label></div>
         				<select class="multi_select w-100" 
 					        mutiple data-max-options="3" data-max-options-text="3개까지 선택 가능합니다." 
-					        multiple title="관심사 3가지를 선택하세요." id="interestSelect" name="interests">
+					        multiple title="관심사는 3개까지 선택가능합니다." id="interestSelect" name="interests">
 					        <% 
 			                   
 			                   if(list!=null){

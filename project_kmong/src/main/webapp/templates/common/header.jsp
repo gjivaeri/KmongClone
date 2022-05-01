@@ -140,8 +140,8 @@ $("#searchbtn").click(function() {
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
 								                <form action="http://localhost/project_kmong/templates/home/login_action.jsp" method="get" id="loginFrm">
-								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="abc@google.com"/>
-								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!1234"
+								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="m1@google.com"/>
+								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!6125"
 								                    onkeyup="handlePassEnter(event);"/>
 								                    
 								                    
@@ -184,7 +184,7 @@ $("#searchbtn").click(function() {
                         <img class="categories" src="http://localhost/project_kmong/static/images/drop_down.PNG" style="margin-bottom: 3px; width: 12px; height: 5px; object-fit: cover;"/>
                         </div>
                     
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" ">
                     <div id="menuUnderline" style="width: 180px; height: 5px; background-color: #f0c04f; display: none;"></div>
                     <span style="font-size: 8px; padding-left: 10px; padding-top: 10px;">비즈니스</span>
                    <!-- 카테고리 메뉴 DB에서 불러오기 -->

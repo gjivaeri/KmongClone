@@ -19,7 +19,9 @@ img{
     image-rendering: crisp-edges;
     image-rendering: pi;
 } 
-
+#mainInput::placeholder {
+  color: #FFFFFF;
+}
 </style>
 
 <!-- jQuery CDN -->
@@ -37,6 +39,20 @@ img{
 <!-- footer css -->
  <link rel='stylesheet' type='text/css' media='screen' href='http://localhost/project_kmong/static/css/footer.css'>
 
+<SCRIPT type="text/javascript">
+   
+   
+   $(function(){
+		
+		$("#searchBtnInAD").click(function() {
+			//alert($("#mainInput").val())
+			var inputText=$("#mainInput").val();
+			location.href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1="+inputText;
+		});
+
+		
+	});//ready
+</SCRIPT>
 </head>
 <body>
 <div id="wrap" >
@@ -56,16 +72,14 @@ img{
                        <div class="ad-search2">
                            <div class="ad-search">
                            
-                             <form>
-                            <div class="typewriter"><input type="text" value="웹페이지 제작" id="mainInput"
+                            
+                            <form action="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=">
+                            <div class="typewriter">
+                            <input type="text"  id="mainInput" placeholder="웹페이지 제작"
                             style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;">
                             </div>
-<!--                             <div class="typewriter"><h5>웹페이지 제작</h5></div> -->
-                            <!-- <div class="typewriter">
-                                <h1>The cat and the hat.</h1>
-                              </div> -->
                               
-                               <div class="white-search-btn">
+                               <div class="white-search-btn" id="searchBtnInAD">
                                </div>
                                
                               </form>
@@ -84,8 +98,8 @@ img{
                     </div>
                 </div>
 
-                <div  style="width: 577px; height: 376px; ">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div  style="width: 577px; height: 376px; z-index: 0;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
                         <div class="carousel-indicators">
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
