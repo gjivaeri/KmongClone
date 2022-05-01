@@ -209,13 +209,13 @@ $(function(){
 	
    $(".complete-btn").click(function(){
     	
-	$(".clause").change(function(){
+/* 	$(".clause").change(function(){
 	        if($(".clause").is(":checked")){
 	            alert("체크박스 체크했음!");
 	        }else{
 	            alert("체크박스 체크 해제!");
 	        }
-	 });  
+	 });   */
 
     	//모든 필수 칸이 채워지고 
 	    var name=$("#name").val();

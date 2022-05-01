@@ -25,14 +25,19 @@
    function noBack() { window.history.forward(); }
    
    
-   $(function(){
-	//var colorArr={"#008299","#8748E1","#FF9436","#FFFFE6"};
+$(function(){
+	var colorArr=["cadetblue","#FFFFE6","#8748E1","#FF9436"];
    var myCarousel = document.getElementById('carouselExampleIndicators')
-	//alert(myCarousel)
-   myCarousel.addEventListener('slide.bs.carousel', function () {
-     //$(".ad-body").css
-    alert($('img[src^=.PNG]').val());
-     
+
+   myCarousel.addEventListener('slide.bs.carousel', function (e) {
+    
+	   for(var i=0; i<4 ; i++){
+		   if(e.from==i){
+			   //alert(i);
+			   $(".ad-body").css("background-color",colorArr[i]);
+		   }
+	   }
+	   
    })
    
    
@@ -94,12 +99,6 @@
 
 <!-- //////////////////////////////////////-->
 
-            
-
-
-
-
-
 <!--////////////////////////////////////-->
 
                   <!-- style="width: 577px; height: 376px; border: 1px solid #333;"> -->
@@ -112,7 +111,7 @@
                         </div>
                         
                          <div class="carousel-inner" style="height: 375px; border-radius: 8px;">
-                         <div class="carousel-item active">
+                         <div class="carousel-item active" id="dd">
                             <img src="http://localhost/project_kmong/static/images/adImg1.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </div>
                           <div class="carousel-item">

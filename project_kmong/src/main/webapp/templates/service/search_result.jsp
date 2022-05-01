@@ -21,7 +21,7 @@ a {
 
 /*nav  */
 
-.categorybox{display:flex ;flex:0 0 200px;flex-direction: column}
+.categorybox{display:flex ;flex:0 0 200px;flex-direction: column; height: 500px;}
 
 /* menu */
 .menu{display:flex; flex-direction: row}
@@ -169,7 +169,9 @@ pageContext.setAttribute("categoryList", list1);
 <%  
 ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
 String search_input=request.getParameter("search_input1");
-
+if(search_input==null){
+	search_input="";
+}
 String sortIdx = request.getParameter("sort");
 
 String sortQuery="&sort="+sortIdx;
@@ -177,9 +179,12 @@ String searchQuery = "&search_input1="+search_input;
 
 request.setAttribute("sortQuery", sortQuery);
 request.setAttribute("searchQuery",searchQuery);
+List<PostVO> llist=null;
 
 
-List <PostVO> llist=mnDAO.selectSearchMenu(search_input, sortIdx);
+if(!search_input.equals("")){
+llist=mnDAO.selectSearchMenu(search_input, sortIdx);
+
 
 //pageContext.setAttribute("search1", llist);
 //////////////////////////////////////////////////////////////////////////////
@@ -221,8 +226,9 @@ List <PostVO> llist=mnDAO.selectSearchMenu(search_input, sortIdx);
 					}
 
 					pageContext.setAttribute("param",param);
-				
-					%>
+
+%>
+<%-- <%if(!search_input.equals("")){%>	 --%>				
 <section class="search">
 <h4>"&nbsp;<%= search_input %>&nbsp;"</h4>에 대한 서비스 검색 결과
 
@@ -322,7 +328,13 @@ int count= mnDAO.commentcount(postId);
 					<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>
-					
+<%}else{
+%><h2 style="margin-bottom: 500px;">검색어를 입력해주세요. </h2>
+</div>
+</div>
+</div><%
+}
+%>					
 					<!-- paging -->	
 <!--  footer-->
 <%@include file="../common/footer.jsp" %>
