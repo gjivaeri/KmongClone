@@ -8,19 +8,19 @@ import java.util.Date;
 import com.kmong.vo.MemberVO;
 
 
-public class FileUploadDAO {
+public class FileUploadDAO1 {
 
-private static FileUploadDAO fDAO;
+private static FileUploadDAO1 fDAO;
 	
 	
-	private FileUploadDAO() {
+	private FileUploadDAO1() {
 		
 	}
 	
 	
-	public static FileUploadDAO getInstance() {
+	public static FileUploadDAO1 getInstance() {
 		if(fDAO==null) {
-			fDAO=new FileUploadDAO();
+			fDAO=new FileUploadDAO1();
 		}//end if
 		return fDAO;
 	}//getInstance
@@ -41,9 +41,9 @@ private static FileUploadDAO fDAO;
 			rowCnt=pstmt.executeUpdate();
 		
 		}
-		System.out.println(mVO.getUser_img());
-		System.out.println("機筍脾六六"+rowCnt);
-		System.out.println(new Date());
+		//System.out.println(mVO.getUser_img());
+		//System.out.println("機筍脾六六"+rowCnt);
+		//System.out.println(new Date());
 		return rowCnt;
 	}//insertFile
 

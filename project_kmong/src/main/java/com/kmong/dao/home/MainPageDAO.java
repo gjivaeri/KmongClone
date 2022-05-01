@@ -126,8 +126,8 @@ public class MainPageDAO {
 			}//end while
 			
 		}//try
-		System.out.println(id);
-		System.out.println("파일명"+fileName);
+		//System.out.println(id);
+		//System.out.println("파일명"+fileName);
 		return fileName;
 	}//selectUserImg
 	
