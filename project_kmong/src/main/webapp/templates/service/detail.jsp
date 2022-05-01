@@ -314,14 +314,17 @@ List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는
 <div style="margin-bottom: 15px">
 <img src="http://localhost/project_kmong/static/images/img2.png"/><span><%= list.get(0).get("term") %>일</span>
 </div>
-
+<form action="purchase_success.jsp" method="post">
+<input type="hidden" name="postId" value=<%= list.get(0).get("post_id") %>>
+<input type="hidden" name="memberId" value=<%= list.get(0).get("member_id") %>>
 <div style="margin:0px auto; width:70% ;margin-bottom: 50px">
-<button role="button" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://localhost/project_kmong/templates/service/purchase_success.jsp'">
+<button role="button" type="submit" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://localhost/project_kmong/templates/service/purchase_success.jsp'">
 <span class="css-1oteowz eklkj753">
 <span><strong>구매하기</strong></span>
 </span>
 </button>
 </div>
+</form>
 </div>
 </section>
 
