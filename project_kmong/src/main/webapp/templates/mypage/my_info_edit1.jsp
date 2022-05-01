@@ -226,7 +226,7 @@ function refresh(){
 							
 					List<MemberVO> list5=asDAO.selectinformation(memberId);
 						pageContext.setAttribute("infor", list5);
-							
+							     
 							%>
 							<section id="main-section2">
 							<c:forEach var="info" items="${infor}">
