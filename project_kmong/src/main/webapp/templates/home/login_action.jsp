@@ -43,6 +43,8 @@
 					}else{ */
 				if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp")){
 					response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+				}else if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp?hid=login")){
+					response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
 				}else{
 					response.sendRedirect(url);
 				}
