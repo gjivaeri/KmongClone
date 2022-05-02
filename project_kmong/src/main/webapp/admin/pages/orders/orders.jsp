@@ -27,7 +27,6 @@ request.setAttribute("list", list);
 /* end order count */
 /* paging */
 Paging paging = new PageImpl(request,list);
-paging.setPagePerRecord(10);
 
 int firstPage = paging.getFirstPage();
 int lastPage = paging.getLastPage();
@@ -63,6 +62,9 @@ pageContext.setAttribute("size", result.size());
   <head>
     <title>Orders</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<style>
+		a{text-decoration:none; color:white;}
+	</style>
   </head>
   <body>
   
@@ -105,15 +107,14 @@ pageContext.setAttribute("size", result.size());
               <h3 class="page-title"> Orders </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Orders</a></li>
+                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/orders/orders.jsp">Orders</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Order Status</li>
                 </ol>
               </nav>
             </div>
+            
             <div class="row">
-
               <!-- 표 테이블 시작 . JSP에서 자동화할것-->
-
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
@@ -132,9 +133,12 @@ pageContext.setAttribute("size", result.size());
                     </div><br/>
                     <div class="table-responsive">
                       <table class="table">
+                         <c:if test="${size==0}">
+                      		<div style="text-align:center;">검색 결과가 존재하지 않습니다</div>
+                      	</c:if>
+                      	<c:if test="${size!=0}">
                         <thead>
-                          <tr>
-          
+                          <tr>          
                             <th style="width:50px;"> OrderNo. </th>
                             <th style="width:50px;"> PostNo. </th>
                             <th> PostTitle </th>
@@ -143,13 +147,9 @@ pageContext.setAttribute("size", result.size());
                             <th style="width:150px;"> Price </th>
                             <th style="width:150px;"> Order Date </th>
                             <th style="width:150px;"> Status </th>
-
                           </tr>
                         </thead>
                         <tbody>
-                         <c:if test="${size==0}">
-                      		검색 결과가 존재하지 않습니다
-                      	</c:if>
                         <c:forEach var="order" items="${list }">
                           <tr>
                             <td class="py-1">
@@ -167,6 +167,7 @@ pageContext.setAttribute("size", result.size());
                           </tr>
                         </c:forEach>
                         </tbody>
+                        </c:if>
                       </table>
                     </div>
                   </div>
@@ -205,5 +206,6 @@ pageContext.setAttribute("size", result.size());
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+    </div>
   </body>
 </html>

@@ -20,7 +20,6 @@ pageContext.setAttribute("list", list);
 
 /* paging */
 Paging paging = new PageImpl(request,list);
-paging.setPagePerRecord(10);
 
 int firstPage = paging.getFirstPage();
 int lastPage = paging.getLastPage();
@@ -56,6 +55,9 @@ pageContext.setAttribute("size", result.size());
   <head>
     <title>Experts</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<style>
+		a{text-decoration:none; color:white;}
+	</style>
   </head>
   <body>
   
@@ -89,7 +91,7 @@ pageContext.setAttribute("size", result.size());
               <h3 class="page-title"> Users </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Experts</a></li>
+                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/users/experts.jsp">Experts</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Expert Status</li>
                 </ol>
               </nav>
@@ -116,8 +118,9 @@ pageContext.setAttribute("size", result.size());
                     
                       <table class="table table-striped">
                       	<c:if test="${size==0}">
-                      		검색 결과가 존재하지 않습니다
-                      	</c:if>                      
+                      		<div style="text-align:center;">검색 결과가 존재하지 않습니다</div>
+                      	</c:if>          
+                      	<c:if test="${size!=0}">            
                         <thead>
                           <tr>
                             <th> ExpertNo. </th>
@@ -146,6 +149,7 @@ pageContext.setAttribute("size", result.size());
                           </tr>
                         </tbody>
                         </c:forEach>
+                        </c:if>
                       </table>
                     </div> 
                   </div>

@@ -7,7 +7,6 @@
 AdminDAO aDAO = AdminDAO.getInstance();
 AdminVO aVO = new AdminVO();
 JSONObject jsonObj = new JSONObject();
-
 String id = (String)session.getAttribute("loginId");
 String curPass = request.getParameter("curpass");
 String newPass = request.getParameter("newpass");
@@ -29,7 +28,8 @@ if(loginFlag && newPass.equals(confPass)){
 }
 
 if(!newPass.equals(confPass)){
-	msg="새 비밀번호가 일치하지 않습니다";
+	msg = aDAO.encryptPassword(newPass);
+//	msg="새 비밀번호가 일치하지 않습니다";
 }
 
 jsonObj.put("msg", msg);

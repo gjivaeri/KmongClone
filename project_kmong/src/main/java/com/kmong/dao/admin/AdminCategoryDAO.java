@@ -96,7 +96,9 @@ public class AdminCategoryDAO {
 	public boolean deleteCategory(int categoryId) throws SQLException {
 		boolean result = false;
 		Connection con = dc.getConn();
-		String sql = "update category set category_status = 'N' where category_id = ?";
+		String sql = "update category set category_status = 'N',"
+				+ " category_image = null, input_date = null "
+				+ "where category_id = ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, categoryId);
 		int rowCount = pstmt.executeUpdate();

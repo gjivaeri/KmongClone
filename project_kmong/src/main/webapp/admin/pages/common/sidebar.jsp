@@ -18,7 +18,7 @@
 
         <div class="profile-pic">
           <div class="count-indicator">
-            <img class="img-xs rounded-circle " src="http://localhost/project_kmong/admin/assets/images/faces/squidGame.jpg" alt="">
+            <img class="img-xs rounded-circle " src="http://localhost/project_kmong/admin/assets/images/faces/monkey.png" alt="">
             <span class="count bg-success"></span>
           </div>
           <div class="profile-name">

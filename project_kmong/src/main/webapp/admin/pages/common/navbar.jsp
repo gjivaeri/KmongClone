@@ -27,7 +27,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="http://localhost/project_kmong/admin/assets/images/faces/squidGame.jpg" alt="">
+            <img class="img-xs rounded-circle" src="http://localhost/project_kmong/admin/assets/images/faces/monkey.png" alt="">
             <p class="mb-0 d-none d-sm-block navbar-profile-name">Admin</p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
