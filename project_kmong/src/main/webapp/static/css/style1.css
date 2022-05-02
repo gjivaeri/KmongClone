@@ -39,7 +39,7 @@ body{
     display: flex; 
     flex-direction: row;}
 
-.body-container{height: 2000px;}
+.body-container{height:100%;}
 .body-container2{height: 2400px;}
 
 a{cursor: pointer;}
@@ -408,7 +408,7 @@ input
 
 .main-category-img{
     margin-top: 30px;
-    width: 800px; height: 450px;
+    width: 800px; height:auto;
     margin: 0px auto;
 }
 
@@ -416,13 +416,20 @@ input
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    height: 230px;
+    height: 100%;
+     flex-grow:0;
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.articles{margin-top: 10px; display: flex; flex-direction: row; grid-gap: 20px;}
+.articles{
+	margin-top: 10px; 
+	display: flex; 
+	flex-direction: row; 
+	grid-gap: 20px;
+	flex-wrap: wrap;
+}
 
 .article-squre{
     align-items: center; 
@@ -432,6 +439,12 @@ input
     height: 120px; 
     padding-top:8px; 
     padding-bottom: 8px; 
+    flex-grow:0;
+/*     
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; */
 }
 
 .article-squre img{
@@ -472,7 +485,12 @@ a{text-decoration: none; color: #333;}
     width: 217px;
     height: 300px;
 }
-.imgs{border-radius:10px;}
+.imgs{
+	border-radius:10px;
+	width:216px;
+	height:300px;
+	object-fit:cover;
+	}
 
 .my-contract-btn{
 	border: 0px; 
@@ -585,7 +603,7 @@ a{text-decoration: none; color: #333;}
 .login-popup{
     height: 556px;
     border-radius: 10px;
-    
+    /* z-index:100; */
     display: flex;
     flex-direction: row; 
     overflow: hidden;
@@ -870,7 +888,6 @@ a{text-decoration: none; color: #333;}
     color: #9a9ba7;
     margin-top: 30px;
 }
-
 
 .regis-result-box{
     width: 560px;

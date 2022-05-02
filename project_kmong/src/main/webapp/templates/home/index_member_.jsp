@@ -169,7 +169,7 @@ img{
                 for(int i=0; i<postList.size() ; i++){
                     	%>
                     	<article class="post-one-by-one">
-                    	<a href="#void">
+                    	<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=<%= postList.get(i).getPostId()%>">
                     		<img src="http://localhost/project_kmong/static/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px;"/>
                     		<h6 data-testid="title" class="css-10894jy ezeyqpv9" style="font-size: 13px;  margin-top: 8px;">
                     		<%=postList.get(i).getSummary()%>

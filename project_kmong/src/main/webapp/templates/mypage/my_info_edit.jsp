@@ -8,11 +8,6 @@
 	pageEncoding="UTF-8"%>
 	
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	 <%
-    session.setAttribute("insertFileFlag", false);
-	 int memberId=(int)session.getAttribute("login");
-	 AccountSettingDAO asDAO=new AccountSettingDAO();
-    %>
 	
 <!DOCTYPE html>
 <html>
@@ -88,6 +83,7 @@
 <script type="text/javascript">
 
 //app.use('/uploads', express.static('uploads'));
+
 <%if(session.getAttribute("msg")!=null) {%>
 	alert("변경이 완료되었습니다.");
 <%
@@ -169,9 +165,9 @@ $(function() {
 function refresh(){
 	//this.src = "default_profile.png";
 	//$("#proImg").attr("src", "default_profile.png");  
-	setTimeout(function() {
-	location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
-	},2000);
+	//setTimeout(function() {
+	//location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
+	//},2000);
 	//location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
 }
 
@@ -180,6 +176,13 @@ function refresh(){
 </head>
 <body >
  <%@include file="../common/header_member.jsp"%>
+	 <%
+    session.setAttribute("insertFileFlag", false);
+	 
+	 int memberId=(int)session.getAttribute("login");
+	 AccountSettingDAO asDAO=new AccountSettingDAO();
+	 
+    %>
 		<hr>
 			<!-- main div -->
 			<div id="aside-div">

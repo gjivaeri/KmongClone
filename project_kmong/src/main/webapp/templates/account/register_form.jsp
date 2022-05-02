@@ -153,6 +153,7 @@
 </script>
 <script type="text/javascript">
 
+
 <%
 if(request.getParameter("member")==null){
 	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
@@ -516,7 +517,7 @@ function keyDownhandle(){
                         
                     </div>
 
-                    <input class="complete-btn" type="button"  value="버튼만 누르면 가입완료!" />
+                    <input class="complete-btn"  id="complete-btn" type="button"  value="버튼만 누르면 가입완료!" />
                 </form>
 
             </div>
@@ -617,6 +618,16 @@ function keyDownhandle(){
 if(${param.hid eq 'login'}){
 document.getElementById("modal").style.display='flex';
 }//end if
+
+
+$("#complete-btn").mouseover(function(){
+	$("#complete-btn").css("background-color","#4C4C4C");
+	$("#complete-btn").css("color","#FFFFFF");
+})
+$("#complete-btn").mouseout(function(){
+	$("#complete-btn").css("background-color","#e4e5ed");
+	$("#complete-btn").css("color","#9a9ba7");
+})
 </script>
 </body>
 </html>
