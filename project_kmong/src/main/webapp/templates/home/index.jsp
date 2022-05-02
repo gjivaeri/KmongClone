@@ -233,9 +233,9 @@ $(function(){
 </div>
 
  <script type="text/javascript">
-if(${param.hid eq 'login'}){
+/* if(${param.hid eq 'login'}){
 document.getElementById("modal").style.display='flex';
-}//end if
+}//end if */
 </script>
 </body>
 </html>

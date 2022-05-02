@@ -2,11 +2,32 @@
     pageEncoding="UTF-8"%>
 
 <%
-/* http://localhost/project_kmong/templates/
-session.setAttribute("resultpage", "service/list.jsp");
-session.setAttribute("resultpage", "service/search_result.jsp"); 서치부분 처리하기*/
-session.getAttribute("resultpage");
-session.removeAttribute("login");
-session.setAttribute("logoutDone", "logout");
-response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
-%>
+/* if(session.getAttribute("logoutPageGo")!=null){
+	String url=(String)session.getAttribute("logoutPageGo");
+	url="http://localhost"+url;
+	session.removeAttribute("login");
+	session.removeAttribute("logoutPageGo");
+	session.setAttribute("logoutDone", "logout");
+	response.sendRedirect(url);
+}else{
+	session.removeAttribute("login");
+	session.setAttribute("logoutDone", "logout");
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+} */
+String url="http://localhost"+request.getParameter("url");
+
+	session.removeAttribute("login");
+	//session.removeAttribute("logoutSession");
+	session.setAttribute("logoutDone", "logout");
+	response.sendRedirect(url);
+
+	//response.sendRedirect(url);
+
+ %>
+ 
+ 
+ 
+ 
+ 
+ 
+ 

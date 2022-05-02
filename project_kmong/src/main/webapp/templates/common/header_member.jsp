@@ -4,16 +4,19 @@
 <%@page import="com.kmong.dao.home.MainPageDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <script type="text/javascript">
 <%
 
-if(session.getAttribute("login")==null){
+if(session.getAttribute("login")==null&&session.getAttribute("logoutDone")!=null){
+	%>
+	location.replace("http://localhost/project_kmong/templates/home/index.jsp");<%
+	}else if(session.getAttribute("login")==null){
 	session.setAttribute("logoutSession", "logout");
 	%>
 	location.replace("http://localhost/project_kmong/templates/home/index.jsp");<%
-	//return;
-	//response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
-}
+	}
+
 if(session.getAttribute("loginMsg")!=null){
 	%>alert("로그인이 성공적으로 완료되었습니다.")<%
 	session.removeAttribute("loginMsg");
@@ -23,7 +26,9 @@ if(session.getAttribute("loginMsg")!=null){
 
 $(function(){
 	$("#logoutBtn").click(function(){
-		location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
+		$("#loginFrm1").submit();
+		//loginFrm1
+		//location.replace("http://localhost/project_kmong/templates/home/logout_action.jsp");
 	})
 	
 	$("#searchbtn").click(function(){
@@ -52,6 +57,16 @@ $(function(){
                     </form>
                     <!-- ////////////////////// -->
                <div style="width: 250px;" class="buttons"> 
+                <form action="http://localhost/project_kmong/templates/home/logout_action.jsp" method="get" id="loginFrm1">
+                <% //현재 페이지의 URL을 로그인 액션에 전달하여 해당 페이지에 남아있도록 하기 위한 파라미터를 hidden으로 설정
+				String url=request.getRequestURI().toString();
+				if(request.getQueryString()!=null){
+				url=url+"?"+request.getQueryString();
+				}
+				%>
+				<input type="hidden" name="url" value="<%=url%>"/>
+				</form>			                    
+								                    
                     <input type="button" value="로그아웃" class="login-btn" id="logoutBtn">
                     <div style="width: 270px; margin-right: 20px;">
                         <input type="button" value="마이계약" class="my-contract-btn" style="margin-left: 10px;" onclick="location.href='http://localhost/project_kmong/templates/order_expert/management.jsp'">
@@ -77,17 +92,6 @@ $(function(){
 	                        }
                         }
                         %>
-                        <%-- <c:choose>
-                        
-                        <c:when test="${empty userImg}">
-                        <img src="http://localhost/project_kmong/static/images/${userImg }" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
-                        </c:when>
-                        
-                        <c:other>
-                        <img src="http://localhost/project_kmong/static/images/logo.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
-                        </c:other>
-                        </c:choose> --%>
-                        
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px; z-index: 100;">
@@ -136,6 +140,7 @@ $(function(){
 	                   <%
 	                   }
                    }
+                   
 	                   %>
                     </div>
 
