@@ -166,8 +166,11 @@ function removeService( postId ){
 						<div>
 							<div class="dropdown">
 		                         <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_more.svg" alt="더보기 아이콘" style="cursor: pointer; float: right;"/>
-		                         <div class="dropdown-content" style="float: right; position: relative; width: 40px;"> 
+		                         <div class="dropdown-content" style="float: right; position: relative; width: 40px;">
+		                         <form id="modiForm" action="service_update.jsp" method="post">
+							       <input type="hidden" name="postId2" id="postId2" value="${items.postId }"/> 
 							       <a href="#void" class="modifyBtn" style="font-size: 15px; text-align: center;">서비스 편집</a>
+		                         </form>
 		                         <!-- <input type="hidden" value="http://localhost/project_kmong/templates/service_expert/service_list.jsp" name="url"/> --> 
 							       <a href="#void" onclick="removeService(${items.postId})" class="deleteBtn" style="font-size: 15px; text-align: center;">서비스 삭제</a>
 								</div>

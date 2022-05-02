@@ -109,6 +109,7 @@ $(function() {
 					<h2 class="span-h2">요청사항</h2></a>
 				</aside>
 			<%
+			System.out.println(request.getParameter("postId2"));
 			int postId = Integer.parseInt(request.getParameter("postId2"));
 			
 			MyServiceDAO msDAO = MyServiceDAO.getInstance();
@@ -117,7 +118,7 @@ $(function() {
 			
 			pageContext.setAttribute("list", list);
 			%>	
-         	<form action="service_update_proc.jsp" method="post">
+         	<form action="service_update_proc.jsp" method="post" enctype="multipart/form-data">
          	<c:forEach items="${list}" var="items"> 
 			<div class="main-div" style="flex-direction: column;">
 			 <div style="margin-bottom: 5px;">
@@ -173,9 +174,7 @@ $(function() {
 					<span class="span-name">설명</span>
 					</span> 
 					<div class="div-element">
-					<textarea placeholder="- 메인페이지 시안 1개 제공 &#13;&#10;- 공지사항,FAQ페이지 &#13;&#10;- SNS로그인 연동" maxlength="60" autocomplete="off" id="explain-ta" name="summary"/> 
-					${items.summary}
-					</textarea>
+					<textarea placeholder="- 메인페이지 시안 1개 제공 &#13;&#10;- 공지사항,FAQ페이지 &#13;&#10;- SNS로그인 연동" maxlength="60" autocomplete="off" id="explain-ta" name="summary"/>${items.summary}</textarea>
 					<span id="output3"></span>
 					</div> 
 					</div>
