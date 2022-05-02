@@ -31,12 +31,21 @@ public class PageImpl<T> implements Paging<Object> {
 		this.totalRecord = VOList.size();
 		this.VOList = VOList;
 		this.gtp=(totalRecord/pagePerRecord)+1;
-		
 		this.param = getParam(request);
 		this.firstPage = this.getFirstPage();
 		this.lastPage = this.getLastPage();
-
-
+	}
+	public PageImpl(HttpServletRequest request,List<Object> VOList,int pagePerRecord) {
+		this.request = request;
+		
+		this.gpp = 10;
+		this.pagePerRecord=pagePerRecord;
+		this.totalRecord = VOList.size();
+		this.VOList = VOList;
+		this.gtp=(totalRecord/pagePerRecord)+1;
+		this.param = getParam(request);
+		this.firstPage = this.getFirstPage();
+		this.lastPage = this.getLastPage();
 	}
 	
 	/**
@@ -53,7 +62,7 @@ public class PageImpl<T> implements Paging<Object> {
 			
 			return this.gtp;
 		}
-		
+		this.param = Integer.parseInt(request.getParameter("p"));
 		return Integer.parseInt(request.getParameter("p"));	
 	}
 
@@ -73,6 +82,7 @@ public class PageImpl<T> implements Paging<Object> {
 	public void setPagePerRecord(int num) {
 		this.pagePerRecord = num;
 		this.gtp=(totalRecord/pagePerRecord)+1;
+		
 	}
 
 	
@@ -134,7 +144,7 @@ public class PageImpl<T> implements Paging<Object> {
 	 *next 버튼 조건문
 	 */
 	@Override
-	public boolean isNextPage() {		
+	public boolean isNextPage() {
 		return this.gtp-this.lastPage>0;
 	}
 
@@ -168,6 +178,7 @@ public class PageImpl<T> implements Paging<Object> {
 	 */
 	@Override
 	public int getTotalPage() {
+		this.gtp=(totalRecord/pagePerRecord)+1;
 		return gtp;
 	}
 
