@@ -14,6 +14,7 @@ int categoryId = Integer.parseInt(request.getParameter("id"));
 AdminCategoryDAO acDAO = AdminCategoryDAO.getInstance();
 CategoryVO cVO = acDAO.selectDetailCategory(categoryId);
 pageContext.setAttribute("categoryImage", cVO.getCategoryImage());
+pageContext.setAttribute("categoryId", categoryId);
 %>    
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +31,7 @@ pageContext.setAttribute("categoryImage", cVO.getCategoryImage());
 		$(function(){
 		const navActive = document.getElementById("nav-category");
 		const uiShow = document.getElementById("ui-category");
+		var categoryId = "<c:out value='${categoryId}'/>"
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
 		$("#delete-category").click(function(){
@@ -41,7 +43,7 @@ pageContext.setAttribute("categoryImage", cVO.getCategoryImage());
 		$("#edit-category").click(function(){
 			var fileName = $(".file-upload-default").val();
 			let ext=fileName.toLowerCase().substring(fileName.lastIndexOf(".")+1);
-			var compareExt = "png,jpg,gif,bmp".split(",");
+			var compareExt = "png,jpg,gif,bmp,".split(",");
 			var flag=false;
 			
 			for(var i = 0 ; i < compareExt.length; i++){
@@ -58,7 +60,31 @@ pageContext.setAttribute("categoryImage", cVO.getCategoryImage());
 			
 			var warning = confirm("카테고리를 수정하시겠습니까?")
 			if(warning){
-			$("#edit-frm").submit();
+				var form=$("#edit-frm")[0];
+				var formData=new FormData(form);
+				
+				formData.append("fileObj", $("#file-input")[0].files[0]);
+
+				
+				   $.ajax({
+					   type: "POST",
+					   dataType:"json",
+				        enctype: 'multipart/form-data',
+				        url: "http://localhost/project_kmong/admin/pages/categories/categories_edit_pro.jsp",
+				        data: formData,
+				        processData: false,
+				        contentType: false,
+				        cache: false,
+				        timeout: 600000,
+				        success: function (data) {
+				        setTimeout(function() {
+				        	location.href="http://localhost/project_kmong/admin/pages/categories/categories_edit.jsp?id="+categoryId;	
+				        	},3000);
+				        },
+				        error: function (e) {
+				            console.log("ERROR : ", e);
+				        }
+			        }); // $.ajax 
 			}
 		});
 
@@ -134,7 +160,7 @@ pageContext.setAttribute("categoryImage", cVO.getCategoryImage());
                             <label class="col-sm-3 col-form-label" >Image Upload</label>
                             <div class="col-sm-9">
                             
-                              <input type="file" name="uploadImg" class="file-upload-default">
+                              <input type="file" name="uploadImg" class="file-upload-default" id="file-input">
                               <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
                                 <span class="input-group-append">

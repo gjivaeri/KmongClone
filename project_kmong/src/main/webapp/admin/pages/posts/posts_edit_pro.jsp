@@ -17,7 +17,7 @@
 <body>
 <%
 try{
-File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/images/post");
+File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/PostimgUpload");
 String encType = "UTF-8";
 int maxSize = 5 * 1024 * 1024;
 

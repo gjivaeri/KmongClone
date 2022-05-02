@@ -16,6 +16,9 @@ pageContext.setAttribute("list", cVOlist);
   <head>
     <title>Categories</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	 <style>
+		a{text-decoration:none; color:white;}
+	</style>
   </head>
   <body>
   
@@ -44,7 +47,7 @@ pageContext.setAttribute("list", cVOlist);
               <h3 class="page-title"> Categories </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Categories</a></li>
+                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/categories/categories.jsp">Categories</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Category List</li>
                 </ol>
               </nav>

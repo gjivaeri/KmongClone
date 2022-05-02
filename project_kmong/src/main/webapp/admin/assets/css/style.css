@@ -21134,9 +21134,10 @@ div.tagsinput {
 
 .kmong-title{
   /* color: #ffa3a1; */
-  /* background-image: -webkit-linear-gradient(92deg, #8c80f1, #7367f0); */
-  background-image: linear-gradient(90deg, #754fff 0%, #7f42f1 35%, #ac009e 100%); 
-
+  
+/*   background-image: -webkit-linear-gradient(92deg, #8c80f1, #7367f0);  */
+  /* background-image: linear-gradient(90deg, #754fff 0%, #7f42f1 35%, #ac009e 100%);  */
+    background-image: linear-gradient(90deg, #F0C04F 0%, #FFAB00 35%, #F0C04F 100%);   
   font-weight:bold;
   /* (92deg, #f35626, #feab3a); */
   -webkit-background-clip: text;

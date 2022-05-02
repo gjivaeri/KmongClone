@@ -15,10 +15,8 @@ List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
 int totalCnt = aDAO.getAllCount(table);
 int todayCnt = aDAO.getTodayCount(table);
 
-
 /* paging */
-Paging paging = new PageImpl(request,list);
-paging.setPagePerRecord(10);
+Paging paging = new PageImpl(request,list,15);
 
 int firstPage = paging.getFirstPage();
 int lastPage = paging.getLastPage();
@@ -55,7 +53,9 @@ pageContext.setAttribute("size", result.size());
   <head>
     <title>Posts</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
-
+	<style>
+		a{text-decoration:none; color:white;}
+	</style>
   </head>
   <body>
   
@@ -98,7 +98,7 @@ pageContext.setAttribute("size", result.size());
               <h3 class="page-title"> Posts </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Posts</a></li>
+                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/posts/posts.jsp">Posts</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Post List</li>
                 </ol>
               </nav>
@@ -124,8 +124,9 @@ pageContext.setAttribute("size", result.size());
                     <div class="table-responsive">
                       <table class="table table-striped">
                       	<c:if test="${size==0}">
-                      		no_exists_contents_replace_later
+                      		<div style="text-align:center;">검색 결과가 존재하지 않습니다</div>
                       	</c:if>
+                      	<c:if test="${size!=0}">                      	
                         <thead>
                           <tr>
                             <th> No. </th>
@@ -157,7 +158,7 @@ pageContext.setAttribute("size", result.size());
                           </tr>
                         </tbody>
                      </c:forEach>
-                     
+                     </c:if>
                       </table>
                     </div> 
                   </div>
@@ -186,13 +187,9 @@ pageContext.setAttribute("size", result.size());
 					</c:if>
 					<!-- paging -->
                   </div>
+                  
                 </div>
               </div>
-             </div>
-             <!-- row ends -->
-
-
-          </div>
           <!-- content-wrapper ends -->
 		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
         </div>
@@ -201,5 +198,6 @@ pageContext.setAttribute("size", result.size());
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+    </div>
   </body>
 </html>

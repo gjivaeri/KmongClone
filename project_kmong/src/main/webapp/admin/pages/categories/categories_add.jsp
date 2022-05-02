@@ -28,7 +28,7 @@
 			}
 			var fileName = $(".file-upload-default").val();
 			let ext=fileName.toLowerCase().substring(fileName.lastIndexOf(".")+1);
-			var compareExt = "png,jpg,gif,bmp".split(",");
+			var compareExt = "png,jpg,gif,bmp,".split(",");
 			var flag=false;
 			
 			for(var i = 0 ; i < compareExt.length; i++){

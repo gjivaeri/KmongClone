@@ -87,7 +87,8 @@ public class AdminPostDAO {
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
 		sql.append(" update post");
-		sql.append(" set post_status = 'N'");
+		sql.append(" set post_status = 'N', title = '삭제된 서비스입니다',");
+		sql.append(" summary = null, price = null, term = null, post_date = null, description= null, star_avg = null, post_img= null");
 		sql.append(" where post_id = ?");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		pstmt.setInt(1, postId);

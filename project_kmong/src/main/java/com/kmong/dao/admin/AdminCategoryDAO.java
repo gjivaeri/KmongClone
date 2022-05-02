@@ -45,7 +45,7 @@ public class AdminCategoryDAO {
 	
 	
 	public int insertCategory(String name, String image) throws SQLException{
-		int result = 0;
+		int result = -1;
 		
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
@@ -67,7 +67,7 @@ public class AdminCategoryDAO {
 				return result;
 			}
 		}
-		return -1; //error;
+		return result; //error;
 	}
 	
 	public boolean updateCategory(int categoryId, String name, String image) throws SQLException{
@@ -96,7 +96,9 @@ public class AdminCategoryDAO {
 	public boolean deleteCategory(int categoryId) throws SQLException {
 		boolean result = false;
 		Connection con = dc.getConn();
-		String sql = "update category set category_status = 'N' where category_id = ?";
+		String sql = "update category set category_status = 'N',"
+				+ " category_image = null, input_date = null "
+				+ "where category_id = ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, categoryId);
 		int rowCount = pstmt.executeUpdate();

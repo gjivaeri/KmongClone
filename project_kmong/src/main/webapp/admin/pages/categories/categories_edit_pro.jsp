@@ -1,3 +1,4 @@
+<%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.File"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -7,12 +8,6 @@
 <%@page import="com.kmong.dao.admin.AdminOrderDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
 <%
 try{
 File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/images/category");
@@ -32,9 +27,12 @@ String imagePath = "images/category/"+fileName;
 AdminCategoryDAO acDAO = AdminCategoryDAO.getInstance();
 boolean result = acDAO.updateCategory(categoryId, name, imagePath);
 
-pageContext.setAttribute("id", multi.getParameter("categoryId"));
-pageContext.setAttribute("categoryId", categoryId);
+session.setAttribute("id", multi.getParameter("categoryId"));
+session.setAttribute("categoryId", categoryId);
 pageContext.setAttribute("result", result);
+
+JSONObject jsonObj=new JSONObject();
+out.print(jsonObj.toJSONString());
 %>
 <%
 }catch(Exception e){
@@ -43,10 +41,3 @@ pageContext.setAttribute("result", result);
 <%
 }
 %>
-<script>
-if(!${result}){alert("카테고리 수정에 실패했습니다")}
-alert("카테고리가 수정되었습니다");
-location.href="http://localhost/project_kmong/admin/pages/categories/categories_edit.jsp?id=${categoryId}"; 
-</script>
-</body>
-</html>
