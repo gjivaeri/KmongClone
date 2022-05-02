@@ -19,6 +19,10 @@ String url="http://localhost"+request.getParameter("url");
 	session.removeAttribute("login");
 	//session.removeAttribute("logoutSession");
 	session.setAttribute("logoutDone", "logout");
+	
+	if(url.indexOf("&hid=login")!=-1){
+		url=url.replaceAll("&hid=login", "");
+	}
 	response.sendRedirect(url);
 
 	//response.sendRedirect(url);
