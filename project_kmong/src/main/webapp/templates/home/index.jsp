@@ -26,7 +26,10 @@ img{
 
 
 <SCRIPT type="text/javascript">
-   
+window.history.forward();
+function noBack() { window.history.forward(); }
+
+
    $(function(){
 	var colorArr=["rgb(5, 68, 78)","rgb(67, 20, 133)","rgb(6, 87, 203)","rgb(229, 125, 99)"];
 	var myCarousel = document.getElementById('carouselExampleIndicators')
@@ -44,13 +47,18 @@ img{
 			//alert($("#mainInput").val())
 			var inputText=$("#mainInput").val();
 			location.href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1="+inputText;
+			//mainAdInputAction();
 		});
 
 		
 	});//ready
+	
+
+
 </SCRIPT>
 </head>
-<body>
+<body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload="">
 <div id="wrap">
 <%
 if(session.getAttribute("login")==null) {
@@ -80,8 +88,8 @@ if(session.getAttribute("login")==null) {
                             
                             <form action="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=">
                             <div class="typewriter">
-                            <input type="text"  id="mainInput" placeholder="웹페이지 제작"
-                            style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;">
+                            <input type="text"  id="mainInput" value="웹페이지 제작"
+                            style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;"/>
                             </div>
                               
                                <div class="white-search-btn" id="searchBtnInAD">
@@ -113,18 +121,23 @@ if(session.getAttribute("login")==null) {
                         </div>
                         
                         <div class="carousel-inner" style="height: 375px; border-radius: 8px;">
+                         
                          <div class="carousel-item active">
+                         <a href="https://hi.kmong.com/it_project/">
                             <img src="http://localhost/project_kmong/static/images/adImg1.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
-                          </div>
+                          </a></div>
                           <div class="carousel-item">
+                           <a href="https://kmong.com/freelancer-club">
                             <img src="http://localhost/project_kmong/static/images/adImg2.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
-                          </div>
+                           </a></div>
                           <div class="carousel-item">
+                           <a href="https://kmong.com/md-pick/259">
                             <img src="http://localhost/project_kmong/static/images/adImg6.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
-                          </div>
+                          </a></div>
                           <div class="carousel-item">
+                          <a href="https://hi.kmong.com/voucher/">
                             <img src="http://localhost/project_kmong/static/images/adImg4.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
-                          </div> 
+                          </a></div> 
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -220,7 +233,7 @@ if(session.getAttribute("login")==null) {
                     	%>
                     	<article class="post-one-by-one">
                     	<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=<%= postList.get(i).getPostId()%>">
-                    		<img src="http://localhost/project_kmong/static/PostimgUpload/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px;"/>
+                    		<img src="http://localhost/project_kmong/static/PostimgUpload/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px; border: 1px solid #D4D4D4;"/>
                     		<h6 data-testid="title" class="css-10894jy ezeyqpv9" style="font-size: 13px;  margin-top: 8px;">
                     		<%=postList.get(i).getSummary()%>
                     		</h6>
@@ -229,7 +242,7 @@ if(session.getAttribute("login")==null) {
                     		</div>
                     		<div class="star-preview">
 	                    		<span style="padding-right: 2px">★</span>
-	                    		<span style="color:#333; padding-top:5px; font-size: 12px"><%=postList.get(i).getStarAvg()%>&nbsp;&nbsp;2개의 평가</span>
+	                    		<span style="color:#333; padding-top:5px;  font-size: 12px"><%=postList.get(i).getStarAvg()%>&nbsp;&nbsp;2개의 평가</span>
                     		</div>
                     		
                     		</a>

@@ -162,6 +162,30 @@ public class MakeAccountDAO {
 		
 		return result;
 	}//selectEmail
+	
+	
+	/**
+	 * 닉네임 중복 체크
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean selectTel(String tel) throws SQLException{
+		boolean result=false;
+		
+		Connection con=DbConnectionDBCP.getInstance().getConn();
+		
+		String selectTel="select tel from member where tel=?";
+		PreparedStatement pstmt=con.prepareStatement(selectTel);
+		pstmt.setString(1, tel);
+		ResultSet rs=pstmt.executeQuery();
+		
+		try(con;pstmt;rs) {
+			result=rs.next();
+		}//
+		
+		return result;
+	}//selectEmail
 
 	
 	

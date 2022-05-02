@@ -72,7 +72,7 @@ if((String)session.getAttribute("setPass")==null){
                 
                 <div class="new-pass-input">
                 <form action="http://localhost/project_kmong/templates/account/new_pw_action.jsp" id="frm">
-                    <input type="password" placeholder="문자와 특수문자를 조합하여 8자 이상" style="margin-top: 20px;" name="pass1" id="pass1"/>  
+                    <input type="password" placeholder="문자와 특수문자,숫자를 조합하여 8자 이상" style="margin-top: 20px;" name="pass1" id="pass1"/>  
                     <input type="password" placeholder="새로운 비밀번호 확인" style="margin-bottom: 20px;" name="pass2" id="pass2"/>  
                     <input class="register-btn" type="button" value="확인" id="btn"/>
                 </form>

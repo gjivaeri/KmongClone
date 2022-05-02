@@ -258,10 +258,30 @@ $(function(){
 	    }else if(!reg_mobile.test(tel)){
 	    	alert("전화번호를 정확히 입력해주세요.");
 	    	$("#tel").focus();return;
+	    }else{
+	    	
+	    	 $.ajax({
+	    		  url:"http://localhost/project_kmong/templates/account/telConfirmation.jsp",
+	    		  data:{tel:$("#tel").val()},
+	    		  dataType:"json",
+	    		  type:"get",
+	    		  error:function(xhr){
+	    			  alert(xhr.status);
+	    			  
+	    		  },
+	    		  success:function(jsonObj){
+	    			 
+	    				 if(jsonObj.flag){ // 기존에 있다면 
+	    				 	alert("이미 가입된 핸드폰 번호입니다.");
+	    				 }return;
+	    		  }
+	    	  });//ajax
+	    	
 	    }
 	  
-	   //-------------이메일 유효성 검사--------------
-	    if(email==""){
+	  
+	   
+	    if(email==""){//-------------이메일 유효성 검사--------------
 	    	alert("이메일을 입력해주세요.");
 	    	$("#email").focus();return;
 	    }else if(email.match(pattern)){
@@ -391,15 +411,15 @@ function keyDownhandle(){
                     <h1>딱 이것만 체크하면 가입완료!</h1>
                     <div class="regi-div">
                         <div class="requirement">이름<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="이름을 입력해주세요." name="name" id="name" value="서지숙"/>
+                        <input type="text" placeholder="이름을 입력해주세요." name="name" id="name" />
                     </div>
                     <div class="regi-div">
                         <div class="requirement">휴대폰 번호<label>&nbsp;*</label></div>
-                        <input type="text" placeholder="예시) 000-0000-0000" name="tel" id="tel" value="010-1234-0114"/>
+                        <input type="text" placeholder="예시) 000-0000-0000" name="tel" id="tel" />
                     </div>
                     <div class="regi-div">
                         <div class="requirement">이메일<label>&nbsp;*</label><span id="spanEmail" style="float: right; color:#0000FF; display: none;">사용 가능</span></div>
-                        <input type="text" name="email" placeholder="이메일을 입력해주세요." style="margin-bottom: 8px;" id="email" value="asdf0000@google.com"/>
+                        <input type="text" name="email" placeholder="이메일을 입력해주세요." style="margin-bottom: 8px;" id="email" />
                         <div style="float: right;">
                           <input type="button" value="이메일 중복확인" class="confirm-exists show"  id="btnStyle1"/>
                         </div>
@@ -422,14 +442,14 @@ function keyDownhandle(){
 
                     <div class="regi-div">
                         <div class="requirement">비밀번호<label>&nbsp;*</label></div>
-                        <input type="password" placeholder="비밀번호를 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1"/>
+                        <input type="password" placeholder="문자와 특수문자, 숫자를 조합하여 입력해주세요." style="margin-bottom: 3px;"  name="pass1" id="pass1"/>
                         <input type="password" placeholder="비밀번호를 한번 더 입력해주세요." name="pass2" id="pass2"/>
                        <span id="d" style="float: right; color:#0000FF; display: none;">비밀</span> 
                     </div>
                     
                     <div class="regi-div">
                         <div class="requirement">닉네임<label>&nbsp;*</label><span id="spanNick" style="float: right; color:#0000FF; display: none;">사용 가능</span></div>
-                        <input type="text" placeholder="한글, 영어, 숫자, _ , - 로 입력가능합니다." style="margin-bottom: 8px;" name="nick" id="nick" value="testtest"/>
+                        <input type="text" placeholder="한글, 영어, 숫자, _ , - 로 입력가능합니다." style="margin-bottom: 8px;" name="nick" id="nick" />
                         <div style="float: right;">
                             <input type="button" value="닉네임 중복확인" class="confirm-exists show" id="btnStyle2"/>
                         </div><br/><br/>
@@ -528,7 +548,11 @@ function keyDownhandle(){
 
     <!-- Modal JS -->
     <script>
-
+	
+/*     $(".clause").click(function(){
+    	
+    }) */
+    
       function show(){//이메일 중복확인
     	  $("#spanEmail").css("display","none");
     	  

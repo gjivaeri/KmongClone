@@ -148,8 +148,8 @@ $("#searchbtn").click(function() {
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
 								                <form action="http://localhost/project_kmong/templates/home/login_action.jsp" method="get" id="loginFrm">
-								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="abcd@google.com"/>
-								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!1234"
+								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email"/>
+								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass"
 								                    onkeyup="handlePassEnter(event);"/>
 								                    <% //현재 페이지의 URL을 로그인 액션에 전달하여 해당 페이지에 남아있도록 하기 위한 파라미터를 hidden으로 설정
 													String url=request.getRequestURI().toString();
