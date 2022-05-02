@@ -49,6 +49,10 @@
 					if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp")){
 						session.setAttribute("loginTry", "done");
 						response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp?hid=login");
+					}else if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp?hid=login")){
+						session.setAttribute("loginTry", "done");
+						response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp?hid=login");
+				
 					}else{
 						if(url.indexOf("?hid=login")==-1){
 						url=url+"&hid=login";
