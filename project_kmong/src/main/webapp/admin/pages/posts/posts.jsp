@@ -15,7 +15,6 @@ List<AdminPostsVO> list = aDAO.selectAllPost(tempSearch);
 int totalCnt = aDAO.getAllCount(table);
 int todayCnt = aDAO.getTodayCount(table);
 
-
 /* paging */
 Paging paging = new PageImpl(request,list);
 paging.setPagePerRecord(10);
@@ -124,7 +123,7 @@ pageContext.setAttribute("size", result.size());
                     <div class="table-responsive">
                       <table class="table table-striped">
                       	<c:if test="${size==0}">
-                      		no_exists_contents_replace_later
+                      		검색 결과가 존재하지 않습니다
                       	</c:if>
                         <thead>
                           <tr>

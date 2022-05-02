@@ -95,9 +95,17 @@ public class AdminDAO {
 	 */
 	public int getAllCount(String table) throws SQLException {
 		int cnt = 0;
+		StringBuilder sql = new StringBuilder();
+		
 		Connection con=dc.getConn();
-		String sql="select count(*) from "+table;
-		PreparedStatement pstmt = con.prepareStatement(sql);
+		sql.append("select count(*) from ");
+		sql.append(table);
+		if(!table.toLowerCase().equals("orders")) {
+			sql.append(" where ");
+			sql.append(table);
+			sql.append("_status <> 'N' ");
+		}
+		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		ResultSet rs=pstmt.executeQuery();
 		
 		try(con;pstmt;rs;){
@@ -107,6 +115,7 @@ public class AdminDAO {
 		}
 		return cnt;
 	};
+	
 	
 	/**
 	 * 전체 개수 조회 - member, orders
@@ -118,10 +127,14 @@ public class AdminDAO {
 	public int getAllCount(String table, String val) throws SQLException {
 		int cnt = 0;
 		String condition="";
+		String deletedStatus="";
+		String flag="";
 		
 		switch(table.toLowerCase()) {
 		case "member" :
 			condition = "expert";
+			deletedStatus = "withdrawal_status";
+			flag=" 'Y' ";
 			break;
 		case "orders" :
 			condition = "order_status";
@@ -134,7 +147,14 @@ public class AdminDAO {
 		sql.append(table);
 		sql.append(" where ");
 		sql.append(condition);
-		sql.append("=?");
+		sql.append("=? ");
+		if(!table.toLowerCase().equals("orders")) {
+			sql.append(" and ");
+			sql.append(deletedStatus);
+			sql.append(" <> ");
+			sql.append(flag);
+		}
+		
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
 		pstmt.setString(1, val);
 		ResultSet rs=pstmt.executeQuery();
@@ -146,6 +166,7 @@ public class AdminDAO {
 		}
 		return cnt;
 	};
+
 
 	/**
 	 * 오늘 개수 조회 - post
@@ -162,7 +183,12 @@ public class AdminDAO {
 		sql.append(table);
 		sql.append(" where to_char(");
 		sql.append(dateCol);
-		sql.append("_date, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')");
+		sql.append("_date, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD') ");
+		if(!table.toLowerCase().equals("orders")) {
+			sql.append(" and ");
+			sql.append(table);
+			sql.append("_status <> 'N'");
+		}
 		
 		Connection con=dc.getConn();
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
@@ -183,15 +209,18 @@ public class AdminDAO {
 	 * @return
 	 * @throws SQLException
 	 */
+	
 	public int getTodayCount(String table, String val) throws SQLException {
 		int cnt = 0;		
 		String dateCol = "";
 		String condition="";
+		String deleteStatus = "";
 		
 		switch(table.toLowerCase()) {
 		case "member" :
 			condition = "expert";
 			dateCol = "join_date";
+			deleteStatus = "withdrawal_status";
 			break;
 		case "orders" :
 			condition = "order_status";
@@ -206,7 +235,12 @@ public class AdminDAO {
 		sql.append(dateCol);
 		sql.append(", 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD') and ");
 		sql.append(condition);
-		sql.append("=?");
+		sql.append("=? ");
+		if(!table.toLowerCase().equals("orders")) {
+			sql.append(" and ");
+			sql.append(deleteStatus);
+			sql.append("<>'N'");
+		}
 		
 		Connection con=dc.getConn();
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());

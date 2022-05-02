@@ -126,7 +126,7 @@ pageContext.setAttribute("size", result.size());
                     <div class="table-responsive">
                       <table class="table table-striped">
                          <c:if test="${size==0}">
-                      		no_exists_contents_replace_later
+                      		검색 결과가 존재하지 않습니다
                       	</c:if>
                         <thead>
                           <tr>

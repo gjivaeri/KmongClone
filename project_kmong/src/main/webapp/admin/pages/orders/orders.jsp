@@ -132,9 +132,6 @@ pageContext.setAttribute("size", result.size());
                     </div><br/>
                     <div class="table-responsive">
                       <table class="table">
-                         <c:if test="${size==0}">
-                      		no_exists_contents_replace_later
-                      	</c:if>
                         <thead>
                           <tr>
           
@@ -150,6 +147,9 @@ pageContext.setAttribute("size", result.size());
                           </tr>
                         </thead>
                         <tbody>
+                         <c:if test="${size==0}">
+                      		검색 결과가 존재하지 않습니다
+                      	</c:if>
                         <c:forEach var="order" items="${list }">
                           <tr>
                             <td class="py-1">

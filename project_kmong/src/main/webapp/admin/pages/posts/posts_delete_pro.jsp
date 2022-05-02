@@ -12,9 +12,10 @@
 int postId = Integer.parseInt(request.getParameter("postId"));
 AdminPostDAO apDAO = AdminPostDAO.getInstance();
 boolean result = apDAO.deletePost(postId);
+pageContext.setAttribute("result", result);
 %>
 <script>
-if(!<%=result%>){alert("게시글 삭제에 실패했습니다")}
+if(!${result}){alert("게시글 삭제에 실패했습니다")}
 else{
 alert("게시글이 삭제되었습니다");
 }

@@ -41,7 +41,7 @@ pageContext.setAttribute("result", result);
 }
 %>
 <script>
-if(result==-1){alert("카테고리 추가에 실패했습니다")}
+if(${result}<1){alert("카테고리 추가에 실패했습니다")}
 alert("카테고리가 추가되었습니다");
 location.href='http://localhost/project_kmong/admin/pages/categories/categories.jsp'; 
 </script>
