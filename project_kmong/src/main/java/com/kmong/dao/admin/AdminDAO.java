@@ -1,6 +1,5 @@
 package com.kmong.dao.admin;
 
-import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,18 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.kmong.dao.DbConnectionDBCP;
 import com.kmong.vo.AdminVO;
 import com.kmong.vo.CategoryVO;
-import com.kmong.vo.MemberVO;
-import com.kmong.vo.PostVO;
 import com.kmong.vo.admin.AdminMemberVO;
 import com.kmong.vo.admin.AdminOrdersVO;
 import com.kmong.vo.admin.AdminPostsVO;
-
-import oracle.jdbc.proxy.annotation.Post;
 
 public class AdminDAO {
 
@@ -104,6 +97,7 @@ public class AdminDAO {
 		Connection con = dc.getConn();
 		sql.append("select count(*) from ");
 		sql.append(table);
+		//orders는 취소상태인 값들도 전부 카운트함
 		if (!table.toLowerCase().equals("orders")) {
 			sql.append(" where ");
 			sql.append(table);
@@ -447,24 +441,5 @@ public class AdminDAO {
 		}
 		return list;
 	}
-
-	public String encryptPassword(String pw) {
-			String base = pw;
-			StringBuffer hexString = new StringBuffer();
-	        try{
-	            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-	            byte[] hash = digest.digest(base.getBytes("UTF-8"));
-	            for (int i = 0; i < hash.length; i++) {
-	                String hex = Integer.toHexString(0xff & hash[i]);
-	                if(hex.length() == 1) hexString.append('0');
-	                hexString.append(hex);
-	            }
-	        } catch(Exception ex){
-	            throw new RuntimeException(ex);
-	        }
-	        System.out.println(hexString.toString());
-	        return hexString.toString();
-	}
-
 
 };// class

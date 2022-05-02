@@ -214,7 +214,7 @@ pageContext.setAttribute("categoryList", list);
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Current thumbnail</label>
                             <div class="col-sm-9">
-                              <img src="http://localhost/project_kmong/static/${post.img}" style="height:200px;" alt="thumbnail"/>
+                              <img src="http://localhost/project_kmong/static/PostimgUpload/${post.img}" style="height:200px;" alt="thumbnail"/>
                             </div>
                           </div>
                         </div>

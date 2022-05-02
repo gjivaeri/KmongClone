@@ -34,7 +34,7 @@ int categoryId = Integer.parseInt(multi.getParameter("categoryId"));
 int price = Integer.parseInt(multi.getParameter("postPrice"));    
 String summary = multi.getParameter("postSummary");    
 String description = multi.getParameter("postDescription");    
-String imagePath = "images/posts/"+fileName;
+String imagePath = fileName;
 AdminPostDAO apDAO = AdminPostDAO.getInstance();
 AdminPostsVO apVO = new AdminPostsVO();
 
@@ -62,7 +62,9 @@ pageContext.setAttribute("result", result);
 <script>
 if(!${result}){alert("게시글 수정에 실패했습니다")}
 alert("게시글이 수정되었습니다");
-location.href="http://localhost/project_kmong/admin/pages/posts/posts_edit.jsp?postId=${postId}"; 
+setTimeout(function() {
+	location.href="http://localhost/project_kmong/admin/pages/posts/posts_edit.jsp?postId=${postId}"; 
+	},1000);
 </script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<script>
+
+</script>
     
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
@@ -15,8 +18,8 @@
     <!--검색버튼 -->
     <ul class="navbar-nav w-100">
       <li class="nav-item w-100">
-        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-          <input type="text" class="form-control" placeholder="Search products">
+        <form action="http://localhost/project_kmong/admin/pages/posts/posts.jsp" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search top-search-frm">
+          <input type="text" name="search" class="form-control" placeholder="Search products">
         </form>
       </li>
     </ul>
