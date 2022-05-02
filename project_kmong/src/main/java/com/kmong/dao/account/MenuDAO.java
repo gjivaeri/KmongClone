@@ -329,6 +329,47 @@ public int commentcount(int postId)throws SQLException {
 		return cnt;
 			
 		}// commentcount
+
+public String selectCategoryName(int categoryId)throws SQLException {
+	
+	String categoryName=null;
+	
+	Connection con=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
+	
+	
+	try {
+	//1. JNDI 사용객체 생성
+	//2. 설정된 DBCP 에서 DataSource 얻기
+	//3. DataSource에서 Connection 얻기
+		con=instance.getConn();
+	//4. 쿼리문 생성객체 얻기
+	String selectCategoryName="select category_name from category where category_id=?";
+	pstmt=con.prepareStatement(selectCategoryName);
+	//5. 바인드 변수 값 설정
+	pstmt.setInt(1,categoryId);
+	
+	//6. 쿼리문 수행 후 결과 얻기
+	rs=pstmt.executeQuery();
+	
+	while(rs.next()) {
+		categoryName=rs.getString("category_name");
+		//chkpass 에 값 넣기 return 값과 request 값이 같으면 정보변경 창 으로 이동하게 함
+	}; 
+	
+	
+	}finally {
+	//7. 연결끊기
+	instance.dbClose(rs, pstmt, con);
+	}//end finally
+	
+	
+	return categoryName;
+		
+	}//selectCheckPassword
 	
 
 }// class

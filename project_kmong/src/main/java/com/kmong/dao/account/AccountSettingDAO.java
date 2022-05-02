@@ -14,13 +14,6 @@ import com.kmong.vo.MemberVO;
 
 
 
-
-
-
-
-
-
-
 public class AccountSettingDAO {
 	
 	public static  AccountSettingDAO asd;
@@ -37,11 +30,8 @@ public static AccountSettingDAO getInstance(){
 	
 }//getInstance
 	
-	
 
-	
-	
-	//다 연결만 함
+
 public String selectCheckPassword(int memberId, String password)throws SQLException {
 	
 	String chkpass=null;
@@ -71,9 +61,6 @@ public String selectCheckPassword(int memberId, String password)throws SQLExcept
 		chkpass=rs.getString("password");
 	}
 		
-
-	
-	
 	}finally {
 	//7. 연결끊기
 	instance.dbClose(rs, pstmt, con);
@@ -85,39 +72,7 @@ public String selectCheckPassword(int memberId, String password)throws SQLExcept
 	}//selectCheckPassword
 
 
-public boolean updateMemberImg(MemberVO MVO)throws SQLException {
 	
-	int flag=0;
-	
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	
-	DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
-	
-	try {
-	//1. JNDI 사용객체 생성
-	//2. 설정된 DBCP 에서 DataSource 얻기
-	//3. DataSource에서 Connection 얻기
-		con=instance.getConn();
-	//4.쿼리문 생성객체 얻기
-	String updateImg="update member set user_img=? where member_id=?";
-	pstmt=con.prepareStatement(updateImg);
-	//5.바인드 변수 값 설정
-	pstmt.setString(1, MVO.getUser_img());
-	pstmt.setInt(2, MVO.getMemberId());
-	//6. 쿼리문 실행후 결과 값 얻기
-	flag=pstmt.executeUpdate();
-	}finally {
-	//7. 연결끊기
-		instance.dbClose(null, pstmt, con);
-	}//end finally
-	
-	
-	
-	if(flag>0) return true;
-	else return false;
-}//updateMemberImg
-
 public int selectCategoryid(int memberId)throws SQLException {
 	
 	int selectcaid=0;
@@ -145,7 +100,7 @@ public int selectCategoryid(int memberId)throws SQLException {
 	
 	while(rs.next()) {
 		selectcaid=rs.getInt("category_id");
-		//chkpass 에 값 넣기 return 값과 request 값이 같으면 정보변경 창 으로 이동하게 함
+		
 	}; 
 	
 	
@@ -158,7 +113,6 @@ public int selectCategoryid(int memberId)throws SQLException {
 	return selectcaid;
 		
 	}//selectCheckPassword
-
 
 
 public boolean  updateMemberCategoryId(MemberVO MVO)throws SQLException {
@@ -191,7 +145,6 @@ public boolean  updateMemberCategoryId(MemberVO MVO)throws SQLException {
 	if(flag>0) return true;
 	else return false;
 }//updateMemberCategoryId
-
 
 
 
@@ -399,30 +352,6 @@ public void insertinterest(int memberId,int categoryId)throws SQLException {
 	}//end finally
 }// insertFile
 
-public void updateFile(String userImg, int memberId)throws SQLException {
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	DbConnectionDBCP instance=DbConnectionDBCP.getInstance();
-	
-	try {
-	//1. JNDI 사용객체 생성
-	//2. 설정된 DBCP 에서 DataSource 얻기
-	//3. DataSource에서 Connection 얻기
-		con=instance.getConn();
-	//4. 쿼리문 생성객체 얻기
-		String insertFile="update member set user_img=? where member_id=?";
-	pstmt=con.prepareStatement(insertFile);
-		//5. 바인드 변수 값 설정
-	pstmt.setString(1, userImg);
-	pstmt.setInt(2, memberId);
-
-	//6. 쿼리수행 후 결고 얻기
-	pstmt.executeUpdate();
-	}finally {
-	//7. 연결끊기
-		instance.dbClose(null, pstmt, con);
-	}//end finally
-}// updateFile
 
 public List<InterestVO> findinterest(int memberId) throws SQLException {
 	List<InterestVO> list = new ArrayList<InterestVO>();
@@ -503,9 +432,7 @@ public List<MemberVO> selectinformation(int memberId) throws SQLException {
 	} // end finally
 	return list;
 
-
 }
-
 
 
 }//class
