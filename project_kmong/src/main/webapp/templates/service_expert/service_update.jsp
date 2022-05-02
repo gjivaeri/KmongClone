@@ -109,7 +109,7 @@ $(function() {
 					<h2 class="span-h2">요청사항</h2></a>
 				</aside>
 			<%
-			System.out.println(request.getParameter("postId2"));
+			System.out.println("post==id : "+request.getParameter("postId2"));
 			int postId = Integer.parseInt(request.getParameter("postId2"));
 			
 			MyServiceDAO msDAO = MyServiceDAO.getInstance();

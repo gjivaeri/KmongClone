@@ -51,14 +51,18 @@ function prevSubmit() {
 	$("#prevFrm").submit();
 }
 
-$(function(){
+/*  $(function(){
 	$(".modifyBtn").click(function(){
 		$("#modiForm").submit();
-	})
+	}) 
 	
 
-});//ready 
+});//ready  */
 
+function updateService( postId ){
+		$("#postId2").val( postId );
+		$("#modiForm").submit();
+} 
 function removeService( postId ){
 		alert("게시글을 삭제하겠습니까?" );
 		$("#postId").val( postId ) ;
@@ -159,19 +163,17 @@ function removeService( postId ){
 						<form id="delForm" action="service_delete_proc.jsp" method="post">
 		                         <input type="hidden" name="postId" id="postId"/>
 						</form>
-						<form id="modiForm" action="service_update.jsp" method="post">
-		                         <input type="hidden" name="postId2" id="postId2"/>
-						</form>
+		                
+		                <form id="modiForm" action="service_update.jsp" method="post">
+						      <input type="hidden" name="postId2" id="postId2"/> 
+		                </form> 
+						
 						<c:forEach items="${list}" var="items"> 
 						<div>
 							<div class="dropdown">
 		                         <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/ic_more.svg" alt="더보기 아이콘" style="cursor: pointer; float: right;"/>
 		                         <div class="dropdown-content" style="float: right; position: relative; width: 40px;">
-		                         <form id="modiForm" action="service_update.jsp" method="post">
-							       <input type="hidden" name="postId2" id="postId2" value="${items.postId }"/> 
-							       <a href="#void" class="modifyBtn" style="font-size: 15px; text-align: center;">서비스 편집</a>
-		                         </form>
-		                         <!-- <input type="hidden" value="http://localhost/project_kmong/templates/service_expert/service_list.jsp" name="url"/> --> 
+							       <a href="#void" onclick="updateService(${items.postId})" class="modifyBtn" style="font-size: 15px; text-align: center;">서비스 편집</a>
 							       <a href="#void" onclick="removeService(${items.postId})" class="deleteBtn" style="font-size: 15px; text-align: center;">서비스 삭제</a>
 								</div>
 							</div>

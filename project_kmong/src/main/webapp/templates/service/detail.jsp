@@ -155,8 +155,11 @@ if(session.getAttribute("login") == null) {
 </div>
 </section>
 <%
+System.out.println("selectPostId : "+request.getParameter("selectPostId"));
+int selectPostId = Integer.parseInt(request.getParameter("selectPostId"));
+
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는 게시물의 정보 조회
+List<Map<String, String>> list = pDAO.selectPost(selectPostId);//사용자가 선택하는 게시물의 정보 조회
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">

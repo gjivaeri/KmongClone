@@ -100,6 +100,12 @@ function sort(selectIdx){
    }
    window.location.href=nextURL; 
 }
+
+///detail.jsp로 넘어가는 postId///
+function selectPostId( postId ){
+	$("#selectPostId").val( postId );
+	$("#postIdFrm").submit();
+} 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(function(){
@@ -138,7 +144,7 @@ $(function(){
     $('.sort-date').prop('selected', 'selected')
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+
 }); //ready
 
 
@@ -268,13 +274,16 @@ Paging paging = new PageImpl(request,sortedList,12);
                pageContext.setAttribute("size", result.size());
                
 %>
+<form action="detail.jsp" method="post" id="postIdFrm">
+	<input type="hidden" name="selectPostId" id="selectPostId"/> 
+</form>
 
  <c:forEach var="categoryMenu" items="${list}">
 
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${categoryMenu.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
-<img src="http://localhost/project_kmong/static/PostimgUpload/${categoryMenu.postImg }" style="height:130px; width:100%"/>
+<img src="http://localhost/project_kmong/static/PostimgUpload/${categoryMenu.postImg }" onclick="selectPostId(${categoryMenu.postId})"  style="height:130px; width:100%"/>
 </div>
 <div>
 <div style="margin-top: 10px">
