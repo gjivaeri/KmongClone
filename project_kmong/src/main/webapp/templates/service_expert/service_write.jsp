@@ -250,8 +250,7 @@ $(function() {
 					<span class="span-name">설명</span>
 					</span> 
 					<div class="div-element">
-					<textarea placeholder="- 메인페이지 시안 1개 제공 &#13;&#10;- 공지사항,FAQ페이지 &#13;&#10;- SNS로그인 연동" maxlength="60" autocomplete="off" id="explain-ta" name="summary"/> 
-					</textarea>
+					<textarea placeholder="- 메인페이지 시안 1개 제공 &#13;&#10;- 공지사항,FAQ페이지 &#13;&#10;- SNS로그인 연동" maxlength="60" autocomplete="off" id="explain-ta" name="summary"/></textarea>
 					<span id="output3"></span>
 					</div> 
 					</div>

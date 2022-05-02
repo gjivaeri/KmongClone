@@ -8,11 +8,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
+	 int login = (int)session.getAttribute("login");
+	 int id =login;
+
 	 boolean ImgFileFlag = (boolean)session.getAttribute("insertImgFlag");
 	 PostVO pVO = new PostVO();
 	 System.out.println("ImgFileFlag: "+ImgFileFlag);
 	 //System.out.println(session.getAttribute("login"));
-	 session.setAttribute("memberId", 5);
+	 session.setAttribute("memberId", id);
 	 System.out.println("memberId: "+session.getAttribute("memberId"));
 	
 	 

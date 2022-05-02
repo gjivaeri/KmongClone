@@ -61,8 +61,10 @@ $(function(){
 <%
 request.setCharacterEncoding("UTF-8");
 
-System.out.println(request.getParameter("post_id"));
-int postId = Integer.parseInt(request.getParameter("post_id"));
+System.out.println("post_id: "+request.getParameter("postId2"));
+System.out.println("memberId : "+(Integer)session.getAttribute("login"));
+
+int postId = Integer.parseInt(request.getParameter("postId2"));
 PostDAO pDAO = PostDAO.getInstance();
 List<Map<String, String>> list = pDAO.selectPost(postId);
 

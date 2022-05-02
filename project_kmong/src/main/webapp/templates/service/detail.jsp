@@ -110,8 +110,8 @@ $(function(){
 
 </head>
 <body>
-<body>
-<% session.setAttribute("login",5); %>
+
+<%-- <% session.setAttribute("login",5); %> --%>
 <% 
 if(request.getParameter("id") == null) {
 	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
@@ -134,8 +134,15 @@ if (session.getAttribute("login") != null) {
 
 
 %>
-
-<%@include file="../common/header_member.jsp"%>
+<%
+if(session.getAttribute("login") == null) {
+   %>
+<%@include file="../common/header.jsp"%>
+<%
+} else{
+   %><%@include file="../common/header_member.jsp"%>
+   <% }
+%>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <hr/>
 <!-- 메인 시작 -->
@@ -148,8 +155,11 @@ if (session.getAttribute("login") != null) {
 </div>
 </section>
 <%
+System.out.println("selectPostId : "+request.getParameter("selectPostId"));
+int selectPostId = Integer.parseInt(request.getParameter("selectPostId"));
+
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는 게시물의 정보 조회
+List<Map<String, String>> list = pDAO.selectPost(selectPostId);//사용자가 선택하는 게시물의 정보 조회
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
@@ -315,8 +325,7 @@ List<Map<String, String>> list = pDAO.selectPost(40);//사용자가 선택하는
 <img src="http://localhost/project_kmong/static/images/img2.png"/><span><%= list.get(0).get("term") %>일</span>
 </div>
 <form action="purchase_success.jsp" method="post">
-<input type="hidden" name="postId" value=<%= list.get(0).get("post_id") %>>
-<input type="hidden" name="memberId" value=<%= list.get(0).get("member_id") %>>
+<input type="hidden" name="postId2" value=<%= list.get(0).get("post_id") %>>
 <div style="margin:0px auto; width:70% ;margin-bottom: 50px">
 <button role="button" type="submit" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://localhost/project_kmong/templates/service/purchase_success.jsp'">
 <span class="css-1oteowz eklkj753">

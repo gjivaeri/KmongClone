@@ -23,6 +23,9 @@
 	//3. 파일 업로드 컴포넌트를 생성
 	MultipartRequest mr = new MultipartRequest(request, saveDirectory.getPath(), fileSize, "UTF-8",	new DefaultFileRenamePolicy());
 
+	System.out.println("postId : "+ mr.getParameter("postId"));
+	int postId =  Integer.parseInt(mr.getParameter("postId"));
+	
 	String title = mr.getParameter("title");
 	int categoryId = Integer.parseInt(mr.getParameter("categoryId"));
 	String summary = mr.getParameter("summary");
@@ -31,7 +34,7 @@
 	String description = mr.getParameter("description");
 	String postImg = mr.getParameter("file1");
 				
-				
+	pVO.setPostId(postId);			
 	pVO.setTitle(title);
 	pVO.setCategoryId(categoryId);
 	pVO.setSummary(summary);
@@ -43,7 +46,7 @@
 	MyServiceDAO msDAO = MyServiceDAO.getInstance();
 	msDAO.updateMyService(pVO);
 	
-	//System.out.println(pVO);
+	System.out.println(pVO);
 				
 	response.sendRedirect("http://localhost/project_kmong/templates/service_expert/service_list.jsp");
 	}

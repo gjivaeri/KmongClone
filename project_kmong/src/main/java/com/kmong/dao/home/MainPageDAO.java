@@ -181,7 +181,7 @@ public class MainPageDAO {
 //		.append("from post")
 //		.append("where category_id=? and POST_STATUS='Y' order by POST_DATE) where rownum<=8")
 //		.append("where rownum<=8");
-		String selectPostsForInterests="select*from(select post_id,member_id,title,post_img,summary,price,star_avg from post where category_id=? and POST_STATUS='Y' order by POST_DATE) where rownum<=8";
+		String selectPostsForInterests="select*from(select post_id,member_id,title,post_img,summary,price,star_avg from post where category_id=? and POST_STATUS='Y' order by star_avg desc) where rownum<=8";
 		
 		//PreparedStatement pstmt=con.prepareStatement(selectPostsForInterests.toString());
 		PreparedStatement pstmt=con.prepareStatement(selectPostsForInterests);

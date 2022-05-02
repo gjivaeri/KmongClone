@@ -100,6 +100,12 @@ function sort(selectIdx){
    }
    window.location.href=nextURL; 
 }
+
+///detail.jsp로 넘어가는 postId///
+function selectPostId( postId ){
+	$("#selectPostId").val( postId );
+	$("#postIdFrm").submit();
+} 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 $(function(){
@@ -138,14 +144,10 @@ $(function(){
     $('.sort-date').prop('selected', 'selected')
    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+
 }); //ready
 
-/* function bold(this){
-   
-   $(this).css("font-weight" , "bold")
-   
-}//bold */
+
 
 </script>
 
@@ -153,7 +155,7 @@ $(function(){
 <body>
 
 <%
-//session.getAttribute("login");
+
 if(session.getAttribute("login") == null) {
    %>
 <%@include file="../common/header.jsp"%>
@@ -174,6 +176,8 @@ if(session.getAttribute("login") == null) {
 MenuDAO mnDAO=new MenuDAO();   
 List<CategoryVO> list1=mnDAO.selectAllCategory();
 pageContext.setAttribute("categoryList", list1);
+
+
 %>
 <div class="categorybox">
 <h1 class="css-1bmlbzf e18el20q0">카테고리</h1>
@@ -183,10 +187,7 @@ pageContext.setAttribute("categoryList", list1);
 <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0" ><c:out value="${categorylist.categoryName }"/></a></div>
 
 </c:forEach>
-<!-- <div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">문서 번역</a></div>
-<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">ABCDE</a></div>
-<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">FGHIJ</a></div>
-<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="#void" class="ebpz7lm6 css-1byqrox e1lsgt8r0">KLMNOP</a></div> -->
+
 
 </div>
 
@@ -194,18 +195,18 @@ pageContext.setAttribute("categoryList", list1);
 <!-- 메뉴페이지 시작..................................................................................................................... -->
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
-<% 
-
-if(session.getAttribute("login") == null) {
-   %>
-<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 <%
-} else{
-   %><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
-   <% }
+String query1=request.getParameter("categoryId");  // 쿼리스트링으로 categoryid 얻기
+int query2=Integer.parseInt(query1);
+String categoryname= mnDAO.selectCategoryName(query2);
 %>
+
+
+
+<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+
 <span>></span>
-<a href="http://localhost/project_kmong/templates/service/list.jsp" class="css-mz86x3 e1rp7ga00"><c:out value="${categorylist.categoryName }"/></a>
+<span><c:out value="<%=categoryname %>"/></span>
 
 
 <!--인기순  -->
@@ -229,24 +230,21 @@ if(session.getAttribute("login") == null) {
 
 <%   
 ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
-String query1=request.getParameter("categoryId");
+
 String sortIdx = request.getParameter("sort");
 //페이지 이동해도 쿼리값을 유지시기키 위함
 String sortQuery="&sort="+sortIdx;
 request.setAttribute("catId", query1);
 request.setAttribute("sortQuery", sortQuery);
 
-if(query1==null) {    
-   response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp");
-}
-int query2=Integer.parseInt(query1);
-//int query=Integer.parseInt(request.getParameter("categoryId")); 
-//List<PostVO> list2=mnDAO.selectCategoryMenu(query2);  /*  카테고리 클릭했을때 쿼리스트링으로 얻어서  매개변수에 넣은다음 메뉴들 찾아오는건데  처음이 null이라 list.jsp가 오류남*/
-List<PostVO> sortedList = mnDAO.selectDateMenu(query2, sortIdx);
+
+
+
+List<PostVO> sortedList = mnDAO.selectDateMenu(query2, sortIdx);  //query2 는 195번째 줄에 있음
 pageContext.setAttribute("categoryMenu", sortedList);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-Paging paging = new PageImpl(request,sortedList);
-               paging.setPagePerRecord(12);
+Paging paging = new PageImpl(request,sortedList,12);
+             
                
                int firstPage = paging.getFirstPage();
                int lastPage = paging.getLastPage();
@@ -276,13 +274,16 @@ Paging paging = new PageImpl(request,sortedList);
                pageContext.setAttribute("size", result.size());
                
 %>
+<form action="detail.jsp" method="post" id="postIdFrm">
+	<input type="hidden" name="selectPostId" id="selectPostId"/> 
+</form>
 
  <c:forEach var="categoryMenu" items="${list}">
- <%-- <c:if test="${categoryMenu.postStatus eq 'Y' }">  왜 안나오지 리스트가...--%> 
+
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
 <a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${categoryMenu.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
-<img src="${categoryMenu.postImg }" style="height:130px; width:100%"/>
+<img src="http://localhost/project_kmong/static/PostimgUpload/${categoryMenu.postImg }" onclick="selectPostId(${categoryMenu.postId})"  style="height:130px; width:100%"/>
 </div>
 <div>
 <div style="margin-top: 10px">
@@ -320,7 +321,7 @@ int count= mnDAO.commentcount(postId);
 </div>
 </a>
 </article>
-<%-- </c:if> --%>
+
 </c:forEach> 
 
 
@@ -359,14 +360,6 @@ int count= mnDAO.commentcount(postId);
 <!----------------------------------------- footer ----------------------------------------->
 <%@include file="../common/footer.jsp" %>
 
-<%-- <%
-String url=request.getRequestURI().toString();
-if(request.getQueryString()!=null){
-	url=url+"?"+request.getQueryString();
-	//out.print(url);
-	//out.print(request.getRequestURI().toString());
-	session.setAttribute("logoutPageGo", url);
-}
-%> --%>
+
 </body>
 </html>

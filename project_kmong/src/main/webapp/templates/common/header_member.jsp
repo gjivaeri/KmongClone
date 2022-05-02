@@ -40,7 +40,7 @@ $(function(){
 </script>
 <div class="header">
         <div class="header1">
-            <a href="http://localhost/project_kmong/templates/home/index_member.jsp"><div class="logo-div"></div></a>
+            <a href="http://localhost/project_kmong/templates/home/index.jsp"><div class="logo-div"></div></a>
             
                 <div style="flex-grow: 1;"></div>
                 
@@ -86,9 +86,9 @@ $(function(){
                         
 	                        //pageContext.setAttribute("userImg", userImg);
 	                        if(fileName!=null){
-	                        	%><img src="http://localhost/project_kmong/static/upload/<%=fileName%>" onerror="this.src='default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
+	                        	%><img src="http://localhost/project_kmong/static/upload/<%=fileName%>" onerror="this.src='http://localhost/project_kmong/templates/common/default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><%
 	                        }else{
-	                        	%><img src="http://localhost/project_kmong/static/upload/default_profile.png" onerror="this.src='default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
+	                        	%><img src="http://localhost/project_kmong/static/upload/default_profile.png" onerror="this.src='http://localhost/project_kmong/templates/common/default_profile.png';" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/><% 
 	                        }
                         }
                         %>
