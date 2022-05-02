@@ -8,20 +8,28 @@
 <style type="text/css">
 
 </style>
+
+
 <script type="text/javascript">
+
 <%
 if((String)session.getAttribute("loginTry")!=null){
-	%>alert("로그인에 실패하였습니다.\n아이디 또는 비밀번호를 확인해주세요.")<%
+	%>
+	alert("로그인에 실패하였습니다.\n아이디 또는 비밀번호를 확인해주세요.");
+	$("#modal").css("display","flex");
+	<%
 	session.removeAttribute("loginTry");
-}
+}//end if
+
+
 if(((String)session.getAttribute("logoutDone"))!=null){
 	%>alert("로그아웃 되었습니다.")<%
 	session.removeAttribute("logoutDone");
 }
+
 if(((String)session.getAttribute("logoutSession"))!=null){
 	%>alert("잘못된 경로입니다.")<%
 	session.removeAttribute("logoutSession");
-
 }
 
 
@@ -140,9 +148,20 @@ $("#searchbtn").click(function() {
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
 								                <form action="http://localhost/project_kmong/templates/home/login_action.jsp" method="get" id="loginFrm">
-								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="m1@google.com"/>
-								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!6125"
+								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email" value="abcd@google.com"/>
+								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass" value="asdf!!1234"
 								                    onkeyup="handlePassEnter(event);"/>
+								                    <% //현재 페이지의 URL을 로그인 액션에 전달하여 해당 페이지에 남아있도록 하기 위한 파라미터를 hidden으로 설정
+													String url=request.getRequestURI().toString();
+													if(request.getQueryString()!=null){
+														url=url+"?"+request.getQueryString();
+														//out.print(url);
+														//out.print(request.getRequestURI().toString());
+														//session.setAttribute("logoutPageGo", url);
+														//out.print(url);
+													}
+													%>
+								                    <input type="hidden" name="url" value="<%=url%>"/>
 								                    
 								                    
 								                    <input class="login-button" type="button" value="로그인"  
@@ -217,3 +236,8 @@ $("#searchbtn").click(function() {
             </div>
         </div>
     </div>
+ <script type="text/javascript">
+if(${param.hid eq 'login'}){
+document.getElementById("modal").style.display='flex';
+}//end if
+</script>

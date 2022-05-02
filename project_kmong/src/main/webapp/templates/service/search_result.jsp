@@ -46,6 +46,11 @@ color:#333
 <!-- JQuery CDN -->
 
 <script type="text/javascript">
+<%
+if(session.getAttribute("loginMsg")!=null){
+	%>alert("로그인이 성공적으로 완료되었습니다.")<%
+	session.removeAttribute("loginMsg");
+}%>
 ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
 //파라미터에서 원하는 쿼리의 원하는 값을 얻기 위한 함수
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -125,16 +130,14 @@ $(function(){
 
 </head>
 <body>
-<body>
 <%
-session.getAttribute("login");
-if(session.getAttribute("login") == null) {
-	%>
+//session.getAttribute("login");
+if(session.getAttribute("login") == null) {%>
 <%@include file="../common/header.jsp"%>
-<%
-} else{
-	%><%@include file="../common/header_member.jsp"%>
-	<% }
+<%} else{%>
+<%@include file="../common/header_member.jsp"%>
+<% 
+}
 %>
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <hr/>
@@ -162,13 +165,11 @@ pageContext.setAttribute("categoryList", list1);
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
 <% 
-
-if(session.getAttribute("login") == null) {
-	%>
+if(session.getAttribute("login") == null) {%>
 <a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 <%
 } else{
-	%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+%><a href="http://localhost/project_kmong/templates/home/index_member.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 	<% }
 %>
 <!-- <span>></span>
@@ -336,17 +337,27 @@ int count= mnDAO.commentcount(postId);
 					<a href="#void" onclick="nextSubmit()">next</a>
 					</c:if>
 					</div>
-<%}else{
-%><h2 style="margin-bottom: 500px;">검색어를 입력해주세요. </h2>
-</div>
-</div>
-</div><%
+<%
+}else{
+	%><h2 style="margin-bottom: 500px;">검색어를 입력해주세요. </h2>
+	</div>
+	</div>
+	</div><%
 }
 %>					
 					<!-- paging -->	
 <!--  footer-->
 <%@include file="../common/footer.jsp" %>
 
+<%-- <%
+String url=request.getRequestURI().toString();
+if(request.getQueryString()!=null){
+	url=url+"?"+request.getQueryString();
+	//out.print(url);
+	//out.print(request.getRequestURI().toString());
+	session.setAttribute("logoutPageGo", url);
+}
+%> --%>
 
 </body>
 </html>

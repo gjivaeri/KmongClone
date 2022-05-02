@@ -18,6 +18,7 @@
    response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
    return;
 }
+
 %>
 <title>Insert title here</title>
 <!-- 공통CSS-->
@@ -60,6 +61,12 @@ color:#333
 </style>
 
 <script type="text/javascript">
+<%
+if(session.getAttribute("loginMsg")!=null){
+	%>alert("로그인이 성공적으로 완료되었습니다.")<%
+	session.removeAttribute("loginMsg");
+}%>
+
 ////////////////////(0430 정렬구현 추가 코드 - 확인하고 이 주석은 지워주세요)///////////////////////////////////////
 //파라미터에서 원하는 쿼리의 원하는 값을 얻기 위한 함수
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -146,7 +153,7 @@ $(function(){
 <body>
 
 <%
-session.getAttribute("login");
+//session.getAttribute("login");
 if(session.getAttribute("login") == null) {
    %>
 <%@include file="../common/header.jsp"%>
@@ -352,6 +359,14 @@ int count= mnDAO.commentcount(postId);
 <!----------------------------------------- footer ----------------------------------------->
 <%@include file="../common/footer.jsp" %>
 
-
+<%-- <%
+String url=request.getRequestURI().toString();
+if(request.getQueryString()!=null){
+	url=url+"?"+request.getQueryString();
+	//out.print(url);
+	//out.print(request.getRequestURI().toString());
+	session.setAttribute("logoutPageGo", url);
+}
+%> --%>
 </body>
 </html>
