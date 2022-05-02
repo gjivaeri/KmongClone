@@ -15,7 +15,7 @@ int id =login;
 OrdersDAO oDAO = OrdersDAO.getInstance();
 
 if(!oDAO.selectMemberExpert(id)) {
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://localhost/project_kmong/templates/order_user/request_list.jsp");
 	return;
 }
 %>

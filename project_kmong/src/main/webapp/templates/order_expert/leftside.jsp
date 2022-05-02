@@ -48,7 +48,7 @@ $(function() {
 						
 						%>
 						<div id="side-menu-wrapper">
-							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :img %>" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;">
+							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :"http://localhost/project_kmong/static/upload/"+img %>" class="profile-image img-responsive" style="width: 150px;">
 							<!-- <img src="https://kmong.com/img/tools/default_profile@2x.png" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;"> -->
 						</div>
 						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold"><%= nick %></span></div>

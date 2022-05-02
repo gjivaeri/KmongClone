@@ -103,11 +103,9 @@ function removeService( postId ){
 				MyServiceDAO msDAO = MyServiceDAO.getInstance();
 				List<PostVO> list = msDAO.selectMyServiceList(sid);
 				
-				//pageContext.setAttribute("list", list);
-				//System.out.println(list);
+
 				
-				Paging paging = new PageImpl(request,list);
-				paging.setPagePerRecord(2);
+				Paging paging = new PageImpl(request,list,2);
 					
 				int firstPage = paging.getFirstPage();
 				int lastPage = paging.getLastPage();
@@ -128,7 +126,6 @@ function removeService( postId ){
 					}	
 				}
 				} catch(Exception e) {
-					
 					e.getStackTrace();
 					response.sendRedirect("service_list.jsp");
 				}
@@ -140,10 +137,13 @@ function removeService( postId ){
 				pageContext.setAttribute("next", nextPage);
 				pageContext.setAttribute("prev", prevPage);
 				pageContext.setAttribute("list", result);
-				pageContext.setAttribute("size", list.size());
+				pageContext.setAttribute("size", result.size());
+				
+				
 				
 				%>
 					<h1 style="font-size: 18px; font-weight: bold;">나의 서비스</h1>
+					
 					<div id="main-section1" style="padding: 20px;  height: 60%; flex-direction: column; position: relative;"> 
 						<div>
 						
@@ -205,10 +205,10 @@ function removeService( postId ){
 					</c:if>
 					<!-- paging -->	
 					
-					<div style="position: relative; height: 25%; border: 2px dotted #e4e5ed; margin-top: 20px" >
+				<div style="position: relative; height: 25%; border: 2px dotted #e4e5ed; margin-top: 20px" >
 						<button role="button" id="regi-btn"><a href="http://localhost/project_kmong/templates/service_expert/service_write.jsp" style="text-decoration: none; color: #747474; font-weight: bold;"><h1>+</h1>서비스등록하기</a>						
 						</button>
-					</div>
+					</div> 
 					
 					</main>
    				</div>
