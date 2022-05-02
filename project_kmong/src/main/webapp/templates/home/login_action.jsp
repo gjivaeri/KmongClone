@@ -43,8 +43,6 @@
 
 			}else{
 				
-				/* if(session.getAttribute("logoutPageGo")!=null&&(String)session.getAttribute("logoutPageGo")!="/project_kmong/templates/home/index.jsp"){
-					String url_=(String)session.getAttribute("logoutPageGo"); */
 					url="http://localhost"+request.getParameter("url");
 					
 					//session.removeAttribute("logoutPageGo");
