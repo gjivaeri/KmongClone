@@ -68,17 +68,15 @@ int postId = Integer.parseInt(request.getParameter("postId2"));
 PostDAO pDAO = PostDAO.getInstance();
 List<Map<String, String>> list = pDAO.selectPost(postId);
 String list2 = pDAO.selectOrderId(postId).toString();
-System.out.println("아dp[dpdpdp아"+list2);
 String a = list2.replace("=", ",");
 String[] orderId = a.split(",");
-System.out.println("오더아이디 : "+orderId[1]);
 
 int memberId = (Integer)session.getAttribute("login");
 
 OrdersVO oVO = new OrdersVO();
 oVO.setPostId(postId);
 oVO.setMemberId(memberId);
-System.out.println(oVO);
+//System.out.println(oVO);
 pDAO.insertOrder(oVO);
 %>
 
@@ -101,7 +99,7 @@ pDAO.insertOrder(oVO);
 </div>
 
 <div style="margin:0px auto; width:150px;height:100px; margin-top: 30px">
-<button class="btn btn-warning" style="width:120px;height:80px;"><strong>이전으로</strong></button>
+<button class="btn btn-warning" style="width:120px;height:80px;" onclick="history.back()"><strong>이전으로</strong></button>
 </div>
 
 </div>
