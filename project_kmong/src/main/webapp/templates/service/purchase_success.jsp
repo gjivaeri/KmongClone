@@ -61,15 +61,11 @@ $(function(){
 <%
 request.setCharacterEncoding("UTF-8");
 
-System.out.println("post_id: "+request.getParameter("postId2"));
+System.out.println("post_id: "+Integer.parseInt(request.getParameter("postId2")));
 System.out.println("memberId : "+(Integer)session.getAttribute("login"));
 
 int postId = Integer.parseInt(request.getParameter("postId2"));
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(postId);
-String list2 = pDAO.selectOrderId(postId).toString();
-String a = list2.replace("=", ",");
-String[] orderId = a.split(",");
 
 int memberId = (Integer)session.getAttribute("login");
 
@@ -78,6 +74,13 @@ oVO.setPostId(postId);
 oVO.setMemberId(memberId);
 //System.out.println(oVO);
 pDAO.insertOrder(oVO);
+
+List<Map<String, String>> list = pDAO.selectPost(postId);
+
+String list2 = pDAO.selectOrderId(postId).toString();
+String a = list2.replace("=", ",");
+String[] orderId = a.split(",");
+
 %>
 
 <div>
