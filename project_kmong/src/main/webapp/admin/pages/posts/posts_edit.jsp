@@ -81,11 +81,21 @@ pageContext.setAttribute("categoryList", list);
 			}
 		});
 		
+
+		function readFile(input){ 
+			var reader = new FileReader(); 
+		reader.onload = function(e){ 
+			$('#img-output').attr('src', e.target.result); 
+			} 
+		reader.readAsDataURL(input.files[0]); 
+		} 
+		
 		 $("#cat-sel option").each(function(){
 			if($(this).text()=="${categoryName}"){
 				$(this).prop("selected","selected");
 			    }
 			});
+		
 		 
 		 $('.file-upload-browse').on('click', function() {
 			  var file = $(this).parent().parent().parent().find('.file-upload-default');
@@ -93,6 +103,7 @@ pageContext.setAttribute("categoryList", list);
 			});
 		 
 		$('.file-upload-default').on('change', function() {
+	    	readFile(this);
 			  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 			});
 
@@ -214,7 +225,7 @@ pageContext.setAttribute("categoryList", list);
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Current thumbnail</label>
                             <div class="col-sm-9">
-                              <img src="http://localhost/project_kmong/static/PostimgUpload/${post.img}" style="height:200px;" alt="thumbnail"/>
+                              <img id="img-output" src="http://localhost/project_kmong/static/PostimgUpload/${post.img}" style="height:200px;" alt="thumbnail"/>
                             </div>
                           </div>
                         </div>

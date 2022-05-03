@@ -45,7 +45,7 @@
   		
    		function loginChk(loginFlag){
  			if(loginFlag){
-  				location.href="http://localhost/project_kmong/admin/index.jsp";
+  				location.href="http://localhost/project_kmong/admin/admin_index.jsp";
   				return
   			} 
   			$("#warning").html("아이디 혹은 비밀번호를 잘못 입력하셨습니다.")		

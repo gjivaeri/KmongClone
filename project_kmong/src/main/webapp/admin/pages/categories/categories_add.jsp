@@ -48,12 +48,21 @@
 			$("#add-frm").submit();
 			}
 		});
+		function readFile(input){ 
+			var reader = new FileReader(); 
+		reader.onload = function(e){ 
+			$('#img-output').attr('src', e.target.result); 
+			} 
+		reader.readAsDataURL(input.files[0]); 
+		} 
+		
 
 			    $('.file-upload-browse').on('click', function() {
 			      var file = $(this).parent().parent().parent().find('.file-upload-default');
 			      file.trigger('click');
 			    });
 			    $('.file-upload-default').on('change', function() {
+			    	readFile(this);
 			      $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 			    });
 
@@ -103,6 +112,17 @@
                         </div>
                       </div>
 
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Category Image</label>
+                            <div class="col-sm-9">
+                              <img id="img-output"  src="http://localhost/project_kmong/static/images/category/noneImg.png" style="width:100px; height:100px;">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">

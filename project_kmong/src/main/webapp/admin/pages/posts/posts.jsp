@@ -16,7 +16,7 @@ int totalCnt = aDAO.getAllCount(table);
 int todayCnt = aDAO.getTodayCount(table);
 
 /* paging */
-Paging paging = new PageImpl(request,list,15);
+Paging paging = new PageImpl(request,list,10);
 
 int firstPage = paging.getFirstPage();
 int lastPage = paging.getLastPage();
@@ -54,7 +54,12 @@ pageContext.setAttribute("size", result.size());
     <title>Posts</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
 	<style>
-		a{text-decoration:none; color:white;}
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap');
+	
+		.table td a:hover{color:#6C7293;}
+		.table td{font-size:1.05rem; font-family: 'Noto Sans KR', sans-serif; color:white;}
+		.table thead th{font-size:1.2rem; color:white;}
+		
 	</style>
   </head>
   <body>
@@ -72,14 +77,45 @@ pageContext.setAttribute("size", result.size());
 			 $("#search-btn").click(function(){
 				 $("#search-frm").submit();
 			 })
+			 
+			
 		});//ready
-		
 		function nextSubmit() {
 			$("#nextFrm").submit();
 		}
 		function prevSubmit() {
 			$("#prevFrm").submit();
 		}
+
+		 
+/* 		 
+		function getQueryString(key) {
+		    var str = location.href;
+		    var index = str.indexOf("?") + 1;
+		    var lastIndex = str.indexOf("#") > -1 ? str.indexOf("#") + 1 : str.length;
+		 
+		    if (index == 0) {
+		        return "";
+		    }
+
+		    str = str.substring(index, lastIndex); 
+		    str = str.split("&");
+		    var rst = "";
+		 
+		    for (var i = 0; i < str.length; i++) {
+		    	
+		        var arr = str[i].split("=");
+		        if(arr.length != 2){
+		        break;
+		    }
+		        if (arr[0] == key) {
+		            rst = arr[1];
+		            break;
+		        }
+		    }
+		    return rst;
+		} */
+
 
 	</script>
 
@@ -122,7 +158,7 @@ pageContext.setAttribute("size", result.size());
                       </form>
                     </div><br/>
                     <div class="table-responsive">
-                      <table class="table table-striped">
+                      <table class="table table-striped" id="post-table">
                       	<c:if test="${size==0}">
                       		<div style="text-align:center;">검색 결과가 존재하지 않습니다</div>
                       	</c:if>
@@ -149,7 +185,7 @@ pageContext.setAttribute("size", result.size());
                             </td>
                             <td> ${posts.categoryName} </td>
                             <td>
-                                <a href="posts_edit.jsp?postId=${posts.postId}" style="color:white;">
+                                <a href="posts_edit.jsp?postId=${posts.postId}">
                                 ${posts.title}
                                 </a>
                             </td>
@@ -173,12 +209,13 @@ pageContext.setAttribute("size", result.size());
 						<input type="hidden" value="${next }" name="p">
 					</form>
 					
-					<div style="text-align:center;height: 40px;">
+					<div id="page-div" style="text-align:center;height: 40px;">
 					<c:if test="${ isPrevPage }">
 						<a href="#void" onclick="prevSubmit()">prev</a>
 					</c:if>
 					<c:forEach var="i" begin="${firstPage}" end="${lastPage}" step="1">
-						<a href="?p=${i}&<%= param %>">${i}</a>
+ 					<a href="?p=${i }&<%=param %>">${i }</a>
+
 					</c:forEach>
 					<c:if test="${ isNextPage }">
 						<a href="#void" onclick="nextSubmit()">next</a>
