@@ -30,7 +30,7 @@ public class PageImpl<T> implements Paging<Object> {
 		this.pagePerRecord=10;
 		this.totalRecord = VOList.size();
 		this.VOList = VOList;
-		this.gtp=(totalRecord/pagePerRecord)+1;
+		this.gtp=getTotalPage();
 		this.param = getParam(request);
 		this.firstPage = this.getFirstPage();
 		this.lastPage = this.getLastPage();
@@ -42,7 +42,7 @@ public class PageImpl<T> implements Paging<Object> {
 		this.pagePerRecord=pagePerRecord;
 		this.totalRecord = VOList.size();
 		this.VOList = VOList;
-		this.gtp=(totalRecord/pagePerRecord)+1;
+		this.gtp=getTotalPage();
 		this.param = getParam(request);
 		this.firstPage = this.getFirstPage();
 		this.lastPage = this.getLastPage();
