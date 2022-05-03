@@ -16,19 +16,19 @@ import com.kmong.vo.admin.AdminMemberVO;
 public class AdminMemberDAO {
 	private static AdminMemberDAO amDAO;
 	DbConnectionDBCP dc;
-	
+
 	private AdminMemberDAO() {
 		dc = DbConnectionDBCP.getInstance();
 	}
-	
+
 	public static AdminMemberDAO getInstance() {
-		if(amDAO==null) {
+		if (amDAO == null) {
 			amDAO = new AdminMemberDAO();
 		}
 		return amDAO;
 	}
-	
-	public AdminMemberVO selectMember(int id, String exp) throws SQLException{
+
+	public AdminMemberVO selectMember(int id, String exp) throws SQLException {
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
 		sql.append("select member_id, email, nick, join_date, c.category_name");
@@ -42,9 +42,9 @@ public class AdminMemberDAO {
 		pstmt.setString(2, exp);
 		ResultSet rs = pstmt.executeQuery();
 		AdminMemberVO amVO = null;
-		
-		try(con; pstmt; rs;){
-			while(rs.next()) {
+
+		try (con; pstmt; rs;) {
+			while (rs.next()) {
 				amVO = new AdminMemberVO();
 				amVO.setMemberId(rs.getInt("member_id"));
 				amVO.setEmail(rs.getString("email"));
@@ -55,9 +55,9 @@ public class AdminMemberDAO {
 		}
 		return amVO;
 	}
-	
-	public List<String> selectInterests(int memberId) throws SQLException{
-		Connection con=dc.getConn();
+
+	public List<String> selectInterests(int memberId) throws SQLException {
+		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
 		sql.append("select c.category_name");
 		sql.append(" from interest i");
@@ -69,12 +69,13 @@ public class AdminMemberDAO {
 		pstmt.setInt(1, memberId);
 		ResultSet rs = pstmt.executeQuery();
 		List<String> interests = new ArrayList<String>();
-		
-		try(con; pstmt; rs;){
-			while(rs.next()) {
+
+		try (con; pstmt; rs;) {
+			while (rs.next()) {
 				interests.add(rs.getString("category_name"));
-			};
-		}		
+			}
+			;
+		}
 		return interests;
 	}
 
@@ -85,9 +86,9 @@ public class AdminMemberDAO {
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, memberId);
 		int rowCount = pstmt.executeUpdate();
-		
-		try(con; pstmt;){
-			if(rowCount > 0) {
+
+		try (con; pstmt;) {
+			if (rowCount > 0) {
 				result = true;
 			}
 		}

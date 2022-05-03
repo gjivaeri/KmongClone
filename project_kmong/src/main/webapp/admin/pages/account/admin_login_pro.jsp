@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="com.kmong.dao.admin.AdminDAO"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,9 +7,7 @@
 <%
 AdminDAO aDAO = AdminDAO.getInstance();
 String id=request.getParameter("id");
-String pass=request.getParameter("pass");
-System.out.print(id);
-
+String pass=DataEncrypt.messageDigest("MD5", request.getParameter("pass"));
 boolean loginFlag = aDAO.selectAdminLogin(id, pass);
 
 if(loginFlag){
