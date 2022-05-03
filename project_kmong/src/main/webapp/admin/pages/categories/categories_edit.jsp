@@ -34,12 +34,14 @@ pageContext.setAttribute("categoryId", categoryId);
 		var categoryId = "<c:out value='${categoryId}'/>"
 		navActive.classList.add('active');
 		uiShow.classList.add('show');
+		
 		$("#delete-category").click(function(){
 			var warning = confirm("카테고리를 삭제하시겠습니까?")
 			if(warning){
 			$("#delete-frm").submit();
 			}
 		});
+		
 		$("#edit-category").click(function(){
 			var fileName = $(".file-upload-default").val();
 			let ext=fileName.toLowerCase().substring(fileName.lastIndexOf(".")+1);
@@ -64,7 +66,6 @@ pageContext.setAttribute("categoryId", categoryId);
 				var formData=new FormData(form);
 				
 				formData.append("fileObj", $("#file-input")[0].files[0]);
-
 				
 				   $.ajax({
 					   type: "POST",
