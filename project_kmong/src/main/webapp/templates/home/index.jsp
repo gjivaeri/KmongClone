@@ -1,3 +1,4 @@
+<%@page import="com.kmong.dao.account.MenuDAO"%>
 <%@page import="com.kmong.vo.PostVO"%>
 <%@page import="com.kmong.dao.login.MemberDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -230,7 +231,13 @@ if(session.getAttribute("login")==null) {
                 List<PostVO> postList=new ArrayList<PostVO>();
                 postList=MainPageDAO.getInstance().selectPosts(categoryList.get(num));
                 
+            
+                MenuDAO mnDAO=null;
                 for(int i=0; i<postList.size() ; i++){
+                	mnDAO=new MenuDAO();   
+                	int postId=postList.get(i).getPostId();
+                	int count=mnDAO.commentcount(postId);
+
                     	%>
                     	<article class="post-one-by-one">
                     	<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=<%= postList.get(i).getPostId()%>">
@@ -243,7 +250,7 @@ if(session.getAttribute("login")==null) {
                     		</div>
                     		<div class="star-preview">
 	                    		<span style="padding-right: 2px">★</span>
-	                    		<span style="color:#333; padding-top:5px;  font-size: 12px"><%=postList.get(i).getStarAvg()%>&nbsp;&nbsp;2개의 평가</span>
+	                    		<span style="color:#333; padding-top:5px;  font-size: 12px"><%=postList.get(i).getStarAvg()%>&nbsp;&nbsp;<%=count %>개의 평가</span>
                     		</div>
                     		
                     		</a>
