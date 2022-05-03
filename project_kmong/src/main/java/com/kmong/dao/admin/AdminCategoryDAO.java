@@ -11,28 +11,28 @@ import com.kmong.vo.CategoryVO;
 public class AdminCategoryDAO {
 	private static AdminCategoryDAO acDAO;
 	DbConnectionDBCP dc;
-	
+
 	private AdminCategoryDAO() {
 		dc = DbConnectionDBCP.getInstance();
 	}
-	
+
 	public static AdminCategoryDAO getInstance() {
-		if(acDAO==null) {
-			acDAO=new AdminCategoryDAO();
+		if (acDAO == null) {
+			acDAO = new AdminCategoryDAO();
 		}
 		return acDAO;
 	}
-	
-	public CategoryVO selectDetailCategory(int categoryId) throws SQLException{
+
+	public CategoryVO selectDetailCategory(int categoryId) throws SQLException {
 		Connection con = dc.getConn();
 		String sql = "select * from category where category_id = ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, categoryId);
 		ResultSet rs = pstmt.executeQuery();
 		CategoryVO cVO = null;
-		
-		try(con; pstmt; rs;){
-			while(rs.next()) {
+
+		try (con; pstmt; rs;) {
+			while (rs.next()) {
 				cVO = new CategoryVO();
 				cVO.setCategoryId(rs.getInt("category_id"));
 				cVO.setCategoryName(rs.getString("category_name"));
@@ -42,37 +42,38 @@ public class AdminCategoryDAO {
 		}
 		return cVO;
 	}
-	
-	
-	public int insertCategory(String name, String image) throws SQLException{
+
+	public int insertCategory(String name, String image) throws SQLException {
 		int result = -1;
-		
+
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
-		
-		/* to avoid empty number of category_id 
-		sql.append(" insert into category(category_id, category_name, category_image)");
-		sql.append(" values((select NVL(MAX(category_id), 0)+1 from category), ?, ?)");
-		*/
+
+		/*
+		 * to avoid empty number of category_id sql.
+		 * append(" insert into category(category_id, category_name, category_image)");
+		 * sql.append(" values((select NVL(MAX(category_id), 0)+1 from category), ?, ?)"
+		 * );
+		 */
 		sql.append(" insert into category(category_name, category_image)");
 		sql.append(" values(?, ?)");
 		PreparedStatement pstmt = con.prepareStatement(sql.toString());
-		
+
 		pstmt.setString(1, name);
 		pstmt.setString(2, image);
-		result =  pstmt.executeUpdate();
-		
-		try(con; pstmt;){
-			if(result > 0) {
+		result = pstmt.executeUpdate();
+
+		try (con; pstmt;) {
+			if (result > 0) {
 				return result;
 			}
 		}
-		return result; //error;
+		return result; // error;
 	}
-	
-	public boolean updateCategory(int categoryId, String name, String image) throws SQLException{
+
+	public boolean updateCategory(int categoryId, String name, String image) throws SQLException {
 		boolean result = false;
-		
+
 		Connection con = dc.getConn();
 		StringBuilder sql = new StringBuilder();
 		sql.append(" update category");
@@ -83,28 +84,26 @@ public class AdminCategoryDAO {
 		pstmt.setString(2, image);
 		pstmt.setInt(3, categoryId);
 		int rowCount = pstmt.executeUpdate();
-		
-		try(con; pstmt;){
-			if(rowCount > 0) {
+
+		try (con; pstmt;) {
+			if (rowCount > 0) {
 				result = true;
 			}
 		}
 		return result;
 	}
 
-
 	public boolean deleteCategory(int categoryId) throws SQLException {
 		boolean result = false;
 		Connection con = dc.getConn();
-		String sql = "update category set category_status = 'N',"
-				+ " category_image = null, input_date = null "
+		String sql = "update category set category_status = 'N'," + " category_image = null, input_date = null "
 				+ "where category_id = ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, categoryId);
 		int rowCount = pstmt.executeUpdate();
-		
-		try(con; pstmt;){
-			if(rowCount > 0) {
+
+		try (con; pstmt;) {
+			if (rowCount > 0) {
 				result = true;
 			}
 		}
