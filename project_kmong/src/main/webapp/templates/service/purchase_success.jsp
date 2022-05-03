@@ -69,7 +69,6 @@ PostDAO pDAO = PostDAO.getInstance();
 
 int memberId = (Integer)session.getAttribute("login");
 
-
 OrdersVO oVO = new OrdersVO();
 oVO.setPostId(postId);
 oVO.setMemberId(memberId);
