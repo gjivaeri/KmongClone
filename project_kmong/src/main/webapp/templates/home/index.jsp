@@ -26,9 +26,9 @@ img{
 
 
 <SCRIPT type="text/javascript">
-window.history.forward();
+/* window.history.forward();
 function noBack() { window.history.forward(); }
-
+ */
 
    $(function(){
 	var colorArr=["rgb(5, 68, 78)","rgb(67, 20, 133)","rgb(6, 87, 203)","rgb(229, 125, 99)"];
@@ -57,8 +57,9 @@ function noBack() { window.history.forward(); }
 
 </SCRIPT>
 </head>
-<body onload="noBack();" 
-   onpageshow="if (event.persisted) noBack();" onunload="">
+<body>
+<!-- <body onload="noBack();" 
+   onpageshow="if (event.persisted) noBack();" onunload=""> -->
 <div id="wrap">
 <%
 if(session.getAttribute("login")==null) {
