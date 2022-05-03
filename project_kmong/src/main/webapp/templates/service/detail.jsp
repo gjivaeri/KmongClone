@@ -155,11 +155,12 @@ if(session.getAttribute("login") == null) {
 </div>
 </section>
 <%
-System.out.println("selectPostId : "+request.getParameter("selectPostId"));
-int selectPostId = Integer.parseInt(request.getParameter("selectPostId"));
-
+System.out.println("selectPostId : "+postId);
 PostDAO pDAO = PostDAO.getInstance();
-List<Map<String, String>> list = pDAO.selectPost(selectPostId);//사용자가 선택하는 게시물의 정보 조회
+                   
+List<Map<String, String>> list = pDAO.selectPost(postId);//사용자가 선택하는 게시물의 정보 조회
+System.out.println(list);
+//if(!list.isEmpty()){
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
@@ -344,6 +345,7 @@ List<Map<String, String>> list = pDAO.selectPost(selectPostId);//사용자가 �
 </div>
 <div style="font-size: 25px">
 <strong><%= list.get(0).get("nick") %></strong>
+<%//} %>
 </div>
 </div>
 </section>

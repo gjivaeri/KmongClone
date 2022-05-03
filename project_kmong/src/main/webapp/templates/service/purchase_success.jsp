@@ -67,6 +67,11 @@ System.out.println("memberId : "+(Integer)session.getAttribute("login"));
 int postId = Integer.parseInt(request.getParameter("postId2"));
 PostDAO pDAO = PostDAO.getInstance();
 List<Map<String, String>> list = pDAO.selectPost(postId);
+String list2 = pDAO.selectOrderId(postId).toString();
+System.out.println("아dp[dpdpdp아"+list2);
+String a = list2.replace("=", ",");
+String[] orderId = a.split(",");
+System.out.println("오더아이디 : "+orderId[1]);
 
 int memberId = (Integer)session.getAttribute("login");
 
@@ -86,7 +91,7 @@ pDAO.insertOrder(oVO);
       </svg><br/>
       <h1 class="h1"><strong>구매가 완료 되었습니다.</strong></h1><br/>
       <ul type="none">
-         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="2"/><%= list.get(0).get("order_id") %></li>
+         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="<%= orderId[1] %>"/></li>
          <li><strong>결제금액</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("price") %>"/></li>
          <li><strong>상품명</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("title") %>"/></li>
 

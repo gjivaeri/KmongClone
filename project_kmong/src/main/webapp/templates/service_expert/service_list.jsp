@@ -51,18 +51,11 @@ function prevSubmit() {
 	$("#prevFrm").submit();
 }
 
-/*  $(function(){
-	$(".modifyBtn").click(function(){
-		$("#modiForm").submit();
-	}) 
-	
-
-});//ready  */
-
 function updateService( postId ){
-		$("#postId2").val( postId );
-		$("#modiForm").submit();
+	$("#postId2").val( postId );
+	$("#modiForm").submit();
 } 
+
 function removeService( postId ){
 		alert("게시글을 삭제하겠습니까?" );
 		$("#postId").val( postId ) ;
@@ -143,8 +136,6 @@ function removeService( postId ){
 				pageContext.setAttribute("list", result);
 				pageContext.setAttribute("size", result.size());
 				
-				
-				
 				%>
 					<h1 style="font-size: 18px; font-weight: bold;">나의 서비스</h1>
 					
@@ -163,11 +154,10 @@ function removeService( postId ){
 						<form id="delForm" action="service_delete_proc.jsp" method="post">
 		                         <input type="hidden" name="postId" id="postId"/>
 						</form>
-		                
-		                <form id="modiForm" action="service_update.jsp" method="post">
+						 <form id="modiForm" action="service_update.jsp" method="post">
 						      <input type="hidden" name="postId2" id="postId2"/> 
 		                </form> 
-						
+
 						<c:forEach items="${list}" var="items"> 
 						<div>
 							<div class="dropdown">

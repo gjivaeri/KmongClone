@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kmong.vo.CategoryVO;
 import com.kmong.vo.CommentsVO;
 import com.kmong.vo.MemberVO;
 import com.kmong.vo.OrdersVO;
@@ -48,9 +49,9 @@ public class PostDAO {
 			con = dbcp.getConn();
 			System.out.println("DB연동 성공");
 			selectPost
-					.append("select o.order_id, m.nick, p.post_id, p.member_id, p.price, p.term, p.star_avg, p.category_id, p.title, p.summary, p.description, p.post_img, to_char(p.post_date,'yyyy-mm-dd') post_date	")
-					.append("from post p, member m, orders o	")
-					.append("where (p.member_id(+)=m.member_id) and (m.member_id(+)=o.member_id) and p.post_id=?	");
+					.append("select m.nick, p.post_id, p.member_id, p.price, p.term, p.star_avg, p.category_id, p.title, p.summary, p.description, p.post_img, to_char(p.post_date,'yyyy-mm-dd') post_date	")
+					.append("from post p, member m	")
+					.append("where (p.member_id(+)=m.member_id) and p.post_id=?	");
 					//.append("where (p.member_id(+)=m.member_id) and p.post_id=?	");
 			
 			pstmt=con.prepareStatement(selectPost.toString());
@@ -59,9 +60,10 @@ public class PostDAO {
 			rs=pstmt.executeQuery();
 				
 			Map<String, String> map = new HashMap<String, String>();
+			
 			while(rs.next()) {
 				
-				map.put("order_id", Integer.toString(rs.getInt("order_id")));
+				//map.put("order_id", Integer.toString(rs.getInt("order_id")));
 				map.put("member_id", Integer.toString(rs.getInt("member_id")));
 				map.put("post_id", Integer.toString(rs.getInt("post_id")));
 				map.put("price", Integer.toString(rs.getInt("price")));
@@ -74,14 +76,51 @@ public class PostDAO {
 				map.put("post_img", rs.getString("post_img"));
 				map.put("star_avg", Double.toString(rs.getDouble("star_avg")));
 				map.put("nick", rs.getString("nick"));
-				
 				list.add(map);
 			}
+		
 		} finally{
 			dbcp.dbClose(rs, pstmt, con);
 			}
 		return list;
 	}//selectPost
+	
+	/**
+	 * order__id를 얻기
+	 * @param postId
+	 * @return
+	 * @throws SQLException
+	 */
+	public OrdersVO selectOrderId(int postId)throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		OrdersVO oVO = null;
+		
+		try {
+			con = dbcp.getConn();
+			System.out.println("DB연동 성공");
+			String selectOrderId = 
+				"select order_id from orders where post_id=?	";
+			
+			pstmt=con.prepareStatement(selectOrderId);
+			pstmt.setInt(1, postId);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				oVO = new OrdersVO();
+				oVO.setOrderId(rs.getInt("order_id"));
+			}
+			System.out.println("====="+oVO);
+			
+		} finally{
+			dbcp.dbClose(rs, pstmt, con);
+		}
+		return oVO;
+	}//selectPost
+	
 
 	/**
 	 * 별점과 리뷰 추가
