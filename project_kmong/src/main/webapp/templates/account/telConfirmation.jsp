@@ -13,6 +13,7 @@ JSONObject jsonObj=new JSONObject();
 	MakeAccountDAO maDAO=MakeAccountDAO.getInstance();
 	boolean flag=maDAO.selectTel(tel);
 	 
+	
 	jsonObj.put("flag",flag);
 	out.print(jsonObj.toJSONString());
 

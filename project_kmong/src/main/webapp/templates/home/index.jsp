@@ -271,10 +271,14 @@ if(session.getAttribute("login")==null) {
             </div>
             <div class="bigger-img">
                 
-            <%for(int i=0; i<5; i++){
+            <%
+            
+            
+            
+            for(int i=0; i<5; i++){
             	%>
             	<div class="images">
-                    <a href="#void">
+                    <a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=i+1%>">
                     <img src="http://localhost/project_kmong/static/images/mainImg<%=i+1%>.PNG" class="imgs"/>
                     </a>
                 </div>

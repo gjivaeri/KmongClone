@@ -129,10 +129,10 @@ public class MakeAccountDAO {
 		
 		try(con;pstmt;rs) {
 			
-			result=rs.next();
-			
+			while(rs.next()) {
+				result=true;
+			}
 		}//
-		
 		return result;
 	}//selectEmail
 	
@@ -156,8 +156,9 @@ public class MakeAccountDAO {
 		
 		try(con;pstmt;rs) {
 			
-			result=rs.next();
-			
+			while(rs.next()) {
+			result=true;
+			}
 		}//
 		
 		return result;
@@ -181,9 +182,12 @@ public class MakeAccountDAO {
 		ResultSet rs=pstmt.executeQuery();
 		
 		try(con;pstmt;rs) {
-			result=rs.next();
+			while(rs.next()) {
+				result=true;
+			}
+			
 		}//
-		
+		System.out.println(result);
 		return result;
 	}//selectEmail
 

@@ -155,10 +155,18 @@
 
 
 <%
+
+if(session.getAttribute("login")!=null){
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	return;
+}
+
+
 if(request.getParameter("member")==null){
 	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
 	return;
 }
+
 
 
 if(request.getParameter("member").equals("expert")){
@@ -173,6 +181,7 @@ if(request.getParameter("member").equals("expert")){
 var emailConfirm=false;
 var nickConfirm=false;
 
+
 function selectAll(selectAll) {
 	const checkboxes = document.getElementsByName('clause');
 	  
@@ -181,6 +190,14 @@ function selectAll(selectAll) {
 	  })
 }//selectAll
 
+function checkSelectAll(checkbox)  {
+	  const selectall 
+	    = document.querySelector('input[name="clause1"]');
+	  
+	  if(checkbox.checked === false)  {
+	    selectall.checked = false;
+	  }
+	}
 
 
 $(function(){
@@ -236,14 +253,20 @@ $(function(){
 	    let reg_pw2 = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,}/; // 문자와 특수문자 조합의 6~24 자리
 	    let reg_nick1 = /^[가-힣a-zA-Z0-9_-]{4,20}$/; // 닉네임
 	    
+	    var telConfirm=false;
+	    
 	    //---------------이름 유효성 검사--------------
 	    if(name==""){
 	    	alert("이름을 입력해주세요.");
 	    	$("#name").focus();return;
-	    }else if(name.match(pattern)){
+	    }
+	    
+	    if(name.match(pattern)){
 	    	alert("이름을 정확히 입력해주세요.");
 	    	$("#name").focus();return;
-	    }else if(!reg_name1.test(name)){
+	    }
+	    
+	    if(!reg_name1.test(name)){
 	    	alert("이름을 정확히 입력해주세요.");
 	    	$("#name").focus();return;
 	    }
@@ -252,42 +275,48 @@ $(function(){
 	    if(tel==""){
 	    	alert("전화번호를 입력해주세요.");
 	    	$("#tel").focus();return;
-	    }else if(tel.match(pattern)){
-	    	alert("전화번호를 정확히 입력해주세요.");
-	    	$("#tel").focus();return;
-	    }else if(!reg_mobile.test(tel)){
-	    	alert("전화번호를 정확히 입력해주세요.");
-	    	$("#tel").focus();return;
-	    }else{
-	    	
-	    	 $.ajax({
-	    		  url:"http://localhost/project_kmong/templates/account/telConfirmation.jsp",
-	    		  data:{tel:$("#tel").val()},
-	    		  dataType:"json",
-	    		  type:"get",
-	    		  error:function(xhr){
-	    			  alert(xhr.status);
-	    			  
-	    		  },
-	    		  success:function(jsonObj){
-	    			 
-	    				 if(jsonObj.flag){ // 기존에 있다면 
-	    				 	alert("이미 가입된 핸드폰 번호입니다.");
-	    				 }return;
-	    		  }
-	    	  });//ajax
-	    	
 	    }
-	  
-	  
-	   
+	 	
+	  	if(tel.match(pattern)){
+	    	alert("전화번호를 정확히 입력해주세요.");
+	    	$("#tel").focus();return;
+	    
+	  	}
+	  	if(!reg_mobile.test(tel)){
+	    	alert("전화번호를 정확히 입력해주세요.");
+	    	$("#tel").focus();
+	    	return;
+	    }
+    	 $.ajax({
+     		  url:"http://localhost/project_kmong/templates/account/telConfirmation.jsp",
+     		  data:{tel:$("#tel").val()},
+     		  dataType:"json",
+     		  type:"get",
+     		  async:false,
+     		  error:function(xhr){
+     			  alert(xhr.status);
+     			  
+     		  },
+     		  success:function(jsonObj){
+     			telConfirm=jsonObj.flag;
+     		  }
+     	  });//ajax 
+	    
+		  	if(telConfirm){
+		  		alert("이미 가입된 핸드폰 번호입니다.");
+		  		return;
+		  	}
+
 	    if(email==""){//-------------이메일 유효성 검사--------------
 	    	alert("이메일을 입력해주세요.");
 	    	$("#email").focus();return;
-	    }else if(email.match(pattern)){
+	    }
+	   	if(email.match(pattern)){
 	    	alert("이메일을 정확히 입력해주세요.");
 	    	$("#email").focus();return;
-	    }else if(!reg_email.test(email)){
+	    }
+	   	
+	   	if(!reg_email.test(email)){
 	    	alert("이메일을 정확히 입력해주세요.");
 	    	$("#email").focus();return;
 	    }
@@ -296,10 +325,12 @@ $(function(){
 	    if(pass1==""){
 	    	alert("비밀번호를 입력해주세요.");
 	    	$("#pass1").focus();return;
-	    }else if(pass1.match(pattern)){
+	    }
+	    if(pass1.match(pattern)){
 	    	alert("비밀번호를 정확히 입력해주세요.");
 	    	$("#pass1").focus();return;
-	    }else if(!reg_pw2.test(pass1)){
+	    }
+	    if(!reg_pw2.test(pass1)){
 	    	alert("문자와 특수문자, 숫자를 조합하여 8자 이상의 비밀번호를 입력해주세요.");
 	    	$("#pass1").focus();return;
 	    }
@@ -309,10 +340,12 @@ $(function(){
 	    if(pass2==""){
 	    	alert("비밀번호를 확인해주세요.");
 	    	$("#pass2").focus();return;
-	    }else if(pass2.match(pattern)){
+	    }
+	    if(pass2.match(pattern)){
 	    	alert("비밀번호를 확인해주세요.");
 	    	$("#pass1").focus();return;
-	    }else if(pass1!=pass2){
+	    }
+	    if(pass1!=pass2){
 	    	alert("비밀번호를 확인해주세요.");
 	    	$("#pass2").focus();return;
 	    }
@@ -322,11 +355,14 @@ $(function(){
 	    	alert("닉네임을 입력해주세요.");
 	    	$("#nick").focus();
 	    	return;
-	    }else if(nick.match(pattern)){
+	    }
+		
+		if(nick.match(pattern)){
 	    	alert("닉네임에는 공백이 들어갈 수 없습니다.");
-	    	return;
-	    	$("#nick").focus();
-	    }else if(!reg_nick1.test(nick)){
+	    	$("#nick").focus();return;
+	    }
+		
+		if(!reg_nick1.test(nick)){
 	    	alert("닉네임은 한글, 영어, 숫자, _, - 로만 입력 가능합니다.");
 	    	$("#nick").focus();
 	    	return;
@@ -368,6 +404,10 @@ $(function(){
         if(request.getParameter("flag")=='expert'){
         	expert='Y';
         } */
+      
+   	  
+   	  
+   	  
         chkNull();
 		
     });//click
@@ -387,9 +427,7 @@ function chkNull(){
 	$("#frm").submit();
 }
 
-function keyDownhandle(){
-	
-}
+
 </script>
 
 </head>
@@ -512,26 +550,26 @@ function keyDownhandle(){
                     <!-- //////////////////////////////////////////////////////////////// -->
                     <div class="agreement-box">
                         <div class="agree-all">
-                            <input type="checkbox" name="clause" value="selectAll" onclick="selectAll(this)" />
+                            <input type="checkbox" id="agree-all" name="clause1" value="selectAll" onclick="selectAll(this)" />
                             <span>모두 동의합니다.</span>
                         </div>
                         <div class="agreements" style="margin-top: 15px;" >
-                            <input type="checkbox" name="clause" class="clause" value="필수1"/>
+                            <input type="checkbox" name="clause" class="clause" value="필수1" onclick='checkSelectAll(this)'/>
                             <span>만 14세 이상입니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause" class="clause" value="필수2"/>
+                            <input type="checkbox" name="clause" class="clause" value="필수2"  onclick='checkSelectAll(this)'/>
                             <span>서비스 이용약관에 동의합니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause" class="clause" value="필수3"/>
+                            <input type="checkbox" name="clause" class="clause" value="필수3"  onclick='checkSelectAll(this)'/>
                             <span>개인정보 수집/이용에 동의합니다.</span>
                             <span class="red-text">(필수)</span>
                         </div>
                         <div class="agreements">
-                            <input type="checkbox" name="clause" class="clause" value="선택1"/>
+                            <input type="checkbox" name="clause" class="clause" value="선택1"  onclick='checkSelectAll(this)'/>
                             <span>이벤트 할인 혜택 알림 수신에 동의합니다. (선택)</span>
                         </div>
                         
@@ -549,10 +587,9 @@ function keyDownhandle(){
     <!-- Modal JS -->
     <script>
 	
-/*     $(".clause").click(function(){
-    	
-    }) */
+
     
+      
       function show(){//이메일 중복확인
     	  $("#spanEmail").css("display","none");
     	  
@@ -639,9 +676,7 @@ function keyDownhandle(){
 	bootstrap-select/1.13.18/js/bootstrap-select.min.js"> 
 </script>
 <script type="text/javascript">
-if(${param.hid eq 'login'}){
-document.getElementById("modal").style.display='flex';
-}//end if
+
 
 
 $("#complete-btn").mouseover(function(){
