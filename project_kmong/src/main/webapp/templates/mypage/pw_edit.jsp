@@ -34,7 +34,7 @@ if(session.getAttribute("pwConfirmed")!=null){
 		%>
 		alert("비밀번호가 확인되었습니다.");
 		<%
-		session.setAttribute("pwConfirmed","done");    
+		session.setAttribute("pwConfirmed","done");     // 비교할려고 임의로 설정해줌
 		session.setAttribute("confirmed", "pass");
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				|| !(((String)session.getAttribute("confirmed")).equals("pass"))){
@@ -113,10 +113,7 @@ if(session.getAttribute("pwConfirmed")!=null){
 						<form action="check_pw_edit.jsp" method="post"  id="pwfrm" name="ffrm">
 
 						<div id="update-pass-frm">
-						<!-- <section>
-						<div><label class="aside-a">현재 비밀번호</label></div>
-						<div class="input-textDiv"><input type="password" placeholder="기존 비밀번호를 입력해주세요." name="currentPassword" class="input-text" value=""></div>
-						</section> -->
+					
 						<section>
 						<div class="passwd-chk-div">
 							<label class="aside-a"><span>변경할 비밀번호</span></label>

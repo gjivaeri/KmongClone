@@ -13,7 +13,7 @@
  int memberId=(int)session.getAttribute("login");
  
  //카테고리
- String bucategoryId1=request.getParameter("buCategoryId");  // 얘가 왜 널인지 왜 안얻어 질까요....
+ String bucategoryId1=request.getParameter("buCategoryId");  
  int bucategoryId=Integer.parseInt(bucategoryId1);
  MemberVO mVO=new MemberVO();
  AccountSettingDAO asDAO=AccountSettingDAO.getInstance();

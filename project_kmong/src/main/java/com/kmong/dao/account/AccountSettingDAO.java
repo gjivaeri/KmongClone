@@ -255,7 +255,7 @@ public String selectEmail(int memberId)throws SQLException {
 	}//selectCheckPassword
 
 
-public String selectapss(int memberId)throws SQLException {
+public String selectpass(int memberId)throws SQLException {
 	
 	String selectpass=null;
 	

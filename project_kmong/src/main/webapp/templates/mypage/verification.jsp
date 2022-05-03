@@ -22,7 +22,7 @@ String asd="";
 String text="";
 //session.removeAttribute("service");
 if(request.getParameter("service")==null) {
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 }else{
 
 	asd = request.getParameter("service");

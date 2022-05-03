@@ -7,7 +7,7 @@
     trimDirectiveWhitespaces="true"
     %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%out.print((String)session.getAttribute("service")); %> --%>
+
 <c:catch var="e">
 <%
 //세션에 저장되어 있는 서비스 유형을 가져온다
@@ -39,7 +39,7 @@ int memberId=(int)session.getAttribute("login");
 
 
 String password=DataEncrypt.messageDigest("MD5",request.getParameter("pass"));
-//String password=request.getParameter("pass");
+
 
 
 //DB조회
@@ -48,7 +48,7 @@ String chkpass=asDAO.selectCheckPassword(memberId,password);
 
 
 
-//pageContext.setAttribute("dfg", dfg);
+
 if(chkpass == null){
 	%><!-- <script>alert("비밀번호가 일치하지 않습니다.");</script> --><%
 	session.setAttribute("alert","fail");
@@ -67,9 +67,7 @@ if(chkpass == null){
 
 
 
-//String 
 
- //out.print(jsonObj);  // 출력해보기
 %>
 
 </c:catch>

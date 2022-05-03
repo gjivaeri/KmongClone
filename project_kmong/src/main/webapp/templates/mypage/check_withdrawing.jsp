@@ -22,7 +22,7 @@
    if(!email.equals(chkEmail)){
 		%><script>alert("이메일이 일치하지 않습니다."); history.back();</script> <%
 	}else if(email.equals(chkEmail)) {
-		%> <script>alert("탈퇴가 완료되셨습니다."); location.href="http://localhost/project_kmong/templates/home/index.jsp"</script><%
+		%> <script>alert("탈퇴가 완료되셨습니다.");<% session.removeAttribute("login");%> location.href="http://localhost/project_kmong/templates/home/index.jsp"</script><%
 	}//end if
 
  

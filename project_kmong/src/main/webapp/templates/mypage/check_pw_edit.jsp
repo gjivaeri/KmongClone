@@ -19,7 +19,7 @@
     
     AccountSettingDAO asDAO= AccountSettingDAO.getInstance();
     
-   String selectpass= asDAO.selectapss(memberId);
+   String selectpass= asDAO.selectpass(memberId);
    
    if(selectpass.equals(pass1)){%>
    <script>alert("현재 비밀번호와 일치합니다. 다시 설정해주세요."); history.back()</script> <%
@@ -30,8 +30,9 @@
     
     
     asDAO.updateMemberPassword(mVO);
-    %><script>alert("비밀번호 변경이 완료되었습니다."); location.href="http://localhost/project_kmong/templates/home/index.jsp?hid=login"; 
+    %><script>alert("비밀번호 변경이 완료되었습니다.");  location.href="http://localhost/project_kmong/templates/home/index.jsp?hid=login"; 
 </script><% 
+
  
    
  
