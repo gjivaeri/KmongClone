@@ -64,8 +64,8 @@ $(function() {
 			});
 		});
 		 
-	$("#searchBtn").click(function (){
-		 $("#frm").submit();
+	$("#OsearchBtn").click(function (){
+		 $("#Ofrm").submit();
 	})
 });//ready
 function nextSubmit() {
@@ -154,10 +154,10 @@ function prevSubmit() {
 				<main style="margin-left: 24px; margin-top: 30px;">
 				<div>
 					<h1 style="font-size: 18px; font-weight: bold;">완료된 계약</h1>
-					<form id="frm" name="frm">
+					<form id="Ofrm" name="Ofrm">
 					<div>
 					<input type="text" id="datepicker" name="startDate" value="<%= startDate %>"> - <input type="text" id="datepicker2" name="endDate" value="<%= endDate %>">   <input type="text" class="input-text" name="keyword" placeholder="상품을 검색하세요."  style="width:300px; border: 1px solid #CCCCCC">
-					<input type="button" value="검색" id="searchBtn" class="btn btn-primary" style="height:35px"/>
+					<input type="button" value="검색" id="OsearchBtn" class="btn btn-primary" style="height:35px"/>
 					<input type="hidden" name = "contractflag" value="${param.contractflag }"/>
 					</div>
 					</form>
@@ -170,7 +170,7 @@ function prevSubmit() {
 					</c:if>
 					<c:forEach items="${ list }" var="item">
 					<div style="margin:10px;">
-					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 25px;"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ item.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 25px;"/></a><br/>
 					<div style="font-size: 14px;text-align: center;">주문번호 : ${ item.orderId }</div>
 					<div style="font-size: 14px;text-align: center;">구매자 ${ item.memberNick }님</div>
 					<div style="font-size: 14px;text-align: center;">${ item.orderDate }</div>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <% 
+	request.setCharacterEncoding("UTF-8");
 	int star = Integer.parseInt(request.getParameter("reviewStar"));
 	String review = request.getParameter("reviewText");
 	int memberId = (Integer)session.getAttribute("login");
