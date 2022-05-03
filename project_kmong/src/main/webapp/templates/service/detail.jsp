@@ -113,11 +113,13 @@ $(function(){
 
 <%-- <% session.setAttribute("login",5); %> --%>
 <% 
+
 if(request.getParameter("id") == null) {
 	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
 	return;
 }
 int postId = Integer.parseInt(request.getParameter("id"));
+
 
 CommentsDAO c = CommentsDAO.getInstance();
 double savg = c.selectAvgStar(postId);
@@ -162,13 +164,14 @@ PostDAO pDAO = PostDAO.getInstance();
                    
 List<Map<String, String>> list = pDAO.selectPost(postId);//사용자가 선택하는 게시물의 정보 조회
 System.out.println(list);
-//if(!list.isEmpty()){
 %>
 <section>
 <div style="height:450px; margin-bottom: 30px">
-<!-- <img src="http://localhost/project_kmong/static/images/img.PNG"  style="height:100%; width:100% " /> -->
-<img src="http://localhost/project_kmong/static/<%= list.get(0).get("post_img") %>"  style="height:100%; width:100% " />
-
+<%if(list.get(0).get("post_img") != null){ %>
+<img src="http://localhost/project_kmong/static/PostimgUpload/<%= list.get(0).get("post_img") %>"  style="height:100%; width:100% " />
+<%}else{ %>
+<img src="http://localhost/project_kmong/static/PostimgUpload/pattern.png"  style="height:100%; width:100% " />
+<%} %>
 </div>
 </section>
 
@@ -298,20 +301,9 @@ System.out.println(list);
 </nav>
 <hr/>
 
-
-
-
-
 </div><!-- mainleft -->
 
 <div class="mainright" style="width:500px">
-
-<!-- <section class="jjim">
-<div></div>
-<button type="button" style="background-color: #FFFFFF">
-<span>♡ </span><span>찜하기</span>
-</button>
-</section> -->
 
 <section style="margin-bottom: 30px">
 <h3>"고객 만족 우선주의" 48시간 이내, 로고에 명함까지 드립니다.</h3>
@@ -322,10 +314,14 @@ System.out.println(list);
 <section style="margin-bottom: 30px ">
 <div style="border:1px solid rgb(228,229,237)">
 <div style="margin-bottom: 15px">
-<img src="http://localhost/project_kmong/static/<%= list.get(0).get("post_img") %>" style="height:300px; width:100%"/>
+<%if(list.get(0).get("post_img") != null){ %>
+<img src="http://localhost/project_kmong/static/PostimgUpload/<%= list.get(0).get("post_img") %>" style="height:300px; width:100%"/>
+<%}else{ %>
+<img src="http://localhost/project_kmong/static/PostimgUpload/pattern.png" style="height:300px; width:100%" />
+<%} %>
 </div>
 <div style="margin-bottom: 15px">
-<img src="http://localhost/project_kmong/static/images/img2.png"/><span><%= list.get(0).get("term") %>일</span>
+<img src="http://localhost/project_kmong/static/PostimgUpload/img21.png"/><span><%= list.get(0).get("term") %>일</span>
 </div>
 <form action="purchase_success.jsp" method="post">
 <input type="hidden" name="postId2" value=<%= list.get(0).get("post_id") %>>
@@ -343,11 +339,16 @@ System.out.println(list);
 <section >
 <div class="professional" style="border:1px solid rgb(228,229,237)">
 <div style="width:140px;height:140px;margin: 0px auto; margin-bottom: 20px" >
-<img src="http://localhost/project_kmong/static/images/mykmong.PNG" style="width:100%;height:100%"/>
+<%
+if(list.get(0).get("user_img") != null){
+%>
+<img src="http://localhost/project_kmong/static/upload/<%=list.get(0).get("user_img") %>" style="width:100%;height:100%"/>
+<%}else{ %>
+<img src="http://localhost/project_kmong/static/upload/default_profile.png" style="width:100%;height:100%"/>
+<%} %>
 </div>
 <div style="font-size: 25px">
 <strong><%= list.get(0).get("nick") %></strong>
-<%//} %>
 </div>
 </div>
 </section>

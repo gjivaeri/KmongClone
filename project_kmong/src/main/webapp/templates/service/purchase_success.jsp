@@ -61,8 +61,8 @@ $(function(){
 <%
 request.setCharacterEncoding("UTF-8");
 
-System.out.println("post_id: "+Integer.parseInt(request.getParameter("postId2")));
-System.out.println("memberId : "+(Integer)session.getAttribute("login"));
+//System.out.println("post_id: "+Integer.parseInt(request.getParameter("postId2")));
+//System.out.println("memberId : "+(Integer)session.getAttribute("login"));
 
 int postId = Integer.parseInt(request.getParameter("postId2"));
 PostDAO pDAO = PostDAO.getInstance();
@@ -72,14 +72,19 @@ int memberId = (Integer)session.getAttribute("login");
 OrdersVO oVO = new OrdersVO();
 oVO.setPostId(postId);
 oVO.setMemberId(memberId);
-//System.out.println(oVO);
 pDAO.insertOrder(oVO);
+//System.out.println("oVO는 : "+oVO);
 
-List<Map<String, String>> list = pDAO.selectPost(postId);
+pDAO.selectOrderId(postId);
 
 String list2 = pDAO.selectOrderId(postId).toString();
 String a = list2.replace("=", ",");
-String[] orderId = a.split(",");
+String[] orderId = a.split(","); 
+//System.out.println("order아이디 : "+orderId[1]);
+int ordersId = Integer.parseInt(orderId[1]);
+
+List<Map<String, String>> list = pDAO.selectOrders(ordersId);
+//System.out.println("orderList : "+list);
 
 %>
 
@@ -92,7 +97,7 @@ String[] orderId = a.split(",");
       </svg><br/>
       <h1 class="h1"><strong>구매가 완료 되었습니다.</strong></h1><br/>
       <ul type="none">
-         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="<%= orderId[1] %>"/></li>
+         <li><strong>주문번호</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("order_id") %>"/></li>
          <li><strong>결제금액</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("price") %>"/></li>
          <li><strong>상품명</strong> <input type="text" class="form-control" readonly="readonly" value="<%= list.get(0).get("title") %>"/></li>
 
