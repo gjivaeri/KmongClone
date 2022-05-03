@@ -149,9 +149,9 @@ function prevSubmit() {
 					pageContext.setAttribute("size", result.size());
 					
 				} catch(SQLException se) {
-					response.sendRedirect(request.getRequestURI());
+					se.printStackTrace();
 				} catch(Exception e) {
-					response.sendRedirect(request.getRequestURI());
+					e.printStackTrace();
 				}
 			
 					%>
@@ -167,7 +167,7 @@ function prevSubmit() {
 					<c:forEach items="${ list }" var ="item">
 					<div style="margin:10px;">
 					<div style="text-align: center;">${ item.orderDate }</div>
-					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ item.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
 					<div style="font-size: 14px;text-align: center;"><strong>${ item.memberNick }</strong>님 께서 계약을 요청했습니다.</div>
 					<div style="text-align: center;">
 					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-id="${item.orderId }" data-bs-target="#acceptChk" >승인</button>

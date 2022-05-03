@@ -29,8 +29,16 @@ a{vertical-align: middle; text-decoration: none; color:#333}
 </head>
 
 <body>
+<%
+
+if(session.getAttribute("login") == null) {
+   %>
 <%@include file="../common/header.jsp"%>
-<!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
+<%
+} else{
+   %><%@include file="../common/header_member.jsp"%>
+   <% }
+%>
 <hr/>
 
 <!-- main -->

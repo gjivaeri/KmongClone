@@ -56,87 +56,36 @@ public class MenuDAO {
 		return list;
 	}// selectAllCategory
 
-	public List<PostVO> selectCategoryMenu(int categoryId) throws SQLException {
-		List<PostVO> list = new ArrayList<PostVO>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		DbConnectionDBCP instance = DbConnectionDBCP.getInstance();
-
-		try {
-			// 1. JNDI 사용객체 생성
-			// 2. 설정된 DBCP 에서 DataSource 얻기
-			// 3. DataSource에서 Connection 얻기
-			con = instance.getConn();
-			// 4. 쿼리문 생성객체 얻기
-			StringBuilder selectMenu = new StringBuilder();
-			selectMenu.append("	select post_status,post_id, post_img, title, price, star_avg	").append("	from post	")
-					.append("	where category_id=? and post_status='Y'	");
-
-			pstmt = con.prepareStatement(selectMenu.toString());
-
-			// 5. 바인드 변수 값 할당
-			pstmt.setInt(1, categoryId);
-			// 6.쿼리문 수행 후 결과 얻기
-			rs = pstmt.executeQuery();
-
-			PostVO PVO = null;
-			while (rs.next()) {
-				PVO = new PostVO();
-				PVO.setPostStatus(rs.getString("post_status"));
-				PVO.setPostId(rs.getInt("post_id"));
-				PVO.setPostImg(rs.getString("post_img"));
-				PVO.setTitle(rs.getString("title"));
-				PVO.setPrice(rs.getInt("price"));
-				PVO.setStarAvg(rs.getDouble("star_avg"));
-
-				list.add(PVO);
-			} // end while
-		} finally {
-			// 7.연결끊기
-			instance.dbClose(rs, pstmt, con);
-		} // end finally
-		return list;
-	}// selectCategoryMenu
-
 	/*
-	 * public List<PostVO> selectSearchMenu(String search) throws SQLException {
-	 * 
-	 * List<PostVO> list = new ArrayList<PostVO>();
-	 * 
-	 * Connection con = null; PreparedStatement pstmt = null; ResultSet rs = null;
+	 * public List<PostVO> selectCategoryMenu(int categoryId) throws SQLException {
+	 * List<PostVO> list = new ArrayList<PostVO>(); Connection con = null;
+	 * PreparedStatement pstmt = null; ResultSet rs = null;
 	 * 
 	 * DbConnectionDBCP instance = DbConnectionDBCP.getInstance();
 	 * 
 	 * try { // 1. JNDI 사용객체 생성 // 2. 설정된 DBCP 에서 DataSource 얻기 // 3. DataSource에서
 	 * Connection 얻기 con = instance.getConn(); // 4. 쿼리문 생성객체 얻기 StringBuilder
-	 * selectSearchMenu = new StringBuilder(); selectSearchMenu.
-	 * append("	select post_status, post_id, post_img, title, price, star_avg	").
+	 * selectMenu = new StringBuilder(); selectMenu.
+	 * append("	select post_status,post_id, post_img, title, price, star_avg	").
 	 * append("	from post	")
-	 * .append("	where title like ? and  post_status='Y' ");
+	 * .append("	where category_id=? and post_status='Y'	");
 	 * 
-	 * pstmt = con.prepareStatement(selectSearchMenu.toString()); // 5. 바인드 변수 값 할당
-	 * pstmt.setString(1, "%" + search + "%"); // 6. 쿼리문 수행후 결과 얻기 rs =
+	 * pstmt = con.prepareStatement(selectMenu.toString());
+	 * 
+	 * // 5. 바인드 변수 값 할당 pstmt.setInt(1, categoryId); // 6.쿼리문 수행 후 결과 얻기 rs =
 	 * pstmt.executeQuery();
 	 * 
 	 * PostVO PVO = null; while (rs.next()) { PVO = new PostVO();
-	 * 
 	 * PVO.setPostStatus(rs.getString("post_status"));
 	 * PVO.setPostId(rs.getInt("post_id"));
 	 * PVO.setPostImg(rs.getString("post_img"));
 	 * PVO.setTitle(rs.getString("title")); PVO.setPrice(rs.getInt("price"));
 	 * PVO.setStarAvg(rs.getDouble("star_avg"));
 	 * 
-	 * list.add(PVO); } // end while } finally { // 7. 연결끊기 instance.dbClose(rs,
-	 * pstmt, con);
-	 * 
-	 * } // end finally
-	 * 
-	 * //rs.getString("post_status") return list;
-	 * 
-	 * }// selectSearchMenu
+	 * list.add(PVO); } // end while } finally { // 7.연결끊기 instance.dbClose(rs,
+	 * pstmt, con); } // end finally return list; }// selectCategoryMenu
 	 */
+	
 	/*
 	 * public boolean selectCategoryId(int categoryId) throws SQLException {
 	 * 
@@ -185,7 +134,7 @@ public class MenuDAO {
 			StringBuilder selectMenu = new StringBuilder();
 
 			selectMenu.append("	select post_id, post_img, title, price, star_avg	").append("	from post	")
-					.append("	where category_id=? order by ").append(sortIdx).append(" desc");
+					.append("	where category_id=? and post_status= 'Y'  order by ").append(sortIdx).append(" desc");
 
 			pstmt = con.prepareStatement(selectMenu.toString());
 

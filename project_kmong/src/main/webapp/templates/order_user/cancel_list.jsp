@@ -78,8 +78,8 @@ $(function() {
 			 return;
 		 }
 	 });
-	 $("#searchBtn").click(function (){
-		 $("#frm").submit();
+	 $("#OsearchBtn").click(function (){
+		 $("#Ofrm").submit();
 	 })
 	 
 	 $("#prevBtn").click(function (){
@@ -124,10 +124,10 @@ $(function() {
 					
 					
 				%>
-					<form id="frm" name="frm">
+					<form id="Ofrm" name="Ofrm">
 					<div>
 					<input type="text" id="datepicker" name="startDate" value="<%= startDate %>"> - <input type="text" id="datepicker2" name="endDate" value="<%= endDate %>">   <input type="text" class="input-text" name="keyword" placeholder="상품을 검색하세요."  style="width:300px; border: 1px solid #CCCCCC">
-					<input type="button" value="검색" id="searchBtn" class="btn btn-primary" style="height:35px"/>
+					<input type="button" value="검색" id="OsearchBtn" class="btn btn-primary" style="height:35px"/>
 					<input type="hidden" name = "contractflag" value="${param.contractflag }"/>
 					</div>
 					</form>
@@ -186,7 +186,7 @@ $(function() {
 					<c:if test="${size!=0}">
 					<c:forEach items="${ list }" var="item">
 					<div style=" margin:10px">
-					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ item.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
 					<div style="text-align: center;">주문번호 : ${item.orderId }</div>
 					</div>
 					</c:forEach>

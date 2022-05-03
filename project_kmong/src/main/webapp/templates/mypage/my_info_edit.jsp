@@ -82,7 +82,6 @@
 </script>	
 <script type="text/javascript">
 
-//app.use('/uploads', express.static('uploads'));
 
 <%if(session.getAttribute("msg")!=null) {%>
 	alert("변경이 완료되었습니다.");
@@ -108,13 +107,29 @@ if(session.getAttribute("pwConfirmed")!=null){
 		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
 }
 %>
+function readURL(input) {
+	   if (input.files && input.files[0]) {
+	      var reader = new FileReader();
+	      reader.onload = function(e) {
+	         $('#profile-img').attr('src', e.target.result);
+	         $('#profileImgfile').attr('src', e.target.result);
+	      }
+	      reader.readAsDataURL(input.files[0]);
+	   }
+	}
 
 
 $(function() {
 	
-//$(document).ready(function(){
     $('.multi_select').selectpicker();
-//})
+
+    
+    //프로필 이미지 프리뷰
+	$("#file-input").change(function() {
+		   readURL(this);
+		});
+		
+		
 
 	$("#infobtn").click(function() {
 		if($("#interest1").val()==null){
@@ -143,10 +158,6 @@ $(function() {
 		        cache: false,
 		        timeout: 600000,
 		        success: function (data) {
-		        setTimeout(function() {
-		        	location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
-		        	},3000);
-		       // location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
 		        },
 		        error: function (e) {
 		            console.log("ERROR : ", e);
@@ -154,22 +165,9 @@ $(function() {
 	        }); // $.ajax 
 	})
 
-	/* $("#proImg").error( function () {
-		alert("Asdfds");
-	    $(this).attr("src", "default_profile.png");
-	    location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
-	}); */
 });//ready
 
 
-function refresh(){
-	//this.src = "default_profile.png";
-	//$("#proImg").attr("src", "default_profile.png");  
-	//setTimeout(function() {
-	//location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
-	//},2000);
-	//location.href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp";	
-}
 
 
 </script>
@@ -205,11 +203,11 @@ function refresh(){
 								<div id="div-img">
 								<%if(fileName==null){
 									%><img src="http://localhost/project_kmong/static/upload/default_profile.png"
-								alt="프로필 사진1" id="profile-img" style="object-fit: cover;" id="proImg1"/><%
+								alt="프로필 사진1" id="profile-img" style="object-fit: cover;"/><%
 								}else{
 
 								%>		<img src="http://localhost/project_kmong/static/upload/<%=fileName%>"
-								alt="" id="profile-img" style="object-fit: cover;" id="proImg" onerror="this.src='default_profile.png'; refresh()"/> <%
+								alt="" id="profile-img" style="object-fit: cover;"  onerror="this.src='default_profile.png';"/> <%
 								}%>
 										
 					

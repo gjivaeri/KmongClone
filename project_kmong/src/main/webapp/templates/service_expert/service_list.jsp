@@ -136,7 +136,7 @@ function removeService( postId ){
 				%>
 					<h1 style="font-size: 18px; font-weight: bold;">나의 서비스</h1>
 					
-					<div id="main-section1" style="padding: 20px;  height: 60%; flex-direction: column; position: relative;"> 
+					<div id="main-section1" style="padding: 20px;  height: 70%; flex-direction: column; position: relative;"> 
 						<div>
 						
 						<c:if test="${size==0}">
@@ -164,10 +164,17 @@ function removeService( postId ){
 							       <a href="#void" onclick="removeService(${items.postId})" class="deleteBtn" style="font-size: 15px; text-align: center;">서비스 삭제</a>
 								</div>
 							</div>
-							<img src="${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/>
+							<div>
+							<div>
+							<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ items.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/></a>
+							</div>
+							<div>
 							<span><strong>제목</strong> : ${items.title }</span><br/>
 							<span style="margin-bottom: 10px"><strong>등록일</strong> : ${items.postDate }</span>
+							</div>
+							</div>
 						</div>
+						
 						</c:forEach>
 						
 						</div>
@@ -197,7 +204,7 @@ function removeService( postId ){
 					</c:if>
 					<!-- paging -->	
 					
-				<div style="position: relative; height: 25%; border: 2px dotted #e4e5ed; margin-top: 20px" >
+				<div style="position: relative; height: 20%; border: 2px dotted #e4e5ed; margin-top: 10px" >
 						<button role="button" id="regi-btn"><a href="http://localhost/project_kmong/templates/service_expert/service_write.jsp" style="text-decoration: none; color: #747474; font-weight: bold;"><h1>+</h1>서비스등록하기</a>						
 						</button>
 					</div> 
