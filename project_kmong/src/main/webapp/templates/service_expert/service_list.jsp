@@ -66,9 +66,6 @@ function removeService( postId ){
 <body>
  <%@include file="../common/header_member.jsp"%>
 		<hr>
-			<div style="border: 1px solid #333; height: 90px; text-align: center;">
-				광고이미지
-			</div>
 			<div id="aside-div">
 			<%@include file ="../order_expert/leftside.jsp" %>
 				<!-- <aside class="aside">
