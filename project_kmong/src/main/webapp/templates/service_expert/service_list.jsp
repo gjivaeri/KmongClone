@@ -164,7 +164,7 @@ function removeService( postId ){
 							       <a href="#void" onclick="removeService(${items.postId})" class="deleteBtn" style="font-size: 15px; text-align: center;">서비스 삭제</a>
 								</div>
 							</div>
-							<img src="${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/>
+							<img src="http://localhost/project_kmong/static/PostimgUpload/${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/>
 							<span><strong>제목</strong> : ${items.title }</span><br/>
 							<span style="margin-bottom: 10px"><strong>등록일</strong> : ${items.postDate }</span>
 						</div>
