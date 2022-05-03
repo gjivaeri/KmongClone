@@ -416,12 +416,13 @@ input
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+   
     height: 100%;
      flex-grow:0;
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 .articles{
 	margin-top: 10px; 
@@ -533,6 +534,7 @@ a{text-decoration: none; color: #333;}
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    
 }
 
 
@@ -974,7 +976,7 @@ a{text-decoration: none; color: #333;}
 }
 
 .new-pass-input{
-    width: 320px;
+    width: 355px;
     height: 200px;
     margin: 0px auto;
 }
