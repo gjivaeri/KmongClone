@@ -76,9 +76,9 @@ pageContext.setAttribute("categoryId", categoryId);
 				        processData: false,
 				        contentType: false,
 				        cache: false,
-				        timeout: 600000,
 				        success: function (data) {
 				        setTimeout(function() {
+				        	alert('카테고리가 수정되었습니다');
 				        	location.href="http://localhost/project_kmong/admin/pages/categories/categories_edit.jsp?id="+categoryId;	
 				        	},3000);
 				        },
@@ -88,12 +88,23 @@ pageContext.setAttribute("categoryId", categoryId);
 			        }); // $.ajax 
 			}
 		});
+		
+		function readFile(input){ 
+			var reader = new FileReader(); 
+		reader.onload = function(e){ 
+			$('#img-output').attr('src', e.target.result); 
+			} 
+		reader.readAsDataURL(input.files[0]); 
+		} 
+		
 
 			    $('.file-upload-browse').on('click', function() {
 			      var file = $(this).parent().parent().parent().find('.file-upload-default');
 			      file.trigger('click');
 			    });
 			    $('.file-upload-default').on('change', function() {
+			    	readFile(this);
+//			      $(this).parent().find('.form-control').val($(this).val());
 			      $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 			    });
 
@@ -149,7 +160,7 @@ pageContext.setAttribute("categoryId", categoryId);
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category Image</label>
                             <div class="col-sm-9">
-                              <img src="http://localhost/project_kmong/static/${categoryImage }" alt="thumbnail"  style="width:100px; height:100px;">
+                              <img id="img-output"  src="http://localhost/project_kmong/static/${categoryImage }" alt="thumbnail"  style="width:100px; height:100px;">
                             </div>
                           </div>
                         </div>

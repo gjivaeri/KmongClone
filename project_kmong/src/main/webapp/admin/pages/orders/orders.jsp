@@ -63,7 +63,10 @@ pageContext.setAttribute("size", result.size());
     <title>Orders</title>
   	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
   	<style>
-		a{text-decoration:none; color:white;}
+  		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap');
+		.table td a:hover{color:#6C7293;}
+		.table td{font-size:1.05rem; font-family: 'Noto Sans KR', sans-serif; color:white;}
+		.table thead th{font-size:1.2rem; color:white;}	
 	</style>
   </head>
   <body>

@@ -2,11 +2,11 @@
     pageEncoding="utf-8"%>    
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo kmong-title" href="http://localhost/project_kmong/admin/index.jsp">
+    <a class="sidebar-brand brand-logo kmong-title" href="http://localhost/project_kmong/admin/admin_index.jsp">
       <i class="mdi mdi-baby-face text-warning"></i>
       <span >Kmong Admin</span>
     </a>
-    <a class="sidebar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/index.jsp"><i class="mdi mdi-baby-face"></i></a>
+    <a class="sidebar-brand brand-logo-mini" href="http://localhost/project_kmong/admin/admin_index.jsp"><i class="mdi mdi-baby-face"></i></a>
   </div>
 
   <!-- 목록창 -->
@@ -37,7 +37,7 @@
 
     <!-- 대시보드 -->
     <li class="nav-item menu-items" id="nav-dashboard">
-      <a class="nav-link" href="http://localhost/project_kmong/admin/index.jsp">
+      <a class="nav-link" href="http://localhost/project_kmong/admin/admin_index.jsp">
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
         </span>
