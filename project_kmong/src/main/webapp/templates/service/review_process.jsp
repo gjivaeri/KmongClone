@@ -16,6 +16,7 @@
 	cVO.setMemberId(memberId);
 	cVO.setPostId(postId);
 	cDAO.insertComments(cVO);
+	//cDAO.updateAvgStar(postId);
 	response.sendRedirect("http://localhost/project_kmong/templates/service/detail.jsp?id="+postId);
 	
 %>

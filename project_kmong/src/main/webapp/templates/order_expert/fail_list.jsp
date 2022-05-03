@@ -87,11 +87,7 @@ function prevSubmit() {
 </head>
 <body>
  <%@include file="../common/header_member.jsp"%>
-		<hr>
 
-			<div style="border: 1px solid #333; height: 90px; text-align: center;">
-				광고이미지
-			</div>
 			<div id="aside-div">
 				<%@include file ="leftside.jsp" %>
 				
@@ -184,7 +180,7 @@ function prevSubmit() {
 					<c:if test="${size!=0}">
 					<c:forEach items="${ list }" var="item"> 
 					<div style="margin:10px">
-					<a href="#void"><img src="${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
 					<div style="font-size: 12px;text-align: center;">주문번호 : ${ item.orderId }</div>
 					<div style="font-size: 12px;text-align: center;">구매자 ${ item.memberNick }님</div>
 					<div style="font-size: 12px;text-align: center;">철회날짜 : ${ item.orderDate }</div>

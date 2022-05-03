@@ -32,6 +32,7 @@ public class CommentsDAO {
 			pstmt.setDouble(3, cvo.getStar());
 			pstmt.setInt(4, cvo.getPostId());
 			pstmt.execute();
+			updateAvgStar(cvo.getPostId());
 
 		}
 	}
@@ -98,21 +99,31 @@ public class CommentsDAO {
 		
 	}
 	
+	private void updateAvgStar(int postId) throws SQLException {
+		String sql = "update post set star_avg = (select avg(star) from comments where post_id= ?) where post_id = ?";
+		Connection con = dc.getConn();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, postId);
+		pstmt.setInt(2, postId);
+		try(con;pstmt;) {
+			pstmt.executeUpdate();
+		}
+	}
+	
 	public double selectAvgStar(int postId) throws SQLException {
-		String sql = "select avg(star) from comments where post_id= ?";
+		String sql = "select star_avg from post where post_id = ?";
 		Connection con = dc.getConn();
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, postId);
 		ResultSet rs = pstmt.executeQuery();
 		double result = 0;
 		try(con;pstmt;rs;) {
-			while(rs.next()) {
+			if (rs.next()) {
 				result = rs.getDouble(1);
 			}
 			return result;
 		}
 	}
-	
 	
 	private int getCountOrder(int memberId,int postId) throws SQLException {
 		String sql = "select count(order_id) from orders where member_id = ? and post_id=?";

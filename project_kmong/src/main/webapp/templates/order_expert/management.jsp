@@ -94,11 +94,7 @@ function prevSubmit() {
 </head>
 <body>
  <%@include file="../common/header_member.jsp"%>
-		<hr>
 
-			<div style="border: 1px solid #333; height: 90px; text-align: center;">
-				광고이미지
-			</div>
 			<div id="aside-div">
 			<%@include file ="leftside.jsp" %>
 
@@ -171,7 +167,7 @@ function prevSubmit() {
 					<c:forEach items="${ list }" var ="item">
 					<div style="margin:10px;">
 					<div style="text-align: center;">${ item.orderDate }</div>
-					<a href="#void"><img src="${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 35px;"/></a><br/>
 					<div style="font-size: 14px;text-align: center;"><strong>${ item.memberNick }</strong>님 께서 계약을 요청했습니다.</div>
 					<div style="text-align: center;">
 					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-id="${item.orderId }" data-bs-target="#acceptChk" >승인</button>

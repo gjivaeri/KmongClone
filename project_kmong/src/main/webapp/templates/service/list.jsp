@@ -266,6 +266,7 @@ Paging paging = new PageImpl(request,sortedList,12);
                pageContext.setAttribute("list", result);
                pageContext.setAttribute("size", result.size());
                
+               
 %>
 
 <c:forEach var="categoryMenu" items="${list}">

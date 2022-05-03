@@ -120,16 +120,18 @@ if(request.getParameter("id") == null) {
 int postId = Integer.parseInt(request.getParameter("id"));
 
 CommentsDAO c = CommentsDAO.getInstance();
+double savg = c.selectAvgStar(postId);
+pageContext.setAttribute("savg", savg);
 if (session.getAttribute("login") != null) {
 	int sid = (Integer)session.getAttribute("login");
 	String loginNick = c.selectNickByMemberId(sid);
 	boolean isWriteComment = c.isWriteComment(sid, postId);
-	double savg = c.selectAvgStar(postId);
-	String starAvg = String.format("%.1f", savg);
+	//double savg = c.selectAvgStar(postId);
+	//String starAvg = String.format("%.1f", savg);
 	pageContext.setAttribute("loginNick", loginNick);
 	pageContext.setAttribute("isWriteComment", isWriteComment);
-	pageContext.setAttribute("starAvg", starAvg);
-	pageContext.setAttribute("savg", savg);
+	//pageContext.setAttribute("starAvg", starAvg);
+	//pageContext.setAttribute("savg", savg);
 }
 
 
@@ -175,7 +177,7 @@ System.out.println(list);
 	<span style="color: ${var<=savg?'#fad103':'#f0f0f0'}">★</span>
 	</c:forEach>
 <div></div>
-<div>${ starAvg }</div>
+<div><%= String.format("%.1f", savg) %></div>
 
 </section>
 <nav>

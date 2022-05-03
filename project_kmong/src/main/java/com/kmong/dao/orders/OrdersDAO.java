@@ -80,7 +80,7 @@ public class OrdersDAO {
 	
 	public List<OrdersVO> selectRequestedOrdersRange(String startDate,String endDate, String keyword, String orderStatus,int memberId) throws SQLException {
 		Connection con = dc.getConn();
-		String sql = "select order_id,post_img from orders, post where (orders.post_id = post.post_id) "
+		String sql = "select orders.post_id,order_id,post_img from orders, post where (orders.post_id = post.post_id) "
 				+ "and order_date between to_date( ? ,'MM-DD-YYYY')and to_date( ? ,'MM-DD-YYYY')+1 and post.title like '%'||?||'%'  and order_status = ? "
 				+ "and orders.member_id= ?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -96,6 +96,7 @@ public class OrdersDAO {
 			OrdersVO ovo = null;
 			while (rs.next()) {
 				ovo = new OrdersVO();
+				ovo.setPostId(rs.getInt("orders.post_id"));
 				ovo.setOrderId(rs.getInt("order_id"));
 				ovo.setOrderImg(rs.getString("post_img"));
 				
@@ -107,7 +108,7 @@ public class OrdersDAO {
 		
 		public List<ExpertOrderVO> selectExpertRequestedOrdersRange(String startDate,String endDate, String keyword, String orderStatus,int memberId) throws SQLException {
 			Connection con = dc.getConn();
-			String sql = "select order_id, post_img, nick, order_date from orders,post,member "
+			String sql = "select orders.post_id, order_id, post_img, nick, order_date from orders,post,member "
 					+ "where (orders.post_id = post.post_id and  member.member_id = orders.member_id) "
 					+ "and order_date between to_date( ? ,'MM-DD-YYYY') and to_date( ? ,'MM-DD-YYYY') "
 					+ "and post.title like '%'||?||'%' and order_status = ? and post.member_id=?";
@@ -124,6 +125,7 @@ public class OrdersDAO {
 				ExpertOrderVO eov = null;
 				while (rs.next()) {
 					eov = new ExpertOrderVO();
+					eov.setPostId(rs.getInt("orders.post_id"));
 					eov.setOrderId(rs.getInt("order_id"));
 					eov.setPostImg(rs.getString("post_img"));
 					eov.setMemberNick(rs.getString("nick"));

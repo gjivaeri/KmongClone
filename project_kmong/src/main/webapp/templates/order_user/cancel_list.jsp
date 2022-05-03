@@ -93,7 +93,7 @@ $(function() {
 </head>
 <body>
  <%@include file="../common/header_member.jsp"%>
-		<hr>
+		
 			<div id="aside-div">
 			<%@include file ="user_leftside.jsp" %>
 
@@ -186,7 +186,7 @@ $(function() {
 					<c:if test="${size!=0}">
 					<c:forEach items="${ list }" var="item">
 					<div style=" margin:10px">
-					<a href="#void"><img src="${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
+					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id="${ item.postId }><img src="http://localhost/project_kmong/static/PostimgUpload/${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
 					<div style="text-align: center;">주문번호 : ${item.orderId }</div>
 					</div>
 					</c:forEach>

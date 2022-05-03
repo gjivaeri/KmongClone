@@ -120,6 +120,7 @@ public class PageImpl<T> implements Paging<Object> {
 			return this.gpp * (result+1);
 		}
 		
+		
 		this.lastPage = (this.gtp % this.gpp)+this.gpp*(result);
 		return (this.gtp % this.gpp)+this.gpp*(result);
 	}
@@ -178,11 +179,25 @@ public class PageImpl<T> implements Paging<Object> {
 	 */
 	@Override
 	public int getTotalPage() {
+		if(validateTotalPage()) {
+			this.gtp = totalRecord/pagePerRecord;
+			return gtp;
+		}
+		
 		this.gtp=(totalRecord/pagePerRecord)+1;
 		return gtp;
 	}
 
-
+	private boolean validateTotalPage () {
+		int temp = pagePerRecord;
+		while (temp <= totalRecord) {
+			if (temp == totalRecord) {
+				return true;
+			}
+			temp += pagePerRecord;
+		}
+		return false;
+	}
 	
 }
 
