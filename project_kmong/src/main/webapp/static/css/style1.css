@@ -27,7 +27,7 @@ body{
 .logo-div{
     width: 120px ; 
     height: 40px; 
-    background: url('http://localhost/project_kmong/static/images/img_logo2.png') no-repeat; 
+    background: url('http://211.63.89.132/static/images/img_logo2.png') no-repeat; 
     background-size: cover;
 }
 
@@ -271,7 +271,7 @@ input
 .white-search-btn{
 	width: 30px; 
 	height: 30px; 
-	background: url('http://localhost/project_kmong/static/images/search_white.png') no-repeat ; 
+	background: url('http://211.63.89.132/static/images/search_white.png') no-repeat ; 
 	background-size: cover; 
 	margin-right: 20px;
 	cursor: pointer;

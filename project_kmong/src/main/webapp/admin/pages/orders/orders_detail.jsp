@@ -6,7 +6,7 @@
 <%@include file="../common/admin_validate.jsp" %>
 <%
 if(request.getQueryString() == null){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=3");
+	response.sendRedirect("http://211.63.89.132/admin/pages/orders/orders_detail.jsp?id=3");
 	return;
 }
 
@@ -19,13 +19,13 @@ AdminOrdersVO aoVO = aoDAO.selectDetailOrder(orderId);
 <html lang="en">
   <head>
     <title>Order detail</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		const navActive = document.getElementById("nav-orders");
 		const uiShow = document.getElementById("ui-order");
@@ -44,7 +44,7 @@ AdminOrdersVO aoVO = aoDAO.selectDetailOrder(orderId);
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -167,7 +167,7 @@ AdminOrdersVO aoVO = aoDAO.selectDetailOrder(orderId);
 			</div>
           </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

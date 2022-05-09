@@ -66,7 +66,7 @@ if(session.getAttribute("login") == null) {
 <div>
 <article  id="main2">
 <h1 id="h1"><strong>고객센터 운영 시간 안내</strong></h1>
-<img src="http://localhost/project_kmong/static/images/notice.PNG"/><br/>
+<img src="http://211.63.89.132/static/images/notice.PNG"/><br/>
 <p id="p">
 <span>안녕하세요, 크몽입니다</span><br/>
 <br/>

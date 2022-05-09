@@ -185,7 +185,7 @@ public class AdminDAO {
 		if (!table.toLowerCase().equals("orders")) {
 			sql.append(" and ");
 			sql.append(table);
-			sql.append("_status <> 'N'");
+			sql.append("_status <> 'Y'");
 		}
 
 		Connection con = dc.getConn();

@@ -61,7 +61,7 @@ pageContext.setAttribute("size", result.size());
 <html lang="en">
   <head>
     <title>Orders</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   	<style>
   		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap');
 		.table td a:hover{color:#6C7293;}
@@ -73,7 +73,7 @@ pageContext.setAttribute("size", result.size());
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		const navActive = document.getElementById("nav-orders");
 		const uiShow = document.getElementById("ui-order");
@@ -97,7 +97,7 @@ pageContext.setAttribute("size", result.size());
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -110,7 +110,7 @@ pageContext.setAttribute("size", result.size());
               <h3 class="page-title"> Orders </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/orders/orders.jsp">Orders</a></li>
+                  <li class="breadcrumb-item"><a href="http://211.63.89.132/admin/pages/orders/orders.jsp">Orders</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Order Status</li>
                 </ol>
               </nav>
@@ -159,7 +159,7 @@ pageContext.setAttribute("size", result.size());
                               ${order.orderId }
                             </td>
                             <td>${order.postId }</td>
-                            <td><a href="http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=${order.orderId }" style="color:white">${order.title }</a></td>
+                            <td><a href="http://211.63.89.132/admin/pages/orders/orders_detail.jsp?id=${order.orderId }" style="color:white">${order.title }</a></td>
                             <td>${order.expert }</td>
                             <td>${order.user }</td>
                             <td>${order.price}</td>
@@ -202,7 +202,7 @@ pageContext.setAttribute("size", result.size());
 			</div>
           </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

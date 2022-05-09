@@ -22,7 +22,7 @@ String asd="";
 String text="";
 //session.removeAttribute("service");
 if(request.getParameter("service")==null) {
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 }else{
 
 	asd = request.getParameter("service");
@@ -106,9 +106,9 @@ $(function() {
 					<strong>계정설정</strong>
 				</div>
 				<hr orientation="horizontal" style="height: 2px;">
-				<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=info" class="aside-a">나의 정보</a> 
-					<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass" class="aside-a">비밀번호 변경</a> 
-					<a href="http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw" class="aside-a">회원탈퇴</a>
+				<a href="http://211.63.89.132/templates/mypage/verification.jsp?service=info" class="aside-a">나의 정보</a> 
+					<a href="http://211.63.89.132/templates/mypage/verification.jsp?service=pass" class="aside-a">비밀번호 변경</a> 
+					<a href="http://211.63.89.132/templates/mypage/verification.jsp?service=withdraw" class="aside-a">회원탈퇴</a>
 			</aside>
 				<main style="margin-left: 24px;">
 					<div>

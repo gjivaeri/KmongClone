@@ -30,7 +30,7 @@
     
     
     asDAO.updateMemberPassword(mVO);
-    %><script>alert("비밀번호 변경이 완료되었습니다.");  location.href="http://localhost/project_kmong/templates/home/index.jsp?hid=login"; 
+    %><script>alert("비밀번호 변경이 완료되었습니다.");  location.href="http://211.63.89.132/templates/home/index.jsp?hid=login"; 
 </script><% 
 
  

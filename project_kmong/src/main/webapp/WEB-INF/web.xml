@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://JAVA.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee" id="WebApp_ID" version="2.5">
   <display-name>project_kmong</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>templates/home/index.jsp</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -19,16 +19,16 @@
     <servlet-name>AdminPostsProcess</servlet-name>
     <url-pattern>/admin_posts</url-pattern>
   </servlet-mapping>
-<!-- <error-page>
+<error-page>
   	<error-code>404</error-code>
   	<location>/templates/common/error/error404.jsp</location>
 </error-page> 
 <error-page>
   	<error-code>405</error-code>
-  	<location>/templates/common/error/error404.jsp</location>
+  	<location>/templates/common/error/error405.jsp</location>
 </error-page> 
 <error-page>
   	<error-code>500</error-code>
-  	<location>/templates/common/error/error404.jsp</location>
-</error-page>  -->
+  	<location>/templates/common/error/error500.jsp</location>
+</error-page>
 </web-app>

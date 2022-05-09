@@ -16,7 +16,7 @@ boolean result = aoDAO.deleteOrder(orderId);
 <script>
 if(!<%=result%>){alert("주문 취소에 실패했습니다")}
 alert("주문이 취소되었습니다");
-location.href="http://localhost/project_kmong/admin/pages/orders/orders_detail.jsp?id=<%=orderId%>";
+location.href="http://211.63.89.132/admin/pages/orders/orders_detail.jsp?id=<%=orderId%>";
 </script>
 </body>
 </html>

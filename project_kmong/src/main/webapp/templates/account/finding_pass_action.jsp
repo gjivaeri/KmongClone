@@ -24,10 +24,10 @@
 			session.setAttribute("name", name);
 			session.setAttribute("tel", tel);
 			session.setAttribute("email", email);
-			response.sendRedirect("http://localhost/project_kmong/templates/account/new_pw_form.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/new_pw_form.jsp");
 		}else{
 			session.setAttribute("find", "fail");
-			response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 		}
         
 %>
@@ -35,7 +35,7 @@
 <c:if test="${not empty e }">
 	<%
 	session.setAttribute("find", "fail");
-	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 	%>
 </c:if>
     

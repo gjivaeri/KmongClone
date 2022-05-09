@@ -192,7 +192,7 @@ function prevSubmit() {
 					<c:if test="${size!=0}">
 					<c:forEach items="${ list }" var="item">
 					<div style=" margin:10px">
-					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ item.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
+					<a href="http://211.63.89.132/templates/service/detail.jsp?id=${ item.postId }"><img src="http://211.63.89.132/static/PostimgUpload/${ item.orderImg }" style="width: 150px; height: 150px; margin: 10px"/></a><br/>
 					<div style="text-align: center;">주문번호 : ${item.orderId }</div>
 					</div>
 					</c:forEach>

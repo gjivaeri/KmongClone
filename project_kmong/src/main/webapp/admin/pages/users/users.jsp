@@ -57,7 +57,7 @@ pageContext.setAttribute("size", result.size());
 <html lang="en">
   <head>
     <title>Users</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   	<style>
   		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@600&display=swap');
 		.table td a:hover{color:#6C7293;}
@@ -69,7 +69,7 @@ pageContext.setAttribute("size", result.size());
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		const navActive = document.getElementById("nav-users");
 		const uiShow = document.getElementById("ui-user");
@@ -92,7 +92,7 @@ pageContext.setAttribute("size", result.size());
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -105,7 +105,7 @@ pageContext.setAttribute("size", result.size());
               <h3 class="page-title"> Users </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/users/users.jsp">Users</a></li>
+                  <li class="breadcrumb-item"><a href="http://211.63.89.132/admin/pages/users/users.jsp">Users</a></li>
                   <li class="breadcrumb-item active" aria-current="page">User Status</li>
                 </ol>
               </nav>
@@ -154,7 +154,7 @@ pageContext.setAttribute("size", result.size());
                             <td>${ user.nick }</td>
                             <td>${ user.joinDate }</td>
                             <td> 
-                              <a href="http://localhost/project_kmong/admin/pages/users/users_edit.jsp?id=${user.memberId }" style="color:white;">
+                              <a href="http://211.63.89.132/admin/pages/users/users_edit.jsp?id=${user.memberId }" style="color:white;">
                                 수정
                               </a>
                             </td>
@@ -194,7 +194,7 @@ pageContext.setAttribute("size", result.size());
 			</div>
           </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

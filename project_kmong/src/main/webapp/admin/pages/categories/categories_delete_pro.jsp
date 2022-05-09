@@ -19,7 +19,7 @@ boolean result = acDAO.deleteCategory(categoryId);
 if(!<%=result%>){alert("카테고리 삭제에 실패했습니다")}
 alert("카테고리가 삭제되었습니다");
 
-location.replace("http://localhost/project_kmong/admin/pages/categories/categories.jsp");
+location.replace("http://211.63.89.132/admin/pages/categories/categories.jsp");
 </script>
 </body>
 </html>

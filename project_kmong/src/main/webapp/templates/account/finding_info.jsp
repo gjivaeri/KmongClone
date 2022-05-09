@@ -71,7 +71,7 @@ function handleSubmit2(){
 <body>
     <div class="register-step1">
         <div style="text-align: center;">
-            <a href="http://localhost/project_kmong/templates/home/index.jsp">
+            <a href="http://211.63.89.132/templates/home/index.jsp">
                 <div class="logo-div" style="margin-bottom: 30px;"></div>
             </a>
         </div>
@@ -80,7 +80,7 @@ function handleSubmit2(){
             <div class="finding-input" style="text-align: center;">
                
                 <div class="finding-input-text">아이디(이메일) 찾기</div>
-                <form action="http://localhost/project_kmong/templates/account/finding_id_action.jsp" id="frmId">
+                <form action="http://211.63.89.132/templates/account/finding_id_action.jsp" id="frmId">
 	                <input type="text" placeholder="이름" name="name" id="name"/>  
 	               <input type="text" placeholder="휴대폰 번호" name="tel" id="tel"/>  
 	               <div class="finding-btn">
@@ -89,7 +89,7 @@ function handleSubmit2(){
                </form>
                 <div style="height: 30px;"></div>
                <div class="finding-input-text" >비밀번호 찾기</div> 
-               <form action="http://localhost/project_kmong/templates/account/finding_pass_action.jsp" id="frmPass">
+               <form action="http://211.63.89.132/templates/account/finding_pass_action.jsp" id="frmPass">
 	               <input type="text" placeholder="이름" name="name2" id="name2"/>  
 	               <input type="text" placeholder="휴대폰 번호"  name="tel2" id="tel2"/>  
 	               <input type="text" placeholder="이메일"  name="email" id="email"/>  

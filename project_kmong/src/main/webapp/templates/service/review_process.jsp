@@ -18,7 +18,7 @@
 	cVO.setPostId(postId);
 	cDAO.insertComments(cVO);
 	//cDAO.updateAvgStar(postId);
-	response.sendRedirect("http://localhost/project_kmong/templates/service/detail.jsp?id="+postId);
+	response.sendRedirect("http://211.63.89.132/templates/service/detail.jsp?id="+postId);
 	
 %>
 

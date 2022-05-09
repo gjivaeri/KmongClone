@@ -170,7 +170,7 @@ function prevSubmit() {
 					</c:if>
 					<c:forEach items="${ list }" var="item">
 					<div style="margin:10px;">
-					<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ item.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 25px;"/></a><br/>
+					<a href="http://211.63.89.132/templates/service/detail.jsp?id=${ item.postId }"><img src="http://211.63.89.132/static/PostimgUpload/${item.postImg}" style="width: 120px; height: 150px; margin:10px;margin-left: 25px;"/></a><br/>
 					<div style="font-size: 14px;text-align: center;">주문번호 : ${ item.orderId }</div>
 					<div style="font-size: 14px;text-align: center;">구매자 ${ item.memberNick }님</div>
 					<div style="font-size: 14px;text-align: center;">${ item.orderDate }</div>

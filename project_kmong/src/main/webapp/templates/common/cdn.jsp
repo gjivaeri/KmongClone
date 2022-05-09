@@ -11,18 +11,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 <!-- css 파일 -->
-<link rel="stylesheet" type="text/css"  href="http://localhost/project_kmong/static/css/style1.css">
-<link rel="stylesheet" type="text/css"  href="http://localhost/project_kmong/static/css/footer.css">
-<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/static/css/total.css"/>
-<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/static/css/prj2.css"/>
-<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/static/css/prj2.css?after"/>
+<link rel="stylesheet" type="text/css"  href="http://211.63.89.132/static/css/style1.css">
+<link rel="stylesheet" type="text/css"  href="http://211.63.89.132/static/css/footer.css">
+<link rel="stylesheet" type="text/css" href="http://211.63.89.132/static/css/total.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.132/static/css/prj2.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.132/static/css/prj2.css?after"/>
 
-<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/static/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.132/static/css/login.css"/>
 <!-- JS파일 -->
-<script type="text/javascript" src="http://localhost/project_kmong/static/js/file.js"></script>
+<script type="text/javascript" src="http://211.63.89.132/static/js/file.js"></script>
 
  <!-- img 파일 -->
-<link rel="shortcut icon" href="http://localhost/project_kmong/static/images/kmong_icon.jpg">
+<link rel="shortcut icon" href="http://211.63.89.132/static/images/kmong_icon.jpg">
  
  <!-- font파일(추가예정) -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">

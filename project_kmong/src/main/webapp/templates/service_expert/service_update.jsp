@@ -19,6 +19,11 @@
 
 <script type="text/javascript">
 $(function() {
+	
+	$("#serviceUpdate").change(function() {
+		   readURL(this);
+		});
+	
 	  $('#summernote').summernote({
 		width: 800,	  
 		height: 200,
@@ -52,6 +57,17 @@ $(function() {
 		  }
 	  })
 });//ready
+
+
+function readURL(input) {
+	   if (input.files && input.files[0]) {
+	      var reader = new FileReader();
+	      reader.onload = function(e) {
+	         $('#serviceImg2').attr('src', e.target.result);
+	      }
+	      reader.readAsDataURL(input.files[0]);
+	   }
+	}
 </script>
 </head>
 <body>
@@ -73,7 +89,7 @@ $(function() {
                     <div class="dropdown" style="width: 40px; border-radius: 50px;" >
                         <div style="height: 40px; width:40px; margin-left:0px;border-radius: 50px;">
                         
-                        <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        <img src="http://211.63.89.132/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px;">
@@ -216,10 +232,10 @@ $(function() {
 					<span class="span-name" style="flex-direction: column;">메인 이미지 등록(필수)
 					<!-- </span> --> 
 					
-					<input type=file name='file1' style='display: none;'> 
+					<input type=file name='file1' style='display: none;' id='serviceUpdate'> 
 					<div name='file2' id='file2' style="border: 1px solid #CCCCCC; width: 300px; margin-top: 10px">
 					<!-- <input type='text' name='file2' id='file2' class="input-text"> --> 
-					<img src="${items.postImg }" border='0' style="width: 176px; height: 128px; cursor: pointer;"
+					<img src="http://211.63.89.132/static/PostimgUpload/${items.postImg }" border='0' style="width: 176px; height: 128px; cursor: pointer; object-fit:cover" id="serviceImg2"
 					onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value'/> 
 					</div>
 

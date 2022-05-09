@@ -96,7 +96,7 @@ body{    padding-top: 0px;}
 
 <div id="__next" data-reactroot="">
   <header class="css-vxuddk eru4v6r5">
-    <a href="/project_kmong/templates/home/index.jsp"
+    <a href="/templates/home/index.jsp"
       ><svg
         width="75"
         height="100%"
@@ -124,7 +124,7 @@ body{    padding-top: 0px;}
     <p class="css-1nvv8ic eru4v6r0">
       페이지가 삭제되었거나 주소가 변경되었을 수 있습니다.
     </p>
-    <a role="link" color="market" href="/project_kmong/templates/home/index.jsp" class="btn btn-warning css-nlw5bq eklkj754"
+    <a role="link" color="market" href="/templates/home/index.jsp" class="btn btn-warning css-nlw5bq eklkj754"
       ><span class="css-1oteowz eklkj753"><strong>메인페이지로 돌아가기</strong></span></a
     >
     <!-- css-nlw5bq eklkj754 -->

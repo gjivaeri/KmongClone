@@ -4,7 +4,7 @@
 
 if (session.getAttribute("login") == null) {
 	
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 	return;
 }
 int login = (int)session.getAttribute("login");

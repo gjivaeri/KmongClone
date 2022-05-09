@@ -3,7 +3,7 @@
 <%
 String login = (String)session.getAttribute("loginId");
 if(session==null || login==null || login.equals("")){
-response.sendRedirect("http://localhost/project_kmong/admin/pages/account/admin_login.jsp");
+response.sendRedirect("http://211.63.89.132/admin/pages/account/admin_login.jsp");
 return;
 }
 %>

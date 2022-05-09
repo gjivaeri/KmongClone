@@ -33,23 +33,23 @@
 <script type="text/javascript">
 $(function() {
 	$("#changeBtn").click(function() {
-		location.href="http://localhost/project_kmong/templates/order_user/request_list.jsp"
+		location.href="http://211.63.89.132/templates/order_user/request_list.jsp"
 	})
 	$("#expertContract").change(function() {
 		 if ($("#expertContract").val() == "ordersReq") {
-			 location.href="http://localhost/project_kmong/templates/order_expert/management.jsp?contractflag=or";
+			 location.href="http://211.63.89.132/templates/order_expert/management.jsp?contractflag=or";
 			 return;
 		 }
 		 if ($("#expertContract").val() == "ordersComplete") {
-			 location.href="http://localhost/project_kmong/templates/order_expert/success_list.jsp?contractflag=oce";
+			 location.href="http://211.63.89.132/templates/order_expert/success_list.jsp?contractflag=oce";
 			 return;
 		 }
 		 if ($("#expertContract").val() == "canceList") {
-			 location.href="http://localhost/project_kmong/templates/order_expert/fail_list.jsp?contractflag=oc";
+			 location.href="http://211.63.89.132/templates/order_expert/fail_list.jsp?contractflag=oc";
 			 return;
 		 }
 		 if ($("#expertContract").val() == "myService") {
-			 location.href="http://localhost/project_kmong/templates/service_expert/service_list.jsp?contractflag=ms";
+			 location.href="http://211.63.89.132/templates/service_expert/service_list.jsp?contractflag=ms";
 			 return;
 		 }
 	});
@@ -69,7 +69,7 @@ $(function() {
 						
 						%>
 						<div id="side-menu-wrapper">
-							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :"http://localhost/project_kmong/static/upload/"+img %>" class="profile-image img-responsive" style="width: 150px; border-radius: 80px; object-fit:cover; height:150px">
+							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :"http://211.63.89.132/static/upload/"+img %>" class="profile-image img-responsive" style="width: 150px; border-radius: 80px; object-fit:cover; height:150px">
 							<!-- <img src="https://kmong.com/img/tools/default_profile@2x.png" title="컬러풀블루1395" class="profile-image img-responsive" style="width: 150px;"> -->
 						</div>
 						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold"><%= nick %></span></div>

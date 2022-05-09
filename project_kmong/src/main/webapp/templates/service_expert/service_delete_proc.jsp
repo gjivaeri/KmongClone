@@ -18,7 +18,7 @@
 	msDAO.deleteMyService(postId);
 	
  	//response.sendRedirect(url); 
- 	response.sendRedirect("http://localhost/project_kmong/templates/service_expert/service_list.jsp"); 
+ 	response.sendRedirect("http://211.63.89.132/templates/service_expert/service_list.jsp"); 
 	
 	
 				

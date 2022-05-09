@@ -157,13 +157,13 @@
 <%
 
 if(session.getAttribute("login")!=null){
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 	return;
 }
 
 
 if(request.getParameter("member")==null){
-	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/register_select.jsp");
 	return;
 }
 
@@ -206,7 +206,7 @@ $(function(){
 	
 	$("#toIndex").click(function(){
 		if(confirm("회원 가입을 그만두시겠습니까?")){
-			location.replace("http://localhost/project_kmong/templates/home/index.jsp");
+			location.replace("http://211.63.89.132/templates/home/index.jsp");
 		}
 	})
 	
@@ -288,7 +288,7 @@ $(function(){
 	    	return;
 	    }
     	 $.ajax({
-     		  url:"http://localhost/project_kmong/templates/account/telConfirmation.jsp",
+     		  url:"http://211.63.89.132/templates/account/telConfirmation.jsp",
      		  data:{tel:$("#tel").val()},
      		  dataType:"json",
      		  type:"get",
@@ -437,7 +437,7 @@ function chkNull(){
 
     <div class="register-step2">
         <div style="text-align: center;">
-           <!-- <a href="http://localhost/project_kmong/templates/home/index.jsp"> -->
+           <!-- <a href="http://211.63.89.132/templates/home/index.jsp"> -->
                 <div class="logo-div" style="margin-bottom: 30px; cursor: pointer;" id="toIndex"></div>
            <!--  </a> -->
         </div>
@@ -445,7 +445,7 @@ function chkNull(){
         <div class="register-box2">
             <div class="register-last">
             <!-- //////////////////form////////////////// -->
-                <form action="http://localhost/project_kmong/templates/account/register_action.jsp" method="get" name="frm" id="frm">
+                <form action="http://211.63.89.132/templates/account/register_action.jsp" method="get" name="frm" id="frm">
                     <h1>딱 이것만 체크하면 가입완료!</h1>
                     <div class="regi-div">
                         <div class="requirement">이름<label>&nbsp;*</label></div>
@@ -594,7 +594,7 @@ function chkNull(){
     	  $("#spanEmail").css("display","none");
     	  
     	  $.ajax({
-    		  url:"http://localhost/project_kmong/templates/account/emailConfirmation.jsp",
+    		  url:"http://211.63.89.132/templates/account/emailConfirmation.jsp",
     		  data:{email:$("#email").val()},
     		  dataType:"json",
     		  type:"get",
@@ -627,7 +627,7 @@ function chkNull(){
     	  $("#spanNick").css("display","none");
     	  
     	  $.ajax({
-    		  url:"http://localhost/project_kmong/templates/account/nickConfirmation.jsp",
+    		  url:"http://211.63.89.132/templates/account/nickConfirmation.jsp",
     		  data:{nick:$("#nick").val()},
     		  dataType:"json",
     		  type:"get",

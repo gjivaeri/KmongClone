@@ -58,7 +58,7 @@ $(function(){
 <body>
     <div class="register-step1">
         <div style="text-align: center;">
-            <a href="http://localhost/project_kmong/templates/home/index.jsp">
+            <a href="http://211.63.89.132/templates/home/index.jsp">
                 <!-- <img src="img.png" style="padding-top: 20px; padding-bottom: 20px;"/> -->
                 <div class="logo-div" style="margin-bottom: 30px;"></div>
             </a>
@@ -73,7 +73,7 @@ $(function(){
                 </p>
                 <label>서비스를 의뢰하고 싶다면</label>
                 <div>
-                    <button class="serviceBtn" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp?member=client'">
+                    <button class="serviceBtn" onclick="location.href='http://211.63.89.132/templates/account/register_form.jsp?member=client'">
                         <div class="btn-subDiv"><div id="check_1" style="color:#EAEAEA; font-size:18px; font-weight: bold;">✓</div></div>
                         <span>외뢰인으로 가입 </span>
                     </button>
@@ -81,7 +81,7 @@ $(function(){
                 
                 <label>내 전문성을 판매하고 싶다면</label>
                 <div>
-                    <button class="serviceBtn2" onclick="location.href='http://localhost/project_kmong/templates/account/register_form.jsp?member=expert'">
+                    <button class="serviceBtn2" onclick="location.href='http://211.63.89.132/templates/account/register_form.jsp?member=expert'">
                         <div class="btn-subDiv"><div id="check_2"  style="color:#EAEAEA;font-size:18px; font-weight: bold;">✓</div></div>
                         <span>전문가로 가입 </span>
                     </button>

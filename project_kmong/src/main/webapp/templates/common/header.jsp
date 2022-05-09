@@ -34,7 +34,7 @@ if(((String)session.getAttribute("logoutSession"))!=null){
 
 
 /* if((session.getAttribute("login"))!=null){
-	response.sendRedirect("http://localhost/project_kmong/templates/common/header_member.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/common/header_member.jsp");
 }
  */
 %>
@@ -110,15 +110,15 @@ $("#searchbtn").click(function() {
 
     <div class="header">
         <div class="header1">
-            <a href="http://localhost/project_kmong/templates/home/index.jsp"><div class="logo-div"></div></a>
+            <a href="http://211.63.89.132/templates/home/index.jsp"><div class="logo-div"></div></a>
             <div style="flex-grow: 1;"></div>
-            <form action="http://localhost/project_kmong/templates/service/search_result.jsp" method="get" id="frm" name="frm">
+            <form action="http://211.63.89.132/templates/service/search_result.jsp" method="get" id="frm" name="frm">
                 <div class="search-div">
                     <div class="search-bar-div">
                             <input class="search-input" type="text" name="search_input1" placeholder="서비스, 전문가를 검색해보세요" maxlength="15" id="searchBar" onclick="longer()"; onblur="shorter()"/>
                             
                             <div class="search-button">
-                                <img src="http://localhost/project_kmong/static/images/search.png" id="searchbtn" style="width:20px; padding-bottom:2px; object-fit: cover; cursor: pointer;" />
+                                <img src="http://211.63.89.132/static/images/search.png" id="searchbtn" style="width:20px; padding-bottom:2px; object-fit: cover; cursor: pointer;" />
                             </div> 
                     </div>
                 </div>
@@ -135,7 +135,7 @@ $("#searchbtn").click(function() {
 								<div>
 								    <div class="login-popup">
 								        <div>
-								        	<img src="http://localhost/project_kmong/static/images/loginImg.PNG" style="border:0px; height: 556px; object-fit:cover;"/>
+								        	<img src="http://211.63.89.132/static/images/loginImg.PNG" style="border:0px; height: 556px; object-fit:cover;"/>
 								        </div>
 								
 								        <div style="display: flex; flex-direction: column; justify-content: flex-start; background-color: #ffffff; ">
@@ -147,7 +147,7 @@ $("#searchbtn").click(function() {
 								            
 								            <div class="login-box">
 								                <h2 style="margin-bottom: 24px; font-weight: 500;">로그인</h2>
-								                <form action="http://localhost/project_kmong/templates/home/login_action.jsp" method="get" id="loginFrm">
+								                <form action="http://211.63.89.132/templates/home/login_action.jsp" method="get" id="loginFrm">
 								                    <input class="input" type="text" placeholder="이메일을 입력해주세요." name="email" id="email"/>
 								                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요." name="pass" id="pass"
 								                    onkeyup="handlePassEnter(event);"/>
@@ -169,12 +169,12 @@ $("#searchbtn").click(function() {
 								                    onmouseout="$('.login-button').css('background-color','#f3d75b')" />
 								                </form>
 								                <div style="font-weight: bold; font-size: 13px; text-align: right;">
-								                <a href="http://localhost/project_kmong/templates/account/finding_info.jsp">
+								                <a href="http://211.63.89.132/templates/account/finding_info.jsp">
 								                    아이디·비밀번호 찾기
 								                </a>
 								                <div>
 								                    <input class="regis-button" type="button" value="회원가입" style="font-size: 16px;"
-								                    onclick="location.href='http://localhost/project_kmong/templates/account/register_select.jsp'" />
+								                    onclick="location.href='http://211.63.89.132/templates/account/register_select.jsp'" />
 								                </div>
 								            </div>
 								            </div>
@@ -191,16 +191,16 @@ $("#searchbtn").click(function() {
                 
                 
                 <!-- 메인 회원가입 버튼 -->
-                <input type="button" value="무료 회원가입" class="register-btn" onclick="location.href='http://localhost/project_kmong/templates/account/register_select.jsp'"/>
+                <input type="button" value="무료 회원가입" class="register-btn" onclick="location.href='http://211.63.89.132/templates/account/register_select.jsp'"/>
             </div>
         </div>
         <div class="header2">
             <div class="category">
                 <div class="dropdown" >
                     <div style="height: 100%; width: 200px; margin-left: 10px;">
-                        <img class="categories1" src="http://localhost/project_kmong/static/images/hamburger-menu.png" style="margin-bottom: 3px; width: 25px; height: 28px; object-fit: cover;"/>
+                        <img class="categories1" src="http://211.63.89.132/static/images/hamburger-menu.png" style="margin-bottom: 3px; width: 25px; height: 28px; object-fit: cover;"/>
                         <input class="categories2" type="button" value="전체 카테고리"/>
-                        <img class="categories" src="http://localhost/project_kmong/static/images/drop_down.PNG" style="margin-bottom: 3px; width: 12px; height: 5px; object-fit: cover;"/>
+                        <img class="categories" src="http://211.63.89.132/static/images/drop_down.PNG" style="margin-bottom: 3px; width: 12px; height: 5px; object-fit: cover;"/>
                         </div>
                     
                     <div class="dropdown-content" ">
@@ -216,7 +216,7 @@ $("#searchbtn").click(function() {
                    
                    if(cVO!=null){
 	                   for(int i=0; i<cVO.size(); i++){
-	                	   %><a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" style="font-size: 16px; color:#5D5D5D;">
+	                	   %><a href="http://211.63.89.132/templates/service/list.jsp?categoryId=<%=cVO.get(i).getCategoryId() %>" style="font-size: 16px; color:#5D5D5D;">
 	                	<%=cVO.get(i).getCategoryName()%></a>
 	                	<%
 	                   }

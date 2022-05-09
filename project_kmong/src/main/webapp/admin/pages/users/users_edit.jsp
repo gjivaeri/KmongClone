@@ -17,13 +17,13 @@ List<String> interests = amDAO.selectInterests(memberId);
 <html lang="en">
   <head>
     <title>User Edit</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		$(function(){
 		const navActive = document.getElementById("nav-users");
@@ -41,7 +41,7 @@ List<String> interests = amDAO.selectInterests(memberId);
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -152,7 +152,7 @@ List<String> interests = amDAO.selectInterests(memberId);
             <!-- row ends -->
           </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

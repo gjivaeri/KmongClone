@@ -38,7 +38,7 @@
  }//end for
  
  session.setAttribute("msg", "msg");
- response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp");
+ response.sendRedirect("http://211.63.89.132/templates/mypage/my_info_edit.jsp");
  
 
   

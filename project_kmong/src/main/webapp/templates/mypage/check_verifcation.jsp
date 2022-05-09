@@ -52,14 +52,14 @@ String chkpass=asDAO.selectCheckPassword(memberId,password);
 if(chkpass == null){
 	%><!-- <script>alert("비밀번호가 일치하지 않습니다.");</script> --><%
 	session.setAttribute("alert","fail");
-	response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service="+passConfirmed);
+	response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service="+passConfirmed);
 	
 }else if(chkpass.equals(password)) {
 	session.setAttribute("pwConfirmed",passConfirmed);
 	session.removeAttribute("service");
-	response.sendRedirect("http://localhost/project_kmong/templates/mypage/"+dfg);
+	response.sendRedirect("http://211.63.89.132/templates/mypage/"+dfg);
 	%> <!-- <script>alert("확인되셨습니다."); 
-	location.href="http://localhost/project_kmong/templates/mypage/"+;
+	location.href="http://211.63.89.132/templates/mypage/"+;
 	</script> -->
 	
 	<%

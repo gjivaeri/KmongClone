@@ -66,7 +66,7 @@ if(session.getAttribute("login") == null) {
 <article  id="main2">
 <h1 id="h1"><strong>서비스 이용약관 2022.04.11.ver </strong></h1>
 <div style="margin:0px auto;">
-<img src="http://localhost/project_kmong/static/images/notice2.png" style="width:100%"/><br/>
+<img src="http://211.63.89.132/static/images/notice2.png" style="width:100%"/><br/>
 </div>
 <div class="article-body"><p><span class="wysiwyg-font-size-large"><strong>[제1장</strong> <strong>총칙]&nbsp;</strong></span></p>
 <p>&nbsp;</p>

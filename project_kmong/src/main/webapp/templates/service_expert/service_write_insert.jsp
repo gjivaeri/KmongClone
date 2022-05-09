@@ -22,7 +22,7 @@
 	if(!ImgFileFlag){
 		
 	//1. 업로드될 파일의 경로 얻기
-	File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/PostimgUpload");
+	File saveDirectory=new File("E:/dev/web_service/static/PostimgUpload");
 	//2. 업로드될 파일의 크기설정
 	int fileSize=1024*1024*10; //10MByte
 	//3. 파일 업로드 컴포넌트를 생성
@@ -60,7 +60,7 @@
 	MyServiceDAO msDAO = MyServiceDAO.getInstance();
 	msDAO.insertMyService(pVO);
 	
-	response.sendRedirect("http://localhost/project_kmong/templates/service_expert/service_list.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/service_expert/service_list.jsp");
 	
 	 } 
 %>

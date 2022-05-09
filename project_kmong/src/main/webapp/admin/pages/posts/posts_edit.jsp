@@ -9,7 +9,7 @@
 <%@include file="../common/admin_validate.jsp" %>
 <%
 if(request.getQueryString()==null){
-	response.sendRedirect("http://localhost/project_kmong/admin/pages/posts/posts.jsp");
+	response.sendRedirect("http://211.63.89.132/admin/pages/posts/posts.jsp");
 	return;
 }
 int postId = Integer.parseInt(request.getParameter("postId"));
@@ -27,7 +27,7 @@ pageContext.setAttribute("categoryList", list);
 <html lang="en">
   <head>
     <title>Post edit</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   	<style>
 	#post-email, #post-date{
 	background-color: #2A3038;
@@ -42,7 +42,7 @@ pageContext.setAttribute("categoryList", list);
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		$(function(){
 		const navActive = document.getElementById("nav-posts");
@@ -113,7 +113,7 @@ pageContext.setAttribute("categoryList", list);
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -225,7 +225,7 @@ pageContext.setAttribute("categoryList", list);
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Current thumbnail</label>
                             <div class="col-sm-9">
-                              <img id="img-output" src="http://localhost/project_kmong/static/PostimgUpload/${post.img}" style="height:200px;" alt="thumbnail"/>
+                              <img id="img-output" src="http://211.63.89.132/static/PostimgUpload/${post.img}" style="height:200px;" alt="thumbnail"/>
                             </div>
                           </div>
                         </div>
@@ -270,8 +270,8 @@ pageContext.setAttribute("categoryList", list);
 
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:http://localhost/project_kmong/admin/partials/_footer.jsp -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+          <!-- partial:http://211.63.89.132/admin/partials/_footer.jsp -->
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->

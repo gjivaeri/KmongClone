@@ -97,14 +97,14 @@ if(session.getAttribute("pwConfirmed")!=null){
 		session.setAttribute("confirmed", "info");
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				||!(((String)session.getAttribute("confirmed")).equals("info"))){
-			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+			response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=info");
 		
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				&&(!((String)session.getAttribute("confirmed")).equals("info"))){
-			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+			response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=info");
 		}
 }else{
-		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=info");
+		response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=info");
 }
 %>
 function readURL(input) {
@@ -151,7 +151,7 @@ $(function() {
 			   type: "POST",
 			   dataType:"json",
 		        enctype: 'multipart/form-data',
-		        url: "http://localhost/project_kmong/templates/mypage/profile_process.jsp",
+		        url: "http://211.63.89.132/templates/mypage/profile_process.jsp",
 		        data: formData,
 		        processData: false,
 		        contentType: false,
@@ -188,7 +188,7 @@ $(function() {
 					<div id="d">
 						<strong>계정설정</strong>
 					</div>
-					<link rel="stylesheet" type="text/css" href="http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"/>
+					<link rel="stylesheet" type="text/css" href="http://211.63.89.132/templates/mypage/my_info_edit.jsp"/>
 					
 					<hr orientation="horizontal" style="height: 2px;">
 					<a href="my_info_edit.jsp" class="aside-a">나의 정보</a> 
@@ -202,11 +202,11 @@ $(function() {
 							<section id="main-section2">
 								<div id="div-img">
 								<%if(fileName==null){
-									%><img src="http://localhost/project_kmong/static/upload/default_profile.png"
+									%><img src="http://211.63.89.132/static/upload/default_profile.png"
 								alt="프로필 사진1" id="profile-img" style="object-fit: cover;"/><%
 								}else{
 
-								%>		<img src="http://localhost/project_kmong/static/upload/<%=fileName%>"
+								%>		<img src="http://211.63.89.132/static/upload/<%=fileName%>"
 								alt="" id="profile-img" style="object-fit: cover;"  onerror="this.src='default_profile.png';"/> <%
 								}%>
 										

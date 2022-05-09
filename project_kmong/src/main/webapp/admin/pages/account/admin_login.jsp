@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <title>Admin Login</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   	<style>
   		#warning{height:10px; color:red; padding-top:5px;}
   	</style>
@@ -45,7 +45,7 @@
   		
    		function loginChk(loginFlag){
  			if(loginFlag){
-  				location.href="http://localhost/project_kmong/admin/admin_index.jsp";
+  				location.href="http://211.63.89.132/admin/admin_index.jsp";
   				return
   			} 
   			$("#warning").html("아이디 혹은 비밀번호를 잘못 입력하셨습니다.")		

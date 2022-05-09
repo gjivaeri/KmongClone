@@ -22,7 +22,7 @@ var url="users.jsp";
 if(<%=isExpert%>){
 	url="experts.jsp";
 }
-location.replace("http://localhost/project_kmong/admin/pages/users/"+url);
+location.replace("http://211.63.89.132/admin/pages/users/"+url);
 </script>
 </body>
 </html>

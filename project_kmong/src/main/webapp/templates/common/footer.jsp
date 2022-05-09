@@ -31,9 +31,9 @@
 		</div>
 		<div>
 			<p class="footer-title">지원</p>
-			<p><a href="http://localhost/project_kmong/templates/notification/notice.jsp">공지사항</a></p>
+			<p><a href="http://211.63.89.132/templates/notification/notice.jsp">공지사항</a></p>
 			<p>자주 묻는 질문</p>
-			<p><a href="http://localhost/project_kmong/templates/notification/terms_of_service.jsp">이용약관</a></p>
+			<p><a href="http://211.63.89.132/templates/notification/terms_of_service.jsp">이용약관</a></p>
 			<p style="font-weight:bold;">개인정보처리방침</p>
 			<p>전문가 센터</p>
 		</div>

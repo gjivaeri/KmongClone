@@ -76,11 +76,11 @@ for (i = 0; i < sURLVariables.length; i++) {
 function sort(selectIdx){
 	var page = getUrlParameter('p');
 	var searchIdx = getUrlParameter('search_input1');
-	http://localhost/project_kmong/templates/service/search_result.jsp
-	var nextURL = 'http://localhost/project_kmong/templates/service/search_result.jsp?search_input1='
+	http://211.63.89.132/templates/service/search_result.jsp
+	var nextURL = 'http://211.63.89.132/templates/service/search_result.jsp?search_input1='
 		+searchIdx+selectIdx;
 	if(page!=undefined){
-		nextURL = 'http://localhost/project_kmong/templates/service/search_result.jsp?'
+		nextURL = 'http://211.63.89.132/templates/service/search_result.jsp?'
 			+'p='+page+'&search_input1='+searchIdx+selectIdx;
 	}
 	window.location.href=nextURL; 
@@ -143,7 +143,7 @@ if(session.getAttribute("login") == null) {%>
 <hr/>
 <!-- -----------------------------------------------------------------  -->
 <div style="width:100%">
-<div style="width:1400px;margin:0px auto" class="menu">
+<div style="width:1160px;margin:0px auto" class="menu">
 <!-- 왼쪽 카테고리----nav-------------------------------------------------------------- -->
 <%
 MenuDAO mnDAO=new MenuDAO();   
@@ -155,7 +155,7 @@ pageContext.setAttribute("categoryList", list1);
 <hr style="border:2px solid RGB(252, 212, 0)"/>
 <c:forEach var="categorylist" items="${categoryList }"> 
 
-<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0"><c:out value="${categorylist.categoryName }"/></a></div>
+<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://211.63.89.132/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0"><c:out value="${categorylist.categoryName }"/></a></div>
 
  </c:forEach>
 </div>
@@ -165,7 +165,7 @@ pageContext.setAttribute("categoryList", list1);
 <div class="menucont" style="width:100%">
 <!-- 홈/디자인-->
 
-<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+<a href="http://211.63.89.132/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 
 
 <hr/>
@@ -262,9 +262,9 @@ llist=mnDAO.selectSearchMenu(search_input, sortIdx);
 <c:forEach var="search1" items="${list}">
 
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
-<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${search1.postId }" class="css-1mr8hr4 ezeyqpv17">
+<a href="http://211.63.89.132/templates/service/detail.jsp?id=${search1.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
-<img src="http://localhost/project_kmong/static/PostimgUpload/${search1.postImg }" style="height:130px; width:100%"/>
+<img src="http://211.63.89.132/static/PostimgUpload/${search1.postImg }" style="height:130px; width:100%"/>
 </div>
 <div>
 <div style="margin-top: 10px">

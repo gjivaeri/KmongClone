@@ -17,7 +17,7 @@
 <body>
 <%
 try{
-File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/PostimgUpload");
+File saveDirectory = new File("E:/dev/web_service/static/PostimgUpload");
 String encType = "UTF-8";
 int maxSize = 5 * 1024 * 1024;
 
@@ -63,7 +63,7 @@ pageContext.setAttribute("result", result);
 if(!${result}){alert("게시글 수정에 실패했습니다")}
 alert("게시글이 수정되었습니다");
 setTimeout(function() {
-	location.href="http://localhost/project_kmong/admin/pages/posts/posts_edit.jsp?postId=${postId}"; 
+	location.href="http://211.63.89.132/admin/pages/posts/posts_edit.jsp?postId=${postId}"; 
 },1500);
 </script>
 </body>

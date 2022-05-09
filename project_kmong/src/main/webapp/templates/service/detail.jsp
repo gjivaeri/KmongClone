@@ -115,7 +115,7 @@ $(function(){
 <% 
 
 if(request.getParameter("id") == null) {
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 	return;
 }
 int postId = Integer.parseInt(request.getParameter("id"));
@@ -155,7 +155,7 @@ if(session.getAttribute("login") == null) {
 <div class="mainleft" style="width:800px">
 <section style="margin-bottom: 18px">
 <div>
-<a href="http://localhost/project_kmong/templates/service/list.jsp" style="color:#333; text-decoration: none" class="css-123">디자인</a>
+<a href="http://211.63.89.132/templates/service/list.jsp" style="color:#333; text-decoration: none" class="css-123">디자인</a>
 </div>
 </section>
 <%
@@ -168,9 +168,9 @@ System.out.println(list);
 <section>
 <div style="height:450px; margin-bottom: 30px">
 <%if(list.get(0).get("post_img") != null){ %>
-<img src="http://localhost/project_kmong/static/PostimgUpload/<%= list.get(0).get("post_img") %>"  style="height:100%; width:100% " />
+<img src="http://211.63.89.132/static/PostimgUpload/<%= list.get(0).get("post_img") %>"  style="height:100%; width:100% " />
 <%}else{ %>
-<img src="http://localhost/project_kmong/static/PostimgUpload/pattern.png"  style="height:100%; width:100% " />
+<img src="http://211.63.89.132/static/PostimgUpload/pattern.png"  style="height:100%; width:100% " />
 <%} %>
 </div>
 </section>
@@ -315,18 +315,18 @@ System.out.println(list);
 <div style="border:1px solid rgb(228,229,237)">
 <div style="margin-bottom: 15px">
 <%if(list.get(0).get("post_img") != null){ %>
-<img src="http://localhost/project_kmong/static/PostimgUpload/<%= list.get(0).get("post_img") %>" style="height:300px; width:100%"/>
+<img src="http://211.63.89.132/static/PostimgUpload/<%= list.get(0).get("post_img") %>" style="height:300px; width:100%"/>
 <%}else{ %>
-<img src="http://localhost/project_kmong/static/PostimgUpload/pattern.png" style="height:300px; width:100%" />
+<img src="http://211.63.89.132/static/PostimgUpload/pattern.png" style="height:300px; width:100%" />
 <%} %>
 </div>
 <div style="margin-bottom: 15px">
-<img src="http://localhost/project_kmong/static/PostimgUpload/img21.png"/><span><%= list.get(0).get("term") %>일</span>
+<img src="http://211.63.89.132/static/PostimgUpload/img21.png"/><span><%= list.get(0).get("term") %>일</span>
 </div>
 <form action="purchase_success.jsp" method="post">
 <input type="hidden" name="postId2" value=<%= list.get(0).get("post_id") %>>
 <div style="margin:0px auto; width:70% ;margin-bottom: 50px">
-<button role="button" type="submit" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://localhost/project_kmong/templates/service/purchase_success.jsp'">
+<button role="button" type="submit" color="market" class="css-1b6dcge eklkj754" onclick="location.href='http://211.63.89.132/templates/service/purchase_success.jsp'">
 <span class="css-1oteowz eklkj753">
 <span><strong>구매하기</strong></span>
 </span>
@@ -342,9 +342,9 @@ System.out.println(list);
 <%
 if(list.get(0).get("user_img") != null){
 %>
-<img src="http://localhost/project_kmong/static/upload/<%=list.get(0).get("user_img") %>" style="width:100%;height:100%"/>
+<img src="http://211.63.89.132/static/upload/<%=list.get(0).get("user_img") %>" style="width:150px;height:150px; object-fit:cover; border-radius:80px"/>
 <%}else{ %>
-<img src="http://localhost/project_kmong/static/upload/default_profile.png" style="width:100%;height:100%"/>
+<img src="http://211.63.89.132/static/upload/default_profile.png" style="width:150px;height:150px;  object-fit:cover; border-radius:80px"/>
 <%} %>
 </div>
 <div style="font-size: 25px">

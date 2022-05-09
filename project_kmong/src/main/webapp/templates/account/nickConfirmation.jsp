@@ -8,7 +8,7 @@
     trimDirectiveWhitespaces="true"%>
  <%
  if(request.getParameter("nick")==null){
-	 response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+	 response.sendRedirect("http://211.63.89.132/templates/account/register_select.jsp");
  }
  %>
  <%  

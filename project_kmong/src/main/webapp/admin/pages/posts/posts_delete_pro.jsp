@@ -19,7 +19,7 @@ if(!${result}){alert("게시글 삭제에 실패했습니다")}
 else{
 alert("게시글이 삭제되었습니다");
 }
-location.replace("http://localhost/project_kmong/admin/pages/posts/posts.jsp");
+location.replace("http://211.63.89.132/admin/pages/posts/posts.jsp");
 </script>
 </body>
 </html>

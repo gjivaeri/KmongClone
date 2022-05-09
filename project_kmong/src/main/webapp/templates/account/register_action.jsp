@@ -48,7 +48,7 @@
 		if(flag&&flag2){
 			session.setAttribute("join", "complete"); //회원가입 성공 시
 			session.removeAttribute("flag"); //회원 유형 세션 삭제
-			response.sendRedirect("http://localhost/project_kmong/templates/account/register_success.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/register_success.jsp");
 		
 		}
         
@@ -57,7 +57,7 @@
 <c:if test="${not empty e }">
 	<%-- <%
 	session.setAttribute("error", "error");
-	response.sendRedirect("http://localhost/project_kmong/templates/account/register_select.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/register_select.jsp");
 	%> --%>
 	<c:out value="${e}"/>
 </c:if>

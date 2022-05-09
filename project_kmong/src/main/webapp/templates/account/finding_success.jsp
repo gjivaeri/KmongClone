@@ -26,12 +26,12 @@ $(function(){
    onpageshow="if (event.persisted) noBack();" onunload="">
 <%
 if((String)session.getAttribute("id")==null){
-	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 }
 %>
     <div class="register-step1">
         <div style="text-align: center;">
-            <a href="http://localhost/project_kmong/templates/home/index.jsp">
+            <a href="http://211.63.89.132/templates/home/index.jsp">
                 <div class="logo-div" style="margin-bottom: 30px;"></div>
             </a>
         </div>
@@ -40,11 +40,11 @@ if((String)session.getAttribute("id")==null){
             <div class="which-service" style="text-align: center;">
                 <h4>회원님의 아이디는 <span style="text-decoration: underline; font-size: 20px;"><%=(String)session.getAttribute("id") %></span><!-- 아이디 받아오기 -->입니다.<h4>
                 <div>
-                    <form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp">
+                    <form id="frm" action="http://211.63.89.132/templates/home/index.jsp">
                		<input type="hidden" name="hid" value="login"/>
                     <input type="button" value="로그인" class="id-box-btns" id="btn"/>
                     <input type="button" value="비밀번호 찾기" 
-                        onclick="location.href='http://localhost/project_kmong/templates/account/finding_info.jsp'"
+                        onclick="location.href='http://211.63.89.132/templates/account/finding_info.jsp'"
                         class="id-box-btns" 
                         style="margin-left: 18px;"/>
              	</form>

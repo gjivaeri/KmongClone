@@ -15,7 +15,8 @@
 <body>
 <%
 try{
-File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/images/category");
+File saveDirectory = new File("E:/dev/web_service/static/images/category");
+//C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static
 String encType = "UTF-8";
 int maxSize = 5 * 1024 * 1024;
 
@@ -44,7 +45,7 @@ pageContext.setAttribute("result", result);
 if(${result}<1){alert("카테고리 추가에 실패했습니다")}
 setTimeout(function() {
 alert("카테고리가 추가되었습니다");
-	location.href='http://localhost/project_kmong/admin/pages/categories/categories.jsp'; 
+	location.href='http://211.63.89.132/admin/pages/categories/categories.jsp'; 
 },1000);
 
 </script>

@@ -47,7 +47,7 @@ function noBack() { window.history.forward(); }
 		$("#searchBtnInAD").click(function() {
 			//alert($("#mainInput").val())
 			var inputText=$("#mainInput").val();
-			location.href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1="+inputText;
+			location.href="http://211.63.89.132/templates/service/search_result.jsp?search_input1="+inputText;
 			//mainAdInputAction();
 		});
 
@@ -88,7 +88,7 @@ if(session.getAttribute("login")==null) {
                            <div class="ad-search">
                            
                             
-                            <form action="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=">
+                            <form action="http://211.63.89.132/templates/service/search_result.jsp?search_input1=">
                             <div class="typewriter">
                             <input type="text"  id="mainInput" value="웹페이지 제작"
                             style="width:150px; border-top:0px; border-left:0px;border-bottom:0px;"/>
@@ -104,11 +104,11 @@ if(session.getAttribute("login")==null) {
                         </div>
                     </form> 
                     <div class="tag-box">
-                        <div class="tags"><a style="opacity: unset;" href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=웹페이지제작">#웹페이지제작</a></div>
-                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=로고">#로고</a></div>
-                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=인스타">#인스타</a></div>
-                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=일러스트">#일러스트</a></div>
-                        <div class="tags"><a href="http://localhost/project_kmong/templates/service/search_result.jsp?search_input1=영상편집">#영상편집</a></div>
+                        <div class="tags"><a style="opacity: unset;" href="http://211.63.89.132/templates/service/search_result.jsp?search_input1=웹페이지제작">#웹페이지제작</a></div>
+                        <div class="tags"><a href="http://211.63.89.132/templates/service/search_result.jsp?search_input1=로고">#로고</a></div>
+                        <div class="tags"><a href="http://211.63.89.132/templates/service/search_result.jsp?search_input1=인스타">#인스타</a></div>
+                        <div class="tags"><a href="http://211.63.89.132/templates/service/search_result.jsp?search_input1=일러스트">#일러스트</a></div>
+                        <div class="tags"><a href="http://211.63.89.132/templates/service/search_result.jsp?search_input1=영상편집">#영상편집</a></div>
 
                     </div>
                 </div>
@@ -126,19 +126,19 @@ if(session.getAttribute("login")==null) {
                          
                          <div class="carousel-item active">
                          <a href="https://hi.kmong.com/it_project/">
-                            <img src="http://localhost/project_kmong/static/images/adImg1.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://211.63.89.132/static/images/adImg1.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </a></div>
                           <div class="carousel-item">
                            <a href="https://kmong.com/freelancer-club">
-                            <img src="http://localhost/project_kmong/static/images/adImg2.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://211.63.89.132/static/images/adImg2.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                            </a></div>
                           <div class="carousel-item">
                            <a href="https://kmong.com/md-pick/259">
-                            <img src="http://localhost/project_kmong/static/images/adImg6.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://211.63.89.132/static/images/adImg6.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </a></div>
                           <div class="carousel-item">
                           <a href="https://hi.kmong.com/voucher/">
-                            <img src="http://localhost/project_kmong/static/images/adImg4.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
+                            <img src="http://211.63.89.132/static/images/adImg4.PNG" class="d-block w-100" style="height: 375px;  width: 540px; object-fit: cover;">
                           </a></div> 
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -189,8 +189,8 @@ if(session.getAttribute("login")==null) {
                 		
                 		%>
                 		<div class="article-squre">
-                        <a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=cVOlist.get(i).getCategoryId() %>" >
-                            <img src="http://localhost/project_kmong/static/<%=categoryImg %>" />
+                        <a href="http://211.63.89.132/templates/service/list.jsp?categoryId=<%=cVOlist.get(i).getCategoryId() %>" >
+                            <img src="http://211.63.89.132/static/<%=categoryImg %>" />
                             <div class="main-span1"><%= categoryName%></div>
                         </a>
                         </div>
@@ -240,8 +240,8 @@ if(session.getAttribute("login")==null) {
 
                     	%>
                     	<article class="post-one-by-one">
-                    	<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=<%= postList.get(i).getPostId()%>">
-                    		<img src="http://localhost/project_kmong/static/PostimgUpload/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px; border: 1px solid #D4D4D4;"/>
+                    	<a href="http://211.63.89.132/templates/service/detail.jsp?id=<%= postList.get(i).getPostId()%>">
+                    		<img src="http://211.63.89.132/static/PostimgUpload/<%=postList.get(i).getPostImg()%>" style="border-radius: 1px; border: 1px solid #D4D4D4;"/>
                     		<h6 data-testid="title" class="css-10894jy ezeyqpv9" style="font-size: 13px;  margin-top: 8px;">
                     		<%=postList.get(i).getSummary()%>
                     		</h6>
@@ -286,8 +286,8 @@ if(session.getAttribute("login")==null) {
             for(int i=0; i<5; i++){
             	%>
             	<div class="images">
-                    <a href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=<%=i+1%>">
-                    <img src="http://localhost/project_kmong/static/images/mainImg<%=i+1%>.PNG" class="imgs"/>
+                    <a href="http://211.63.89.132/templates/service/list.jsp?categoryId=<%=i+1%>">
+                    <img src="http://211.63.89.132/static/images/mainImg<%=i+1%>.PNG" class="imgs"/>
                     </a>
                 </div>
             <% 	
@@ -300,14 +300,14 @@ if(session.getAttribute("login")==null) {
         <div style="display: flex; align-items:center; margin-top:70px; height:300px; background-color: antiquewhite;" >
             <div style="display: flex; margin:0px auto;">
                 <div style="display: flex; width: 1168px; height: 175px; grid-gap:15px;">
-                    <img src="http://localhost/project_kmong/static/images/will_replace.JPG"/>
-                    <img src="http://localhost/project_kmong/static/images/dummy1.png"/>
-                    <img src="http://localhost/project_kmong/static/images/dummy2.png"/>
+                    <img src="http://211.63.89.132/static/images/will_replace.JPG"/>
+                    <img src="http://211.63.89.132/static/images/dummy1.png"/>
+                    <img src="http://211.63.89.132/static/images/dummy2.png"/>
                 </div>
             </div>
         </div>
         <div style="display: flex; justify-content:center; align-items:center; width: 100%; margin-top: 90px;margin-bottom: 90px;">
-            <img src="http://localhost/project_kmong/static/images/adad.JPG" style="border-radius: 5px;"/>
+            <img src="http://211.63.89.132/static/images/adad.JPG" style="border-radius: 5px;"/>
         </div>
     </div>
     

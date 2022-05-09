@@ -37,14 +37,14 @@ if(session.getAttribute("pwConfirmed")!=null){
 		session.setAttribute("confirmed", "withdraw");
 	}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 			||!(((String)session.getAttribute("confirmed")).equals("withdraw"))){
-		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+		response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=withdraw");
 	
 	}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 			&&(!((String)session.getAttribute("confirmed")).equals("withdraw"))){
-		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+		response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=withdraw");
 	}
 }else{
-		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=withdraw");
+		response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=withdraw");
 }%>
 	$(function() {
 		

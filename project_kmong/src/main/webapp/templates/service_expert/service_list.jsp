@@ -166,7 +166,7 @@ function removeService( postId ){
 							</div>
 							<div>
 							<div>
-							<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${ items.postId }"><img src="http://localhost/project_kmong/static/PostimgUpload/${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/></a>
+							<a href="http://211.63.89.132/templates/service/detail.jsp?id=${ items.postId }"><img src="http://211.63.89.132/static/PostimgUpload/${items.postImg }" style="width: 100px; height: 100px; margin: 10px"/></a>
 							</div>
 							<div>
 							<span><strong>제목</strong> : ${items.title }</span><br/>
@@ -205,7 +205,7 @@ function removeService( postId ){
 					<!-- paging -->	
 					
 				<div style="position: relative; height: 20%; border: 2px dotted #e4e5ed; margin-top: 10px" >
-						<button role="button" id="regi-btn"><a href="http://localhost/project_kmong/templates/service_expert/service_write.jsp" style="text-decoration: none; color: #747474; font-weight: bold;"><h1>+</h1>서비스등록하기</a>						
+						<button role="button" id="regi-btn"><a href="http://211.63.89.132/templates/service_expert/service_write.jsp" style="text-decoration: none; color: #747474; font-weight: bold;"><h1>+</h1>서비스등록하기</a>						
 						</button>
 					</div> 
 					

@@ -3,7 +3,7 @@
     
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo-mini kmong-title" href="http://localhost/project_kmong/admin/admin_index.jsp"><i class="mdi mdi-baby-face"></i></a>
+    <a class="navbar-brand brand-logo-mini kmong-title" href="http://211.63.89.132/admin/admin_index.jsp"><i class="mdi mdi-baby-face"></i></a>
   </div>
 
   <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -15,7 +15,7 @@
     <!--검색버튼 -->
     <ul class="navbar-nav w-100">
       <li class="nav-item w-100">
-        <form action="http://localhost/project_kmong/admin/pages/posts/posts.jsp" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search top-search-frm">
+        <form action="http://211.63.89.132/admin/pages/posts/posts.jsp" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search top-search-frm">
           <input type="text" name="search" class="form-control" placeholder="Search products">
         </form>
       </li>
@@ -27,7 +27,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="http://localhost/project_kmong/admin/assets/images/faces/monkey.png" alt="">
+            <img class="img-xs rounded-circle" src="http://211.63.89.132/admin/assets/images/faces/monkey.png" alt="">
             <p class="mb-0 d-none d-sm-block navbar-profile-name">Admin</p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
@@ -36,7 +36,7 @@
           <h6 class="p-3 mb-0">Profile</h6>
           <div class="dropdown-divider"></div>
 
-          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin_setting.jsp">
+          <a class="dropdown-item preview-item" href="http://211.63.89.132/admin/pages/account/admin_setting.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-settings text-success"></i>
@@ -48,7 +48,7 @@
           </a>
           <div class="dropdown-divider"></div>
 
-          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/templates/home/admin_index.jsp">
+          <a class="dropdown-item preview-item" href="http://211.63.89.132/templates/home/admin_index.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-baby-face-outline text-info"></i>
@@ -61,7 +61,7 @@
           <div class="dropdown-divider"></div>
 
 
-          <a class="dropdown-item preview-item" href="http://localhost/project_kmong/admin/pages/account/admin_login.jsp">
+          <a class="dropdown-item preview-item" href="http://211.63.89.132/admin/pages/account/admin_login.jsp">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-logout text-danger"></i>

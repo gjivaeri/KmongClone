@@ -31,7 +31,7 @@
 <script type="text/javascript">
 $(function() {
 	$("#changeBtn").click(function() {
-		location.href="http://localhost/project_kmong/templates/order_expert/management.jsp"
+		location.href="http://211.63.89.132/templates/order_expert/management.jsp"
 	})
 	 $("#contract").change(function() {
 		 if ($("#contract").val() == "ordersReq") {
@@ -64,7 +64,7 @@ $(function() {
 						
 						%>
 						<div id="side-menu-wrapper">
-							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :"http://localhost/project_kmong/static/upload/"+img %>" class="profile-image img-responsive" style="width: 150px; border-radius: 80px; object-fit:cover;height:150px">
+							<img src="<%= img==null? "https://kmong.com/img/tools/default_profile@2x.png" :"http://211.63.89.132/static/upload/"+img %>" class="profile-image img-responsive" style="width: 150px; border-radius: 80px; object-fit:cover;height:150px">
 						</div>
 						<div id="nickname-div"><span style="text-align: center; font-size: 18px; font-weight: bold"><%= nick %></span></div>
 						<div data-v-b711d792="" class="btn-wrapper" style="margin-top:15px; text-align: center;"><button data-v-b711d792="" class="btn btn-navy btn-toggle-set-seller-value" id="changeBtn"><img data-v-b711d792="" src="https://kmong.com/img/my_kmong/ic_switch_white@2x.png" alt="전환"> 전문가로 전환

@@ -19,7 +19,8 @@
  <c:catch var="e">
    <%
    //1. 업로드 될 파일의 경로 얻기
-      	 File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/upload");//절대경로
+      	 //File saveDirectory=new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/upload");//절대경로
+      	 File saveDirectory=new File("E:/dev/web_service/static/upload");//절대경로
       	 
       	 //System.out.println(saveDirectory.getPath());
       	 //2. 업로드 될 파일의 크기 설정
@@ -58,10 +59,10 @@
       	
       	if(cnt!=0){
       		//session.setAttribute("fileName", "done");
-      		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp?file="+img);
-      		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"); 
+      		//response.sendRedirect("http://211.63.89.132/templates/mypage/my_info_edit.jsp?file="+img);
+      		//response.sendRedirect("http://211.63.89.132/templates/mypage/my_info_edit.jsp"); 
       		
-      		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/image.jsp"); */
+      		//response.sendRedirect("http://211.63.89.132/templates/mypage/image.jsp"); */
       		
       		
       		//MainPageDAO mDAO=MainPageDAO.getInstance();
@@ -72,9 +73,9 @@
       		
       		out.print(jsonObj.toJSONString());
       		/* session.setAttribute("fileName", img);
-      		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp?file="+img);
-      		response.sendRedirect("http://localhost/project_kmong/templates/mypage/my_info_edit.jsp"); */
-      		//response.sendRedirect("http://localhost/project_kmong/templates/mypage/image.jsp"); 
+      		//response.sendRedirect("http://211.63.89.132/templates/mypage/my_info_edit.jsp?file="+img);
+      		response.sendRedirect("http://211.63.89.132/templates/mypage/my_info_edit.jsp"); */
+      		//response.sendRedirect("http://211.63.89.132/templates/mypage/image.jsp"); 
       	}else{
       		//jsonObj.put("flag","nothing");
       		//out.print(jsonObj.toJSONString());

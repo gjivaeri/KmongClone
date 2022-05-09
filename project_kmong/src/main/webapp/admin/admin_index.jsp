@@ -29,13 +29,13 @@ Date today = new Date();
 <html lang="en">
   <head>
     <title>Kmong Admin</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		const navActive = document.getElementById("nav-dashboard");
 		navActive.classList.add('active');
@@ -44,7 +44,7 @@ Date today = new Date();
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -181,7 +181,7 @@ Date today = new Date();
                 %>
                            <div class="preview-item border-bottom">
                             <div class="preview-thumbnail">
-								<img src="http://localhost/project_kmong/static/<%=categoryImg%>" />
+								<img src="http://211.63.89.132/static/<%=categoryImg%>" />
                             </div>
                             <div class="preview-item-content d-sm-flex flex-grow">
                               <div class="flex-grow">
@@ -208,7 +208,7 @@ Date today = new Date();
 
           </div>
           <!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>
@@ -222,9 +222,9 @@ Date today = new Date();
     var canceled = <%=totalOrderN%>;
     var pending = <%=totalOrderP%>;
     </script>
-    <script src="http://localhost/project_kmong/admin/assets/vendors/chart.js/Chart.min.js"></script>
-<!--     <script src="http://localhost/project_kmong/admin/assets/js/off-canvas.js"></script> -->
-    <script src="http://localhost/project_kmong/admin/assets/js/chart.js">
+    <script src="http://211.63.89.132/admin/assets/vendors/chart.js/Chart.min.js"></script>
+<!--     <script src="http://211.63.89.132/admin/assets/js/off-canvas.js"></script> -->
+    <script src="http://211.63.89.132/admin/assets/js/chart.js">
     </script>
   </body>
 </html>

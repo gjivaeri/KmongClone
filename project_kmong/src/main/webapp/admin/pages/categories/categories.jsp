@@ -15,7 +15,7 @@ pageContext.setAttribute("list", cVOlist);
 <html lang="en">
   <head>
     <title>Categories</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   	 <style>
 		a{text-decoration:none; color:white;}
 	</style>
@@ -24,7 +24,7 @@ pageContext.setAttribute("list", cVOlist);
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		const navActive = document.getElementById("nav-category");
 		const uiShow = document.getElementById("ui-category");
@@ -34,7 +34,7 @@ pageContext.setAttribute("list", cVOlist);
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -47,7 +47,7 @@ pageContext.setAttribute("list", cVOlist);
               <h3 class="page-title"> Categories </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="http://localhost/project_kmong/admin/pages/categories/categories.jsp">Categories</a></li>
+                  <li class="breadcrumb-item"><a href="http://211.63.89.132/admin/pages/categories/categories.jsp">Categories</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Category List</li>
                 </ol>
               </nav>
@@ -71,12 +71,12 @@ pageContext.setAttribute("list", cVOlist);
 						<c:forEach var="category" items="${list}">
                           <div class="preview-item border-bottom">
                             <div class="preview-thumbnail">
-                              <img src="http://localhost/project_kmong/static/${category.categoryImage}"/>
+                              <img src="http://211.63.89.132/static/${category.categoryImage}"/>
                             </div>
                             <div class="preview-item-content d-sm-flex flex-grow">
                               <div class="flex-grow">
                                 <h4 class="preview-subject">${category.categoryName}</h4>
-                                <a class="text-muted mb-0" href="http://localhost/project_kmong/admin/pages/categories/categories_edit.jsp?id=${category.categoryId}">edit</a>
+                                <a class="text-muted mb-0" href="http://211.63.89.132/admin/pages/categories/categories_edit.jsp?id=${category.categoryId}">edit</a>
                               </div>
                             </div>
                           </div>
@@ -99,7 +99,7 @@ pageContext.setAttribute("list", cVOlist);
 			</div>
           </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

@@ -39,15 +39,15 @@ if(session.getAttribute("pwConfirmed")!=null){
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				|| !(((String)session.getAttribute("confirmed")).equals("pass"))){
 			
-			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+			response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=pass");
 		
 		}else if(!(((String)session.getAttribute("pwConfirmed")).equals("done"))
 				&&(!((String)session.getAttribute("confirmed")).equals("pass"))){
-			response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+			response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=pass");
 		}      
 		
 }else{
-		response.sendRedirect("http://localhost/project_kmong/templates/mypage/verification.jsp?service=pass");
+		response.sendRedirect("http://211.63.89.132/templates/mypage/verification.jsp?service=pass");
 }%>
 	
 	

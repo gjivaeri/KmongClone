@@ -27,31 +27,31 @@
 		if(memberID!=0){
 
 				//url="http://localhost"+url;
-				url="http://localhost"+request.getParameter("url");
+				url="http://211.63.89.132"+request.getParameter("url");
 				//session.removeAttribute("logoutPageGo");
 				
 				session.setAttribute("login", memberID); 
 				session.setAttribute("loginMsg", "loginMsg");
 
 				/* if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp")){
-					response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+					response.sendRedirect("http://211.63.89.132/templates/home/index_member.jsp");
 				}else if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp?hid=login")){
-					response.sendRedirect("http://localhost/project_kmong/templates/home/index_member.jsp");
+					response.sendRedirect("http://211.63.89.132/templates/home/index_member.jsp");
 				}else{ */
 					response.sendRedirect(url);
 				//}
 
 			}else{
 				
-					url="http://localhost"+request.getParameter("url");
+					url="http://211.63.89.132"+request.getParameter("url");
 					
 					//session.removeAttribute("logoutPageGo");
-					if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp")){
+					if(request.getParameter("url").equals("/templates/home/index.jsp")){
 						session.setAttribute("loginTry", "done");
-						response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp?hid=login");
-					 }else if(request.getParameter("url").equals("/project_kmong/templates/home/index.jsp?hid=login")){
+						response.sendRedirect("http://211.63.89.132/templates/home/index.jsp?hid=login");
+					 }else if(request.getParameter("url").equals("/templates/home/index.jsp?hid=login")){
 						session.setAttribute("loginTry", "done");
-						response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp?hid=login");
+						response.sendRedirect("http://211.63.89.132/templates/home/index.jsp?hid=login");
 				 
 					}else{
 						if(url.indexOf("?hid=login")==-1){
@@ -69,7 +69,7 @@
 <c:if test="${not empty e }">
 	<%
 	session.setAttribute("loginTry", "done");
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp?hid=login");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp?hid=login");
 	%>
 </c:if>
 

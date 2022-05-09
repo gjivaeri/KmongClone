@@ -20,11 +20,11 @@
        
 		if(!email.equals("")){
 			session.setAttribute("id",email); 
-			response.sendRedirect("http://localhost/project_kmong/templates/account/finding_success.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/finding_success.jsp");
 		}
 		else if(email.equals("")){
 			session.setAttribute("find", "fail");
-			response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 		}
         
 %>
@@ -32,6 +32,6 @@
 <c:if test="${not empty e }">
 	<%
 	session.setAttribute("find", "fail");
-	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 	%>
 </c:if>

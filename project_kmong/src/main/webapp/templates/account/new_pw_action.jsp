@@ -27,10 +27,10 @@
        
 		if(flag){
 			session.setAttribute("setPass", "succeed");
-			response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 		}else{
 			session.setAttribute("newPass", "fail");
-			response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+			response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 		}
         
 %>
@@ -38,7 +38,7 @@
 <c:if test="${not empty e }">
 	<%
 	session.setAttribute("newPass", "fail");
-	response.sendRedirect("http://localhost/project_kmong/templates/account/finding_info.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/account/finding_info.jsp");
 	%>
 	
 </c:if>

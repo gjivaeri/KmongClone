@@ -30,7 +30,7 @@ public class MyServiceDAO {
 	}// getInstance
 
 	/**
-	 * 나의 서비스 등록하기
+	 * �굹�쓽 �꽌鍮꾩뒪 �벑濡앺븯湲�
 	 * 
 	 * @param pVO
 	 * @throws SQLException
@@ -42,7 +42,6 @@ public class MyServiceDAO {
 		try {
 			StringBuilder insertMyService = new StringBuilder();
 			con = dbcp.getConn();
-			System.out.println("DB연결 성공");
 
 			insertMyService.append(
 					"insert into post(post_id, member_id, title, summary, price, term, description, post_img, category_id)	")
@@ -67,7 +66,7 @@ public class MyServiceDAO {
 	}// insertMyService
 
 	/**
-	 * 전문가의 서비스 리스트(이미지, 제목, 날짜)조회
+	 * �쟾臾멸��쓽 �꽌鍮꾩뒪 由ъ뒪�듃(�씠誘몄�, �젣紐�, �궇吏�)議고쉶
 	 * 
 	 * @param memberId
 	 * @return
@@ -82,9 +81,9 @@ public class MyServiceDAO {
 
 		try {
 			con = dbcp.getConn();
-			System.out.println("DB연동 성공");
+			System.out.println("DB�뿰�룞 �꽦怨�");
 
-			String selectMyServiceList = "select post_id, post_img, title, to_char(post_date,'yyyy-mm-dd') post_date from post where member_id=?";
+			String selectMyServiceList = "select post_id, post_img, title, to_char(post_date,'yyyy-mm-dd') post_date from post where member_id=? and post_status='Y'	";
 			pstmt = con.prepareStatement(selectMyServiceList);
 			pstmt.setInt(1, memberId);
 
@@ -116,7 +115,7 @@ public class MyServiceDAO {
 
 		try {
 			con = dbcp.getConn();
-			System.out.println("DB연동 성공");
+			System.out.println("DB�뿰�룞 �꽦怨�");
 
 			String selectMyServiceList = "select post_id, post_img, title, summary, price, term, description, category_id from post where post_id=?";
 			pstmt = con.prepareStatement(selectMyServiceList);
@@ -146,10 +145,10 @@ public class MyServiceDAO {
 	}// selectUpdateMyServiceList
 
 	/**
-	 * 선택한 post_id 게시글의 정보 수정
+	 * �꽑�깮�븳 post_id 寃뚯떆湲��쓽 �젙蹂� �닔�젙
 	 * 
 	 * @param pVO
-	 * @return 게시글의 정보 수정 여부
+	 * @return 寃뚯떆湲��쓽 �젙蹂� �닔�젙 �뿬遺�
 	 * @throws SQLException
 	 */
 	public boolean updateMyService(PostVO pVO) throws SQLException {
@@ -161,7 +160,7 @@ public class MyServiceDAO {
 		try {
 			StringBuilder updateMyService = new StringBuilder();
 			con = dbcp.getConn();
-			System.out.println("DB연동 성공");
+			System.out.println("DB�뿰�룞 �꽦怨�");
 
 			updateMyService.append("update post	")
 					.append("set title=?, summary=?, price=?, term=?, description=?, post_img=?, category_id=?	")
@@ -189,13 +188,13 @@ public class MyServiceDAO {
 	}// updateMyService
 
 	/**
-	 * 선택한 post_id의 게시글 삭제
+	 * �꽑�깮�븳 post_id�쓽 寃뚯떆湲� �궘�젣
 	 * 
 	 * @param postId
-	 * @return 게시글의 삭제 여부
+	 * @return 寃뚯떆湲��쓽 �궘�젣 �뿬遺�
 	 * @throws SQLException
 	 */
-	public boolean deleteMyService(int postId) throws SQLException {// comments table과의 관계때문에 delete가 되지 않고 update로 처리
+	public boolean deleteMyService(int postId) throws SQLException {// comments table怨쇱쓽 愿�怨꾨븣臾몄뿉 delete媛� �릺吏� �븡怨� update濡� 泥섎━
 		boolean flag = false;
 
 		Connection con = null;
@@ -203,9 +202,9 @@ public class MyServiceDAO {
 
 		try {
 			con = dbcp.getConn();
-			System.out.println("DB연동 성공");
+			System.out.println("DB�뿰�룞 �꽦怨�");
 
-			String deleteMyService = "update post set title='삭제된 서비스입니다.', summary='', price='', term='', post_date='', description='', star_avg='', post_img='' where post_id=?";
+			String deleteMyService = "update post set post_status='N' where post_id=?";
 			pstmt = con.prepareStatement(deleteMyService);
 			pstmt.setInt(1, postId);
 

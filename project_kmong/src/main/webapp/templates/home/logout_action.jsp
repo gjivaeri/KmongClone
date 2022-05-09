@@ -12,9 +12,9 @@
 }else{
 	session.removeAttribute("login");
 	session.setAttribute("logoutDone", "logout");
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 } */
-String url="http://localhost"+request.getParameter("url");
+String url="http://211.63.89.132"+request.getParameter("url");
 
 	session.removeAttribute("login");
 	//session.removeAttribute("logoutSession");

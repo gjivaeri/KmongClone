@@ -15,7 +15,7 @@
 
 
 <% if(request.getQueryString()==null){
-   response.sendRedirect("http://localhost/project_kmong/templates/service/list.jsp?categoryId=1");
+   response.sendRedirect("http://211.63.89.132/templates/service/list.jsp?categoryId=1");
    return;
 }
 
@@ -92,10 +92,10 @@ var getUrlParameter = function getUrlParameter(sParam) {
 function sort(selectIdx){
    var page = getUrlParameter('p');
    var categoryId = getUrlParameter('categoryId');
-   var nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?categoryId='
+   var nextURL = 'http://211.63.89.132/templates/service/list.jsp?categoryId='
       +categoryId+selectIdx;
    if(page!=undefined){
-      nextURL = 'http://localhost/project_kmong/templates/service/list.jsp?'
+      nextURL = 'http://211.63.89.132/templates/service/list.jsp?'
          +'p='+page+'&categoryId='+categoryId+selectIdx;
    }
    window.location.href=nextURL; 
@@ -162,7 +162,7 @@ if(session.getAttribute("login") == null) {
 <!-- if session에서 로그인 확인되면 header_member.jsp(line replace)-->
 <!-- -----------------------------------------------------------------  -->
 <div style="width:100%">
-<div style="width:1400px;margin:0px auto" class="menu">
+<div style="width:1160px;margin:0px auto" class="menu">
 <!-- 왼쪽 카테고리----nav-------------------------------------------------------------- -->
 
 <%
@@ -177,7 +177,7 @@ pageContext.setAttribute("categoryList", list1);
 <hr style="border:2px solid RGB(252, 212, 0)"/>
 <c:forEach var="categorylist" items="${categoryList}">
 
-<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://localhost/project_kmong/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0" ><c:out value="${categorylist.categoryName }"/></a></div>
+<div class="css-2p4obp ebpz7lm7"><a color="secondary" href="http://211.63.89.132/templates/service/list.jsp?categoryId=${categorylist.categoryId}" class="ebpz7lm6 css-1byqrox e1lsgt8r0" ><c:out value="${categorylist.categoryName }"/></a></div>
 
 </c:forEach>
 
@@ -196,7 +196,7 @@ String categoryname= mnDAO.selectCategoryName(query2);
 
 
 
-<a href="http://localhost/project_kmong/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
+<a href="http://211.63.89.132/templates/home/index.jsp" class="css-mz86x3 e1rp7ga00">홈</a>
 
 <span>></span>
 <span><c:out value="<%=categoryname %>"/></span>
@@ -272,9 +272,9 @@ Paging paging = new PageImpl(request,sortedList,12);
 <c:forEach var="categoryMenu" items="${list}">
 
 <article class="selectmenu" style="padding:0 12px; margin-bottom: 48px">
-<a href="http://localhost/project_kmong/templates/service/detail.jsp?id=${categoryMenu.postId }" class="css-1mr8hr4 ezeyqpv17">
+<a href="http://211.63.89.132/templates/service/detail.jsp?id=${categoryMenu.postId }" class="css-1mr8hr4 ezeyqpv17">
 <div>
-<img src="http://localhost/project_kmong/static/PostimgUpload/${categoryMenu.postImg }"  style="height:130px; width:100%"/>
+<img src="http://211.63.89.132/static/PostimgUpload/${categoryMenu.postImg }"  style="height:130px; width:100%"/>
 </div>
 <div>
 <div style="margin-top: 10px">

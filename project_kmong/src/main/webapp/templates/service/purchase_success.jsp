@@ -55,7 +55,7 @@ $(function(){
 <div style="width:1400px; margin:0px auto">
 
 <div style="width:150px; height:100px; margin:auto;margin-bottom: 1px" >
-<img src="http://localhost/project_kmong/static/images/img_logo2.png" style="width: 150px; height:80px; margin:0px auto; margin-top: 10px"/>
+<img src="http://211.63.89.132/static/images/img_logo2.png" style="width: 150px; height:80px; margin:0px auto; margin-top: 10px"/>
 </div>
 
 <%

@@ -6,13 +6,13 @@
 <html lang="en">
   <head>
     <title>Category Add</title>
-  	<c:import url="http://localhost/project_kmong/admin/pages/common/cdn.jsp"/>
+  	<c:import url="http://211.63.89.132/admin/pages/common/cdn.jsp"/>
   </head>
   <body>
   
     <div class="container-scroller">
       <!-- sidebar.jsp (left)-->
-      <c:import url="http://localhost/project_kmong/admin/pages/common/sidebar.jsp"/>
+      <c:import url="http://211.63.89.132/admin/pages/common/sidebar.jsp"/>
 		<script>
 		$(function(){
 		const navActive = document.getElementById("nav-category");
@@ -71,7 +71,7 @@
       <!-- body -->
       <div class="container-fluid page-body-wrapper">
         <!-- navbar.jsp -->
-        <c:import url="http://localhost/project_kmong/admin/pages/common/navbar.jsp"/>
+        <c:import url="http://211.63.89.132/admin/pages/common/navbar.jsp"/>
 <!----------------------------------------------------- 여기까지 좌,상단 nav bar ---------------------------------------------------------->
 
         <!-- partial -->
@@ -117,7 +117,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Category Image</label>
                             <div class="col-sm-9">
-                              <img id="img-output"  src="http://localhost/project_kmong/static/images/category/noneImg.png" style="width:100px; height:100px;">
+                              <img id="img-output"  src="http://211.63.89.132/static/images/category/noneImg.png" style="width:100px; height:100px;">
                             </div>
                           </div>
                         </div>
@@ -151,7 +151,7 @@
 			</div>
         </div>
 			<!-- content-wrapper ends -->
-		  	<c:import url="http://localhost/project_kmong/admin/pages/common/footer.jsp"/>
+		  	<c:import url="http://211.63.89.132/admin/pages/common/footer.jsp"/>
         </div>
         <!-- main-panel ends -->
       </div>

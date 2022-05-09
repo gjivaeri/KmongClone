@@ -151,7 +151,7 @@ $(function() {
                     <div class="dropdown" style="width: 40px; border-radius: 50px;" >
                         <div style="height: 40px; width:40px; margin-left:0px;border-radius: 50px;">
                         
-                        <img src="http://localhost/project_kmong/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
+                        <img src="http://211.63.89.132/static/images/profile.JPG" class="profile" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50px; transition: border 0.2s ease 0s;"/>
                         </div>
                         
                         <div class="dropdown-content" style="width: 150px;  line-height: 22px;">

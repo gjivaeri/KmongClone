@@ -10,7 +10,7 @@
     pageEncoding="UTF-8"%>
 <%
 try{
-File saveDirectory = new File("C:/Users/user/git/KmongClone/project_kmong/src/main/webapp/static/images/category");
+File saveDirectory = new File("E:/dev/web_service/static/images/category");
 String encType = "UTF-8";
 int maxSize = 5 * 1024 * 1024;
 

@@ -29,7 +29,7 @@ body{
 
 if((String)session.getAttribute("join")==null){
 	//회원가입 과정을 거치지 않고 이 파일에 접근할 경우 메인페이지로 redirect
-	response.sendRedirect("http://localhost/project_kmong/templates/home/index.jsp");
+	response.sendRedirect("http://211.63.89.132/templates/home/index.jsp");
 }else{
 	//session.removeAttribute("login"); //회원가입 과정을 거치고 정상적으로 완료됐을 시 세션 삭제
 }
@@ -51,7 +51,7 @@ $(function(){
 
     <div class="register-step1">
         <div style="text-align: center;">
-            <a href="http://localhost/project_kmong/templates/home/index.jsp">
+            <a href="http://211.63.89.132/templates/home/index.jsp">
                 <div class="logo-div" style="margin-bottom: 30px;"></div>
             </a>
         </div>
@@ -62,7 +62,7 @@ $(function(){
                 
                 <div>
 
-				<form id="frm" action="http://localhost/project_kmong/templates/home/index.jsp?hid=login">
+				<form id="frm" action="http://211.63.89.132/templates/home/index.jsp?hid=login">
                     <input   class="login-button" id="login-btn-after-register" type="button" value="로그인 하기" 
                     
                    			onmouseover="$('#login-btn-after-register').css('background-color','rgb(240, 192, 79)')" 
