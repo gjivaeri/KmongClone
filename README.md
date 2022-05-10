@@ -52,11 +52,11 @@ JSP기반<br/>
   <img src="https://user-images.githubusercontent.com/66814071/167546047-dbf001a7-e5de-4177-bf34-40065d9438fe.gif" width="50%" height="30%">
 + 서비스 리스트, 정렬<br/>
   <img src="https://user-images.githubusercontent.com/66814071/167547421-c3f64fe1-8759-43f7-a4d3-68032b1aaba2.gif" width="50%" height="30%">
-+ 관리자 포스트,<br/>
++ 관리자 포스트,멤버,계약 리스트<br/>
   <img src="https://user-images.githubusercontent.com/66814071/167549296-740092d3-3bab-44d3-aff3-ce874a1b37b5.gif" width="50%" height="30%">
-+ 포스트, 멤버, 계약<br/>
++ 관리자 계약 취소<br/>
   <img src="https://user-images.githubusercontent.com/66814071/167549346-c6dda295-90db-47fe-a300-b82d65f9f883.gif" width="50%" height="30%">
-+ 카테고리 CRUD<br/>
++ 관리자 카테고리 CRUD<br/>
   <img src="https://user-images.githubusercontent.com/66814071/167549432-24781e2d-6ad8-437d-850b-b5e8c72741fe.gif" width="50%" height="30%">
 
   
