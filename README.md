@@ -8,11 +8,11 @@ JSP기반<br/>
 3. 카테고리 별 서비스 검색 및 정렬
 4. 서비스 상세페이지 별점 및 댓글 
 5. 서비스 구매
-6. 전문가/의뢰인 계약 요청/수락/철회 
+6. 전문가/의뢰인 계약 상태관리
 7. 서비스 모아보기, 날짜기반 의뢰 검색, 페이징
 8. summernote, ajax를 이용한 서비스 상세내역 및 이미지 업로드
 9. 프로필 정보 수정
-10. char.js 주문현황 관리
+10. chart.js 주문현황 관리
 11. 관리자 페이지 유저,게시글,주문 CRUD
 
 ## ⚙️개발환경
@@ -32,8 +32,17 @@ JSP기반<br/>
   WAS
   <div><img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white"/></div>
 </div>
-
+  
 ## 🏷️ERD, Class Diagram
+<details markdown="1">
+<summary>접기/펼치기</summary>
+
+<img src="https://user-images.githubusercontent.com/66814071/167522204-ee1b45bc-ea00-4089-bb6e-88d724ebb0d9.png" width="80%" height="30%">
+<img src="https://user-images.githubusercontent.com/66814071/167522166-36e56226-d412-4591-9df3-a9950091aa8f.png">
+
+</details>
+
+
 
 ## 💻실행화면
 ## 🌎관련사이트
